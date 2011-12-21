@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast.rb - BLAST wrapper
-# 
+#
 # Copyright::  Copyright (C) 2001,2008  Mitsuteru C. Nakao <n@bioruby.org>
 # Copyright::  Copyright (C) 2002,2003  Toshiaki Katayama <k@bioruby.org>
 # Copyright::  Copyright (C) 2006       Jan Aerts <jan.aerts@bbsrc.ac.uk>
@@ -18,7 +18,7 @@ require 'bio/io/flatfile'
 module Bio
 
   # == Description
-  # 
+  #
   # The Bio::Blast class contains methods for running local or remote BLAST
   # searches, as well as for parsing of the output of such BLASTs (i.e. the
   # BLAST reports). For more information on similarity searches and the BLAST
@@ -27,7 +27,7 @@ module Bio
   # == Usage
   #
   #   require 'bio'
-  #   
+  #
   #   # To run an actual BLAST analysis:
   #   #   1. create a BLAST factory
   #   remote_blast_factory = Bio::Blast.remote('blastp', 'swissprot',
@@ -47,7 +47,7 @@ module Bio
   # * Bio::Blast::Report::Hsp
   #
   # == References
-  # 
+  #
   # * http://www.ncbi.nlm.nih.gov/blast/
   # * http://www.ncbi.nlm.nih.gov/Education/BLASTinfo/similarity.html
   # * http://blast.genome.jp/ideas/ideas.html#blast
@@ -98,9 +98,9 @@ module Bio
       self.new(program, db, option, server)
     end
 
- 
-    # Bio::Blast.report parses given data, 
-    # and returns an array of report 
+
+    # Bio::Blast.report parses given data,
+    # and returns an array of report
     # (Bio::Blast::Report or Bio::Blast::Default::Report) objects,
     # or yields each report object when a block is given.
     #
@@ -197,14 +197,14 @@ module Bio
     #--
     # the method Bio::Blast.reports is moved from bio/appl/blast/report.rb.
     #++
-     
+
     # Note that this is the old implementation of Bio::Blast.reports.
     # The aim of this method is keeping compatibility for older BLAST
     # XML documents which might not be parsed by the new
     # Bio::Blast.reports nor Bio::FlatFile.
     # (Though we are not sure whether such documents exist or not.)
     #
-    # Bio::Blast.reports_xml parses given data, 
+    # Bio::Blast.reports_xml parses given data,
     # and returns an array of Bio::Blast::Report objects, or
     # yields each Bio::Blast::Report object when a block is given.
     #
@@ -247,7 +247,7 @@ module Bio
 
     # Database name (_-d_ option for blastall)
     attr_accessor :db
-    
+
     # Options for blastall
     attr_reader :options
 
@@ -288,9 +288,9 @@ module Bio
     # Returns a String containing blast execution output in as is the Bio::Blast#format.
     attr_reader :output
 
-    # Output report format for blastall -m 
+    # Output report format for blastall -m
     #
-    # 0, pairwise; 1; 2; 3; 4; 5; 6; 7, XML Blast outpu;, 8, tabular; 
+    # 0, pairwise; 1; 2; 3; 4; 5; 6; 7, XML Blast outpu;, 8, tabular;
     # 9, tabular with comment lines; 10, ASN text; 11, ASN binery [intege].
     attr_accessor :format
 
@@ -299,13 +299,13 @@ module Bio
 
 
     # Creates a Bio::Blast factory object.
-    # 
+    #
     # To run any BLAST searches, a factory has to be created that describes a
     # certain BLAST pipeline: the program to use, the database to search, any
     # options and the server to use. E.g.
-    # 
+    #
     #   blast_factory = Bio::Blast.new('blastn','dbsts', '-e 0.0001 -r 4', 'genomenet')
-    # 
+    #
     # ---
     # *Arguments*:
     # * _program_ (required): 'blastn', 'blastp', 'blastx', 'tblastn' or 'tblastx'
@@ -333,7 +333,7 @@ module Bio
 
     # This method submits a sequence to a BLAST factory, which performs the
     # actual BLAST.
-    # 
+    #
     #   # example 1
     #   seq = Bio::Sequence::NA.new('agggcattgccccggaagatcaagtcgtgctcctg')
     #   report = blast_factory.query(seq)
@@ -350,7 +350,7 @@ module Bio
     # it should return an array of Bio::Blast::Report objects,
     # but it returns a single Bio::Blast::Report object.
     # This is a known bug and should be fixed in the future.
-    # 
+    #
     # ---
     # *Arguments*:
     # * _query_ (required): single- or multiple-FASTA formatted sequence(s)
@@ -466,10 +466,10 @@ module Bio
         cmd.concat([ '-m', @format.to_s ])
       end
       if @matrix
-        cmd.concat([ '-M', @matrix ]) 
+        cmd.concat([ '-M', @matrix ])
       end
       if @filter
-        cmd.concat([ '-F', @filter ]) 
+        cmd.concat([ '-F', @filter ])
       end
       ncbiopts = NCBIOptions.new(@options)
       ncbiopts.make_command_line_options(cmd)

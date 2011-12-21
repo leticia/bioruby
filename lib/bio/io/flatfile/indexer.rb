@@ -1,11 +1,11 @@
-# 
+#
 # = bio/io/flatfile/indexer.rb - OBDA flatfile indexer
-# 
-# Copyright:: Copyright (C) 2002 GOTO Naohisa <ng@bioruby.org> 
+#
+# Copyright:: Copyright (C) 2002 GOTO Naohisa <ng@bioruby.org>
 # License::   The Ruby License
-# 
-#  $Id: indexer.rb,v 1.26 2007/12/11 15:13:32 ngoto Exp $ 
-# 
+#
+#  $Id: indexer.rb,v 1.26 2007/12/11 15:13:32 ngoto Exp $
+#
 
 require 'bio/io/flatfile/index'
 
@@ -89,12 +89,12 @@ module Bio
             if name.is_a?(NameSpace) then
               @primary = name
             else
-              @primary = @namestyle[name] 
+              @primary = @namestyle[name]
             end
             raise 'unknown primary namespace' unless @primary
             @primary
           end
-        
+
           def add_secondary_namespaces(*names)
             DEBUG.print "add_secondary_namespaces: #{names.inspect}\n"
             names.each do |x|
@@ -242,7 +242,7 @@ module Bio
              NameSpace.new( 'UNIQUE', nil ),
              NameSpace.new( 'entry_id', Proc.new { |x| x.entry_id } ),
              NameSpace.new( 'accession', Proc.new { |x| x.accessions } ),
-             NameSpace.new( 'id_string', Proc.new { |x| 
+             NameSpace.new( 'id_string', Proc.new { |x|
                              x.identifiers.id_strings
                            }),
              NameSpace.new( 'word', Proc.new { |x|
@@ -271,7 +271,7 @@ module Bio
               unique_primary_key
             end
           end
-                                     
+
           def initialize(pri_name = nil, sec_names = nil)
             super()
             self.format = 'fasta'
@@ -371,7 +371,7 @@ module Bio
         class BlastDefaultParser < TemplateParser
           NAMESTYLE = NameSpaces.new(
              NameSpace.new( 'QUERY', Proc.new { |x| x.query_def } ),
-             NameSpace.new( 'query_id', Proc.new { |x| 
+             NameSpace.new( 'query_id', Proc.new { |x|
                              a = Bio::FastaDefline.new(x.query_def.to_s).id_strings
                              a << x.query_def.to_s.split(/\s+/,2)[0]
                              a

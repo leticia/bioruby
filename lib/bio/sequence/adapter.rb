@@ -16,7 +16,7 @@ require 'bio/sequence'
 # Bio::Sequence class, with pseudo lazy evaluation and pseudo memoization.
 #
 # This module is used by using "extend", not "include".
-# 
+#
 module Bio::Sequence::Adapter
 
   autoload :GenBank,     'bio/db/genbank/genbank_to_biosequence'
@@ -44,7 +44,7 @@ module Bio::Sequence::Adapter
   # When the object is frozen, storing to the instance variable and
   # changing methods behavior do not occur, and the value of
   # <tt>__get__<i>name</i>(@source_data)</tt> is returned.
-  # 
+  #
   # Note that it assumes that the source data object is stored in
   # @source_data instance variable.
   def attr_reader_lazy(name)

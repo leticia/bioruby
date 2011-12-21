@@ -58,7 +58,7 @@ module Bio
 
   ## Map
   autoload :Map,            'bio/map'
-	
+
   ### Constants
 
   autoload :NucleicAcid,    'bio/data/na'
@@ -269,10 +269,10 @@ module Bio
   #class Sim4
   #  autoload :Report,       'bio/appl/sim4/report'
   #end
-  
+
   autoload :Spidey,         'bio/appl/spidey/report'
   autoload :Blat,           'bio/appl/blat/report'
-  
+
   module GCG
     autoload :Msf,          'bio/appl/gcg/msf'
     autoload :Seq,          'bio/appl/gcg/seq'

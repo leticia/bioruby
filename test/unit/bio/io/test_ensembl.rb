@@ -22,7 +22,7 @@ class TestEnsembl_v14 < Test::Unit::TestCase
   def test_ensembl_url
     assert_equal('http://www.ensembl.org', Bio::Ensembl::ENSEMBL_URL)
   end
-  
+
   def test_server
     obj = Bio::Ensembl.new('Homo_sapiens')
     assert_equal('http://www.ensembl.org', obj.server)
@@ -33,9 +33,9 @@ class TestEnsembl_v14 < Test::Unit::TestCase
     obj = Bio::Ensembl.new(organism)
     assert_equal(organism, obj.organism)
   end
-  
+
   def test_self_human
-    organism = 'Homo_sapiens'    
+    organism = 'Homo_sapiens'
     obj = Bio::Ensembl.human
     assert_equal(organism, obj.organism)
   end
@@ -64,7 +64,7 @@ class TestEnsembl < Test::Unit::TestCase
   def test_server_uri
     assert_equal('http://www.ensembl.org', Bio::Ensembl.server_uri)
   end
-  
+
   def test_set_server_uri
     host = 'http://localhost'
     Bio::Ensembl.server_uri(host)
@@ -75,7 +75,7 @@ end
 
 class TestEnsemblBase < Test::Unit::TestCase
   def test_exportview
-    
+
   end
 end
 
@@ -108,4 +108,4 @@ class TestEnsemblOldStyleClient < Test::Unit::TestCase
     assert_equal('Oryza_sativa', Rice::Organism)
   end
 end
-  
+

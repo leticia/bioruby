@@ -1,7 +1,7 @@
 #
 # = bio/db/aaindex.rb - AAindex database class
 #
-# Copyright::  Copyright (C) 2001 
+# Copyright::  Copyright (C) 2001
 #              KAWASHIMA Shuichi <s@bioruby.org>
 # Copyright::  Copyright (C) 2006
 #              Mitsuteru C. Nakao <n@bioruby.org>
@@ -56,16 +56,16 @@ module Bio
     # returns a Bio::AAindex1 object or a Bio::AAindex2 object.
     def self.auto(str)
       case str
-      when /^I /m 
+      when /^I /m
         Bio::AAindex1.new(str)
       when /^M /m
         Bio::AAindex2.new(str)
       else
         raise
-      end        
+      end
     end
 
-    # 
+    #
     def initialize(entry)
       super(entry, TAGSIZE)
     end
@@ -222,7 +222,7 @@ module Bio
     def rows
       if @data['rows']
         @data['rows']
-      else 
+      else
         label_data
         @rows
       end
@@ -232,7 +232,7 @@ module Bio
     def cols
       if @data['cols']
         @data['cols']
-      else 
+      else
         label_data
         @cols
       end
@@ -247,8 +247,8 @@ module Bio
     def matrix(aa1 = nil, aa2 = nil)
       return self[aa1, aa2] if aa1 and aa2
 
-      if @data['matrix'] 
-        @data['matrix'] 
+      if @data['matrix']
+        @data['matrix']
       else
         ma = []
         label_data.each_line do |line|
@@ -272,7 +272,7 @@ module Bio
     def old_matrix # for AAindex <= ver 5.0
       return @data['matrix'] if @data['matrix']
 
-      @aa = {} 
+      @aa = {}
       # used to determine row/column of the aa
       attr_reader :aa
       alias_method :aa, :rows
@@ -311,8 +311,8 @@ module Bio
     private
 
     def label_data
-      if @data['data'] 
-        @data['data'] 
+      if @data['data']
+        @data['data']
       else
         label, data = get('M').split("\n", 2)
         if /M rows = (\S+), cols = (\S+)/.match(label)

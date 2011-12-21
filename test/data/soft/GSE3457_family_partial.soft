@@ -10,8 +10,8 @@
 !Series_status = Public on Oct 11 2006
 !Series_submission_date = Oct 14 2005
 !Series_last_update_date = Oct 17 2005
-!Series_summary = To identify candidate genes involved in maturation and flowering, we conducted microarray expression studies using two poplar genotypes (Populus trichocarpa x P. deltoides hybrids) represented in continuous age gradients of one to six years. We designed 70-mers for 228 poplar genes and microarray studies were carried out using the microplate-based 96-well BioGridArray platform (GeneXP Biosciences).   Floral buds, vegetative buds and shoot tips were collected at different seasonal time points from juvenile and adult trees and from both basal and upper branches of mature trees.  
-!Series_overall_design = The experiment was carried out using the microplate-based 96-well BioGridArray platform (GeneXP Biosciences).  Each of 228 oligonucletides were duplicated in each well. Two human genes, beta-actin and gapdh , were also printed on all arrays as negative controls.  plus ten arabidopsis oligonucleotides selected by GeneXP and used to measure quality of hybridization. For each of 16 samples, two seperate RNA isolations were performed and were considered as biological replicates. Each biological replicate was labeled with Cy5, and hybridized to duplicated wells. 
+!Series_summary = To identify candidate genes involved in maturation and flowering, we conducted microarray expression studies using two poplar genotypes (Populus trichocarpa x P. deltoides hybrids) represented in continuous age gradients of one to six years. We designed 70-mers for 228 poplar genes and microarray studies were carried out using the microplate-based 96-well BioGridArray platform (GeneXP Biosciences).   Floral buds, vegetative buds and shoot tips were collected at different seasonal time points from juvenile and adult trees and from both basal and upper branches of mature trees.
+!Series_overall_design = The experiment was carried out using the microplate-based 96-well BioGridArray platform (GeneXP Biosciences).  Each of 228 oligonucletides were duplicated in each well. Two human genes, beta-actin and gapdh , were also printed on all arrays as negative controls.  plus ten arabidopsis oligonucleotides selected by GeneXP and used to measure quality of hybridization. For each of 16 samples, two seperate RNA isolations were performed and were considered as biological replicates. Each biological replicate was labeled with Cy5, and hybridized to duplicated wells.
 !Series_type = Maturation and Flowering
 !Series_contributor = Jingyi,,Li
 !Series_contributor = Olga,,Shevchenko
@@ -96,7 +96,7 @@
 !Series_contact_email = JINGYI.LI@OREGONSTATE.EDU
 !Series_contact_phone = 541-737-8496
 !Series_contact_institute = Oregon State University
-!Series_contact_address =  
+!Series_contact_address =
 !Series_contact_city = Corvallis
 !Series_contact_zip/postal_code = 97331
 !Series_contact_country = USA
@@ -120,14 +120,14 @@
 !Platform_contact_email = JINGYI.LI@OREGONSTATE.EDU
 !Platform_contact_phone = 541-737-8496
 !Platform_contact_institute = Oregon State University
-!Platform_contact_address =  
+!Platform_contact_address =
 !Platform_contact_city = Corvallis
 !Platform_contact_zip/postal_code = 97331
 !Platform_contact_country = USA
 !Platform_data_row_count = 240
-#ID =  
+#ID =
 #GB_ACC = Gene bank accession number
-#SPOT_ID =  
+#SPOT_ID =
 #Function/Family = gene functions and family
 #ORGANISM = sequence sources
 #SEQUENCE = oligo sequence used
@@ -395,13 +395,13 @@ GapDh	NM_002046		Glyseraldehyde-3-phosphate dehydrogenase	Human	from stratagen
 !Sample_contact_email = JINGYI.LI@OREGONSTATE.EDU
 !Sample_contact_phone = 541-737-8496
 !Sample_contact_institute = Oregon State University
-!Sample_contact_address =  
+!Sample_contact_address =
 !Sample_contact_city = Corvallis
 !Sample_contact_zip/postal_code = 97331
 !Sample_contact_country = USA
 !Sample_series_id = GSE3457
 !Sample_data_row_count = 217
-#ID_REF = 
+#ID_REF =
 #VALUE = normalized signal intensities
 !sample_table_begin
 ID_REF	VALUE
@@ -446,7 +446,7 @@ F110P74Y	9.95
 F115P67Y	7.55
 F117P40Y	5.1
 F117P48Y	10.87
-F118P50Y	
+F118P50Y
 F119P13Y	8.66
 F119P74Y	10.45
 F121P83Y	7.11
@@ -574,7 +574,7 @@ UM66TB05	10.42
 UM67TB05	10.24
 UM67TE05	7.85
 UM69TD03	7.68
-UM69TF07	
+UM69TF07
 UM77TC04	9.76
 UM82TH11	5.91
 UM83TC03	8.23
@@ -644,7 +644,7 @@ V063H06	7.73
 !Sample_contact_email = JINGYI.LI@OREGONSTATE.EDU
 !Sample_contact_phone = 541-737-8496
 !Sample_contact_institute = Oregon State University
-!Sample_contact_address =  
+!Sample_contact_address =
 !Sample_contact_city = Corvallis
 !Sample_contact_zip/postal_code = 97331
 !Sample_contact_country = USA
@@ -820,7 +820,7 @@ UM61TC08	9.61
 UM62TB07	9.58
 UM65TE06	11.05
 UM66TB05	10.17
-UM67TB05	
+UM67TB05
 UM67TE05	7.85
 UM69TD03	7.55
 UM69TF07	5.89

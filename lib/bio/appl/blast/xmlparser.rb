@@ -1,16 +1,16 @@
 #
 # = bio/appl/blast/xmlparser.rb - BLAST XML output (-m 7) parser by XMLParser
-# 
-# Copyright::  Copyright (C) 2001 
+#
+# Copyright::  Copyright (C) 2001
 #              Mitsuteru C. Nakao <n@bioruby.org>
-# Copyright::  Copyright (C) 2003 
+# Copyright::  Copyright (C) 2003
 #              Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
 # $Id:$
 #
 # == Description
-# 
+#
 # A parser for blast XML report (format 7) based on the XMLParser.
 # This file is automatically loaded by bio/appl/blast/report.rb if
 # the XMLParser installed.
@@ -33,7 +33,7 @@ class Blast
     def xmlparser_parse(xml)
       parser = XMLParser.new
       def parser.default; end
-       
+
       begin
         tag_stack = Array.new
         hash = Hash.new
@@ -117,7 +117,7 @@ class Blast
 
     # set parameter of the key as val
     def xml_set_parameter(key, val)
-      #labels = { 
+      #labels = {
       #  'matrix'       => 'Parameters_matrix',
       #  'expect'       => 'Parameters_expect',
       #  'include'      => 'Parameters_include',
@@ -223,7 +223,7 @@ class Blast
         end
       end
     end
-        
+
   end # class Report
 end # class Blast
 end # module Bio

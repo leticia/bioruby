@@ -21,7 +21,7 @@ module Bio::PAML
 
   # == Description
   #
-  # Bio::PAML::Baseml is a wrapper for running PAML baseml program. 
+  # Bio::PAML::Baseml is a wrapper for running PAML baseml program.
   #
   # Because most of the methods in this class are inherited from
   # Bio::PAML::Common, see documents of Bio::PAML::Common for details.

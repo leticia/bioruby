@@ -1,7 +1,7 @@
 #
 # = test/functional/bio/appl/test_pts1.rb - Unit test for Bio::PTS1 with network connection
 #
-# Copyright::   Copyright (C) 2006 
+# Copyright::   Copyright (C) 2006
 #               Mitsuteru Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -76,7 +76,7 @@ END
       seq = ">hoge\nAVSFLSMRRARL\n"
       @report = serv.exec(seq)
     end
-    
+
 
     #def test_output_size
     #  assert_equal(1634, @report.output.size)
@@ -89,11 +89,11 @@ END
     def test_prediction
       assert_equal("Targeted", @report.prediction)
     end
-    
+
     def test_cterm
       assert_equal("AVSFLSMRRARL", @report.cterm)
     end
-    
+
     def test_score
       assert_equal("7.559", @report.score)
     end
@@ -101,11 +101,11 @@ END
     def test_fp
       assert_equal("2.5e-04", @report.fp)
     end
-    
+
     def test_sppta
       assert_equal("-5.833", @report.sppta)
     end
-    
+
     def test_spptna
       assert_equal("-1.698", @report.spptna)
     end

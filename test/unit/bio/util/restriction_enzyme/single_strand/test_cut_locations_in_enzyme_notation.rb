@@ -64,7 +64,7 @@ class TestSingleStrandCutLocationsInEnzymeNotation < Test::Unit::TestCase #:nodo
 
     assert_equal([-4, -2, 2, 7], @obj_7)
     assert_equal([0, 2, 5, 10], @obj_7.to_array_index)
-    
+
     assert_equal([-1,1,7], @obj_8)
     assert_equal([0,1,7], @obj_8.to_array_index)
   end

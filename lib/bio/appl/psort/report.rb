@@ -1,14 +1,14 @@
 #
 # = bio/appl/psort/report.rb - PSORT systems report classes
 #
-# Copyright::   Copyright (C) 2003 
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
 #  $Id:$
 #
 # == A Report classes for PSORT Systems
-# 
+#
 
 require 'bio/appl/psort'
 
@@ -23,7 +23,7 @@ module Bio
 
       # = Bio::PSORT::PSORT1::Report
       # Parser class for PSORT1 output report.
-      # 
+      #
       # == Example
       class Report
 
@@ -49,7 +49,7 @@ module Bio
 
           rpt.final_result = final_result.split(/\n/).map {|x|
             x = x.strip.split(/---/).map {|y| y.strip }
-            { 'prediction' => x[0], 
+            { 'prediction' => x[0],
               'certainty'  => x[1].scan(/Certainty= (\d\.\d{3})/).to_s,
               'comment'    => x[1].scan(/\((\w+)\)/).to_s
             }
@@ -90,8 +90,8 @@ module Bio
 
     class PSORT2
 
-      # Subcellular localization name codes used by PSORT2 
-      SclNames = { 
+      # Subcellular localization name codes used by PSORT2
+      SclNames = {
         'csk' => 'cytoskeletal',
         'cyt' => 'cytoplasmic',
         'nuc' => 'nuclear',
@@ -105,7 +105,7 @@ module Bio
         'exc' => 'extracellular, including cell wall',
         '---' => 'other'
       }
-    
+
       # Feature name codes
       Features = [
         'psg',  # PSG: PSG score
@@ -125,7 +125,7 @@ module Bio
         'act',  # Actinin-type actin-binding motif: (found|none)  $hit
         'caa',  # Prenylation motif: (2|1|0) CaaX,CXC,CC,nil
         'yqr',  # memYQRL: (found|none) $scr
-        'tyr',  # Tyrosines in the tail: (none|\S+[,])  
+        'tyr',  # Tyrosines in the tail: (none|\S+[,])
                 # 10 * scalar(@ylist) / ($end - $start + 1);
         'leu',  # Dileucine motif in the tail: (none|found) $scr
         'gpi',  # >>> Seem to be GPI anchored
@@ -133,21 +133,21 @@ module Bio
         'dna',  # checking 63 PROSITE DNA binding motifs:              $hit
         'rib',  # checking 71 PROSITE ribosomal protein motifs:        $hit
         'bac',  # checking 33 PROSITE prokaryotic DNA binding motifs:  $hit
-        'm1a',  # $mtype eq '1a'  
+        'm1a',  # $mtype eq '1a'
         'm1b',  # $mtype eq '1b'
         'm2',   # $mtype eq '2 '
         'mNt',  # $mtype eq 'Nt'
-        'm3a',  # $mtype eq '3a' 
-        'm3b',  # $mtype eq '3b'  
+        'm3a',  # $mtype eq '3a'
+        'm3b',  # $mtype eq '3b'
         'm_',   # $mtype eq '__'  tms == 0
         'ncn',  # NNCN: ($NetOutput[1] > $NetOutput[0]) ? $output : (-$output);
         'lps',  # COIL: $count
         'len'   # $leng
       ]
-      
+
       # Feature name codes (long version).
       FeaturesLong = {
-        'psg' => 'PSG',  
+        'psg' => 'PSG',
         'gvh' => 'GvH',
         'tms' => 'ALOM',
         'alm' => 'ALOM',
@@ -158,27 +158,27 @@ module Bio
         'erl' => 'KDEL',
         'erm' => 'ER Membrane Retention Signals',
         'pox' => 'SKL',
-        'px2' => 'PTS2', 
-        'vac' => 'VAC', 
+        'px2' => 'PTS2',
+        'vac' => 'VAC',
         'rnp' => 'RNA-binding motif',
         'act' => 'Actinin-type actin-binding motif',
         'caa' => 'Prenylation motif',
-        'yqr' => 'memYQRL', 
+        'yqr' => 'memYQRL',
         'tyr' => 'Tyrosines in the tail',
         'leu' => 'Dileucine motif in the tail',
         'gpi' => '>>> Seems to be GPI anchored',
-        'myr' => 'NMYR', 
+        'myr' => 'NMYR',
         'dna' => 'checking 63 PROSITE DNA binding motifs',
         'rib' => 'checking 71 PROSITE ribosomal protein motifs',
-        'bac' => 'ochecking 33 PROSITE prokaryotic DNA binding motifs:', 
-        'm1a' => '', 
-        'm1b' => '', 
-        'm2'  => '', 
-        'mNt' => '', 
-        'm3a' => '', 
-        'm3b' => '', 
-        'm_'  => '', 
-        'ncn' => 'NNCN', 
+        'bac' => 'ochecking 33 PROSITE prokaryotic DNA binding motifs:',
+        'm1a' => '',
+        'm1b' => '',
+        'm2'  => '',
+        'mNt' => '',
+        'm3a' => '',
+        'm3b' => '',
+        'm_'  => '',
+        'ncn' => 'NNCN',
         'lps' => 'COIL',
         'len' => 'AA'       # length of input sequence
       }
@@ -195,15 +195,15 @@ module Bio
         # Report delimiter.
         RS = DELIMITER = "\)\n\n#{BOUNDARY}"
 
-        # entry_id of query sequence. 
-        attr_accessor :entry_id 
+        # entry_id of query sequence.
+        attr_accessor :entry_id
 
         # Given subcellular localization (three letters code).
         attr_accessor :scl
 
         # Definition of query sequence.
         attr_accessor :definition
-        
+
         # Sequence of query sequence.
         attr_accessor :seq
 
@@ -218,13 +218,13 @@ module Bio
 
         # Predicted subcellular localization (three letters code).
         attr_accessor :pred
-        
+
         # Raw text of output report.
         attr_accessor :raw
 
 
         # Constructs aBio::PSORT::PSORT2::Report object.
-        def initialize(raw = '', entry_id = nil, scl = nil, definition = nil, 
+        def initialize(raw = '', entry_id = nil, scl = nil, definition = nil,
                        seq = nil, k = nil, features = {}, prob = {}, pred = nil)
           @entry_id   = entry_id
           @scl        = scl
@@ -237,7 +237,7 @@ module Bio
           @raw        = raw
         end
 
-        
+
         # Parses output report with output format detection automatically.
         def self.parser(str, entry_id)
           case str
@@ -283,7 +283,7 @@ module Bio
           }
 
           report.prob = self.set_kNN_prob(ent[2])
-          report.set_prediction(ent[3])         
+          report.set_prediction(ent[3])
 
           return report
         end
@@ -308,7 +308,7 @@ module Bio
         # Returns @prob value.
         def self.set_kNN_prob(str)
           prob = Hash.new
-          Bio::PSORT::PSORT2::SclNames.keys.each {|a| 
+          Bio::PSORT::PSORT2::SclNames.keys.each {|a|
             prob.update( {a => 0.0} )
           }
           str.gsub(/\t/,'').split(/\n/).each {|a|
@@ -327,7 +327,7 @@ module Bio
             @pred = $2
             @k    = $3
           else
-            raise ArgumentError, 
+            raise ArgumentError,
               "Invalid format at(#{self.entry_id}):\n[#{str}]\n"
           end
         end
@@ -354,7 +354,7 @@ module Bio
           ent.compact!
 
           if /^ PSORT II server/ =~ ent[0] # for WWW version
-            ent.shift 
+            ent.shift
             delline = ''
             ent.each {|e| delline = e if /^Results of Subprograms/ =~ e }
             i = ent.index(delline)
@@ -362,19 +362,19 @@ module Bio
             ent.delete_at(i - 1)
           end
 
-          report.set_header_line(ent.shift)  
+          report.set_header_line(ent.shift)
           report.seq = Bio::Sequence::AA.new(ent.shift)
 
           fent, pent = self.divent(ent)
-          report.set_features(fent)          
-          report.prob = self.set_kNN_prob(pent[0].strip)  
+          report.set_features(fent)
+          report.prob = self.set_kNN_prob(pent[0].strip)
           report.set_prediction(pent[1].strip)
 
           return report
         end
 
 
-        # 
+        #
         def self.search_j(i, ent)
           j = 1
           1.upto(ent.size) {|x|
@@ -402,10 +402,10 @@ module Bio
           }
           self.features['AA'] = self.seq.length
         end
-        
+
       end # class Report
- 
-    end # class PSORT2      
+
+    end # class PSORT2
 
   end # class PSORT
 

@@ -94,7 +94,7 @@ module Bio
     def test_string_tree
       tree = @newick.tree
       assert_equal('root', tree.root.name)
-      assert_equal([ 
+      assert_equal([
                     "this is test",
                     "test2 (abc, def)",
                     "internal node\'s name",
@@ -152,7 +152,7 @@ module Bio
                 "&&NHX", :":", "S=human", :":", "E=1.1.1.1", :"]" ]
       rest_should_be = [ :",", :"(", "bbb", :":", "0.2", :")" ]
 
-      assert_equal(leaf_should_be, 
+      assert_equal(leaf_should_be,
                    @newick.instance_eval do
                      __parse_newick_get_tokens_for_leaf(input)
                    end)
@@ -163,7 +163,7 @@ module Bio
     def test_parse_newick_tokenize
       examples =
         [
-         [ 
+         [
           '(a,b);', # input
           [ :"(", 'a', :",", 'b', :")" ], # normal parser result
           [ :"(", 'a', :",", 'b', :")" ], # naive parser result
@@ -174,13 +174,13 @@ module Bio
             # normal parser result
             [ :"(", "A:B _C(D,E)F\'s G[H]", :":", '0.5', :"[",
             "&&NHX", :":", "S=human", :":", "E=1.1.1.1", :"]",
-            :",", :"(", "bbb", :":", "0.2", :",", 
+            :",", :"(", "bbb", :":", "0.2", :",",
             "c d e", :"[", "&&NHX", :":", "B=100", :"]", :")" ],
             # naive parser result
             [ :"(", "\'A", :":", "B _C", :"(", "D", :",", "E",
             :")", "F\'\'s G", :"[", "H", :"]", "\'", :":", '0.5', :"[",
             "&&NHX", :":", "S=human", :":", "E=1.1.1.1", :"]",
-            :",", :"(", "bbb", :":", "0.2", :",", 
+            :",", :"(", "bbb", :":", "0.2", :",",
             "c_d_e", :"[", "&&NHX", :":", "B=100", :"]", :")" ]
           ]
         ]
@@ -286,7 +286,7 @@ module Bio
                                              { :bootstrap_style =>
                                                :traditional })
                    end)
-      
+
     end
 
     def test_to_newick_format_leaf_NHX

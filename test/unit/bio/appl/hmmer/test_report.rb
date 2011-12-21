@@ -23,7 +23,7 @@ module Bio
     TestDataHMMER = Pathname.new(File.join(BioRubyTestDataPath, 'HMMER')).cleanpath.to_s
 
     def self.hmmpfam
-      File.open(File.join(TestDataHMMER, 'hmmpfam.out')).read 
+      File.open(File.join(TestDataHMMER, 'hmmpfam.out')).read
     end
 
     def self.output
@@ -31,7 +31,7 @@ module Bio
     end
 
     def self.hmmsearch
-      File.open(File.join(TestDataHMMER, 'hmmsearch.out')).read 
+      File.open(File.join(TestDataHMMER, 'hmmsearch.out')).read
     end
   end
 
@@ -49,7 +49,7 @@ module Bio
     end
   end
 
-  
+
   class TestHMMERReportConstants < Test::Unit::TestCase
     def test_rs
       assert_equal("\n//\n", Bio::HMMER::Report::RS)
@@ -57,12 +57,12 @@ module Bio
     end
   end
 
-    
+
   class TestHMMERReportHmmpfam < Test::Unit::TestCase
     def setup
       @obj = Bio::HMMER::Report.new(Bio::TestHMMERReportData.hmmpfam)
     end
-    
+
     def test_program
       assert_equal(Hash, @obj.program.class)
       assert_equal("hmmpfam - search one or more sequences against HMM database", @obj.program['name'])
@@ -123,7 +123,7 @@ module Bio
         assert_equal(Bio::HMMER::Report::Hit, hit.class)
       end
     end
-  end 
+  end
 
 
   class TestHMMERReportHit < Test::Unit::TestCase
@@ -173,7 +173,7 @@ module Bio
     def test_num
       assert_equal(4, @obj.num)
     end
-    
+
     def test_each
       @obj.each do |hsp|
         assert_equal(Bio::HMMER::Report::Hsp, hsp.class)
@@ -205,7 +205,7 @@ module Bio
     def test_hsp
       assert_equal(Bio::HMMER::Report::Hsp, @obj.class)
     end
-    
+
     def test_accession
       assert_equal("PF04385.4", @obj.accession)
     end
@@ -310,7 +310,7 @@ module Bio
       hist = "score    obs    exp  (one = represents 1 sequences)\n-----    ---    ---\n  377      1      0|="
       assert_equal(hist, @obj.histogram)
     end
-    
+
     def test_statistical_detail
       hash = {"P(chi-square)" => 0.0, "chi-sq statistic" => 0.0, "lambda" => 0.7676, "mu" => -10.6639}
       assert_equal(hash, @obj.statistical_detail)
@@ -318,7 +318,7 @@ module Bio
         assert_equal(hash[key], @obj.statistical_detail[key])
       end
     end
-    
+
     def test_total_seq_searched
       assert_equal(1, @obj.total_seq_searched)
     end

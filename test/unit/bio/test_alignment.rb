@@ -86,7 +86,7 @@ module Bio
       @obj.missing_char = '_'
       assert_equal('_', @obj.missing_char)
     end
-      
+
     def test_seqclass_default
       assert_not_nil(@obj.seqclass)
     end
@@ -571,7 +571,7 @@ module Bio
     def build_na_alignment(*sequences)
       sequences.inject(Alignment.new) { |alignment, sequence| alignment << Sequence::NA.new(sequence) }
     end
-    private :build_na_alignment    
+    private :build_na_alignment
 
     def test_equals
       alignment1 = Alignment.new([Sequence::NA.new("agct"), Sequence::NA.new("tagc")])
@@ -674,7 +674,7 @@ module Bio
     end
 
     # Alignment#each_site
-    
+
     def test_each_site_equal_length
       alignment = build_na_alignment("acg", "gta")
       expected_sites = [["a", "g"], ["c", "t"], ["g", "a"]]
@@ -690,7 +690,7 @@ module Bio
         assert_equal expected_sites.shift, site, "site ##{3-expected_sites.size} wrong"
       end
     end
-    
+
     #TODO: Lots of stuff needing tests here
 
     # Alignment#add_seq
@@ -751,7 +751,7 @@ module Bio
           "this is the key"
         end
       end
-      
+
       alignment = Alignment.new
       alignment.add_seq(seq)
       assert_equal({"this is the key"=>"atgc"}, alignment.to_hash, "wrong hash")
@@ -764,7 +764,7 @@ module Bio
           271828
         end
       end
-      
+
       alignment = Alignment.new
       alignment.add_seq(seq)
       assert_equal({271828=>"atgc"}, alignment.to_hash, "wrong hash")
@@ -781,14 +781,14 @@ module Bio
     def test_consensus_threshold_two_sequences
       alignment = build_na_alignment("agtcgattaa",
                                      "tttcgatgcc")
-      # the threshold is the fraction of sequences in which a symbol must 
+      # the threshold is the fraction of sequences in which a symbol must
       # occur at a given position to be considered the consensus symbol
       assert_equal("agtcgattaa", alignment.consensus(0.5))
       assert_equal("??tcgat???", alignment.consensus(0.500000001))
     end
 
     def test_consensus_threshold_four_sequences
-      alignment = build_na_alignment("agtg", 
+      alignment = build_na_alignment("agtg",
                                      "ttag",
                                      "actc",
                                      "tatc")
@@ -802,7 +802,7 @@ module Bio
                                      "ttcggc-",
                                      "ttcggc-")
       # using threshold = 0.5, that is a symbol must occur >= half the time in order to be consensus
-      # gap_mode -1 means gaps are ignored	                                   
+      # gap_mode -1 means gaps are ignored
       assert_equal("ttcggca", alignment.consensus(0.5, :gap_mode => -1), "gap mode -1")
       # gap_mode 0 means gaps are treated like regular symbols, yielding a gap in the last position
       assert_equal("ttcggc-", alignment.consensus(0.5, :gap_mode => 0), "gap mode 0")
@@ -811,48 +811,48 @@ module Bio
     end
 
     def test_consensus_opt_missing_char
-      alignment = build_na_alignment("agtcgattaa", 
+      alignment = build_na_alignment("agtcgattaa",
                                      "tttcgatgcc")
       assert_equal("**tcgat***", alignment.consensus(1, :missing_char => "*"))
     end
-    
+
     # Alignment#consensus_iupac
-    
+
     def test_consensus_iupac_no_gaps
       alignment = build_na_alignment("agtcgattaa", "tttcgatgcc")
       assert_equal("wktcgatkmm", alignment.consensus_iupac)
     end
-              
+
     def test_consensus_iupac_of_ambiguous_bases
       alignment = build_na_alignment("tmrwsykvhdbnd", "uaaaccgaaacab")
       assert_equal("tmrwsykvhdbnn", alignment.consensus_iupac)
     end
-              
+
     def test_consensus_iupac_gap_modes
       alignment = build_na_alignment("a-t", "acc")
-      # gap_mode -1 means gaps are ignored	                                   
+      # gap_mode -1 means gaps are ignored
       assert_equal("acy", alignment.consensus_iupac(:gap_mode => -1))
       # gap_mode 0 means gaps are treated as normal characters, yielding a missing symbol
       assert_equal("a?y", alignment.consensus_iupac(:gap_mode => 0))
       # gap_mode 1 means gaps take precedence over everything, yielding a gap
       assert_equal("a-y", alignment.consensus_iupac(:gap_mode => 1))
     end
-              
+
     def test_consensus_iupac_yields_correct_ambiguous_bases
       assert_equal "t", build_na_alignment("t", "u").consensus_iupac # not really IUPAC
-      
+
       # m = a c
       assert_equal "m", build_na_alignment("a", "c").consensus_iupac, "m #1"
       assert_equal "m", build_na_alignment("m", "c").consensus_iupac, "m #2"
       assert_equal "m", build_na_alignment("a", "m").consensus_iupac, "m #3"
       assert_equal "m", build_na_alignment("m", "a", "c").consensus_iupac, "m #4"
-                
+
       # r = a g
       assert_equal "r", build_na_alignment("a", "g").consensus_iupac, "r #1"
       assert_equal "r", build_na_alignment("r", "g").consensus_iupac, "r #2"
       assert_equal "r", build_na_alignment("a", "r").consensus_iupac, "r #3"
       assert_equal "r", build_na_alignment("a", "r", "g").consensus_iupac, "r #4"
-                
+
       # w = a t/u
       assert_equal "w", build_na_alignment("a", "t").consensus_iupac, "w #1"
       assert_equal "w", build_na_alignment("a", "u").consensus_iupac, "w #2"
@@ -886,7 +886,7 @@ module Bio
       assert_equal "k", build_na_alignment("u", "t", "g").consensus_iupac, "k #6"
       assert_equal "k", build_na_alignment("k", "u", "t", "g").consensus_iupac, "k #7"
 
-      # v = a c g m r s    
+      # v = a c g m r s
       assert_equal "v", build_na_alignment("a", "c", "g").consensus_iupac, "v #1"
       assert_equal "v", build_na_alignment("g", "m").consensus_iupac, "v #2"
       assert_equal "v", build_na_alignment("a", "s").consensus_iupac, "v #3"
@@ -897,8 +897,8 @@ module Bio
       assert_equal "v", build_na_alignment("s", "r", "m").consensus_iupac, "v #8"
       assert_equal "v", build_na_alignment("s", "r", "m", "a", "c", "g").consensus_iupac, "v #9"
       assert_equal "v", build_na_alignment("v", "g").consensus_iupac, "v #10" # alright, enough
-      
-      # b = t/u c g s y k    
+
+      # b = t/u c g s y k
       assert_equal "b", build_na_alignment("t", "c", "g").consensus_iupac, "b #1"
       assert_equal "b", build_na_alignment("g", "y").consensus_iupac, "b #2"
       assert_equal "b", build_na_alignment("t", "s").consensus_iupac, "b #3"
@@ -910,7 +910,7 @@ module Bio
       assert_equal "b", build_na_alignment("s", "k", "y", "u", "c", "g").consensus_iupac, "b #9"
       assert_equal "b", build_na_alignment("b", "g").consensus_iupac, "b #10"
 
-      # h = t/u c a y w m    
+      # h = t/u c a y w m
       assert_equal "h", build_na_alignment("t", "c", "a").consensus_iupac, "h #1"
       assert_equal "h", build_na_alignment("a", "y").consensus_iupac, "h #2"
       assert_equal "h", build_na_alignment("c", "w").consensus_iupac, "h #3"
@@ -922,7 +922,7 @@ module Bio
       assert_equal "h", build_na_alignment("w", "m", "y", "t", "c", "a").consensus_iupac, "h #9"
       assert_equal "h", build_na_alignment("h", "t").consensus_iupac, "h #10"
 
-      # d = t/u g a r w k    
+      # d = t/u g a r w k
       assert_equal "d", build_na_alignment("t", "g", "a").consensus_iupac, "d #1"
       assert_equal "d", build_na_alignment("r", "t").consensus_iupac, "d #2"
       assert_equal "d", build_na_alignment("w", "g").consensus_iupac, "d #3"
@@ -933,7 +933,7 @@ module Bio
       assert_equal "d", build_na_alignment("r", "w", "k").consensus_iupac, "d #8"
       assert_equal "d", build_na_alignment("k", "r", "w", "t", "g", "a").consensus_iupac, "d #9"
       assert_equal "d", build_na_alignment("d", "t").consensus_iupac, "d #10"
-      
+
       # n = anything
       assert_equal "n", build_na_alignment("a", "g", "c", "t").consensus_iupac, "n #1"
       assert_equal "n", build_na_alignment("a", "g", "c", "u").consensus_iupac, "n #2"
@@ -946,14 +946,14 @@ module Bio
       alignment = build_na_alignment("a??", "ac?")
       assert_equal("a??", alignment.consensus_iupac())
     end
-              
+
     def test_consensus_iupac_missing_char_option
       alignment = build_na_alignment("a**t", "ac**")
-      assert_equal("a***", alignment.consensus_iupac(:missing_char => "*")) 
+      assert_equal("a***", alignment.consensus_iupac(:missing_char => "*"))
     end
-              
+
     # Alignment#convert_match
-    
+
     def test_convert_match
       alignment = Alignment.new
       alignment << Sequence::NA.new("agtcgattaa")
@@ -1002,7 +1002,7 @@ module Bio
       assert_equal("agtcga", unmatched[0], "first changed")
       assert_equal("tttcga", unmatched[1], "second wrong")
     end
-    
+
     # Alignment#match_line
 
     def test_match_line_protein
@@ -1014,7 +1014,7 @@ module Bio
 
     #TODO: lots more on the consensus, match, etc.
 
-    # Alignment#normalize 
+    # Alignment#normalize
 
     def test_normalizebang_extends_sequences_with_gaps
       alignment = build_na_alignment("a", "ag", "agc", "agct")

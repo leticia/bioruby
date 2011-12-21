@@ -20,7 +20,7 @@ module Bio::Shell
   #
   # Example:
   #   efetch('AF237819')
-  # 
+  #
   # With two or more arguments, and when the 2nd argument is Symbol,
   # it calls the corresponding Bio::NCBI::REST::EFetch class method.
   #

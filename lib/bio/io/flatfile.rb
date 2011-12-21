@@ -173,7 +173,7 @@ module Bio
     # Note that you MUST explicitly require 'open-uri'.
     # Because open-uri.rb modifies existing class,
     # it isn't required by default.
-    # 
+    #
     def self.open_uri(uri, *arg)
       if block_given? then
         BufferedInputStream.open_uri(uri, *arg) do |stream|
@@ -187,7 +187,7 @@ module Bio
 
     # Executes the block for every entry in the stream.
     # Same as FlatFile.open(*arg) { |ff| ff.each { |entry| ... }}.
-    # 
+    #
     # * Example
     #     Bio::FlatFile.foreach('test.fst') { |e| puts e.definition }
     #
@@ -275,7 +275,7 @@ module Bio
 
     # Get next entry.
     def next_entry
-      raise UnknownDataFormatError, 
+      raise UnknownDataFormatError,
       'file format auto-detection failed?' unless @dbclass
       if @skip_leader_mode and
           ((@firsttime_flag and @skip_leader_mode == :firsttime) or

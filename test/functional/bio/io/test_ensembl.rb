@@ -23,7 +23,7 @@ class FuncTestEnsembl < Test::Unit::TestCase
   def setup
     @serv = Bio::Ensembl.new('Homo_sapiens')
   end
-  
+
   def test_class
     assert_equal(Bio::Ensembl, @serv.class)
   end
@@ -32,12 +32,12 @@ end
 class FuncTestEnsemblHuman < Test::Unit::TestCase
   def setup
     @serv = Bio::Ensembl.human
-  end 
+  end
 
   def test_organism
     assert_equal("Homo_sapiens", @serv.organism)
   end
-  
+
   def test_server
     assert_equal("http://www.ensembl.org", @serv.server)
   end
@@ -67,15 +67,15 @@ class FuncTestEnsemblHumanExportView < Test::Unit::TestCase
                            :anchor1 => 1149206,
                            :anchor2 => 1149209)
     assert_equal(seq, fna)
-  end 
+  end
 
   def test_fasta_exportview_with_named_args_and_hash_4th_params
-    fna = @serv.exportview(:seq_region_name => 4, 
-                           :anchor1 => 1149206, 
-                           :anchor2 => 1149209, 
+    fna = @serv.exportview(:seq_region_name => 4,
+                           :anchor1 => 1149206,
+                           :anchor2 => 1149209,
                            :upstream => 10)
-    fna10 = @serv.exportview(:seq_region_name => 4, 
-                             :anchor1 => 1149196, 
+    fna10 = @serv.exportview(:seq_region_name => 4,
+                             :anchor1 => 1149196,
                              :anchor2 => 1149209)
     assert_equal(fna10, fna)
   end
@@ -116,10 +116,10 @@ class FuncTestEnsemblHumanExportView < Test::Unit::TestCase
    def test_gff_exportview_with_named_args_for_empty_result
      gff = @serv.exportview(:seq_region_name => 4,
                             :anchor1 => 1149206,
-                            :anchor2 => 1149209, 
+                            :anchor2 => 1149209,
                             :options => ['gene'])
      assert_equal('', gff)
-   end 
+   end
 
    def test_gff_exportview_with_named_args
      # OR1A1 (Olfactory receptor 1A1)
@@ -147,10 +147,10 @@ class FuncTestEnsemblHumanExportView < Test::Unit::TestCase
      line = lines.collect { |x| x.join("\t") + "\n" }.join('')
      gff = @serv.exportview(:seq_region_name => 17,
                             :anchor1 => 3065665,
-                            :anchor2 => 3066594, 
+                            :anchor2 => 3066594,
                             :options => ['gene'])
      assert_equal(line, gff)
-   end 
+   end
 
    def test_tab_exportview_with_named_args_for_empty_result
      line = ["seqname",
@@ -167,11 +167,11 @@ class FuncTestEnsemblHumanExportView < Test::Unit::TestCase
              "gene_type"].join("\t") + "\n"
      gff = @serv.exportview(:seq_region_name => 4,
                             :anchor1 => 1149206,
-                            :anchor2 => 1149209, 
+                            :anchor2 => 1149209,
                             :options => ['gene'],
                             :format => 'tab')
      assert_equal(line, gff)
-   end 
+   end
 
    def test_tab_exportview_with_named_args
      # OR1A1 (Olfactory receptor 1A1)
@@ -218,11 +218,11 @@ class FuncTestEnsemblHumanExportView < Test::Unit::TestCase
      line = lines.collect { |x| x.join("\t") + "\n" }.join('')
      gff = @serv.exportview(:seq_region_name => 17,
                             :anchor1 => 3065665,
-                            :anchor2 => 3066594, 
+                            :anchor2 => 3066594,
                             :options => ['gene'],
                             :format => 'tab')
      assert_equal(line, gff)
-   end 
+   end
 
 
 end

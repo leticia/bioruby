@@ -103,7 +103,7 @@ module Bio
       assert_equal("Q63931", @ckr.get_by_type("accession"))
       assert_equal("CCKR_CAVPO", @ckr.get_by_type("entry_id"))
     end
-    
+
     def test_get_all_by_type
       #specify each type in each pattern while refering to NSIDs.
       assert_equal(["671595", "CAA85678.1"], @rub.get_all_by_type("gi","acc_version","locus"))

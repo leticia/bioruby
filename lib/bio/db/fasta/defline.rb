@@ -7,9 +7,9 @@
 # License::    The Ruby License
 #
 # $Id: defline.rb,v 1.1.2.1 2008/06/20 13:22:32 ngoto Exp $
-# 
+#
 # == Description
-# 
+#
 # Bio::FastaDefline is a parser class for definition line (defline)
 # of the FASTA format.
 #
@@ -44,7 +44,7 @@
 #         ["CHOLECYSTOKININ TYPE A RECEPTOR (CCK-A RECEPTOR) (CCK-AR)",
 #          "cholecystokinin A receptor - guinea pig",
 #          "cholecystokinin A receptor; CCK-A receptor [Cavia]"]
-#       ckr.words         ==> 
+#       ckr.words         ==>
 #         ["cavia", "cck-a", "cck-ar", "cholecystokinin", "guinea", "pig",
 #          "receptor", "type"]
 #       ckr.id_strings    ==>
@@ -59,7 +59,7 @@
 #
 # * FASTA format (WikiPedia)
 #   http://en.wikipedia.org/wiki/FASTA_format
-#   
+#
 # * Fasta format description (NCBI)
 #   http://www.ncbi.nlm.nih.gov/BLAST/fasta.shtml
 #
@@ -73,7 +73,7 @@ module Bio
   # Parsing FASTA Defline, and extract IDs and other informations.
   # IDs are NSIDs (NCBI standard FASTA sequence identifiers)
   # or ":"-separated IDs.
-  # 
+  #
   # specs are described in:
   # ftp://ftp.ncbi.nih.gov/blast/documents/README.formatdb
   # http://blast.wustl.edu/doc/FAQ-Indexing.html#Identifiers
@@ -109,7 +109,7 @@ module Bio
   #     ["CHOLECYSTOKININ TYPE A RECEPTOR (CCK-A RECEPTOR) (CCK-AR)",
   #      "cholecystokinin A receptor - guinea pig",
   #      "cholecystokinin A receptor; CCK-A receptor [Cavia]"]
-  #   ckr.words         ==> 
+  #   ckr.words         ==>
   #     ["cavia", "cck-a", "cck-ar", "cholecystokinin", "guinea", "pig",
   #      "receptor", "type"]
   #   ckr.id_strings    ==>
@@ -134,7 +134,7 @@ module Bio
   #
   # * Formatdb README
   #   ftp://ftp.ncbi.nih.gov/blast/documents/formatdb.html
-  # 
+  #
   class FastaDefline
 
     NSIDs = {
@@ -222,7 +222,7 @@ module Bio
       when /^\>?\s*([a-zA-Z0-9]+\:[^\s]+)\s*(.*)$/
         # examples:
         # >sce:YBR160W  CDC28, SRM5; cyclin-dependent protein kinase catalytic subunit [EC:2.7.1.-] [SP:CC28_YEAST]
-        # >emb:CACDC28 [X80034] C.albicans CDC28 gene 
+        # >emb:CACDC28 [X80034] C.albicans CDC28 gene
         i = $1
         d = $2
         a = parse_ColonSepID(i)
@@ -280,7 +280,7 @@ module Bio
 
     def parse_ColonSepID(str)
       di = str.split(':', 2)
-      di << nil if di.size <= 1 
+      di << nil if di.size <= 1
       @list_ids << di
       di
     end
@@ -376,7 +376,7 @@ module Bio
       'cds', 'clone', 'library', 'contig', 'contigs',
       'homolog', 'homologue', 'homologs', 'homologous',
       'protein', 'proteins', 'gene', 'genes',
-      'product', 'products', 'sequence', 'sequences', 
+      'product', 'products', 'sequence', 'sequences',
       'strain', 'strains', 'region', 'regions',
     ]
     KillWordsHash = {}
@@ -519,7 +519,7 @@ module Bio
       end
       @accession
     end
-    
+
     def method_missing(name, *args)
       # raise ArgumentError,
       # "wrong # of arguments(#{args.size} for 1)" if args.size >= 2
@@ -529,7 +529,7 @@ module Bio
       end
       r
     end
-    
+
 
   end #class FastaDefline
 

@@ -1,6 +1,6 @@
 #
 # = bio/appl/bl2seq/report.rb - bl2seq (BLAST 2 sequences) parser
-# 
+#
 # Copyright:: Copyright (C) 2005 Naohisa Goto <ng@bioruby.org>
 # License::   The Ruby License
 #
@@ -10,7 +10,7 @@
 #
 # = Acknowledgements
 #
-# Thanks to Tomoaki NISHIYAMA <tomoakin __at__ kenroku.kanazawa-u.ac.jp> 
+# Thanks to Tomoaki NISHIYAMA <tomoakin __at__ kenroku.kanazawa-u.ac.jp>
 # for providing bl2seq parser patches based on
 # lib/bio/appl/blast/format0.rb.
 #
@@ -103,7 +103,7 @@ class Blast
         # It returns an array of Bio::Blast::Bl2seq::Report::Hit objects.
         def hits; @hits; end
 
-        undef message, pattern_in_database, 
+        undef message, pattern_in_database,
           pattern, pattern_positions, hits_found_again,
           hits_newly_found, hits_for_pattern, parse_hitlist,
           converged?

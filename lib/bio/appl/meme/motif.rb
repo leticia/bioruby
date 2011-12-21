@@ -27,7 +27,7 @@ module Meme
     attr_accessor :sequence_name, :strand, :motif, :start_pos, :end_pos, :pvalue
 
     # Creates a new Bio::Meme::Motif object
-    # arguments are 
+    # arguments are
     def initialize(sequence_name, strand, motif, start_pos, end_pos, pvalue)
       @sequence_name = sequence_name.to_s
       @strand = strand.to_s
@@ -43,6 +43,6 @@ module Meme
     end
 
   end
-  
-end  
+
+end
 end

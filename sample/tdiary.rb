@@ -64,7 +64,7 @@ See ((<URL:http://biofetch.bioruby.org/>)) for more information.
 --- amigo(go_id, comment = nil)
 
 Create a link to the AmiGO GO term browser by using GO ID.
-See ((<URL:http://www.godatabase.org/cgi-bin/go.cgi>)) for more 
+See ((<URL:http://www.godatabase.org/cgi-bin/go.cgi>)) for more
 information.
 
   * tDiary style
@@ -89,7 +89,7 @@ See ((<URL:http://fantom2.gsc.riken.go.jp/db/>)) for more information.
 
 --- rtps(id, comment = nil)
 
-Create a link to FANTOM RTPS database by using Clone ID. 
+Create a link to FANTOM RTPS database by using Clone ID.
 You can use only RTPS ID.
 See ((<URL:http://fantom2.gsc.riken.go.jp/RTPS/>)) for more information.
 
@@ -107,7 +107,7 @@ See ((<URL:http://fantom2.gsc.riken.go.jp/RTPS/>)) for more information.
   Exploration Research Group Phase I & II Team, Nature 420:563-573, 2002
 
 * Functional annotation of a full-length mouse cDNA collection,
-  The RIKEN Genome Exploration Research Group Phase II Team and 
+  The RIKEN Genome Exploration Research Group Phase II Team and
   the FANTOM Consortium, Nature 409:685-690, 2001
 
 =end
@@ -123,9 +123,9 @@ def pubmed(pmid, comment = nil)
   end
 end
 
-def biofetch(db, entry_id) 
+def biofetch(db, entry_id)
   url = "http://biofetch.bioruby.org/"
-  %Q[<a href="#{url}?db=#{db};id=#{entry_id};style=raw">#{db}:#{entry_id}</a>] 
+  %Q[<a href="#{url}?db=#{db};id=#{entry_id};style=raw">#{db}:#{entry_id}</a>]
 end
 
 def amigo(go_id = '0003673', comment = nil)

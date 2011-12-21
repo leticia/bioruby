@@ -61,19 +61,19 @@ module Bio
       assert_kind_of(Bio::Locations, @map1.mappings_as_map[0].location)
       assert_kind_of(Bio::Locations, @marker1.mappings_as_marker[0].location)
     end
-    
+
     def test_mapped_to?
       @marker1.add_mapping_as_marker(@map1, '5')
       assert_equal(true, @marker1.mapped_to?(@map1))
       assert_equal(false, @marker3.mapped_to?(@map1))
     end
-    
+
     def test_contains_marker?
       @marker1.add_mapping_as_marker(@map1, '5')
       assert_equal(true, @map1.contains_marker?(@marker1))
       assert_equal(false, @map1.contains_marker?(@marker3))
     end
-    
+
     def test_mappings_as_map_each
       @map1.add_mapping_as_map(@marker1, '5')
       @marker2.add_mapping_as_marker(@map1, '7')
@@ -92,9 +92,9 @@ module Bio
         mappings += 1
       end
       assert_equal(2, mappings)
-      
+
     end
-    
+
     def test_multiple_mappings_between_same_marker_and_map
       @map1.add_mapping_as_map(@marker1, '5')
       @map1.add_mapping_as_map(@marker1, '37')
@@ -103,11 +103,11 @@ module Bio
 
       @marker1.add_mapping_as_marker(@map1, '53')  # This mapping should _not_ be added, because it's already defined.
       assert_equal(3, @marker1.mappings_as_marker.length)
-      
+
       @map1.add_mapping_as_map(@marker1, '53')
       assert_equal(3, @marker1.mappings_as_marker.length)
     end
-    
+
     def test_positions_on
       @map1.add_mapping_as_map(@marker1, '5')
       assert_equal(1, @marker1.mappings_as_marker.length)
@@ -115,18 +115,18 @@ module Bio
       @map1.add_mapping_as_map(@marker1, '37')
       assert_equal('5,37', @marker1.positions_on(@map1).collect{|p| p.first.from.to_s}.sort{|a,b| a.to_i <=> b.to_i}.join(',')) # FIXME: Test is not correct (uses Location.first)
     end
-    
+
     def test_mappings_on
       @map1.add_mapping_as_map(@marker1, '5')
       @map1.add_mapping_as_map(@marker1, '37')
       assert_equal('5,37', @marker1.mappings_on(@map1).sort{|a,b| a.location[0].from.to_i <=> b.location[0].from.to_i}.collect{|m| m.location[0].from}.join(',')) # FIXME: Test is not correct (uses Location.first)
-    end    
-    
+    end
+
     def test_mapping_location_comparison
       @map1.add_mapping_as_map(@marker1, '5')
       @map1.add_mapping_as_map(@marker2, '5')
       @map1.add_mapping_as_map(@marker3, '17')
-      
+
       mapping1 = @marker1.mappings_on(@map1)[0]
       mapping2 = @marker2.mappings_on(@map1)[0]
       mapping3 = @marker3.mappings_on(@map1)[0]
@@ -136,29 +136,29 @@ module Bio
       assert_equal(false, mapping1 == mapping3)
       assert_equal(true, mapping1 < mapping3)
       assert_equal(false, mapping1 > mapping3)
-      
+
       @map2.add_mapping_as_map(@marker1, '23')
       mapping4 = @marker1.mappings_on(@map2)[0]
       assert_raise(RuntimeError) { mapping2 < mapping4 }
     end
-    
+
     def test_raise_error_kind_of
       marker_without_class = 'marker1'
       assert_raise(RuntimeError) { @map1.add_mapping_as_map(marker_without_class, '5') }
       assert_raise(RuntimeError) { @map1.contains_marker?(marker_without_class) }
-      
+
       map_without_class = 'map1'
       assert_raise(RuntimeError) { @marker1.add_mapping_as_marker(map_without_class, '5') }
       assert_raise(RuntimeError) { @marker1.mapped_to?(map_without_class) }
       assert_raise(RuntimeError) { @marker1.positions_on(map_without_class) }
       assert_raise(RuntimeError) { @marker1.mappings_on(map_without_class) }
-      
+
       @map1.add_mapping_as_map(@marker1, '5')
       mapping1 = @marker1.mappings_on(@map1)[0]
       assert_raise(RuntimeError) { mapping1 > 'some_mapping' }
     end
   end
-	
+
   class CloneToActLikeMap
     include Bio::Map::ActsLikeMap
     def initialize
@@ -166,7 +166,7 @@ module Bio
     end
     attr_accessor :mappings_as_map
   end
-	
+
   class TestActsLikeMap < Test::Unit::TestCase
     def setup
       @clone = CloneToActLikeMap.new
@@ -191,7 +191,7 @@ module Bio
     def setup
       @clone = CloneToActLikeMarker.new
     end
-    
+
     def test_mixin
       assert_instance_of(CloneToActLikeMarker, @clone)
       assert_respond_to(@clone, 'mapped_to?')
@@ -215,14 +215,14 @@ module Bio
       @clone_b = CloneToActLikeMapAndMarker.new
       @clone_a.add_mapping_as_map(@clone_b, nil)
     end
-    
+
     def test_mixin
       assert_instance_of(CloneToActLikeMapAndMarker, @clone_a)
       assert_respond_to(@clone_a, 'contains_marker?')
       assert_respond_to(@clone_a, 'add_mapping_as_map')
       assert_respond_to(@clone_a, 'mapped_to?')
       assert_respond_to(@clone_a, 'add_mapping_as_marker')
-      
+
       assert_equal(1, @clone_a.mappings_as_map.length)
       assert_equal(0, @clone_a.mappings_as_marker.length)
       assert_equal(0, @clone_b.mappings_as_map.length)

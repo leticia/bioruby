@@ -1,7 +1,7 @@
 #
 # = bio/appl/hmmer.rb - HMMER wrapper
-# 
-# Copyright::   Copyright (C) 2002 
+#
+# Copyright::   Copyright (C) 2002
 #               Toshiaki Katayama <k@bioruby.org>
 # License::     The Ruby License
 #
@@ -14,7 +14,7 @@ require 'shellwords'
 module Bio
 
 # == Description
-# 
+#
 # A wapper for HMMER programs (hmmsearch or hmmpfam).
 #
 # === Examples
@@ -23,7 +23,7 @@ module Bio
 #   program = 'hmmsearch' # or 'hmmpfam'
 #   hmmfile = 'test.hmm'
 #   seqfile = 'test.faa'
-#   
+#
 #   factory = Bio::HMMER.new(program, hmmfile, seqfile)
 #   report = factory.query
 #   report.class # => Bio::HMMER::Report
@@ -39,22 +39,22 @@ class HMMER
 
   # Prgrams name. (hmmsearch or hmmpfam).
   attr_accessor :program
-  
+
   # Name of hmmfile.
   attr_accessor :hmmfile
-  
+
   # Name of seqfile.
   attr_accessor :seqfile
-  
+
   #  Command line options.
   attr_accessor :options
-  
+
   # Shows the raw output from the hmmer search.
   attr_reader :output
 
-  # Sets a program name, a profile hmm file name, a query sequence file name 
+  # Sets a program name, a profile hmm file name, a query sequence file name
   # and options in string.
-  # 
+  #
   # Program names: hmmsearch, hmmpfam
   #
   def initialize(program, hmmfile, seqfile, options = [])
@@ -62,7 +62,7 @@ class HMMER
     @hmmfile = hmmfile
     @seqfile = seqfile
     @output  = ''
-    
+
     begin
       @options = options.to_ary
     rescue NameError #NoMethodError
@@ -86,22 +86,22 @@ class HMMER
   end
 
 
-  # Executes the hmmer search and returns the report 
+  # Executes the hmmer search and returns the report
   # (Bio::HMMER::Report object).
   def query
     cmd = [ @program, *@options ]
     cmd.concat([ @hmmfile, @seqfile ])
-      
+
     report = nil
-    
+
     @output = Bio::Command.query_command(cmd, nil)
     report = parse_result(@output)
-      
+
     return report
   end
 
   private
-  
+
   def parse_result(data)
     Report.new(data)
   end

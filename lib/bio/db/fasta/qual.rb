@@ -7,9 +7,9 @@
 # License::    The Ruby License
 #
 # $Id:$
-# 
+#
 # == Description
-# 
+#
 # QUAL format, FASTA formatted numeric entry.
 #
 # == Examples
@@ -23,7 +23,7 @@
 #
 # * Phred quality score (WikiPedia)
 #   http://en.wikipedia.org/wiki/Phred_quality_score
-#   
+#
 # * Fasta format description (NCBI)
 #   http://www.ncbi.nlm.nih.gov/BLAST/fasta.shtml
 #
@@ -33,18 +33,18 @@ require 'bio/db/fasta'
 module Bio
 
   # Treats a FASTA formatted numerical entry, such as:
-  # 
+  #
   #   >id and/or some comments                    <== comment line
   #   24 15 23 29 20 13 20 21 21 23 22 25 13      <== numerical data
   #   22 17 15 25 27 32 26 32 29 29 25
-  # 
+  #
   # The precedent '>' can be omitted and the trailing '>' will be removed
   # automatically.
   #
   # --- Bio::FastaNumericFormat.new(entry)
-  # 
+  #
   # Stores the comment and the list of the numerical data.
-  # 
+  #
   # --- Bio::FastaNumericFormat#definition
   #
   # The comment line of the FASTA formatted data.
@@ -54,7 +54,7 @@ module Bio
   #
   # * Phred quality score (WikiPedia)
   #   http://en.wikipedia.org/wiki/Phred_quality_score
-  #   
+  #
   class FastaNumericFormat < FastaFormat
 
     # Returns the list of the numerical data (typically the quality score
@@ -107,7 +107,7 @@ module Bio
     # the sequence or definition in this FastaNumericFormat object
     # might also be changed (but not always be changed)
     # because of efficiency.
-    # 
+    #
     # ---
     # *Arguments*:
     # *Returns*:: (Bio::Sequence) sequence object

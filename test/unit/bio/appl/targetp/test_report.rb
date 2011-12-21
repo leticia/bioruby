@@ -20,13 +20,13 @@ require 'bio/appl/targetp/report'
 module Bio
 
   TargetPReport_plant =<<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions not included.
 # Using PLANT networks.
- 
+
 #                        Name   Length	  cTP   mTP    SP other  Loc.  RC
 #----------------------------------------------------------------------------------
                    MGI_2141503	  640	0.031 0.161 0.271 0.844   _     3
@@ -37,13 +37,13 @@ module Bio
 HOGE
 
 TargetPReport_plant_c =<<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions included.
 # Using PLANT networks.
- 
+
 #                        Name   Length	  cTP   mTP    SP other  Loc.  RC     TPlen
 #----------------------------------------------------------------------------------
                    MGI_2141503	  640	0.031 0.161 0.271 0.844   _     3	  -
@@ -55,13 +55,13 @@ TargetPReport_plant_c =<<HOGE
 HOGE
 
 TargetPReport_non_plant_c =<<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions included.
 # Using NON-PLANT networks.
- 
+
 #                        Name   Length    mTP   SP  other  Loc.  RC   TPlen
 #--------------------------------------------------------------------------
                      MGI_96083	 2187	0.292 0.053 0.746   _     3	  -

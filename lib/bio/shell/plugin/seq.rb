@@ -141,7 +141,7 @@ module Bio::Shell
       warn "Error: Sequence must be a DNA sequence."
       return
     end
-    pairs = [ [5, 0], [4, 2], [3, 3], [2, 4], 
+    pairs = [ [5, 0], [4, 2], [3, 3], [2, 4],
               [1, 4], [0, 3], [0, 2], [1, 0] ]
     seq.window_search(16, 16) do |subseq|
       pairs.each_with_index do |ij, x|

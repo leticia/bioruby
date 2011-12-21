@@ -34,8 +34,8 @@ module PAML
 
   # == Description
   #
-  # Bio::PAML::Common is a basic wrapper class for PAML programs. 
-  # The class provides methods for generating the necessary configuration 
+  # Bio::PAML::Common is a basic wrapper class for PAML programs.
+  # The class provides methods for generating the necessary configuration
   # file, and running a program.
   #
   class Common
@@ -142,7 +142,7 @@ module PAML
     # or in the parameter.
     #
     # For other information, see the document of query method.
-    # 
+    #
     # ---
     # *Arguments*:
     # * (optional) _alignment_: String
@@ -338,7 +338,7 @@ module PAML
       errors = []
       param = self.parameters
       if !param[:seqfile] or param[:seqfile].empty? then
-        errors.push([ :seqfile, 'seqfile not specified' ]) 
+        errors.push([ :seqfile, 'seqfile not specified' ])
       end
       errors.empty? ? nil : errors
     end

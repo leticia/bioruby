@@ -396,7 +396,7 @@ module Bio
         end
       end
 
-      def reference=(value)       
+      def reference=(value)
         locations=Array.new
         locations << "journal=#{value.journal}" unless value.journal.empty?
         locations << "volume=#{value.volume}" unless value.volume.empty?

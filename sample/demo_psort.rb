@@ -37,16 +37,16 @@ require 'bio'
 
 
   seq = ">hoge mit
-MALEPIDYTT RDEDDLDENE LLMKISNAAG SSRVNDNNDD LTFVENDKII 
-ARYSIQTSSK QQGKASTPPV EEAEEAAPQL PSRSSAAPPP PPRRATPEKK 
+MALEPIDYTT RDEDDLDENE LLMKISNAAG SSRVNDNNDD LTFVENDKII
+ARYSIQTSSK QQGKASTPPV EEAEEAAPQL PSRSSAAPPP PPRRATPEKK
 DVKDLKSKFE GLAASEKEEE EMENKFAPPP KKSEPTIISP KPFSKPQEPV
-FKGYHVQVTA HSREIDAEYL KIVRGSDPDT TWLIISPNAK KEYEPESTGS 
+FKGYHVQVTA HSREIDAEYL KIVRGSDPDT TWLIISPNAK KEYEPESTGS
 KKSFTPSKSP APVSKKEPVK TPSPAPAAKI PKENPWATAE YDYDAAEDNE
-NIEFVDDDWW LGELEKDGSK GLFPSNYVSL LPSRNVASGA PVQKEEPEQE 
+NIEFVDDDWW LGELEKDGSK GLFPSNYVSL LPSRNVASGA PVQKEEPEQE
 SFHDFLQLFD ETKVQYGLAR RKAKQNSGNA ETKAEAPKPE VPEDEPEGEP
 DDWNEPELKE RDFDQAPLKP NQSSYKPIGK IDLQKVIAEE KAKEDPRLVQ
-DYKKIGNPLP GMHIEADNEE EPEENDDDWD DDEDEAAQPP ANFAAVANNL 
-KPTAAGSKID DDKVIKGFRN EKSPAQLWAE VSPPGSDVEK IIIIGWCPDS 
+DYKKIGNPLP GMHIEADNEE EPEENDDDWD DDEDEAAQPP ANFAAVANNL
+KPTAAGSKID DDKVIKGFRN EKSPAQLWAE VSPPGSDVEK IIIIGWCPDS
 APLKTRASFA PSSDIANLKN ESKLKRDSEF NSFLGTTKPP SMTESSLKND
 KAEEAEQPKT EIAPSLPSRN SIPAPKQEEA PEQAPEEEIE GN
 "
@@ -55,37 +55,37 @@ LTFVENDKII NI
 "
 
   puts "\n Bio::PSORT::PSORT"
-  
+
   puts "\n ==> p serv = Bio::PSORT::PSORT.imsut"
   p serv = Bio::PSORT::PSORT1.imsut
 
-  puts "\n ==> p serv.class "  
+  puts "\n ==> p serv.class "
   p serv.class
 
   puts "\n ==> p serv.title = 'Query_title_splited_by_white space'"
   p serv.title = 'Query_title_splited_by_white space'
 
-  puts "\n ==> p serv.exec(seq, false) "  
+  puts "\n ==> p serv.exec(seq, false) "
   p serv.exec(seq, false)
 
-  puts "\n ==> p serv.exec(seq) "  
+  puts "\n ==> p serv.exec(seq) "
   p serv.exec(seq)
 
-  puts "\n ==> p report = serv.exec(Bio::FastaFormat.new(seq)) "  
+  puts "\n ==> p report = serv.exec(Bio::FastaFormat.new(seq)) "
   p report = serv.exec(Bio::FastaFormat.new(seq))
 
   puts "\n ==> p report.class"
   p report.class
 
 
-  puts "\n ==> p report_raw = serv.exec(Bio::FastaFormat.new(seq), false) "  
+  puts "\n ==> p report_raw = serv.exec(Bio::FastaFormat.new(seq), false) "
   p report_raw = serv.exec(Bio::FastaFormat.new(seq), false)
 
   puts "\n ==> p report_raw.class"
   p report_raw.class
 
 
-  puts "\n ==> p report.methods" 
+  puts "\n ==> p report.methods"
   p report.methods
 
   methods = ['entry_id', 'origin', 'title', 'sequence','result_info',
@@ -111,10 +111,10 @@ LTFVENDKII NI
   puts "\n ==> p serv.title = 'Query_title_splited_by_white space'"
   p serv.title = 'Query_title_splited_by_white space'
 
-  puts "\n ==> p serv.exec(seq) # parsed report" 
+  puts "\n ==> p serv.exec(seq) # parsed report"
   p serv.exec(seq)
 
-  puts "\n ==> p report = serv.exec(Bio::FastaFormat.new(seq)) # parsed report" 
+  puts "\n ==> p report = serv.exec(Bio::FastaFormat.new(seq)) # parsed report"
   p report = serv.exec(Bio::FastaFormat.new(seq))
 
 

@@ -25,7 +25,7 @@ STRUCTURE   PDB: 1A9X 1CS0 1C30 1T36 1M6V 1KEE 1C3O 1CE8 1BXR 1JDB
 END
       @obj = Bio::KEGG::GENES.new(entry)
     end
-    
+
     def test_data
       str = "STRUCTURE   PDB: 1A9X 1CS0 1C30 1T36 1M6V 1KEE 1C3O 1CE8 1BXR 1JDB"
       assert_equal(str, @obj.instance_eval('get("STRUCTURE")'))

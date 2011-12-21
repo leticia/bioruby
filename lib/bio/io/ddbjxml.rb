@@ -36,7 +36,7 @@ class XML < Bio::SOAPWSDL
 
   # === Description
   #
-  # DDBJ XML BLAST Database Search 
+  # DDBJ XML BLAST Database Search
   #
   # * http://xml.nig.ac.jp/doc/Blast.txt
   #
@@ -46,21 +46,21 @@ class XML < Bio::SOAPWSDL
   #   program = 'blastp'
   #   database = 'SWISS'
   #   query = "MSSRIARALALVVTLLHLTRLALSTCPAACHCPLEAPKCAPGVGLVRDGCGCCKVCAKQL"
-  #   
+  #
   #   report = serv.searchSimple(program, database, query)
   #   Bio::Blast::Default::Report.new(report).each_hit do |hit|
   #     hit.hsps.find_all {|x| x.evalue < 0.1 }.each do |hsp|
   #       p [hsps.evalue, hsps.identity, hsps.definition]
   #     end
   #   end
-  #  
+  #
   #   program = 'tblastn'
   #   database = 'ddbjvrl'
   #   param = '-m 8 -e 0.001'
   #   puts serv.searchParam(program, database, query, param)
-  # 
+  #
   # === WSDL Methods
-  # 
+  #
   # * searchSimple(program, database, query)
   #
   # Returns a blast report in the default format.
@@ -79,7 +79,7 @@ class XML < Bio::SOAPWSDL
 
 
   # === ClustalW
-  # 
+  #
   # Multiple seaquece alignment using ClustalW.
   #
   # * http://xml.nig.ac.jp/doc/ClustalW.txt
@@ -135,7 +135,7 @@ class XML < Bio::SOAPWSDL
   #   puts serv.getRelatedFeatures('AL121903', '59000', '64000')
   #   puts serv.getRelatedFeaturesSeq('AL121903', '59000', '64000')
   #
-  # === WSDL Methods 
+  # === WSDL Methods
   #
   # * getFFEntry(accession)
   # * getXMLEntry(accession)
@@ -154,16 +154,16 @@ class XML < Bio::SOAPWSDL
 
 
   # == Fasta
-  # 
+  #
   # Searching database using the Fasta package.
   #
   # * http://xml.nig.ac.jp/doc/Fasta.txt
-  # 
+  #
   # === Examples
   #
   #   serv = Bio::DDBJ::XML::Fasta.new
   #   query = ">Test\nMSDGAVQPDG GQPAVRNERA TGSGNGSGGG GGGGSGGVGI"
-  #    
+  #
   #   puts serv.searchSimple('fasta34', 'PDB', query)
   #   query = ">Test\nAGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
   #   puts serv.searchParam('fastx34_t', 'PDB', query, '-n')
@@ -236,7 +236,7 @@ class XML < Bio::SOAPWSDL
 
 
   # === Gib
-  # 
+  #
   # Genome Information broker
   #
   # * http://xml.nig.ac.jp/doc/Gib.txt
@@ -278,7 +278,7 @@ class XML < Bio::SOAPWSDL
     SERVER_URI = BASE_URI + "Gib.wsdl"
   end
 
-  
+
   # === Gtop
   #
   # GTOP: Gene to protein.
@@ -310,7 +310,7 @@ class XML < Bio::SOAPWSDL
   # Variation database
   #
   # * http://xml.nig.ac.jp/doc/PML.txt
-  # 
+  #
   # === Examples
   #
   #   serv = Bio::DDBJ::XML::PML.new
@@ -336,9 +336,9 @@ class XML < Bio::SOAPWSDL
   # === RequestManager
   #
   # Sequence Retrieving System
-  # 
+  #
   # * http://xml.nig.ac.jp/doc/RequestManager.txt
-  # 
+  #
   # === Examples
   #
   #   serv = Bio::DDBJ::XML::RequestManager.new
@@ -394,9 +394,9 @@ class XML < Bio::SOAPWSDL
   # === SRS
   #
   # Sequence Retrieving System
-  # 
+  #
   # * http://xml.nig.ac.jp/doc/SRS.txt
-  # 
+  #
   # === Examples
   #
   #   serv = Bio::DDBJ::XML::SRS.new
@@ -415,12 +415,12 @@ class XML < Bio::SOAPWSDL
   class SRS < XML
     SERVER_URI = BASE_URI + "SRS.wsdl"
   end
-  
+
 
   # === TxSearch
   #
   # Searching taxonomy information.
-  # 
+  #
   # * http://xml.nig.ac.jp/doc/TxSearch.txt
   #
   # === Examples
@@ -442,7 +442,7 @@ class XML < Bio::SOAPWSDL
   # * getTxId(tx_Name)
   # * getTxName(tx_Id)
   # * searchLineage(query, ranks, superkingdom)
-  # 
+  #
   # === References
   #
   # * http://xml.nig.ac.jp/doc/TxSearch.txt

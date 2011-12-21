@@ -1,5 +1,5 @@
 #
-# = bio/db/sanger_chromatogram/abif.rb - Abif class 
+# = bio/db/sanger_chromatogram/abif.rb - Abif class
 #
 # Copyright::	Copyright (C) 2009 Anthony Underwood <anthony.underwood@hpa.org.uk>, <email2ants@gmail.com>
 # License::	The Ruby License
@@ -23,16 +23,16 @@ module Bio
     PACK_TYPES = { 'byte' => 'C', 'char' => 'c', 'word' => 'n', 'short' => 'n', 'long' => 'N',
       'date' => 'nCC', 'time' => 'CCCC', 'pString' => 'CA*', 'cString' => 'Z*',
       'float' => 'g', 'double' => 'G',
-      'bool' => 'C', 'thumb' => 'NNCC', 'rational' => 'NN', 'point' => 'nn', 
+      'bool' => 'C', 'thumb' => 'NNCC', 'rational' => 'NN', 'point' => 'nn',
       'rect' => 'nnnn', 'vPoint' => 'NN', 'vRect' => 'NNNN', 'tag' => 'NN'} # Specifies how to pack each data type
 
     #sequence attributes
-    
+
     # The sample title as entered when sequencing the sample (String)
     attr_accessor :sample_title
     # The chemistry used when sequencing e.g Dye terminators => 'term.' (String)
     attr_accessor :chemistry
-    
+
     # see SangerChromatogram class for how to create an Abif object and its usage
     def initialize(string)
       header = string.slice(0,128)
@@ -111,7 +111,7 @@ module Bio
         end
       end
     end
-      
+
     class DirectoryEntry
       attr_accessor :name, :tag_number, :element_type, :element_size, :number_of_elements, :data_size, :data_offset
       attr_accessor :data

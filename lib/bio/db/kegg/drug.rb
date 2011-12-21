@@ -19,7 +19,7 @@ class KEGG
 # KEGG DRUG is a drug information database.
 #
 # == References
-# 
+#
 # * http://www.genome.jp/kegg/drug/
 #
 class DRUG < KEGGDB
@@ -100,7 +100,7 @@ class DRUG < KEGGDB
   # ---
   # *Returns*:: Array containing String objects
   def pathways_as_strings
-    lines_fetch('PATHWAY') 
+    lines_fetch('PATHWAY')
   end
 
   # List of database names and IDs, described in the DBLINKS lines.

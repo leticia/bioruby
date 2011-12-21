@@ -38,7 +38,7 @@ module Bio
           :date=>locus.date,
           :division=>locus.division,
           :length=>locus.length}
-        
+
       assert_equal(expected, actual)
     end
 

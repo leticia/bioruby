@@ -1,10 +1,10 @@
 module Bio
 
 #
-# = bio/appl/pts1.rb - A web service client of PTS1, predicting for the 
+# = bio/appl/pts1.rb - A web service client of PTS1, predicting for the
 #   peroxisomal targeting signal type 1.
 #
-# Copyright::   Copyright (C) 2006 
+# Copyright::   Copyright (C) 2006
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -43,15 +43,15 @@ require 'bio/command'
 # * The PTS1 predictor
 #   http://mendel.imp.ac.at/pts1/
 #
-# * Neuberger G, Maurer-Stroh S, Eisenhaber B, Hartig A, Eisenhaber F. 
-#   Motif refinement of the peroxisomal targeting signal 1 and evaluation 
-#   of taxon-specific differences. 
-#   J Mol Biol. 2003 May 2;328(3):567-79. PMID: 12706717 
+# * Neuberger G, Maurer-Stroh S, Eisenhaber B, Hartig A, Eisenhaber F.
+#   Motif refinement of the peroxisomal targeting signal 1 and evaluation
+#   of taxon-specific differences.
+#   J Mol Biol. 2003 May 2;328(3):567-79. PMID: 12706717
 #
-# * Neuberger G, Maurer-Stroh S, Eisenhaber B, Hartig A, Eisenhaber F. 
-#   Prediction of peroxisomal targeting signal 1 containing proteins from 
-#   amino acid sequence. 
-#   J Mol Biol. 2003 May 2;328(3):581-92. PMID: 12706718 
+# * Neuberger G, Maurer-Stroh S, Eisenhaber B, Hartig A, Eisenhaber F.
+#   Prediction of peroxisomal targeting signal 1 containing proteins from
+#   amino acid sequence.
+#   J Mol Biol. 2003 May 2;328(3):581-92. PMID: 12706718
 #
 class PTS1
 
@@ -80,9 +80,9 @@ class PTS1
     self.new('GENERAL')
   end
 
-   
+
   # Constructs Bio::PTS1 web service client.
-  # 
+  #
   # == Examples
   #
   #   serv_default_metazoa_specific = Bio::PTS1.new
@@ -109,17 +109,17 @@ class PTS1
   #
   #  # shows function name parameter.
   #  serv.function #=> "METAZOA-specific"
-  # 
+  #
   def function(func = nil)
     return @function.keys.join('') if func == nil
 
     if FUNCTION.values.include?(func)
       @function = Hash[*FUNCTION.find {|x| x[1] == func}]
     elsif FUNCTION[func]
-      @function = {func => FUNCTION[func]} 
+      @function = {func => FUNCTION[func]}
     else
-      raise ArgumentError, 
-            "Invalid argument: #{func}", 
+      raise ArgumentError,
+            "Invalid argument: #{func}",
             "Available function names: #{FUNCTION.keys.inspect}"
     end
     @function
@@ -127,11 +127,11 @@ class PTS1
 
 
   # Executes the query request and returns result output in Bio::PTS1::Report.
-  # The query argument is available both aSting in fasta format text and 
+  # The query argument is available both aSting in fasta format text and
   # aBio::FastaFormat.
   #
   # == Examples
-  # 
+  #
   #   require 'bio'
   #   pts1 = Bio::PTS1.new
   #   pts1.exec(">title\nKLMFKTEGPDSD")
@@ -140,18 +140,18 @@ class PTS1
   #
   def exec(query)
     seq = set_sequence_in_fastaformat(query)
-    
+
     @form_data = {'function' => @function.values.join(''),
                   'sequence' => seq.seq,
                   'name'     => seq.definition }
 
     result = Bio::Command.post_form(@uri, @form_data)
     @output = Report.new(result.body)
-    
+
     return @output
   end
 
-  private 
+  private
 
   # Sets query sequence in Fasta Format if any.
   def set_sequence_in_fastaformat(query)
@@ -191,16 +191,16 @@ class PTS1
 
     # Prediction ("Targeted", "Twilight zone" and "Not targeted")
     attr_reader :prediction
-    
+
     # Raw output
     attr_reader :output
 
     # Parsing PTS1 HTML report.
-    # 
+    #
     # == Example
     #
     #   report = Bio::PTS1::Report.new(str)
-    #   report.cterm 
+    #   report.cterm
     #
     def initialize(str)
       @cterm   = ''
@@ -210,12 +210,12 @@ class PTS1
       @sppta   = 0
       @fp      = 0
       @prediction = 0
-      
+
       if /PTS1 query prediction/m =~ str
         @output = str
         parse
       else
-        raise 
+        raise
       end
     end
 
@@ -245,9 +245,9 @@ class PTS1
         end
       end
     end
-    
+
   end # class Report
-  
+
 end # class PTS1
 
 end # module Bio

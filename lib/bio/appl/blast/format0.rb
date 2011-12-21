@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/format0.rb - BLAST default output (-m 0) parser
-# 
+#
 # Copyright::  Copyright (C) 2003-2006 GOTO Naohisa <ng@bioruby.org>
 # License::    The Ruby License
 #
@@ -16,7 +16,7 @@
 #   Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997),
 #   "Gapped BLAST and PSI-BLAST: a new generation of protein database search
 #   programs", Nucleic Acids Res. 25:3389-3402.
-# * http://www.ncbi.nlm.nih.gov/blast/ 
+# * http://www.ncbi.nlm.nih.gov/blast/
 #
 
 begin
@@ -222,7 +222,7 @@ module Bio
           @iterations.last.converged?
         end
 
-        # Returns the bibliography reference of the BLAST software. 
+        # Returns the bibliography reference of the BLAST software.
         # Note that this method shows only the first reference.
         # When you want to get additional references,
         # you can use <tt>references</tt> method.
@@ -230,7 +230,7 @@ module Bio
           references[0]
         end
 
-        # Returns the bibliography references of the BLAST software. 
+        # Returns the bibliography references of the BLAST software.
         # Returns an array of strings.
         def references
           unless defined?(@references)
@@ -377,7 +377,7 @@ module Bio
                 if /blastn *matrix *\: *([e\+\-\.\d]+) +([e\+\-\.\d]+)/ =~ val then
                   @matrix = 'blastn'
                   @sc_match    = $1.to_i
-                  @sc_mismatch = $2.to_i 
+                  @sc_mismatch = $2.to_i
                 else
                   @matrix = val
                 end

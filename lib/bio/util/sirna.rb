@@ -15,26 +15,26 @@
 # == Example
 #
 #  seq = Bio::Sequence::NA.new(ARGF.read)
-#  
+#
 #  sirna = Bio::SiRNA.new(seq)
 #  pairs = sirna.design
-#  
+#
 #  pairs.each do |pair|
 #    puts pair.report
 #    shrna = Bio::SiRNA::ShRNA.new(pair)
 #    shrna.design
 #    puts shrna.report
-#    
+#
 #    puts shrna.top_strand.dna
 #    puts shrna.bottom_strand.dna
 #  end
 #
 # == References
-# 
+#
 # * Kumiko Ui-Tei et al.  Guidelines for the selection of highly effective
 #   siRNA sequences for mammalian and chick RNA interference.
 #   Nucl. Acids. Res. 2004 32: 936-948.
-#    
+#
 # * Angela Reynolds et al.  Rational siRNA design for RNA interference.
 #   Nature Biotech. 2004 22: 326-330.
 #
@@ -80,7 +80,7 @@ module Bio
       remain_seq = target.subseq(start_pos, @target_size - 2)
       au_number  = remain_seq.scan(/[AU]/i).size
       return false if au_number < 5
-  
+
       return true
     end
 
@@ -116,7 +116,7 @@ module Bio
         antisense_gc_percent = antisense.gc_percent
         next if antisense_gc_percent > @max_gc_percent
         next if antisense_gc_percent < @min_gc_percent
-        
+
         case rule
         when 'uitei'
           next unless uitei?(target)
@@ -189,7 +189,7 @@ module Bio
       # Bio::Sequence::NA
       attr_accessor :bottom_strand
 
-      # Input is a Bio::SiRNA::Pair object (the target sequence).    
+      # Input is a Bio::SiRNA::Pair object (the target sequence).
       def initialize(pair)
         @pair = pair
       end
@@ -234,7 +234,7 @@ module Bio
           @bottom_strand = bot + fwd + loop_rev + rev + 'C'
         end
       end
-      
+
       # human readable report
       def report
         report = "### shRNA\n"

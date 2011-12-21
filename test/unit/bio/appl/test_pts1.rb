@@ -1,7 +1,7 @@
 #
 # = test/unit/bio/appl/test_pts1.rb - Unit test for Bio::PTS1
 #
-# Copyright::   Copyright (C) 2006 
+# Copyright::   Copyright (C) 2006
 #               Mitsuteru Nakao <n@bioruby.org>
 # License::     The Ruby License
 #

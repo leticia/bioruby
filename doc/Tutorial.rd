@@ -65,14 +65,14 @@ You should see something like:
 
 If you see no such thing you'll have to install Ruby using your installation
 manager. For example in Debian
-  
+
   apt-get install ruby
 
 For other installations, see
 ((<Ruby|URL:http://www.ruby-lang.org/en/>)).
 
 With Ruby download and install Bioruby using the links on the
-((<Bioruby|URL:http://bioruby.org/>)) website. The recommended installation is via 
+((<Bioruby|URL:http://bioruby.org/>)) website. The recommended installation is via
 RubyGems (which comes with Ruby):
 
   gem install bio
@@ -109,14 +109,14 @@ Now, test the following:
   ==> "ttttgcatgcat"
 
 See the the Bioruby shell section below for more tweaking. If you have trouble running
-examples also check the section below on trouble shooting. You can also post a 
+examples also check the section below on trouble shooting. You can also post a
 question to the mailing list. BioRuby developers usually try to help.
 
 == Working with nucleic / amino acid sequences (Bio::Sequence class)
 
 The Bio::Sequence class allows the usual sequence transformations and
 translations.  In the example below the DNA sequence "atgcatgcaaaa" is
-converted into the complemental strand and spliced into a subsequence; 
+converted into the complemental strand and spliced into a subsequence;
 next, the nucleic acid composition is calculated and the sequence is
 translated into the amino acid sequence, the molecular weight
 calculated, and so on. When translating into amino acid sequences, the
@@ -132,11 +132,11 @@ defined in codontable.rb).
 
   bioruby> seq.subseq(3,8) # gets subsequence of positions 3 to 8 (starting from 1)
   ==> "gcatgc"
-  bioruby> seq.gc_percent 
+  bioruby> seq.gc_percent
   ==> 33
-  bioruby> seq.composition 
+  bioruby> seq.composition
   ==> {"a"=>6, "c"=>2, "g"=>2, "t"=>2}
-  bioruby> seq.translate 
+  bioruby> seq.translate
   ==> "MHAK"
   bioruby> seq.translate(2)        # translate from frame 2
   ==> "CMQ"
@@ -157,11 +157,11 @@ get a random sequence with the same NA count:
 
   bioruby> counts = {'a'=>seq.count('a'),'c'=>seq.count('c'),'g'=>seq.count('g'),'t'=>seq.count('t')}
   ==> {"a"=>6, "c"=>2, "g"=>2, "t"=>2}
-  bioruby!> randomseq = Bio::Sequence::NA.randomize(counts) 
+  bioruby!> randomseq = Bio::Sequence::NA.randomize(counts)
   ==!> "aaacatgaagtc"
 
   bioruby!> print counts
-  a6c2g2t2  
+  a6c2g2t2
   bioruby!> p counts
   {"a"=>6, "c"=>2, "g"=>2, "t"=>2}
 
@@ -207,11 +207,11 @@ through a variable named +s+.
    bioruby> seq = Bio::Sequence::NA.new("atgcatgcaattaagctaatcccaattagatcatcccgatcatcaaaaaaaaaa")
    ==> "atgcatgcaattaagctaatcccaattagatcatcccgatcatcaaaaaaaaaa"
 
-   bioruby> a=[]; seq.window_search(20) { |s| a.push s.gc_percent } 
+   bioruby> a=[]; seq.window_search(20) { |s| a.push s.gc_percent }
    bioruby> a
    ==> [30, 35, 40, 40, 35, 35, 35, 30, 25, 30, 30, 30, 35, 35, 35, 35, 35, 40, 45, 45, 45, 45, 40, 35, 40, 40, 40, 40, 40, 35, 35, 35, 30, 30, 30]
 
- 
+
 Since the class of each subsequence is the same as original sequence
 (Bio::Sequence::NA or Bio::Sequence::AA or Bio::Sequence), you can
 use all methods on the subsequence. For example,
@@ -238,7 +238,7 @@ subsequence. This allows for example
       i += 1
     end
     if remainder
-      puts remainder.to_fasta("segment #{i}", textwidth) 
+      puts remainder.to_fasta("segment #{i}", textwidth)
     end
 
 If you don't want the overlapping window, set window size and stepping
@@ -323,7 +323,7 @@ the data:
 
       print ">#{gb.accession} "         # Accession
       puts gb.definition                # Definition
-      puts gb.naseq                     # Nucleic acid sequence 
+      puts gb.naseq                     # Nucleic acid sequence
                                         # (Bio::Sequence::NA object)
     end
 
@@ -447,7 +447,7 @@ You can also use this splicing method for amino acid sequences
 === More databases
 
 Databases in BioRuby are essentially accessed like that of GenBank
-with classes like Bio::GenBank, Bio::KEGG::GENES. A full list can be found in 
+with classes like Bio::GenBank, Bio::KEGG::GENES. A full list can be found in
 the ./lib/bio/db directory of the BioRuby source tree.
 
 In many cases the Bio::DatabaseClass acts as a factory pattern
@@ -506,7 +506,7 @@ The Bio::Alignment class in bio/alignment.rb is a container class like Ruby's Ha
   bioruby> seqs = seqs.collect{ |x| Bio::Sequence::NA.new(x) }
   # creates alignment object
   bioruby> a = Bio::Alignment.new(seqs)
-  bioruby> a.consensus 
+  bioruby> a.consensus
   ==> "a?gc?"
   # shows IUPAC consensus
   p a.consensus_iupac       # ==> "ahgcr"
@@ -533,7 +533,7 @@ The Bio::Alignment class in bio/alignment.rb is a container class like Ruby's Ha
   a2 = a.do_align(factory)
 
 Read a ClustalW or Muscle 'ALN' alignment file:
- 
+
   bioruby> aln = Bio::ClustalW::Report.new(File.read('../test/data/clustalw/example1.aln'))
   bioruby> aln.header
   ==> "CLUSTAL 2.0.9 multiple sequence alignment"
@@ -545,7 +545,7 @@ Fetch a sequence:
   ==> "gi|115023|sp|P10425|"
 
 Get a partial sequence:
-  
+
   bioruby> seq.to_s[60..120]
   ==> "LGYFNG-EAVPSNGLVLNTSKGLVLVDSSWDNKLTKELIEMVEKKFQKRVTDVIITHAHAD"
 
@@ -572,7 +572,7 @@ stranded RNA or double stranded DNA into fragments. To list all enzymes:
 
 and to cut a sequence with an enzyme follow up with:
 
-   res = seq.cut_with_enzyme('EcoRII', {:max_permutations => 0}, 
+   res = seq.cut_with_enzyme('EcoRII', {:max_permutations => 0},
      {:view_ranges => true})
    if res.kind_of? Symbol #error
       err = Err.find_by_code(res.to_s)
@@ -609,20 +609,20 @@ Install the fasta program on your machine (the command name looks like
 fasta34. FASTA can be downloaded from ftp://ftp.virginia.edu/pub/fasta/).
 
 First, you must prepare your FASTA-formatted database sequence file
-target.pep and FASTA-formatted query.pep. 
+target.pep and FASTA-formatted query.pep.
 
     #!/usr/bin/env ruby
 
     require 'bio'
 
-    # Creates FASTA factory object ("ssearch" instead of 
+    # Creates FASTA factory object ("ssearch" instead of
     # "fasta34" can also work)
     factory = Bio::Fasta.local('fasta34', ARGV.pop)
     (EDITOR's NOTE: not consistent pop command)
 
     ff = Bio::FlatFile.new(Bio::FastaFormat, ARGF)
 
-    # Iterates over each entry. the variable "entry" is a 
+    # Iterates over each entry. the variable "entry" is a
     # Bio::FastaFormat object:
     ff.each do |entry|
       # shows definition line (begins with '>') to the standard error output
@@ -635,8 +635,8 @@ target.pep and FASTA-formatted query.pep.
       report.each do |hit|
         # If E-value is smaller than 0.0001
         if hit.evalue < 0.0001
-          # shows identifier of query and hit, E-value, start and 
-          # end positions of homologous region 
+          # shows identifier of query and hit, E-value, start and
+          # end positions of homologous region
           print "#{hit.query_id} : evalue #{hit.evalue}\t#{hit.target_id} at "
           p hit.lap_at
         end
@@ -677,13 +677,13 @@ with the Report object. For example, getting information for hits:
       puts hit.target_def       # definition(comment line) of hit sequence
       puts hit.target_len       # length of hit sequence
       puts hit.target_seq       # hit of homologous region of hit sequence
-      puts hit.query_start      # start position of homologous 
+      puts hit.query_start      # start position of homologous
                                 # region in query sequence
-      puts hit.query_end        # end position of homologous region 
+      puts hit.query_end        # end position of homologous region
                                 # in query sequence
-      puts hit.target_start     # start posiotion of homologous region 
+      puts hit.target_start     # start posiotion of homologous region
                                 # in hit(target) sequence
-      puts hit.target_end       # end position of homologous region 
+      puts hit.target_end       # end position of homologous region
                                 # in hit(target) sequence
       puts hit.lap_at           # array of above four numbers
     end
@@ -776,25 +776,25 @@ There are some additional BLAST methods, for example, bit_score and
 midline.
 
     report.each do |hit|
-      puts hit.bit_score       
-      puts hit.query_seq       
-      puts hit.midline         
-      puts hit.target_seq      
+      puts hit.bit_score
+      puts hit.query_seq
+      puts hit.midline
+      puts hit.target_seq
 
-      puts hit.evalue          
-      puts hit.identity        
-      puts hit.overlap         
-      puts hit.query_id        
-      puts hit.query_def       
-      puts hit.query_len       
-      puts hit.target_id       
-      puts hit.target_def      
-      puts hit.target_len      
-      puts hit.query_start     
-      puts hit.query_end       
-      puts hit.target_start    
-      puts hit.target_end      
-      puts hit.lap_at          
+      puts hit.evalue
+      puts hit.identity
+      puts hit.overlap
+      puts hit.query_id
+      puts hit.query_def
+      puts hit.query_len
+      puts hit.target_id
+      puts hit.target_def
+      puts hit.target_len
+      puts hit.query_start
+      puts hit.query_end
+      puts hit.target_start
+      puts hit.target_end
+      puts hit.lap_at
     end
 
 For simplicity and API compatibility, some information such as score
@@ -820,7 +820,7 @@ you can directly create Bio::Blast::Report objects without the
 Bio::Blast factory object. For this purpose use Bio::Blast.reports,
 which supports the "-m 0" default and "-m 7" XML type output format.
 
-* For example: 
+* For example:
 
     blast_version = nil; result = []
     Bio::Blast.reports(File.new("../test/data/blast/blastp-multi.m7")) do |report|
@@ -839,7 +839,7 @@ which supports the "-m 0" default and "-m 7" XML type output format.
 * another example:
 
     require 'bio'
-    Bio::Blast.reports(ARGF) do |report| 
+    Bio::Blast.reports(ARGF) do |report|
       puts "Hits for " + report.query_def + " against " + report.db
       report.each do |hit|
         print hit.target_id, "\t", hit.evalue, "\n" if hit.evalue < 0.001
@@ -851,8 +851,8 @@ files *.xml, you can run it with:
 
    % ruby hits_under_0.001.rb *.xml
 
-Sometimes BLAST XML output may be wrong and can not be parsed. Check whether 
-blast is version 2.2.5 or later. See also blast --help. 
+Sometimes BLAST XML output may be wrong and can not be parsed. Check whether
+blast is version 2.2.5 or later. See also blast --help.
 
 Bio::Blast loads the full XML file into memory. If this causes a problem
 you can split the BLAST XML file into smaller chunks using XML-Twig. An
@@ -1197,7 +1197,7 @@ You can find ActiveRecord's models in /bioruby/lib/bio/io/biosql
 When you have your database up and running, you can connect to it like this:
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
 
     connection = Bio::SQL.establish_connection({'development'=>{'hostname'=>"YourHostname",
@@ -1209,18 +1209,18 @@ When you have your database up and running, you can connect to it like this:
       },
     'development')
 
-    #The first parameter is the hash contaning the description of the configuration; similar to database.yml in Rails applications, you can declare different environment. 
+    #The first parameter is the hash contaning the description of the configuration; similar to database.yml in Rails applications, you can declare different environment.
     #The second parameter is the environment to use: 'development', 'test', or 'production'.
-    
+
     #To store a sequence into the database you simply need a biosequence object.
     biosql_database = Bio::SQL::Biodatabase.find(:first)
     ff = Bio::GenBank.open("gbvrl1.seq")
-    
+
     ff.each_entry do |gb|
       Bio::SQL::Sequence.new(:biosequence=>gb.to_biosequence, :biodatabase=>biosql_database
     end
 
-    #You can list all the entries into every database 
+    #You can list all the entries into every database
     Bio::SQL.list_entries
 
     #list databases:
@@ -1229,12 +1229,12 @@ When you have your database up and running, you can connect to it like this:
     #retriving a generic accession
     bioseq = Bio::SQL.fetch_accession("YouAccession")
 
-    #If you use biosequence objects, you will find all its method mapped to BioSQL sequences. 
+    #If you use biosequence objects, you will find all its method mapped to BioSQL sequences.
     #But you can also access to the models directly:
 
     #get the raw sequence associated with your accession
-    bioseq.entry.biosequence 
-   
+    bioseq.entry.biosequence
+
     #get the length of your sequence; this is the explicit form of bioseq.length
     bioseq.entry.biosequence.length
 
@@ -1246,9 +1246,9 @@ ToDo: add exemaples from George. I remember he did some cool post on BioSQL and 
 
 = PhyloXML
 
-PhyloXML is an XML language for saving, analyzing and exchanging data of 
-annotated phylogenetic trees. PhyloXML's parser in BioRuby is implemented in 
-Bio::PhyloXML::Parser, and its writer in Bio::PhyloXML::Writer. 
+PhyloXML is an XML language for saving, analyzing and exchanging data of
+annotated phylogenetic trees. PhyloXML's parser in BioRuby is implemented in
+Bio::PhyloXML::Parser, and its writer in Bio::PhyloXML::Writer.
 More information can be found at ((<www.phyloxml.org|URL:http://www.phyloxml.org>)).
 
 == Requirements
@@ -1262,10 +1262,10 @@ For more information see the ((<libxml installer page|URL:http://libxml.rubyforg
 == Parsing a file
 
     require 'bio'
-    
+
     # Create new phyloxml parser
     phyloxml = Bio::PhyloXML::Parser.open('example.xml')
-    
+
     # Print the names of all trees in the file
     phyloxml.each do |tree|
       puts tree.name
@@ -1275,7 +1275,7 @@ If there are several trees in the file, you can access the one you wish by speci
 
     tree = phyloxml[3]
 
-You can use all Bio::Tree methods on the tree, since PhyloXML::Tree inherits from Bio::Tree. For example, 
+You can use all Bio::Tree methods on the tree, since PhyloXML::Tree inherits from Bio::Tree. For example,
 
    tree.leaves.each do |node|
      puts node.name
@@ -1286,18 +1286,18 @@ PhyloXML files can hold additional information besides phylogenies at the end of
     phyloxml = Bio::PhyloXML::Parser.open('example.xml')
     while tree = phyloxml.next_tree
       # do stuff with trees
-    end 
-      
+    end
+
     puts phyloxml.other
 
 == Writing a file
 
     # Create new phyloxml writer
     writer = Bio::PhyloXML::Writer.new('tree.xml')
-   
+
     # Write tree to the file tree.xml
-    writer.write(tree1) 
-    
+    writer.write(tree1)
+
     # Add another tree to the file
     writer.write(tree2)
 
@@ -1306,7 +1306,7 @@ PhyloXML files can hold additional information besides phylogenies at the end of
 Here is an example of how to retrieve the scientific name of the clades included in each tree.
 
     require 'bio'
-    
+
     phyloxml = Bio::PhyloXML::Parser.open('ncbi_taxonomy_mollusca.xml')
     phyloxml.each do |tree|
       tree.each_node do |node|
@@ -1317,7 +1317,7 @@ Here is an example of how to retrieve the scientific name of the clades included
 == Retrieving 'other' data
 
     require 'bio'
-    
+
     phyloxml = Bio::PhyloXML::Parser.open('phyloxml_examples.xml')
     while tree = phyloxml.next_tree
      #do something with the trees
@@ -1326,7 +1326,7 @@ Here is an example of how to retrieve the scientific name of the clades included
     p phyloxml.other
     puts "\n"
     #=> output is an object representation
-    
+
     #Print in a readable way
     puts phyloxml.other[0].to_xml, "\n"
     #=>:
@@ -1336,7 +1336,7 @@ Here is an example of how to retrieve the scientific name of the clades included
     #  <seq name="B">aggtcgcggcctgtggaagtcctctcct</seq>
     #  <seq name="C">taaatcgc--cccgtgg-agtccc-cct</seq>
     #</align:alignment>
-    
+
     #Once we know whats there, lets output just sequences
     phyloxml.other[0].children.each do |node|
      puts node.value
@@ -1352,7 +1352,7 @@ Here is an example of how to retrieve the scientific name of the clades included
 
 Some sample programs are stored in ./samples/ directory. For example, the n2aa.rb program (transforms a nucleic acid sequence into an amino acid sequence) can be run using:
 
-  ./sample/na2aa.rb test/data/fasta/example1.txt 
+  ./sample/na2aa.rb test/data/fasta/example1.txt
 
 == Unit testing and doctests
 
@@ -1388,7 +1388,7 @@ line down (down arrow) first.
 = Helpful tools
 
 Apart from rdoc you may also want to use rtags - which allows jumping around
-source code by clicking on class and method names. 
+source code by clicking on class and method names.
 
   cd bioruby/lib
   rtags -R --vi
@@ -1458,7 +1458,7 @@ If you get `require': no such file to load - mkmf (LoadError) error then do
 
   sudo apt-get install ruby-dev
 
-If you have other problems with installation, then see ((<URL:http://libxml.rubyforge.org/install.xml>))  
+If you have other problems with installation, then see ((<URL:http://libxml.rubyforge.org/install.xml>))
 
 == Trouble shooting
 
@@ -1471,7 +1471,7 @@ it to the interpeter. For example:
 
 == Modifying this page
 
-IMPORTANT NOTICE: This page is maintained in the BioRuby source code 
+IMPORTANT NOTICE: This page is maintained in the BioRuby source code
 repository. Please edit the file there otherwise changes may get
 lost. See ((<BioRuby Developer Information>)) for repository and mailing list
 access.

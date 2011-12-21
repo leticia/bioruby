@@ -19,7 +19,7 @@ module Bio
 #
 # = Description
 #
-# Bio::Lasergene reads DNAStar Lasergene formatted sequence files, or +.seq+ 
+# Bio::Lasergene reads DNAStar Lasergene formatted sequence files, or +.seq+
 # files.  It only expects to find one sequence per file.
 #
 # = Usage
@@ -31,12 +31,12 @@ module Bio
 #   lseq.seq  # => ATGACGTATCCAAAGAGGCGTTACC
 #
 # = Comments
-# 
+#
 # I'm only aware of the following three kinds of Lasergene file formats.  Feel
 # free to send me other examples that may not currently be accounted for.
 #
 # File format 1:
-# 
+#
 #   ## begin ##
 #   "Contig 1" (1,934)
 #     Contig Length:                  934 bases
@@ -48,10 +48,10 @@ module Bio
 #   ^^
 #   ATGACGTATCCAAAGAGGCGTTACCGGAGAAGAAGACACCGCCCCCGCAGTCCTCTTGGCCAGATCCTCCGCCGCCGCCCCTGGCTCGTCCACCCCCGCCACAGTTACCGCTGGAGAAGGAAAAATGGCATCTTCAWCACCCGCCTATCCCGCAYCTTCGGAWRTACTATCAAGCGAACCACAGTCAGAACGCCCTCCTGGGCGGTGGACATGATGAGATTCAATATTAATGACTTTCTTCCCCCAGGAGGGGGCTCAAACCCCCGCTCTGTGCCCTTTGAATACTACAGAATAAGAAAGGTTAAGGTTGAATTCTGGCCCTGCTCCCCGATCACCCAGGGTGACAGGGGAATGGGCTCCAGTGCTGWTATTCTAGMTGATRRCTTKGTAACAAAGRCCACAGCCCTCACCTATGACCCCTATGTAAACTTCTCCTCCCGCCATACCATAACCCAGCCCTTCTCCTACCRCTCCCGYTACTTTACCCCCAAACCTGTCCTWGATKCCACTATKGATKACTKCCAACCAAACAACAAAAGAAACCAGCTGTGGSTGAGACTACAWACTGCTGGAAATGTAGACCWCGTAGGCCTSGGCACTGCGTKCGAAAACAGTATATACGACCAGGAATACAATATCCGTGTMACCATGTATGTACAATTCAGAGAATTTAATCTTAAAGACCCCCCRCTTMACCCKTAATGAATAATAAMAACCATTACGAAGTGATAAAAWAGWCTCAGTAATTTATTYCATATGGAAATTCWSGGCATGGGGGGGAAAGGGTGACGAACKKGCCCCCTTCCTCCSTSGMYTKTTCYGTAGCATTCYTCCAMAAYACCWAGGCAGYAMTCCTCCSATCAAGAGcYTSYACAGCTGGGACAGCAGTTGAGGAGGACCATTCAAAGGGGGTCGGATTGCTGGTAATCAGA
 #   ## end ##
-# 
-# 
+#
+#
 # File format 2:
-# 
+#
 #   ## begin ##
 #   ^^:                                  350,935
 #   Contig 1 (1,935)
@@ -64,9 +64,9 @@ module Bio
 #   ^^
 #   ATGTCGGGGAAATGCTTGACCGCGGGCTACTGCTCATCATTGCTTTCTTTGTGGTATATCGTGCCGTTCTGTTTTGCTGTGCTCGTCAACGCCAGCGGCGACAGCAGCTCTCATTTTCAGTCGATTTATAACTTGACGTTATGTGAGCTGAATGGCACGAACTGGCTGGCAGACAACTTTAACTGGGCTGTGGAGACTTTTGTCATCTTCCCCGTGTTGACTCACATTGTTTCCTATGGTGCACTCACTACCAGTCATTTTCTTGACACAGTTGGTCTAGTTACTGTGTCTACCGCCGGGTTTTATCACGGGCGGTACGTCTTGAGTAGCATCTACGCGGTCTGTGCTCTGGCTGCGTTGATTTGCTTCGCCATCAGGTTTGCGAAGAACTGCATGTCCTGGCGCTACTCTTGCACTAGATACACCAACTTCCTCCTGGACACCAAGGGCAGACTCTATCGTTGGCGGTCGCCTGTCATCATAGAGAAAGGGGGTAAGGTTGAGGTCGAAGGTCATCTGATCGATCTCAAAAGAGTTGTGCTTGATGGCTCTGTGGCGACACCTTTAACCAGAGTTTCAGCGGAACAATGGGGTCGTCCCTAGACGACTTTTGCCATGATAGTACAGCCCCACAGAAGGTGCTCTTGGCGTTTTCCATCACCTACACGCCAGTGATGATATATGCCCTAAAGGTAAGCCGCGGCCGACTTTTGGGGCTTCTGCACCTTTTGATTTTTTTGAACTGTGCCTTTACTTTCGGGTACATGACATTCGTGCACTTTCGGAGCACGAACAAGGTCGCGCTCACTATGGGAGCAGTAGTCGCACTCCTTTGGGGGGTGTACTCAGCCATAGAAACCTGGAAATTCATCACCTCCAGATGCCGTTGTGCTTGCTAGGCCGCAAGTACATTCTGGCCCCTGCCCACCACGTTG
 #   ## end ##
-# 
+#
 # File format 3 (non-standard Lasergene header):
-# 
+#
 #   ## begin ##
 #   LOCUS       PRU87392               15411 bp    RNA     linear   VRL 17-NOV-2000
 #   DEFINITION  Porcine reproductive and respiratory syndrome virus strain VR-2332,
@@ -76,7 +76,7 @@ module Bio
 #   [...cut...]
 #        3'UTR           15261..15411
 #        polyA_site      15409
-#   ORIGIN      
+#   ORIGIN
 #   ^^
 #   atgacgtataggtgttggctctatgccttggcatttgtattgtcaggagctgtgaccattggcacagcccaaaacttgctgcacagaaacacccttctgtgatagcctccttcaggggagcttagggtttgtccctagcaccttgcttccggagttgcactgctttacggtctctccacccctttaaccatgtctgggatacttgatcggtgcacgtgtacccccaatgccagggtgtttatggcggagggccaagtctactgcacacgatgcctcagtgcacggtctctccttcccctgaacctccaagtttctgagctcggggtgctaggcctattctacaggcccgaagagccactccggtggacgttgccacgtgcattccccactgttgagtgctcccccgccggggcctgctggctttctgcaatctttccaatcgcacgaatgaccagtggaaacctgaacttccaacaaagaatggtacgggtcgcagctgagctttacagagccggccagctcacccctgcagtcttgaaggctctacaagtttatgaacggggttgccgctggtaccccattgttggacctgtccctggagtggccgttttcgccaattccctacatgtgagtgataaacctttcccgggagcaactcacgtgttgaccaacctgccgctcccgcagagacccaagcctgaagacttttgcccctttgagtgtgctatggctactgtctatgacattggtcatgacgccgtcatgtatgtggccgaaaggaaagtctcctgggcccctcgtggcggggatgaagtgaaatttgaagctgtccccggggagttgaagttgattgcgaaccggctccgcacctccttcccgccccaccacacagtggacatgtctaagttcgccttcacagcccctgggtgtggtgtttctatgcgggtcgaacgccaacacggctgccttcccgctgacactgtccctgaaggcaactgctggtggagcttgtttgacttgcttccactggaagttcagaacaaagaaattcgccatgctaaccaatttggctaccagaccaagcatggtgtctctggcaagtacctacagcggaggctgca[...cut...]
 #   ## end ##
@@ -84,36 +84,36 @@ module Bio
 class Lasergene
   # Entire header before the sequence
   attr_reader :comments
-  
+
   # Sequence
-  # 
+  #
   # Bio::Sequence::NA or Bio::Sequence::AA object
   attr_reader :sequence
-  
+
   # Name of sequence
   # * Parsed from standard Lasergene header
   attr_reader :name
-  
+
   # Contig length, length of present sequence
   # * Parsed from standard Lasergene header
   attr_reader :contig_length
-  
+
   # Average length per sequence
   # * Parsed from standard Lasergene header
   attr_reader :average_length
-  
+
   # Length of parent sequence
   # * Parsed from standard Lasergene header
   attr_reader :total_length
-  
+
   # Number of top strand sequences
   # * Parsed from standard Lasergene header
   attr_reader :top_strand_sequences
-  
+
   # Number of bottom strand sequences
   # * Parsed from standard Lasergene header
   attr_reader :bottom_strand_sequences
-  
+
   # Number of sequences
   # * Parsed from standard Lasergene header
   attr_reader :total_sequences
@@ -123,8 +123,8 @@ class Lasergene
 
   def initialize(lines)
     process(lines)
-  end  
-  
+  end
+
   # Is the comment header recognized as standard Lasergene format?
   #
   # ---
@@ -134,28 +134,28 @@ class Lasergene
   def standard_comment?
     @standard_comment
   end
-  
+
   # Sequence
-  # 
+  #
   # Bio::Sequence::NA or Bio::Sequence::AA object
   def seq
     @sequence
   end
-  
+
   # Name of sequence
   # * Parsed from standard Lasergene header
   def entry_id
     @name
   end
-  
+
   #########
   protected
   #########
-  
+
   def process(lines)
     delimiter_1_indices = []
     delimiter_2_indices = []
-    
+
     # If the data from the file is passed as one big String instead of
     # broken into an Array, convert lines to an Array
     if lines.kind_of? String

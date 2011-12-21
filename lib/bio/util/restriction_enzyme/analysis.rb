@@ -44,7 +44,7 @@ class Analysis
   # *Returns*:: Bio::RestrictionEnzyme::Fragments object populated with Bio::RestrictionEnzyme::Fragment objects.   (Note: unrelated to Bio::RestrictionEnzyme::Range::SequenceRange::Fragments) or a +Symbol+ containing an error code
   def cut( sequence, *args )
     view_ranges = false
-    
+
     args.select { |i| i.class == Hash }.each do |hsh|
       hsh.each do |key, value|
         if key == :view_ranges
@@ -55,7 +55,7 @@ class Analysis
         end
       end
     end
-    
+
     res = cut_and_return_by_permutations( sequence, *args )
     return res if res.class == Symbol
     # Format the fragments for the user
@@ -65,7 +65,7 @@ class Analysis
   #########
   protected
   #########
-  
+
   # See cut instance method
   #
   # ---
@@ -92,13 +92,13 @@ class Analysis
         end
       end
     end
-    
+
     if !sequence.kind_of?(String) or sequence.empty?
       logger.warn "The supplied sequence is empty." if defined?(logger)
       return :sequence_empty
     end
     sequence = Bio::Sequence::NA.new( sequence )
-    
+
     enzyme_actions, initial_cuts = create_enzyme_actions( sequence, *args )
 
     if enzyme_actions.empty? and initial_cuts.empty?
@@ -118,10 +118,10 @@ class Analysis
         return :too_many_permutations
       end
     end
-    
+
     if enzyme_actions.size > 1
       permutations = permute(enzyme_actions.size)
-      
+
       permutations.each do |permutation|
         previous_cut_ranges = []
         # Primary and complement strands are both measured from '0' to 'sequence.size-1' here
@@ -149,10 +149,10 @@ class Analysis
           # so all cut locations must be checked that would fall underneath.
           previous_cut_ranges.each do |cut_range|
             next unless cut_range.class == Bio::RestrictionEnzyme::Range::VerticalCutRange  # we aren't concerned with horizontal cuts
-            previous_cut_left = cut_range.range.first 
+            previous_cut_left = cut_range.range.first
             previous_cut_right = cut_range.range.last
 
-            # Keep in mind: 
+            # Keep in mind:
             # * The cut location is to the immediate right of the base located at the index.
             #   ex: at^gc -- the cut location is at index 1
             # * The enzyme action location is located at the base of the index.
@@ -169,7 +169,7 @@ class Analysis
 
           next if conflict == true
           enzyme_action.cut_ranges.each { |cut_range| sequence_range.add_cut_range(cut_range) }
-          previous_cut_ranges += enzyme_action.cut_ranges        
+          previous_cut_ranges += enzyme_action.cut_ranges
         end # permutation.each
 
         # Fill in the source sequence for sequence_range so it knows what bases
@@ -178,7 +178,7 @@ class Analysis
         sequence_range.fragments.complement = sequence.forward_complement
         my_hash[permutation] = sequence_range
       end # permutations.each
-      
+
     else # if enzyme_actions.size == 1
       # no permutations, just do it
       sequence_range = Bio::RestrictionEnzyme::Range::SequenceRange.new( 0, 0, sequence.size-1, sequence.size-1 )
@@ -223,7 +223,7 @@ class Analysis
   #                    [0, 2, 1, 3],
   #                    [1, 0, 2, 3],
   #                    [0, 1, 2, 3]]
-  #   
+  #
   # ---
   # *Arguments*
   # * +count+: +Number+ of different elements to be permuted

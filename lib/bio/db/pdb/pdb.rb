@@ -40,7 +40,7 @@ module Bio
   # Bio::PDB::Record::HETATM
   # Bio::PDB::Record::*
   # Bio::PDB::Coordinate
-  # 
+  #
   class PDB
 
     include Utils
@@ -281,13 +281,13 @@ module Bio
         @symbols
       end
 
-      # Returns true if this record has a field type which allows 
+      # Returns true if this record has a field type which allows
       # continuations.
       def self.continue?
         @cont
       end
 
-      # Returns true if this record has a field type which allows 
+      # Returns true if this record has a field type which allows
       # continuations.
       def continue?
         self.class.continue?
@@ -301,7 +301,7 @@ module Bio
         end
       end
 
-      # Return original string (except that "\n" are truncated) 
+      # Return original string (except that "\n" are truncated)
       # for this record (usually just @str, but
       # sometimes add on the continuation data from other lines.
       # Returns an array of string.
@@ -358,7 +358,7 @@ module Bio
         #If we have continuations then for each line of extra data...
         if defined?(@cont_data) then
           @cont_data.each do |str|
-            #Get the symbol, type and range array 
+            #Get the symbol, type and range array
             each_symbol do |key, klass, ranges|
               #If there's one range then grab that range
               if ranges.size <= 1 then
@@ -476,7 +476,7 @@ module Bio
       #++
 
       # HEADER record class
-      HEADER = 
+      HEADER =
         def_rec([ 11, 50, Pdb_String, :classification ], #Pdb_String(40)
                 [ 51, 59, Pdb_Date,   :depDate ],
                 [ 63, 66, Pdb_IDcode, :idCode ]
@@ -502,7 +502,7 @@ module Bio
         def_rec([  9, 10, Pdb_Continuation, nil ],
                 [ 11, 70, Pdb_String, :title ]
                 )
-        
+
       # CAVEAT record class
       CAVEAT =
         def_rec([  9, 10, Pdb_Continuation, nil ],
@@ -590,7 +590,7 @@ module Bio
                 [ 63, 67, Pdb_Integer,   :dbseqEnd    ],
                 [ 68, 68, Pdb_AChar,     :dbinsEnd    ]
                 )
-        
+
       # SEQADV record class
       SEQADV =
         def_rec([  8, 11, Pdb_IDcode,       :idCode   ],
@@ -625,7 +625,7 @@ module Bio
                 [ 64, 66, Pdb_Residue_name, :resName ],
                 [ 68, 70, Pdb_Residue_name, :resName ]
                 )
-      
+
       # MODRS record class
       MODRES =
         def_rec([  8, 11, Pdb_IDcode,       :idCode ],
@@ -636,7 +636,7 @@ module Bio
                 [ 25, 27, Pdb_Residue_name, :stdRes ],
                 [ 30, 70, Pdb_String,       :comment ]
                 )
-      
+
       # HET record class
       HET =
         def_rec([  8, 10, Pdb_LString(3), :hetID ],
@@ -646,21 +646,21 @@ module Bio
                 [ 21, 25, Pdb_Integer,    :numHetAtoms ],
                 [ 31, 70, Pdb_String,     :text ]
                 )
-      
+
       # HETNAM record class
       HETNAM =
         def_rec([ 9, 10,  Pdb_Continuation, nil ],
                 [ 12, 14, Pdb_LString(3),   :hetID ],
                 [ 16, 70, Pdb_String,       :text ]
                 )
-        
+
       # HETSYN record class
       HETSYN =
         def_rec([  9, 10, Pdb_Continuation, nil ],
                 [ 12, 14, Pdb_LString(3),   :hetID ],
                 [ 16, 70, Pdb_SList,        :hetSynonyms ]
                 )
-      
+
       # FORMUL record class
       FORMUL =
         def_rec([  9, 10, Pdb_Integer,    :compNum ],
@@ -669,7 +669,7 @@ module Bio
                 [ 19, 19, Pdb_Character,  :asterisk ],
                 [ 20, 70, Pdb_String,     :text ]
                 )
-      
+
       # HELIX record class
       HELIX =
         def_rec([  8, 10, Pdb_Integer,      :serNum ],
@@ -714,7 +714,7 @@ module Bio
                 [ 66, 69, Pdb_Integer,      :prevResSeq ],
                 [ 70, 70, Pdb_AChar,        :prevICode ]
                 )
-      
+
       # TURN record class
       TURN =
         def_rec([  8, 10, Pdb_Integer,      :seq ],
@@ -730,7 +730,7 @@ module Bio
                 [ 36, 36, Pdb_AChar,        :endICode ],
                 [ 41, 70, Pdb_String,       :comment ]
                 )
-        
+
       # SSBOND record class
       SSBOND =
         def_rec([  8, 10, Pdb_Integer,    :serNum   ],
@@ -763,7 +763,7 @@ module Bio
                 [ 60, 65, Pdb_SymOP,        :sym1 ],
                 [ 67, 72, Pdb_SymOP,        :sym2 ]
                 )
-        
+
       # HYDBND record class
       HYDBND =
         def_rec([ 13, 16, Pdb_Atom,         :name1 ],
@@ -786,7 +786,7 @@ module Bio
                 [ 60, 65, Pdb_SymOP,        :sym1 ],
                 [ 67, 72, Pdb_SymOP,        :sym2 ]
                 )
-        
+
       # SLTBRG record class
       SLTBRG =
         def_rec([ 13, 16, Pdb_Atom,          :atom1 ],
@@ -804,7 +804,7 @@ module Bio
                 [ 60, 65, Pdb_SymOP,         :sym1 ],
                 [ 67, 72, Pdb_SymOP,         :sym2 ]
                 )
-      
+
       # CISPEP record class
       CISPEP =
         def_rec([  8, 10, Pdb_Integer,     :serNum ],
@@ -819,7 +819,7 @@ module Bio
                 [ 44, 46, Pdb_Integer,     :modNum ],
                 [ 54, 59, Pdb_Real('6.2'), :measure ]
                 )
-      
+
       # SITE record class
       SITE =
         def_rec([  8, 10, Pdb_Integer,      :seqNum    ],
@@ -842,7 +842,7 @@ module Bio
                 [ 57, 60, Pdb_Integer,      :seq4      ],
                 [ 61, 61, Pdb_AChar,        :iCode4    ]
                 )
-      
+
       # CRYST1 record class
       CRYST1 =
         def_rec([  7, 15, Pdb_Real('9.3'), :a ],
@@ -854,7 +854,7 @@ module Bio
                 [ 56, 66, Pdb_LString,     :sGroup ],
                 [ 67, 70, Pdb_Integer,     :z ]
                 )
-      
+
       # ORIGX1 record class
       #
       # ORIGXn n=1, 2, or 3
@@ -864,7 +864,7 @@ module Bio
                 [ 31, 40, Pdb_Real('10.6'), :On3 ],
                 [ 46, 55, Pdb_Real('10.5'), :Tn ]
                 )
-      
+
       # ORIGX2 record class
       ORIGX2 = new_inherit(ORIGX1)
       # ORIGX3 record class
@@ -879,12 +879,12 @@ module Bio
                 [ 31, 40, Pdb_Real('10.6'), :Sn3 ],
                 [ 46, 55, Pdb_Real('10.5'), :Un ]
                 )
-      
+
       # SCALE2 record class
       SCALE2 = new_inherit(SCALE1)
       # SCALE3 record class
       SCALE3 = new_inherit(SCALE1)
-      
+
       # MTRIX1 record class
       #
       # MTRIXn n=1,2, or 3
@@ -896,7 +896,7 @@ module Bio
                 [ 46, 55, Pdb_Real('10.5'), :Vn ],
                 [ 60, 60, Pdb_Integer,      :iGiven ]
                 )
-      
+
       # MTRIX2 record class
       MTRIX2 = new_inherit(MTRIX1)
       # MTRIX3 record class
@@ -916,7 +916,7 @@ module Bio
         def_rec([ 11, 14, Pdb_Integer, :serial ]
                 )
         # ChangeLog: model_serial are changed to serial
-      
+
       # ATOM record class
       ATOM =
         new_direct([  7, 11, Pdb_Integer,      :serial ],
@@ -968,7 +968,7 @@ module Bio
         def to_a
           [ x, y, z ]
         end
-      
+
         #Sorts based on serial numbers
         def <=>(other)
           return serial <=> other.serial
@@ -1046,7 +1046,7 @@ module Bio
           atomname = justify_atomname
           sprintf("%-6s%5d %-4s%-1s%3s %-1s%4d%-1s   %8.3f%8.3f%8.3f%6.2f%6.2f      %-4s%2s%-2s\n",
                   self.record_name,
-                  self.serial, 
+                  self.serial,
                   atomname,
                   self.altLoc,
                   self.resName,
@@ -1135,7 +1135,7 @@ module Bio
                 [ 23, 26, Pdb_Integer,      :resSeq ],
                 [ 27, 27, Pdb_AChar,        :iCode ]
                 )
-      
+
       #HETATM =
       #  new_direct([  7, 11, Pdb_Integer,      :serial ],
       #             [ 13, 16, Pdb_Atom,         :name ],
@@ -1243,7 +1243,7 @@ module Bio
         # JRNL REFN record class
         REFN =
           def_rec([ 13, 16, Pdb_String,     :sub_record ], # "REFN"
-                  [ 20, 23, Pdb_LString(4), "ASTM" ], 
+                  [ 20, 23, Pdb_LString(4), "ASTM" ],
                   [ 25, 30, Pdb_LString(6), :astm ],
                   [ 33, 34, Pdb_LString(2), :country ],
                   [ 36, 39, Pdb_LString(4), :BorS ], # "ISBN" or "ISSN"
@@ -1255,7 +1255,7 @@ module Bio
         #
         Default =
           def_rec([ 13, 16, Pdb_String, :sub_record ]) # ""
-        
+
         # definitions (hash)
         Definition = create_definition_hash
       end #class JRNL
@@ -1269,7 +1269,7 @@ module Bio
                   [ 12, 20, Pdb_String,     :sub_record ], # "REFERENCE"
                   [ 22, 70, Pdb_Integer,    :refNum ]
                   )
-        
+
         # REMARK 1 AUTH record class
         AUTH =
           def_rec([  8, 10, Pdb_Integer,      :remarkNum ],  # "1"
@@ -1277,7 +1277,7 @@ module Bio
                   [ 17, 18, Pdb_Continuation, nil ],
                   [ 20, 70, Pdb_List,         :authorList ]
                   )
-        
+
         # REMARK 1 TITL record class
         TITL =
           def_rec([  8, 10, Pdb_Integer,      :remarkNum ],  # "1"
@@ -1285,7 +1285,7 @@ module Bio
                   [ 17, 18, Pdb_Continuation, nil ],
                   [ 20, 70, Pdb_LString,      :title ]
                   )
-        
+
         # REMARK 1 EDIT record class
         EDIT =
           def_rec([  8, 10, Pdb_Integer,      :remarkNum ],  # "1"
@@ -1293,7 +1293,7 @@ module Bio
                   [ 17, 18, Pdb_Continuation, nil ],
                   [ 20, 70, Pdb_LString,      :editorList ]
                   )
-        
+
         # REMARK 1 REF record class
         REF =
           def_rec([  8, 10, Pdb_Integer,      :remarkNum ],  # "1"
@@ -1305,7 +1305,7 @@ module Bio
                   [ 57, 61, Pdb_String,       :page ],
                   [ 63, 66, Pdb_Integer,      :year ]
                   )
-        
+
         # REMARK 1 PUBL record class
         PUBL =
           def_rec([  8, 10, Pdb_Integer,      :remarkNum ],  # "1"
@@ -1313,7 +1313,7 @@ module Bio
                   [ 17, 18, Pdb_Continuation, nil ],
                   [ 20, 70, Pdb_LString,      :pub ]
                   )
-        
+
         # REMARK 1 REFN record class
         REFN =
           def_rec([  8, 10, Pdb_Integer,    :remarkNum ],  # "1"
@@ -1325,7 +1325,7 @@ module Bio
                   [ 41, 65, Pdb_LString,    :isbn ],
                   [ 68, 70, Pdb_LString(4), :coden ]
                   )
-        
+
         # default (or unknown) record class for REMARK 1
         Default =
           def_rec([  8, 10, Pdb_Integer,    :remarkNum ],  # "1"
@@ -1339,29 +1339,29 @@ module Bio
       # REMARK record classes for REMARK 2
       class Remark2 < self
         # 29, 38 == 'ANGSTROMS.'
-        ANGSTROMS = 
+        ANGSTROMS =
           def_rec([  8, 10, Pdb_Integer,     :remarkNum ], # "2"
                   [ 12, 22, Pdb_LString(11), :sub_record ], # "RESOLUTION."
                   [ 23, 27, Pdb_Real('5.2'), :resolution ],
                   [ 29, 38, Pdb_LString(10), "ANGSTROMS." ]
                   )
-        
+
         # 23, 38 == ' NOT APPLICABLE.'
-        NOT_APPLICABLE = 
+        NOT_APPLICABLE =
           def_rec([  8, 10, Pdb_Integer,     :remarkNum ], # "2"
                   [ 12, 22, Pdb_LString(11), :sub_record ], # "RESOLUTION."
                   [ 23, 38, Pdb_LString(16), :resolution ], # " NOT APPLICABLE."
                   [ 41, 70, Pdb_String,      :comment ]
                   )
-        
+
         # others
-        Default = 
+        Default =
           def_rec([  8, 10, Pdb_Integer,     :remarkNum ], # "2"
                   [ 12, 22, Pdb_LString(11), :sub_record ], # "RESOLUTION."
                   [ 24, 70, Pdb_String,      :comment ]
                   )
       end #class Remark2
-      
+
       # REMARK record class for REMARK n (n>=3)
       RemarkN =
         def_rec([  8, 10, Pdb_Integer, :remarkNum ],
@@ -1378,7 +1378,7 @@ module Bio
       #
       # Because END is a reserved word of Ruby, it is separately
       # added to the hash
-      End = 
+      End =
         def_rec([  2,  1, Pdb_Integer, :serial ]) # dummy field (always 0)
 
       Definition['END'.intern] = End
@@ -1521,7 +1521,7 @@ module Bio
               residue = newResidue
             end
           end
-          
+
           f.residue = residue
           residue.addAtom(f)
 
@@ -1616,7 +1616,7 @@ module Bio
       @models.push(model)
       self
     end
-    
+
     # Iterates over each model.
     # Iterates over each of the models in the structure.
     # Returns <code>self</code>.
@@ -1626,9 +1626,9 @@ module Bio
     end
     # Alias needed for Bio::PDB::ModelFinder
     alias each_model each
-    
+
     # Provides keyed access to the models based on serial number
-    # returns nil if it's not there 
+    # returns nil if it's not there
     def [](key)
       @models.find{ |model| key == model.model_serial }
     end
@@ -1649,7 +1649,7 @@ module Bio
       string << "END\n"
       return string
     end
-    
+
     #Makes a hash out of an array of PDB::Records and some kind of symbol
     #.__send__ invokes the method specified by the symbol.
     #Essentially it ends up with a hash with keys given in the sub_record
@@ -1754,7 +1754,7 @@ module Bio
     end
 
     # Gets TURN records.
-    # If no arguments are given, it returns all TURN records. 
+    # If no arguments are given, it returns all TURN records.
     # (Returns an array of <code>Bio::PDB::Record::TURN</code> instances.)
     # If <em>turnId</em> is given, it only returns a record
     # corresponding to given <em>turnId</em>.
@@ -1792,7 +1792,7 @@ module Bio
     #--
     # Get seqres - we get this to return a nice Bio::Seq object
     #++
-    
+
     # Amino acid or nucleic acid sequence of backbone residues in "SEQRES".
     # If <em>chainID</em> is given, it returns corresponding sequence
     # as an array of string.

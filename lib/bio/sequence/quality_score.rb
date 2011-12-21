@@ -6,7 +6,7 @@
 # License::    The Ruby License
 #
 # == Description
-# 
+#
 # Sequence quality score manipulation modules, mainly used by Bio::Fastq
 # and related classes.
 #
@@ -20,7 +20,7 @@ module Bio
 
 class Sequence
 
-  # Bio::Sequence::QualityScore is a name space for quality score modules. 
+  # Bio::Sequence::QualityScore is a name space for quality score modules.
   # BioRuby internal use only (mainly from Bio::Fastq).
   module QualityScore
 
@@ -62,7 +62,7 @@ class Sequence
       end
 
       # Does nothing and simply returns the given argument.
-      # 
+      #
       # ---
       # *Arguments*:
       # * (required) _scores_: (Array containing Integer) quality scores
@@ -129,7 +129,7 @@ class Sequence
 
       alias convert_scores_from_phred   convert_nothing
       alias convert_scores_to_phred     convert_nothing
-      alias convert_scores_from_solexa  convert_scores_from_solexa_to_phred 
+      alias convert_scores_from_solexa  convert_scores_from_solexa_to_phred
       alias convert_scores_to_solexa    convert_scores_from_phred_to_solexa
       module_function :convert_scores_to_solexa
       public :convert_scores_to_solexa

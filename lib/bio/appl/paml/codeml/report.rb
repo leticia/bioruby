@@ -20,23 +20,23 @@ module Bio::PAML
     # Codeml::Report object is returned by Bio::PAML::Codeml.query. For
     # example
     #
-    #   codeml = Bio::PAML::Codeml.new('codeml', :runmode => 0, 
+    #   codeml = Bio::PAML::Codeml.new('codeml', :runmode => 0,
     #       :RateAncestor => 1, :alpha => 0.5, :fix_alpha => 0)
     #   result = codeml.query(alignment, tree)
     #
     # where alignment and tree are Bioruby objects. This class assumes we have a
-    # buffer containing the output of codeml. 
+    # buffer containing the output of codeml.
     #
     # == References
     #
     # Phylogenetic Analysis by Maximum Likelihood (PAML) is a package of
     # programs for phylogenetic analyses of DNA or protein sequences using
     # maximum likelihood. It is maintained and distributed for academic use
-    # free of charge by Ziheng Yang. Suggestion citation 
+    # free of charge by Ziheng Yang. Suggestion citation
     #
     #   Yang, Z. 1997
-    #   PAML: a program package for phylogenetic analysis by maximum likelihood 
-    #   CABIOS 13:555-556 
+    #   PAML: a program package for phylogenetic analysis by maximum likelihood
+    #   CABIOS 13:555-556
     #
     # http://abacus.gene.ucl.ac.uk/software/paml.html
     #
@@ -77,9 +77,9 @@ module Bio::PAML
     #
     #   >> c.significant
     #   => true
-    # 
+    #
     # Now fetch the results of the first model M0, and check its values
-    # 
+    #
     #   >> m0 = c.models[0]
     #   >> m0.tree_length
     #   => 1.90227
@@ -98,9 +98,9 @@ module Bio::PAML
     #
     #   >> m0.tree
     #   => "((((PITG_23265T0: 0.000004, PITG_23253T0: 0.400074): 0.000004, PITG_23257T0: 0.952614): 0.000004, PITG_23264T0: 0.445507): 0.000004, PITG_23267T0: 0.011814, PITG_23293T0: 0.092242);"
-    # 
+    #
     # Check the M3 and its specific values
-    #    
+    #
     #   >> m3 = c.models[1]
     #   >> m3.lnL
     #   => -1070.964046
@@ -113,14 +113,14 @@ module Bio::PAML
     #
     #   >> m3.tree
     #   => "((((PITG_23265T0: 0.000004, PITG_23253T0: 0.762597): 0.000004, PITG_23257T0: 2.721710): 0.000004, PITG_23264T0: 0.924326): 0.014562, PITG_23267T0: 0.000004, PITG_23293T0: 0.237433);"
-    # 
+    #
     # Next take the overall posterior analysis
-    # 
+    #
     #   >> c.nb_sites.size
     #   => 44
     #   >> c.nb_sites[0].to_a
     #   => [17, "I", 0.988, 3.293]
-    # 
+    #
     # or by field
     #
     #   >> codon = c.nb_sites[0]
@@ -138,8 +138,8 @@ module Bio::PAML
     #   >> codon.w
     #   => 3.293
     #
-    # Now we generate special string 'graph' for positive selection. The 
-    # following returns a string the length of the input alignment and 
+    # Now we generate special string 'graph' for positive selection. The
+    # following returns a string the length of the input alignment and
     # shows the locations of positive selection:
     #
     #   >> c.nb_sites.graph[0..32]
@@ -150,7 +150,7 @@ module Bio::PAML
     #   >> c.nb_sites.graph_omega[0..32]
     #   => "                3*    6       6 2"
     #
-    # We also provide the raw buffers to adhere to the principle of 
+    # We also provide the raw buffers to adhere to the principle of
     # unexpected use. Test the raw buffers for content:
     #
     #   >> c.header.to_s =~ /seed/
@@ -205,7 +205,7 @@ module Bio::PAML
     #   >> c.sites.graph[0..32]
     #   => "                **    *       * *"
     #
-    # Note the differences of omega with earlier M0-M3 naive Bayesian 
+    # Note the differences of omega with earlier M0-M3 naive Bayesian
     # analysis:
     #
     #   >> c.sites.graph_omega[0..32]
@@ -250,11 +250,11 @@ module Bio::PAML
       def descr
         num = @models.size
         case num
-          when 0 
+          when 0
             'No model'
-          when 1 
+          when 1
             @models[0].name
-          else 
+          else
             @models[0].name + '-' + @models[1].modelnum.to_s
         end
       end
@@ -286,7 +286,7 @@ module Bio::PAML
       # chi-square, with critical value 9.21 at the 1% significance level.
       #
       # Here we support a few likely combinations, M0-3, M1-2 and M7-8, used
-      # most often in literature. For other combinations, or a different 
+      # most often in literature. For other combinations, or a different
       # significance level, you'll have to calculate chi-square yourself.
       #
       # Returns true or false. If no result is calculated this method
@@ -334,9 +334,9 @@ module Bio::PAML
       #:startdoc:
 
     end  # Report
-   
+
     #   ReportSingle is a simpler parser for a codeml report
-    #   containing a single run. This is retained for 
+    #   containing a single run. This is retained for
     #   backward compatibility mostly.
     #
     #   The results of a single model (old style report parser)
@@ -398,7 +398,7 @@ module Bio::PAML
     # Model class contains one of the models of a codeml run (e.g. M0)
     # which is used as a test hypothesis for positive selection. This
     # class is used by Codeml::Report.
-    class Model 
+    class Model
 
       # Create a model using the relevant information from the codeml
       # result data (text buffer)
@@ -467,7 +467,7 @@ module Bio::PAML
         ws = @buf.scan(/\nw:.*?\n/).to_s.split[1..3].map { |f| f.to_f }
         ret = []
         probs.each_with_index do | prob, i |
-          ret.push  :p => prob, :w => ws[i] 
+          ret.push  :p => prob, :w => ws[i]
         end
         ret
       end
@@ -495,7 +495,7 @@ module Bio::PAML
         @probability = fields[2].to_f
         @omega       = fields[3].to_f
       end
-     
+
       # Return dN/dS (or omega) for this codon
       def dN_dS
         omega
@@ -516,9 +516,9 @@ module Bio::PAML
     # Naive Empirical Bayes (NEB) analysis
     # Positively selected sites (*: P>95%; **: P>99%)
     # (amino acids refer to 1st sequence: PITG_23265T0)
-    # 
+    #
     #             Pr(w>1)     post mean +- SE for w
-    # 
+    #
     #     17 I      0.988*        3.293
     #     18 H      1.000**       17.975
     #     23 F      0.991**       6.283
@@ -537,7 +537,7 @@ module Bio::PAML
       def initialize search, buf, num_codons
         @num_codons = num_codons
         if buf.index(search)==nil
-          raise ReportError,"No NB sites found for #{search}" 
+          raise ReportError,"No NB sites found for #{search}"
         end
         # Set description of this class
         @descr = search
@@ -578,7 +578,7 @@ module Bio::PAML
       #   => "                24    3       3 2"
       #
       def graph_omega
-        graph_to_s(lambda { |site| 
+        graph_to_s(lambda { |site|
             symbol = "*"
             symbol = site.omega.to_i.to_s if site.omega.abs <= 10.0
             symbol
@@ -591,7 +591,7 @@ module Bio::PAML
           symbol = site.aaref
         })
       end
-      
+
       # Return the positive selection information as a String
       def to_s
         @buf

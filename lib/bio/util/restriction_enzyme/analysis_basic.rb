@@ -36,7 +36,7 @@ class Analysis
   # This code is mainly included as an academic example
   # without having to wade through the extra layer of complexity added by the
   # permutations.
-  # 
+  #
   # Example:
   #
   # FIXME add output
@@ -59,10 +59,10 @@ class Analysis
     # needed separated here so we put them into one array
     enzyme_actions = create_enzyme_actions( sequence, *args ).flatten
     return fragments_for_display( {} ) if enzyme_actions.empty?
-    
+
     # Primary and complement strands are both measured from '0' to 'sequence.size-1' here
     sequence_range = Bio::RestrictionEnzyme::Range::SequenceRange.new( 0, 0, sequence.size-1, sequence.size-1 )
-    
+
     # Add the cuts to the sequence_range from each enzyme_action
     enzyme_actions.each do |enzyme_action|
       enzyme_action.cut_ranges.each do |cut_range|
@@ -74,18 +74,18 @@ class Analysis
     # to use
     sequence_range.fragments.primary = sequence
     sequence_range.fragments.complement = sequence.forward_complement
-    
+
     # Format the fragments for the user
     fragments_for_display( {0 => sequence_range} )
   end
-  
+
   #########
   protected
   #########
 
   # Take the fragments from SequenceRange objects generated from add_cut_range
   # and return unique results as a Bio::RestrictionEnzyme::Analysis::Fragment object.
-  # 
+  #
   # ---
   # *Arguments*
   # * +hsh+: +Hash+  Keys are a permutation ID, if any.  Values are SequenceRange objects that have cuts applied.
@@ -103,9 +103,9 @@ class Analysis
         end
       end
     end
-    
+
     ary.uniq! unless view_ranges
-    
+
     ary
   end
 
@@ -118,27 +118,27 @@ class Analysis
   # *Returns*:: +Array+ with the first element being an array of EnzymeAction objects that +sometimes_cut+, and are subject to competition.  The second is an array of EnzymeAction objects that +always_cut+ and are not subject to competition.
   def create_enzyme_actions( sequence, *args )
     all_enzyme_actions = []
-    
+
     args.each do |enzyme|
       enzyme = Bio::RestrictionEnzyme.new(enzyme) unless enzyme.class == Bio::RestrictionEnzyme::DoubleStranded
 
       # make sure pattern is the proper size
-      # for more info see the internal documentation of 
+      # for more info see the internal documentation of
       # Bio::RestrictionEnzyme::DoubleStranded.create_action_at
       pattern = Bio::Sequence::NA.new(
         Bio::RestrictionEnzyme::DoubleStranded::AlignedStrands.align(
           enzyme.primary, enzyme.complement
         ).primary
       ).to_re
-      
+
       find_match_locations( sequence, pattern ).each do |offset|
         all_enzyme_actions << enzyme.create_action_at( offset )
       end
     end
-    
+
     # FIXME VerticalCutRange should really be called VerticalAndHorizontalCutRange
-    
-    # * all_enzyme_actions is now full of EnzymeActions at specific locations across 
+
+    # * all_enzyme_actions is now full of EnzymeActions at specific locations across
     #   the sequence.
     # * all_enzyme_actions will now be examined to see if any EnzymeActions may
     #   conflict with one another, and if they do they'll be made note of in
@@ -160,18 +160,18 @@ class Analysis
     #
     # Then the bind site (and EnzymeAction range) for Enzyme B would need it's
     # right side to be at index 2 or less, or it's left side to be 6 or greater.
-    
+
     competition_indexes = Set.new
 
     all_enzyme_actions[0..-2].each_with_index do |current_enzyme_action, i|
       next if competition_indexes.include? i
       next if current_enzyme_action.cut_ranges.empty?  # no cuts, some enzymes are like this (ex. CjuI)
-      
+
       all_enzyme_actions[i+1..-1].each_with_index do |comparison_enzyme_action, j|
         j += (i + 1)
         next if competition_indexes.include? j
         next if comparison_enzyme_action.cut_ranges.empty?  # no cuts
-        
+
         if (current_enzyme_action.right <= comparison_enzyme_action.cut_ranges.min_vertical) or
            (current_enzyme_action.left > comparison_enzyme_action.cut_ranges.max_vertical)
           # no conflict
@@ -180,7 +180,7 @@ class Analysis
         end
       end
     end
-        
+
     sometimes_cut = all_enzyme_actions.values_at( *competition_indexes )
     always_cut = all_enzyme_actions
     always_cut.delete_if {|x| sometimes_cut.include? x }
@@ -211,7 +211,7 @@ class Analysis
     end
     locations
   end
-  
+
 end # Analysis
 end # RestrictionEnzyme
 end # Bio

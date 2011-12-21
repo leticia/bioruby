@@ -1,7 +1,7 @@
 #
 # = sample/demo_go.rb - demonstration of Bio::GO, classes for Gene Ontology
 #
-# Copyright::   Copyright (C) 2003 
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -94,5 +94,5 @@ require 'bio'
 
 
 
-  
+
 #end

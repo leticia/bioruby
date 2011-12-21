@@ -87,7 +87,7 @@ module Bio
         end
         sprintf("%5d\n", otus) + data.join('')
       end
-        
+
     end #class DistanceMatrix
 
   end #module Phylip

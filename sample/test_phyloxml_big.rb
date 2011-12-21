@@ -140,7 +140,7 @@ module Bio
       raise "the test is skipped" unless readfilename
       filesizeMB = File.size(readfilename) / 1048576.0
       printf "Reading %s (%2.1f MB)\n", readfilename, filesizeMB
-             
+
       begin
         phyloxml = Bio::PhyloXML::Parser.open(readfilename)
       rescue NoMethodError
@@ -194,7 +194,7 @@ module Bio
       def test_life
         tree = do_test_next_tree(TestPhyloXMLBigData.life_xml)
         do_test_write(tree, TestPhyloXMLBigData.life_test_xml)
-        
+
         tree2 = do_test_next_tree(TestPhyloXMLBigData.life_test_xml)
         do_test_write(tree2, TestPhyloXMLBigData.life_roundtrip_xml)
       end

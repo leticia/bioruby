@@ -18,7 +18,7 @@ require 'bio/db/embl/embl'
 
 module Bio
   class TestEMBL89 < Test::Unit::TestCase
-    
+
     def setup
       output = File.read(File.join(BioRubyTestDataPath, 'embl', 'AB090716.embl.rel89'))
       @obj = Bio::EMBL.new(output)
@@ -56,7 +56,7 @@ module Bio
     def test_id_line_sequence_length
       assert_equal(166, @obj.id_line('SEQUENCE_LENGTH'))
     end
-    
+
     def test_entry
       entry_id = 'AB090716'
       assert_equal(entry_id, @obj.entry)
@@ -73,7 +73,7 @@ module Bio
     def test_division
       assert_equal('VRT', @obj.division)
     end
-    
+
     def test_sequence_length
       seqlen = 166
       assert_equal(seqlen, @obj.sequence_length)
@@ -81,7 +81,7 @@ module Bio
     end
 
     # Bio::EMBLDB::COMMON#ac
-    def test_ac 
+    def test_ac
       ac = ['AB090716']
       assert_equal(ac, @obj.ac)
       assert_equal(ac, @obj.accessions)
@@ -122,7 +122,7 @@ module Bio
     end
 
     # Bio::EMBLDB::COMMON#kw
-    def test_kw 
+    def test_kw
       k = []
       assert_equal([], @obj.kw)
       assert_equal([], @obj.keywords)
@@ -139,12 +139,12 @@ module Bio
     end
 
     # Bio::EMBLDB::COMMON#oc
-    def test_oc 
+    def test_oc
       assert_equal('Eukaryota', @obj.oc.first)
     end
 
     # Bio::EMBLDB::COMMON#og
-    def test_og 
+    def test_og
       assert_equal([], @obj.og)
     end
 
@@ -154,7 +154,7 @@ module Bio
     end
 
     # Bio::EMBLDB::COMMON#references
-    def test_references 
+    def test_references
       assert_equal(Array, @obj.references.class)
     end
 
@@ -188,7 +188,7 @@ module Bio
     end
 
     def test_each_gene
-      @obj.each_gene do |x| 
+      @obj.each_gene do |x|
         assert_equal('gene', x.feature)
       end
     end

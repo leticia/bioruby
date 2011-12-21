@@ -1,6 +1,6 @@
 #
 # = sample/demo_blast_report.rb - demonstration of Bio::Blast::Report, Bio::Blast::Default::Report, and Bio::Blast::WU::Report
-# 
+#
 # Copyright::  Copyright (C) 2003 Toshiaki Katayama <k@bioruby.org>
 # Copyright::  Copyright (C) 2003-2006,2008-2009 Naohisa Goto <ng@bioruby.org>
 # License::    The Ruby License
@@ -153,7 +153,7 @@ Bio::FlatFile.open(ARGF) do |ff|
 
   rep.iterations.each do |itr|
   itr = wrap(itr)
-      
+
   #print "# --- Bio::Blast::Default::Report::Iteration\n"
   print "# --- #{itr.class}\n"
   puts
@@ -241,7 +241,7 @@ Bio::FlatFile.open(ARGF) do |ff|
   print " ([#{j}])\n"
   puts
   print "        hsp.num         #=> "; p hsp.num             #-m0,-WU
-  print "        hsp.bit_score   #=> "; p hsp.bit_score 
+  print "        hsp.bit_score   #=> "; p hsp.bit_score
   print "        hsp.score       #=> "; p hsp.score
   print "        hsp.evalue      #=> "; p hsp.evalue
   print "        hsp.identity    #=> "; p hsp.identity

@@ -13,103 +13,103 @@ module Bio
   autoload :REBASE, 'bio/db/rebase'
 
 # = Description
-# 
+#
 # Bio::RestrictionEnzyme allows you to fragment a DNA strand using one
 # or more restriction enzymes.  Bio::RestrictionEnzyme is aware that
 # multiple enzymes may be competing for the same recognition site and
 # returns the various possible fragmentation patterns that result in
 # such circumstances.
-# 
+#
 # When using Bio::RestrictionEnzyme you may simply use the name of common
-# enzymes to cut your sequence or you may construct your own unique enzymes 
+# enzymes to cut your sequence or you may construct your own unique enzymes
 # to use.
 #
 # Visit the documentaion for individual classes for more information.
 #
 # An examination of the unit tests will also reveal several interesting uses
 # for the curious programmer.
-# 
+#
 # = Usage
-# 
+#
 # == Basic
 #
 # EcoRI cut pattern:
 #   G|A A T T C
 #    +-------+
 #   C T T A A|G
-# 
+#
 # This can also be written as:
 #   G^AATTC
 #
-# Note that to use the method +cut_with_enzyme+ from a Bio::Sequence object 
+# Note that to use the method +cut_with_enzyme+ from a Bio::Sequence object
 # you currently must +require+ +bio/util/restriction_enzyme+ directly.  If
 # instead you're going to directly call Bio::RestrictionEnzyme::Analysis
 # then only +bio+ needs to be +required+.
-# 
+#
 #   require 'bio'
 #   require 'bio/util/restriction_enzyme'
-#   
+#
 #   seq = Bio::Sequence::NA.new('gaattc')
 #   cuts = seq.cut_with_enzyme('EcoRI')
 #   cuts.primary                        # => ["aattc", "g"]
 #   cuts.complement                     # => ["cttaa", "g"]
 #   cuts.inspect                        # => "[#<struct Bio::RestrictionEnzyme::Fragment primary=\"g    \", complement=\"cttaa\">, #<struct Bio::RestrictionEnzyme::Fragment primary=\"aattc\", complement=\"    g\">]"
-#   
+#
 #   seq = Bio::Sequence::NA.new('gaattc')
 #   cuts = seq.cut_with_enzyme('g^aattc')
 #   cuts.primary                        # => ["aattc", "g"]
 #   cuts.complement                     # => ["cttaa", "g"]
-#   
+#
 #   seq = Bio::Sequence::NA.new('gaattc')
 #   cuts = seq.cut_with_enzyme('g^aattc', 'gaatt^c')
 #   cuts.primary                        # => ["aattc", "c", "g", "gaatt"]
 #   cuts.complement                     # => ["c", "cttaa", "g", "ttaag"]
-#   
+#
 #   seq = Bio::Sequence::NA.new('gaattcgaattc')
 #   cuts = seq.cut_with_enzyme('EcoRI')
 #   cuts.primary                        # => ["aattc", "aattcg", "g"]
 #   cuts.complement                     # => ["cttaa", "g", "gcttaa"]
-#   
+#
 #   seq = Bio::Sequence::NA.new('gaattcgggaattc')
 #   cuts = seq.cut_with_enzyme('EcoRI')
 #   cuts.primary                        # => ["aattc", "aattcggg", "g"]
 #   cuts.complement                     # => ["cttaa", "g", "gcccttaa"]
-#   
+#
 #   cuts[0].inspect                     # => "#<struct Bio::RestrictionEnzyme::Fragment primary=\"g    \", complement=\"cttaa\">"
-#   
+#
 #   cuts[0].primary                     # => "g    "
 #   cuts[0].complement                  # => "cttaa"
-#   
+#
 #   cuts[1].primary                     # => "aattcggg    "
 #   cuts[1].complement                  # => "    gcccttaa"
-#   
+#
 #   cuts[2].primary                     # => "aattc"
 #   cuts[2].complement                  # => "    g"
-#   
+#
 # == Advanced
 #
 #   require 'bio'
-#   
+#
 #   enzyme_1 = Bio::RestrictionEnzyme.new('anna', [1,1], [3,3])
 #   enzyme_2 = Bio::RestrictionEnzyme.new('gg', [1,1])
 #   a = Bio::RestrictionEnzyme::Analysis.cut('agga', enzyme_1, enzyme_2)
 #   a.primary                           # => ["a", "ag", "g", "ga"]
 #   a.complement                        # => ["c", "ct", "t", "tc"]
-#   
+#
 #   a[0].primary                        # => "ag"
 #   a[0].complement                     # => "tc"
-#   
+#
 #   a[1].primary                        # => "ga"
 #   a[1].complement                     # => "ct"
-#   
+#
 #   a[2].primary                        # => "a"
 #   a[2].complement                     # => "t"
-#   
+#
 #   a[3].primary                        # => "g"
 #   a[3].complement                     # => "c"
-# 
+#
 # = Todo / under development
-# 
+#
 # * Circular DNA cutting
 #
 
@@ -173,7 +173,7 @@ class RestrictionEnzyme
     Bio::RestrictionEnzyme::Analysis.cut( sequence, enzymes )
   end
 
-  # A Bio::RestrictionEnzyme::Fragment is a DNA fragment composed of fused primary and 
+  # A Bio::RestrictionEnzyme::Fragment is a DNA fragment composed of fused primary and
   # complementary strands that would be found floating in solution after a full
   # sequence is digested by one or more RestrictionEnzymes.
   #
@@ -186,15 +186,15 @@ class RestrictionEnzyme
   # Fragment 1:
   #   primary =    "attaca"
   #   complement = "  atga"
-  # 
+  #
   # Fragment 2:
   #   primary =    "g  "
   #   complement = "cta"
-  # 
+  #
   # View these with the +primary+ and +complement+ methods.
-  # 
+  #
   # Bio::RestrictionEnzyme::Fragment is a simple +Struct+ object.
-  # 
+  #
   # Note: unrelated to Bio::RestrictionEnzyme::Range::SequenceRange::Fragment
   Fragment = Struct.new(:primary, :complement, :p_left, :p_right, :c_left, :c_right)
 
@@ -202,12 +202,12 @@ class RestrictionEnzyme
   #
   # Bio::RestrictionEnzyme::Fragments is a container for Fragment objects.  It adds the
   # methods +primary+ and +complement+ which returns an +Array+ of all
-  # respective strands from it's Fragment members in alphabetically sorted 
+  # respective strands from it's Fragment members in alphabetically sorted
   # order.  Note that it will
-  # not return duplicate items and does not return the spacing/padding 
+  # not return duplicate items and does not return the spacing/padding
   # that you would
   # find by accessing the members directly.
-  # 
+  #
   # Example:
   #
   #   primary = ['attaca', 'g']

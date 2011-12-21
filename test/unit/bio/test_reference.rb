@@ -1,7 +1,7 @@
 #
 # = test/unit/bio/test_reference.rb - Unit test for Bio::Reference
 #
-# Copyright::  Copyright (C) 2006 
+# Copyright::  Copyright (C) 2006
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -21,7 +21,7 @@ require 'bio/compat/references'
 
 module Bio
   class TestReference < Test::Unit::TestCase
-    
+
     def setup
       hash = {'authors' => [ "Hoge, J.P.", "Fuga, F.B." ], 'title' => "Title of the study.",
               'journal' => "Theor. J. Hoge", 'volume' => 12, 'issue' => 3, 'pages' => "123-145",
@@ -37,17 +37,17 @@ module Bio
 
     def test_journal
       str = 'Theor. J. Hoge'
-      assert_equal(str, @obj.journal)      
+      assert_equal(str, @obj.journal)
     end
-    
+
     def test_volume
       str = 12
-      assert_equal(str, @obj.volume)      
+      assert_equal(str, @obj.volume)
     end
 
     def test_issue
       str = 3
-      assert_equal(str, @obj.issue)      
+      assert_equal(str, @obj.issue)
     end
 
     def test_pages
@@ -59,7 +59,7 @@ module Bio
       str = 2001
       assert_equal(str, @obj.year)
     end
-    
+
     def test_pubmed
       str = 12345678
       assert_equal(str, @obj.pubmed)

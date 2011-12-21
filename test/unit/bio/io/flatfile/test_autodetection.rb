@@ -21,7 +21,7 @@ module Bio::TestFlatFile
 
   # testing default AutoDetect's behavior
   class TestDefaultAutoDetect < Test::Unit::TestCase
-    
+
     TestDataPath = BioRubyTestDataPath
 
     def setup
@@ -360,8 +360,8 @@ __END_OF_TEXT__
     def test_fastanumericformat
       text = <<__END_OF_TEXT__
 >sample
-30 21 16 11 8 6 3 34 28 34 28 28 35 28 28 37 33 15 27 28 28 
-27 37 33 17 27 27 28 28 33 26 33 26 28 27 37 33 15 27 26 27 
+30 21 16 11 8 6 3 34 28 34 28 28 35 28 28 37 33 15 27 28 28
+27 37 33 17 27 27 28 28 33 26 33 26 28 27 37 33 15 27 26 27
 28 37 33 16 34 26 27 33 26 28 33 25 28 28 38 34 23 13 2
 __END_OF_TEXT__
 

@@ -19,12 +19,12 @@ module Bio
 #
 #
 # = Description
-# 
-# "SOFT (Simple Omnibus in Text Format) is a compact, simple, line-based, 
+#
+# "SOFT (Simple Omnibus in Text Format) is a compact, simple, line-based,
 # ASCII text format that incorporates experimental data and metadata."
 # -- <em>GEO, National Center for Biotechnology Information</em>
 #
-# The Bio::SOFT module reads SOFT Series or Platform formatted files that 
+# The Bio::SOFT module reads SOFT Series or Platform formatted files that
 # contain information
 # describing one database, one series, one platform, and many samples (GEO
 # accessions).  The data from the file can then be viewed with Ruby methods.
@@ -42,7 +42,7 @@ module Bio
 # * http://www.ncbi.nlm.nih.gov/geo
 #
 # = Usage
-# 
+#
 # If an attribute has more than one value then the values are stored in an
 # Array of String objects.  Otherwise the attribute is stored as a String.
 #
@@ -55,14 +55,14 @@ module Bio
 #
 # Keys are generally stored as Symbols.  In the case of keys for samples and
 # table headings may alternatively be accessed with Strings.
-# The names of samples (geo accessions) are case sensitive.  Table headers 
+# The names of samples (geo accessions) are case sensitive.  Table headers
 # are case insensitive.
 #
 #   require 'bio'
 #
-#   lines = IO.readlines('GSE3457_family.soft') 
+#   lines = IO.readlines('GSE3457_family.soft')
 #   soft = Bio::SOFT.new(lines)
-#   
+#
 #   soft.platform[:geo_accession]             # => "GPL2092"
 #   soft.platform[:organism]                  # => "Populus"
 #   soft.platform[:contributor]               # => ["Jingyi,,Li", "Olga,,Shevchenko", "Steve,H,Strauss", "Amy,M,Brunner"]
@@ -76,17 +76,17 @@ module Bio
 #   soft.platform[:table].rows[5][4]          # => "P. tremula x P. tremuloides"
 #   soft.platform[:table].rows[5][:organism]  # => "P. tremula x P. tremuloides"
 #   soft.platform[:table].rows[5]['ORGANISM'] # => "P. tremula x P. tremuloides"
-#   
+#
 #   soft.series[:geo_accession]               # => "GSE3457"
 #   soft.series[:contributor]                 # => ["Jingyi,,Li", "Olga,,Shevchenko", "Ove,,Nilsson", "Steve,H,Strauss", "Amy,M,Brunner"]
 #   soft.series[:platform_id]                 # => "GPL2092"
 #   soft.series[:sample_id].size              # => 74
 #   soft.series[:sample_id][0..4]             # => ["GSM77557", "GSM77558", "GSM77559", "GSM77560", "GSM77561"]
-#   
+#
 #   soft.database[:name]                      # => "Gene Expression Omnibus (GEO)"
 #   soft.database[:ref]                       # => "Nucleic Acids Res. 2005 Jan 1;33 Database Issue:D562-6"
 #   soft.database[:institute]                 # => "NCBI NLM NIH"
-#   
+#
 #   soft.samples.size                         # => 74
 #   soft.samples[:GSM77600][:series_id]       # => "GSE3457"
 #   soft.samples['GSM77600'][:series_id]      # => "GSE3457"
@@ -101,21 +101,21 @@ module Bio
 #   soft.samples[:GSM77600][:table].rows[5][:id_ref]  # => "A039P68U"
 #   soft.samples[:GSM77600][:table].rows[5]['ID_REF'] # => "A039P68U"
 #
-#   
-#   lines = IO.readlines('GDS100.soft') 
+#
+#   lines = IO.readlines('GDS100.soft')
 #   soft = Bio::SOFT.new(lines)
-#   
+#
 #   soft.database[:name]                      # => "Gene Expression Omnibus (GEO)"
 #   soft.database[:ref]                       # => "Nucleic Acids Res. 2005 Jan 1;33 Database Issue:D562-6"
 #   soft.database[:institute]                 # => "NCBI NLM NIH"
-#   
+#
 #   soft.subsets.size                         # => 8
 #   soft.subsets.keys                         # => ["GDS100_1", "GDS100_2", "GDS100_3", "GDS100_4", "GDS100_5", "GDS100_6", "GDS100_7", "GDS100_8"]
 #   soft.subsets[:GDS100_7]                   # => {:dataset_id=>"GDS100", :type=>"time", :sample_id=>"GSM548,GSM543", :description=>"60 minute"}
 #   soft.subsets['GDS100_7'][:sample_id]      # => "GSM548,GSM543"
 #   soft.subsets[:GDS100_7][:sample_id]       # => "GSM548,GSM543"
 #   soft.subsets[:GDS100_7][:dataset_id]      # => "GDS100"
-#   
+#
 #   soft.dataset[:order]                      # => "none"
 #   soft.dataset[:sample_organism]            # => "Escherichia coli"
 #   soft.dataset[:table].header               # => ["ID_REF", "IDENTIFIER", "GSM549", "GSM542", "GSM543", "GSM547", "GSM544", "GSM545", "GSM546", "GSM548"]
@@ -125,97 +125,97 @@ module Bio
 #   soft.dataset[:table].rows[5][:gsm549]     # => "0.097"
 #   soft.dataset[:table].rows[5][:GSM549]     # => "0.097"
 #   soft.dataset[:table].rows[5]['GSM549']    # => "0.097"
-# 
+#
 class SOFT
   attr_accessor :database
   attr_accessor :series, :platform, :samples
   attr_accessor :dataset, :subsets
-  
+
   LINE_TYPE_ENTITY_INDICATOR = '^'
   LINE_TYPE_ENTITY_ATTRIBUTE = '!'
   LINE_TYPE_TABLE_HEADER = '#'
   # data table row defined by absence of line type character
-  
+
   TABLE_COLUMN_DELIMITER = "\t"
-  
+
   # Constructor
   #
   # ---
   # *Arguments*
-  # * +lines+: (_required_) contents of SOFT formatted file 
+  # * +lines+: (_required_) contents of SOFT formatted file
   # *Returns*:: Bio::SOFT
   def initialize(lines=nil)
     @database = Database.new
-    
+
     @series = Series.new
     @platform = Platform.new
     @samples = Samples.new
-    
+
     @dataset = Dataset.new
     @subsets = Subsets.new
-    
+
     process(lines)
   end
-  
+
   # Classes for Platform and Series files
-  
+
   class Samples < Hash #:nodoc:
     def [](x)
       x = x.to_s if x.kind_of?( Symbol )
       super(x)
     end
   end
-  
+
   class Entity < Hash #:nodoc:
   end
 
   class Sample < Entity #:nodoc:
   end
-  
+
   class Platform < Entity #:nodoc:
   end
-  
+
   class Series < Entity #:nodoc:
   end
-  
+
   # Classes for DataSet files
-  
+
   class Subsets < Samples #:nodoc:
   end
-  
+
   class Subset < Entity #:nodoc:
   end
-  
+
   class Dataset < Entity #:nodoc:
   end
-  
+
   # Classes important for all types
 
   class Database < Entity #:nodoc:
   end
-  
+
   class Table #:nodoc:
     attr_accessor :header
     attr_accessor :header_description
     attr_accessor :rows
-    
+
     class Header < Array #:nodoc:
       # @column_index contains column name => numerical index of column
       attr_accessor :column_index
-      
+
       def initialize
         @column_index = {}
       end
     end
-    
+
     class Row < Array #:nodoc:
       attr_accessor :header_object
-      
+
       def initialize( n, header_object=nil )
         @header_object = header_object
         super(n)
       end
-      
+
       def [](x)
         if x.kind_of?( Fixnum )
           super(x)
@@ -236,44 +236,44 @@ class SOFT
         end
       end
     end
-    
+
     def initialize()
       @header_description = {}
       @header = Header.new
       @rows = []
     end
-    
+
     def add_header( line )
-      raise "Can only define one header" unless @header.empty?      
+      raise "Can only define one header" unless @header.empty?
       @header = @header.concat( parse_row( line ) )  # beware of clobbering this into an Array
       @header.each_with_index do |key, i|
         @header.column_index[key.downcase.to_sym] = i
       end
     end
-    
+
     def add_row( line )
       @rows << Row.new( parse_row( line ), @header )
     end
-    
+
     def add_header_or_row( line )
-      @header.empty? ? add_header( line ) : add_row( line )        
+      @header.empty? ? add_header( line ) : add_row( line )
     end
-    
+
     protected
     def parse_row( line )
       line.split( TABLE_COLUMN_DELIMITER )
     end
   end
-  
+
   #########
   protected
   #########
-  
+
   def process(lines)
     current_indicator = nil
     current_class_accessor = nil
     in_table = false
-        
+
     lines.each_with_index do |line, line_number|
       line.strip!
       next if line.nil? or line.empty?
@@ -299,12 +299,12 @@ class SOFT
         else
           custom_raise( line_number, error_msg(40, line) )
         end
-          
+
       when LINE_TYPE_ENTITY_ATTRIBUTE
         if( current_indicator == nil )
           custom_raise( line_number, error_msg(30) )
         end
-        
+
         # Handle lines such as '!platform_table_begin' and '!platform_table_end'
         if in_table
           if line =~ %r{table_begin}
@@ -314,10 +314,10 @@ class SOFT
             next
           end
         end
-        
+
         key, value = split_label_value_in( line, true )
         key_s = key.to_sym
-        
+
         if current_class_accessor.include?( key_s )
           if current_class_accessor[ key_s ].class != Array
             current_class_accessor[ key_s ] = [ current_class_accessor[ key_s ] ]
@@ -326,12 +326,12 @@ class SOFT
         else
           current_class_accessor[key.to_sym] = value
         end
-        
+
       when LINE_TYPE_TABLE_HEADER
         if( (current_indicator != 'SAMPLE') and (current_indicator != 'PLATFORM') and (current_indicator != 'DATASET') )
           custom_raise( line_number, error_msg(20, current_indicator.inspect) )
         end
-        
+
         in_table = true   # may be redundant, computationally not worth checking
 
         # We only expect one table per platform or sample
@@ -339,10 +339,10 @@ class SOFT
         key, value = split_label_value_in( line )
         # key[1..-1] -- Remove first character which is the LINE_TYPE_TABLE_HEADER
         current_class_accessor[:table].header_description[ key[1..-1] ] = value
-        
+
       else
         # Type: No line type - should be a row in a table.
-        
+
         if( (current_indicator == nil) or (in_table == false) )
           custom_raise( line_number, error_msg(10) )
         end
@@ -350,7 +350,7 @@ class SOFT
       end
     end
   end
-  
+
   def error_msg( i, extra_info=nil )
     case i
     when 10
@@ -374,29 +374,29 @@ class SOFT
     else
       raise IndexError, "Unknown error message requested."
     end
-    
+
     x.join(" ")
   end
-  
+
   def custom_raise( line_number_with_0_based_indexing, msg )
     raise ["Error processing input line: #{line_number_with_0_based_indexing+1}",
       msg].join("\t")
   end
-  
+
   def split_label_value_in( line, shift_key=false )
     line =~ %r{\s*=\s*}
     key, value = $`, $'
-    
+
     if shift_key
       key =~ %r{_}
       key = $'
     end
-    
+
     if( (key == nil) or (value == nil) )
       puts line.inspect
       raise
     end
-    
+
     [key, value]
   end
 

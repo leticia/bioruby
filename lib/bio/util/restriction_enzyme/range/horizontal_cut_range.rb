@@ -1,5 +1,5 @@
 #
-# bio/util/restriction_enzyme/range/horizontal_cut_range.rb - 
+# bio/util/restriction_enzyme/range/horizontal_cut_range.rb -
 #
 # Author::    Trevor Wennblom  <mailto:trevor@corevx.com>
 # Copyright:: Copyright (c) 2005-2007 Midwinter Laboratories, LLC (http://midwinterlabs.com)
@@ -34,7 +34,7 @@ class HorizontalCutRange < CutRange
     #       +-----+
     #    C T A A T|G T
     #    1 2 3 4 5 6 7
-    # 
+    #
     # Primary cut = 2
     # Complement cut = 5
     # Horizontal cuts = 3, 4, 5
@@ -46,7 +46,7 @@ class HorizontalCutRange < CutRange
     @min = left  # NOTE this used to be 'nil', make sure all tests work
     @max = right # NOTE this used to be 'nil', make sure all tests work
     @range = (@min..@max) unless @min == nil or @max == nil # NOTE this used to be 'nil', make sure all tests work
-    
+
 
     @hcuts = (left..right)
   end

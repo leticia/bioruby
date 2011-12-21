@@ -221,7 +221,7 @@ module Bio
 
         #--
         # Bio::BLAST::*::Report::Hsp compatible methods
-        #   Methods already defined: midline, percent_identity, 
+        #   Methods already defined: midline, percent_identity,
         #     gaps, align_len, mismatch_count
         #++
 
@@ -343,7 +343,7 @@ module Bio
         # Returns number of splice sites of the hit.
         def number_of_splice_sites
           unless defined?(@number_of_splice_sites)
-            @number_of_splice_sites = 
+            @number_of_splice_sites =
               field_fetch('Number of splice sites', @d0).to_i
           end
           @number_of_splice_sites
@@ -353,7 +353,7 @@ module Bio
         def percent_identity
           unless defined?(@percent_identity)
             x = field_fetch('overall percent identity', @d0)
-            @percent_identity = 
+            @percent_identity =
               (/([\d\.]+)\s*\%/ =~ x.to_s) ? $1 : nil
           end
           @percent_identity
@@ -376,7 +376,7 @@ module Bio
           end
           @genomic
         end
-        
+
         # Returns sequence informations of the mRNA.
         # Returns a Bio::Spidey::Report::SeqDesc object.
         # This would be a Bio::Spidey specific method.

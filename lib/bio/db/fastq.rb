@@ -6,7 +6,7 @@
 # License::    The Ruby License
 #
 # == Description
-# 
+#
 # FASTQ format parser class.
 #
 # Be careful that it is for the fastQ format, not for the fastA format.
@@ -35,7 +35,7 @@ class Fastq
 
   # Bio::Fastq::FormatData is a data class to store Fastq format parameters
   # and quality calculation methods.
-  # Bio::Fastq internal use only. 
+  # Bio::Fastq internal use only.
   class FormatData
 
     # Format name. Should be redefined in subclass.
@@ -86,7 +86,7 @@ class Fastq
     end
 
     # Converts scores to a string.
-    # Overflow/underflow checks will be performed. 
+    # Overflow/underflow checks will be performed.
     # If a block is given, when overflow/underflow detected,
     # the score value is passed to the block, and uses returned value
     # as the score. If no blocks, silently truncated.
@@ -125,7 +125,7 @@ class Fastq
 
       # format name
       NAME = 'fastq-sanger'.freeze
-      # offset 
+      # offset
       OFFSET = 33
       # score range
       SCORE_RANGE = 0..93
@@ -141,7 +141,7 @@ class Fastq
 
       # format name
       NAME = 'fastq-solexa'.freeze
-      # offset 
+      # offset
       OFFSET = 64
       # score range
       SCORE_RANGE = (-5)..62
@@ -157,7 +157,7 @@ class Fastq
 
       # format name
       NAME = 'fastq-illumina'.freeze
-      # offset 
+      # offset
       OFFSET = 64
       # score range
       SCORE_RANGE = 0..62
@@ -454,7 +454,7 @@ class Fastq
   #   "fastq-sanger" or :fastq_sanger
   #   "fastq-solexa" or :fastq_solexa
   #   "fastq-illumina" or :fastq_illumina
-  # 
+  #
   # ---
   # *Arguments*:
   # * (required) _name_: format name (String or Symbol).
@@ -635,7 +635,7 @@ class Fastq
   # the sequence or definition in this Fastq object
   # might also be changed (but not always be changed)
   # because of efficiency.
-  # 
+  #
   def to_biosequence
     Bio::Sequence.adapter(self, Bio::Sequence::Adapter::Fastq)
   end

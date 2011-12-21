@@ -18,7 +18,7 @@ require 'bio/sequence'
 require 'bio/sequence/compat'
 
 module Bio; module TestSequenceCompat
-  
+
   class TSequence < String
     include Bio::Sequence::Common
   end
@@ -39,7 +39,7 @@ module Bio; module TestSequenceCompat
 
   class TestSequenceCommonCompat < Test::Unit::TestCase
 
-    # Test Sequence#to_fasta    
+    # Test Sequence#to_fasta
     def test_to_fasta
       sequence = TSequence.new("agtc" * 10)
       header = "the header"
@@ -57,9 +57,9 @@ module Bio; module TestSequenceCompat
       composition = Bio::Sequence::NA.new("acgtacgt").composition
       assert(Bio::Sequence::NA.randomize(composition))
     end
-  end 
+  end
 
-  require 'bio/sequence/aa'  
+  require 'bio/sequence/aa'
 
   class TestSequenceNACompat < Test::Unit::TestCase
     def test_aa_self_randomize

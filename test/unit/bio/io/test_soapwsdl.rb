@@ -4,7 +4,7 @@
 # Copytight::   Copyright (C) 2005 Mitsuteru Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
-#  $Id:$ 
+#  $Id:$
 #
 
 # loading helper routine for testing bioruby

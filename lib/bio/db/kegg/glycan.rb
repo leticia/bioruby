@@ -44,7 +44,7 @@ class GLYCAN < KEGGDB
 
   # NAME
   def name
-    field_fetch('NAME') 
+    field_fetch('NAME')
   end
 
   # COMPOSITION
@@ -69,7 +69,7 @@ class GLYCAN < KEGGDB
 
   # CLASS
   def keggclass
-    field_fetch('CLASS') 
+    field_fetch('CLASS')
   end
 
   # COMPOUND
@@ -90,7 +90,7 @@ class GLYCAN < KEGGDB
 
   # PATHWAY
   def pathways_as_strings
-    lines_fetch('PATHWAY') 
+    lines_fetch('PATHWAY')
   end
 
   # ENZYME

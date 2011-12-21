@@ -96,7 +96,7 @@ class ENZYME < KEGGDB
       []
     end
   end
-  
+
   # SUBSTRATE
   def substrates
     field_fetch('SUBSTRATE').split(/\s*;\s*/)

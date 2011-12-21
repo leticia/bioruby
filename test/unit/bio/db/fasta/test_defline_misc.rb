@@ -2,7 +2,7 @@
 # test/unit/bio/db/fasta/test_defline_misc.rb - Unit test for Bio::FastaDefline
 #
 # Copyright::  Copyright (C) 2010
-#              John Prince <jtprince@byu.edu> 
+#              John Prince <jtprince@byu.edu>
 #
 # License::    The Ruby License
 #
@@ -374,15 +374,15 @@ module Bio
       @defline = FastaDefline.new(definition_line)
     end
 
-    def test_entry_id 
+    def test_entry_id
       assert_equal('sp|P05100|3MG1_ECOLI', @defline.entry_id )
     end
 
-    def test_get 
+    def test_get
       assert_equal('3MG1_ECOLI', @defline.get('sp') )
     end
 
-    def test_sp 
+    def test_sp
       assert_equal('3MG1_ECOLI', @defline.sp )
     end
 
@@ -434,15 +434,15 @@ module Bio
       @defline = Bio::FastaDefline.new(definition_line)
     end
 
-    def test_entry_id 
+    def test_entry_id
       assert_equal('tr|C8URF0|C8URF0_ECO1A', @defline.entry_id )
     end
 
-    def test_get 
+    def test_get
       assert_equal('C8URF0_ECO1A', @defline.get('tr') )
     end
 
-    def test_tr 
+    def test_tr
       assert_equal('C8URF0_ECO1A', @defline.tr )
     end
 
@@ -485,6 +485,6 @@ module Bio
     def test_get_all_by_type
       assert_equal([], @defline.get_all_by_type)
     end
-  end 
+  end
 end
 

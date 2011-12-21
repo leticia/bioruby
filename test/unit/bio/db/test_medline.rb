@@ -57,7 +57,7 @@ module Bio
           "Risk",
           "Social Responsibility",
           "Young Adult" ],
-        'abstract' => 
+        'abstract' =>
         "(The abstract is omitted to avoid copyright issues. Please find the abstract at http://www.ncbi.nlm.nih.gov/pubmed/20146148. We believe that other information in this entry is within public domain, according to \"Copyright and Disclaimers\" in http://www.ncbi.nlm.nih.gov/About/disclaimer.html.)"
       }
       expected = Bio::Reference.new(h)
@@ -173,15 +173,15 @@ module Bio
                     "Kuhlmann, K. F.",
                     "Byrd, J. A."], Bio::MEDLINE.new(AGILE).authors)
     end
-   
+
     def test_authors_with_suffix
       assert_equal(["Jenkins, F. A. Jr"], Bio::MEDLINE.new("AU  - Jenkins FA Jr").authors)
     end
-    
+
     def test_authors_with_last_name_all_caps
       assert_equal(["GARTLER, S. M."], Bio::MEDLINE.new("AU  - GARTLER SM").authors)
     end
-    
+
     AGILE = <<-EOMED
 PMID- 16734914
 OWN - NLM

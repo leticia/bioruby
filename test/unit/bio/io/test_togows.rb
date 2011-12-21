@@ -144,7 +144,7 @@ module Bio
     def setup
       @obj = DummyAccessWait.new
     end
-    
+
     def test_togows_access_wait
       assert_kind_of(Numeric, @obj.instance_eval { togows_access_wait })
 

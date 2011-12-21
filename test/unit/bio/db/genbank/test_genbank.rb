@@ -149,7 +149,7 @@ module Bio
       actual = []
       @obj.each_cds do |feature|
         tmp = []
-        feature.qualifiers.each{|qualifier| 
+        feature.qualifiers.each{|qualifier|
           tmp << [qualifier.qualifier, qualifier.value]
         }
         actual << tmp
@@ -161,10 +161,10 @@ module Bio
       expected_gene = [["gene","AXL2"], ["gene","REV7"]]
       actual_position = []
       actual_gene = []
-      @obj.each_gene do |gene| 
+      @obj.each_gene do |gene|
         assert_equal("gene", gene.feature)
         actual_position << gene.position
-        gene.qualifiers.each do |qualifier| 
+        gene.qualifiers.each do |qualifier|
           actual_gene << [qualifier.qualifier, qualifier.value]
         end
       end
@@ -189,7 +189,7 @@ module Bio
       assert_equal(Date, @obj.date_modified.class)
       assert_equal('2010-03-23', @obj.date_modified.to_s)
     end
- 
+
    def test_classification
       expected = ["Eukaryota",
  "Fungi",
@@ -282,7 +282,7 @@ module Bio
   {:feature=>"mRNA",
    :position=>"<1..>206",
    :qualifiers=>
-   [{   
+   [{
      :qualifier=>"product",
      :value=>"TCP1-beta"}]},
   {:feature=>"CDS",
@@ -392,7 +392,7 @@ module Bio
       actual_features << {:feature => feature, :position => position, :qualifiers => quals}
       end
       assert_equal(expected_features, actual_features) # skip
-      
+
 
     end
 

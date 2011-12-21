@@ -28,7 +28,7 @@ require 'bio'
 
 #if __FILE__ == $0
 
-  entry = Bio::Fetch.query('litdb', '0308004') 
+  entry = Bio::Fetch.query('litdb', '0308004')
   puts entry
   p Bio::LITDB.new(entry).reference
 

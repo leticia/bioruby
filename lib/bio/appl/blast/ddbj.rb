@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/ddbj.rb - Remote BLAST wrapper using DDBJ web service
-# 
+#
 # Copyright::  Copyright (C) 2008       Naohisa Goto <ng@bioruby.org>
 # License::    The Ruby License
 #
@@ -21,7 +21,7 @@ module Bio::Blast::Remote
     # Returns Bio::Blast object.
     #
     # Note for future improvement: In the future, it might return
-    # Bio::Blast::Remote::DDBJ or other object. 
+    # Bio::Blast::Remote::DDBJ or other object.
     #
     def self.new(program, db, options = [])
       Bio::Blast.new(program, db, options, 'ddbj')
@@ -117,7 +117,7 @@ module Bio::Blast::Remote
       db = opt.delete('-d')
       optstr = Bio::Command.make_command_line_unix(opt.options)
 
-      # using searchParamAsync 
+      # using searchParamAsync
       qid = @ddbj_remote_blast.searchParamAsync(program, db, query, optstr)
       @output = qid
 

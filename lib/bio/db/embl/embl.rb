@@ -1,7 +1,7 @@
 #
 # = bio/db/embl/embl.rb - EMBL database class
 #
-# 
+#
 # Copyright::   Copyright (C) 2001-2007
 #               Mitsuteru C. Nakao <n@bioruby.org>
 #               Jan Aerts <jan.aerts@bbsrc.ac.uk>
@@ -14,7 +14,7 @@
 # Parser class for EMBL database entry.
 #
 # == Examples
-# 
+#
 #   emb = Bio::EMBL.new($<.read)
 #   emb.entry_id
 #   emb.each_cds do |cds|
@@ -61,7 +61,7 @@ class EMBL < EMBLDB
   #  PHG (Bacteriophage)
   #  FUN (Fungi)
   #  GSS (Genome survey)
-  #  HTC (High Throughput cDNAs) 
+  #  HTC (High Throughput cDNAs)
   #  HTG (HTGs)
   #  HUM (Human)
   #  INV (Invertebrates)
@@ -89,7 +89,7 @@ class EMBL < EMBLDB
   def id_line(key=nil)
     unless @data['ID']
       tmp = Hash.new
-      idline = fetch('ID').split(/; +/)         
+      idline = fetch('ID').split(/; +/)
       tmp['ENTRY_NAME'], tmp['DATA_CLASS'] = idline.shift.split(/ +/)
       if idline.first =~ /^SV/
         tmp['SEQUENCE_VERSION'] = idline.shift.split(' ').last
@@ -104,7 +104,7 @@ class EMBL < EMBLDB
 
       @data['ID'] = tmp
     end
-    
+
     if key
       @data['ID'][key]
     else
@@ -130,11 +130,11 @@ class EMBL < EMBLDB
   def data_class
     id_line('DATA_CLASS')
   end
-  
+
   def topology
     id_line('TOPOLOGY')
   end
-  
+
   # returns DIVISION in the ID line.
   # * Bio::EMBL#division -> String
   def division
@@ -147,7 +147,7 @@ class EMBL < EMBLDB
     id_line('SEQUENCE_LENGTH')
   end
   alias seqlen sequence_length
-  
+
 
   # AC Line
   # "AC   A12345; B23456;"
@@ -161,16 +161,16 @@ class EMBL < EMBLDB
   #  SV    Accession.Version
   def sv
     if (v = field_fetch('SV').sub(/;/,'')) == ""
-      [id_line['ENTRY_NAME'], id_line['SEQUENCE_VERSION']].join('.') 
+      [id_line['ENTRY_NAME'], id_line['SEQUENCE_VERSION']].join('.')
     else
       v
-    end  
+    end
   end
   def version
     (sv.split(".")[1] || id_line['SEQUENCE_VERSION']).to_i
   end
 
-  
+
   # returns contents in the date (DT) line.
   # * Bio::EMBL#dt  -> <DT Hash>
   # where <DT Hash> is:
@@ -226,7 +226,7 @@ class EMBL < EMBLDB
   ##
   # OG Line; organella (0 or 1/entry)
   # ["Mitochondrion", "Chloroplast","Kinetoplast", "Cyanelle", "Plastid"]
-  #  or a plasmid name (e.g. "Plasmid pBR322").  
+  #  or a plasmid name (e.g. "Plasmid pBR322").
   #
   # Bio::EMBLDB#og  -> String
 
@@ -236,8 +236,8 @@ class EMBL < EMBLDB
   # RN RC RP RX RA RT RL
   #
   # Bio::EMBLDB#ref
-  
-  
+
+
   ##
   # DR Line; defabases cross-regerence (>=0)
   # "DR  database_identifier; primary_identifier; secondary_identifier."
@@ -256,7 +256,7 @@ class EMBL < EMBLDB
   # * Bio::EMBL#ft -> Bio::Features
   # * Bio::EMBL#ft {} -> {|Bio::Feature| }
   #
-  # same as features method in bio/db/genbank.rb 
+  # same as features method in bio/db/genbank.rb
   #
   # FT Line; feature table data (>=0)
   def ft
@@ -361,7 +361,7 @@ class EMBL < EMBLDB
       @data['SQ']
     end
   end
-  
+
 
   # returns the nucleotie sequence in this entry.
   # * Bio::EMBL#seq  -> Bio::Sequence::NA
@@ -472,7 +472,7 @@ class EMBL < EMBLDB
     ary.each do |f|
       if f =~ %r{/([^=]+)=?"?([^"]*)"?}
         qualifier, value = $1, $2
-        
+
         if value.empty?
           value = true
         end

@@ -1,7 +1,7 @@
 #
 # = sample/demo_aaindex.rb - demonstration of Bio::AAindex1 and AAindex2
 #
-# Copyright::  Copyright (C) 2001 
+# Copyright::  Copyright (C) 2001
 #              KAWASHIMA Shuichi <s@bioruby.org>
 # Copyright::  Copyright (C) 2006
 #              Mitsuteru C. Nakao <n@bioruby.org>

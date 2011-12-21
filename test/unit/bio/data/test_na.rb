@@ -63,11 +63,11 @@ module Bio
       assert_equal(mw, Bio::NucleicAcid.weight('A', true))
     end
 
-    
+
     def test_accessor
       assert_equal('Adenine', @obj['A'])
     end
-    
+
     def test_names
       assert_equal(Bio::NucleicAcid::NAMES, @obj.names)
     end

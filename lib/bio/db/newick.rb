@@ -71,7 +71,7 @@ module Bio
       if  __get_option(:branch_length_style, options) == :disabled
         dist = nil
       end
-     
+
       case __get_option(:bootstrap_style, options)
       when :disabled
         label + (dist ? ":#{dist}" : '')
@@ -142,7 +142,7 @@ module Bio
         "#{key.to_s}=#{nhx[key].to_s}"
       end.join(':')
       nhx_string = "[&&NHX:" + nhx_string + "]" unless nhx_string.empty?
-     
+
       label + (dist ? ":#{dist}" : '') + nhx_string
     end
     private :__to_newick_format_leaf_NHX
@@ -178,7 +178,7 @@ module Bio
         elsif self.out_degree(tgt) == 1 then
           result << indent + __send__(format_leaf, tgt, edge, options)
         else
-          result << 
+          result <<
             __to_newick([ src ].concat(parents), tgt, depth + 1,
                         format_leaf, options) +
             __send__(format_leaf, tgt, edge, options)
@@ -210,7 +210,7 @@ module Bio
     end
 
     alias newick output_newick
-      
+
 
     # Returns a NHX (New Hampshire eXtended) formatted string.
     # If block is given, the order of the node is sorted
@@ -299,7 +299,7 @@ module Bio
     # <tt>:parser</tt>::
     #     <tt>:naive</tt> for using naive parser, compatible with
     #     BioRuby 1.1.0, which ignores quoted strings and
-    #     do not convert underscores to spaces. 
+    #     do not convert underscores to spaces.
     #
     # Notes for bootstrap style:
     # Molphy-style bootstrap values may always be parsed, even if
@@ -603,7 +603,7 @@ module Bio
       raise ParseError, 'unmatched parentheses' unless node_stack.empty?
       bsopt = __get_option(:bootstrap_style, options)
       ofmt  = __get_option(:original_format, options)
-      unless bsopt == :disabled or bsopt == :molphy or 
+      unless bsopt == :disabled or bsopt == :molphy or
           ofmt == :nhx or ofmt == :molphy then
         # If all of the internal node's names are numeric,
         # the names are regarded as bootstrap values.

@@ -1,5 +1,5 @@
 #
-# bio/util/restriction_enzyme/range/sequence_range/calculated_cuts.rb - 
+# bio/util/restriction_enzyme/range/sequence_range/calculated_cuts.rb -
 #
 # Author::    Trevor Wennblom  <mailto:trevor@corevx.com>
 # Copyright:: Copyright (c) 2005-2007 Midwinter Laboratories, LLC (http://midwinterlabs.com)
@@ -24,7 +24,7 @@ class SequenceRange
 #       +-----+
 #    C T A A T|G T
 #    1 2 3 4 5 6 7
-# 
+#
 # Primary cut = 2
 # Complement cut = 5
 # Horizontal cuts = 3, 4, 5
@@ -35,7 +35,7 @@ class CalculatedCuts
 
   # +Array+ of vertical cuts on the primary strand in 0-based index notation
   attr_reader :vc_primary
-  
+
   # +Array+ of vertical cuts on the complementary strand in 0-based index notation
   attr_reader :vc_complement
 
@@ -49,7 +49,7 @@ class CalculatedCuts
   ## An +Array+ with the primary strand with vertical cuts, the horizontal cuts, and the complementary strand with vertical cuts.
   #attr_reader :strands_for_display
   #++
-  
+
   # If +false+ the strands_for_display method needs to be called to update the contents
   # of @strands_for_display.  Becomes out of date whenever add_cuts_from_cut_ranges is called.
   attr_reader :strands_for_display_current
@@ -65,7 +65,7 @@ class CalculatedCuts
     @hc_between_strands = []
   end
 
-  # Accepts an +Array+ of CutRange type objects and applies them to 
+  # Accepts an +Array+ of CutRange type objects and applies them to
   # @vc_complement, @vc_primary, and @hc_between_strands.
   #
   # ---
@@ -94,7 +94,7 @@ class CalculatedCuts
   # There may be incomplete cuts made, this method removes the cuts that don't
   # create sub-sequences for easier processing.
   #
-  # For example, stray horizontal cuts that do not end with a left 
+  # For example, stray horizontal cuts that do not end with a left
   # and right separation:
   #
   #   G A T T A C A
@@ -107,7 +107,7 @@ class CalculatedCuts
   #      +--   +
   #   C T|A A T|G T
   #
-  # However note that for non-circular sequences this would be a successful 
+  # However note that for non-circular sequences this would be a successful
   # cut which would result in a floating 'GT' sub-sequence:
   #
   #   G A T T A C A
@@ -191,7 +191,7 @@ class CalculatedCuts
     vcs = '|'   # Vertical cut symbol
     hcs = '-'   # Horizontal cut symbol
     vhcs = '+'  # Intersection of vertical and horizontal cut symbol
-      
+
     num_txt_repeat = lambda { num_txt = '0123456789'; (num_txt * ( @size / num_txt.size.to_f ).ceil)[0..@size-1] }
     (str1 == nil) ? a = num_txt_repeat.call : a = str1.dup
     (str2 == nil) ? b = num_txt_repeat.call : b = str2.dup
@@ -216,9 +216,9 @@ class CalculatedCuts
     i = 0
     0.upto( s_a.size-1 ) do
       if (s_a[i,1] == vcs) or (s_b[i,1] == vcs)
-        s_bet[i] = vhcs 
+        s_bet[i] = vhcs
       elsif i != 0 and s_bet[i-1,1] == hcs and s_bet[i+1,1] == hcs
-        s_bet[i] = hcs 
+        s_bet[i] = hcs
       end
       i+=1
     end
@@ -231,7 +231,7 @@ class CalculatedCuts
   protected
   #########
 
-  # remove nil values, remove duplicate values, and 
+  # remove nil values, remove duplicate values, and
   # sort @vc_primary, @vc_complement, and @hc_between_strands
   def clean_all
     [@vc_primary, @vc_complement, @hc_between_strands].collect { |a| a.delete(nil); a.uniq!; a.sort! }

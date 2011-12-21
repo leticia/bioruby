@@ -190,7 +190,7 @@ module Bio
         end
         r
       end
-      
+
       # Pushes back one character into the internal buffer.
       # Unlike IO#getc, it can be called more than one time.
       def ungetc(c)
@@ -210,7 +210,7 @@ module Bio
         @buffer << r if r
         r
       end
-      
+
       # It does @io.readpartial, and addes returned string
       # to the internal buffer, and returns the string.
       def prefetch_readpartial(*arg)

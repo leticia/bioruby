@@ -100,8 +100,8 @@ and can be obtained by the following procedure:
 
 ==== CVS
 
-CVS is now deprecated as source control has moved to github. Please use git 
-instead of CVS. For historical purposes: the anonymous CVS was provided at 
+CVS is now deprecated as source control has moved to github. Please use git
+instead of CVS. For historical purposes: the anonymous CVS was provided at
 
 * http://cvs.bioruby.org/
 

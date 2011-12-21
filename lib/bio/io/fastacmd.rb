@@ -20,15 +20,15 @@ class Blast
 
 # = DESCRIPTION
 #
-# Retrieves FASTA formatted sequences from a blast database using 
+# Retrieves FASTA formatted sequences from a blast database using
 # NCBI fastacmd command.
-# 
-# This class requires 'fastacmd' command and a blast database  
+#
+# This class requires 'fastacmd' command and a blast database
 # (formatted using the '-o' option of 'formatdb').
 #
 # = USAGE
 #  require 'bio'
-#  
+#
 #  fastacmd = Bio::Blast::Fastacmd.new("/db/myblastdb")
 #
 #  entry = fastacmd.get_by_id("sp:128U_DROME")
@@ -59,7 +59,7 @@ class Fastacmd
 
   # This method provides a handle to a BLASTable database, which you can then
   # use to retrieve sequences.
-  # 
+  #
   # Prerequisites:
   # * You have created a BLASTable database with the '-o T' option.
   # * You have the NCBI fastacmd tool installed.
@@ -100,7 +100,7 @@ class Fastacmd
   # For example:
   #  p fastacmd.fetch(["sp:1433_SPIOL", "sp:1432_MAIZE"])
   #
-  # This method always returns an array of Bio::FastaFormat objects, even when 
+  # This method always returns an array of Bio::FastaFormat objects, even when
   # the result is a single entry.
   # ---
   # *Arguments*:
@@ -151,7 +151,7 @@ if $0 == __FILE__
   seq = fastacmd.get_by_id('id_of_entry1')
   puts seq.class
   puts seq
-  
+
   seqs = fastacmd.fetch(['id_of_entry1','id_of_entry2'])
   seqs.each do |seq|
     puts seq

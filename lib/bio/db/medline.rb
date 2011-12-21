@@ -241,7 +241,7 @@ class MEDLINE < NCBIDB
   # GS   - Gene Symbol
   #   Abbreviated gene names (used 1991 through 1996).
 
-  # ID   - Identification Number 
+  # ID   - Identification Number
   #   Research grant numbers, contract numbers, or both that designate
   #   financial support by any agency of the US PHS (Public Health Service).
 
@@ -276,7 +276,7 @@ class MEDLINE < NCBIDB
   # PT   - Publication Type
   #   The type of material the article represents.
   def pt
-    @pubmed['PT'].strip.split(/\n/)   
+    @pubmed['PT'].strip.split(/\n/)
   end
   alias publication_type pt
 
@@ -304,7 +304,7 @@ class MEDLINE < NCBIDB
   #   data sources, databanks and accession numbers of molecular sequences
   #   discussed in articles.
 
-  # TT   - Transliterated / Vernacular Title 
+  # TT   - Transliterated / Vernacular Title
   #   Non-Roman alphabet language titles are transliterated.
 
   # UIN  - Update In

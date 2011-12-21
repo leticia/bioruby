@@ -505,7 +505,7 @@ FASTA フォーマットに変換するには to_fasta メソッドを使います。
 
 アミノ酸、塩基、コドンテーブルを得るための aminoacids, nucleicacids,
 codontables, codontable コマンドを紹介します。
- 
+
 --- aminoacids
 
 アミノ酸の一覧は aminoacids コマンドで表示できます。
@@ -564,7 +564,7 @@ codontables, codontable コマンドを紹介します。
   v       [agc]   not T
   h       [atc]   not G
   d       [atg]   not C
-  n       [atgc]  
+  n       [atgc]
 
 返り値は塩基の１文字表記と該当する塩基のハッシュになっています。
 
@@ -730,7 +730,7 @@ getobj コマンド(※2)は、getent でエントリを文字列として取得し flatparse で
 
 --- flatfile(file)
 
-getent コマンドは１エントリしか扱えないため、ローカルのファイルを開いて 
+getent コマンドは１エントリしか扱えないため、ローカルのファイルを開いて
 各エントリ毎に処理を行うには flatfile コマンドを使います。
 
   bioruby> flatfile("gbphg.seq") do |entry|
@@ -828,7 +828,7 @@ GenBank, UniProt など多くの主要な配列データベースでは
 FASTA フォーマットに変換し、myfasta.fa というファイルに保存しています。
 
   bioruby> flatfasta("myfasta.fa", "gbphg.seq", "gbvrl1.seq", "gbvrl2.seq")
-  Saving fasta file (myfasta.fa) ... 
+  Saving fasta file (myfasta.fa) ...
     converting -- gbphg.gbk
     converting -- gbvrl1.gbk
     converting -- gbvrl2.gbk
@@ -954,7 +954,7 @@ bget コマンドで指定した db:entry_id のデータベースエントリを取得できます。
 生成された script.rb は以下のようになります。
 
   #!/usr/bin/env bioruby
-  
+
   seq = getseq("gbphg.seq")
   p seq
   p seq.translate
@@ -1008,11 +1008,11 @@ bget コマンドで指定した db:entry_id のデータベースエントリを取得できます。
   bioruby> head "gbphg.seq"
   GBPHG.SEQ            Genetic Sequence Data Bank
                             October 15 2005
-  
+
                   NCBI-GenBank Flat File Release 150.0
-  
-                            Phage Sequences         
-  
+
+                            Phage Sequences
+
       2713 loci,    16892737 bases, from     2713 reported sequences
 
 表示する行数を指定することもできます。
@@ -1115,9 +1115,9 @@ BioRuby シェル起動時に表示されるスプラッシュメッセージを違う文字列に
 よいでしょう。
 
   bioruby> config :message, "Kumamushi genome project"
-  
+
   K u m a m u s h i   g e n o m e   p r o j e c t
-  
+
     Version : BioRuby 0.8.0 / Ruby 1.8.4
 
 デフォルトの文字列に戻すには、引数なしで実行します。
@@ -1202,18 +1202,18 @@ Bio::Sequence クラスは、配列に対する様々な操作を行うことができます。
 を参照）。
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   seq = Bio::Sequence::NA.new("atgcatgcaaaa")
-  
+
   puts seq                            # 元の配列
   puts seq.complement                 # 相補配列 (Bio::Sequence::NA)
   puts seq.subseq(3,8)                # 3 塩基目から 8 塩基目まで
-  
+
   p seq.gc_percent                    # GC 塩基の割合 (Integer)
   p seq.composition                   # 全塩基組成 (Hash)
-  
+
   puts seq.translate                  # 翻訳配列 (Bio::Sequence::AA)
   puts seq.translate(2)               # ２文字目から翻訳（普通は１から）
   puts seq.translate(1,9)             # ９番のコドンテーブルを使用
@@ -1222,7 +1222,7 @@ Bio::Sequence クラスは、配列に対する様々な操作を行うことができます。
   p seq.translate.names               # アミノ酸を名前で表示 (Array)
   p seq.translate.composition         # アミノ酸組成 (Hash)
   p seq.translate.molecular_weight    # 分子量を計算 (Float)
-  
+
   puts seq.complement.translate       # 相補配列の翻訳
 
 print, puts, p は内容を画面に表示するための Ruby 標準メソッドです。
@@ -1317,7 +1317,7 @@ Ruby の特長のひとつである「ブロック」によって、「それぞれに対する処理」を
       puts subseq.gc_percent
     end
 
-ブロックの中で受け取る部分配列も、元と同じ Bio::Sequence::NA または 
+ブロックの中で受け取る部分配列も、元と同じ Bio::Sequence::NA または
 Bio::Sequence::AA クラスのオブジェクトなので、配列クラスの持つ全てのメ
 ソッドを実行することができます。
 
@@ -1367,14 +1367,14 @@ Bio::Sequence::AA クラスのオブジェクトなので、配列クラスの持つ全てのメ
 ら生成したり、データベースから取得したものを使ったりします。たとえば、
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     input_seq = ARGF.read       # 引数で与えられたファイルの全行を読み込む
-    
+
     my_naseq = Bio::Sequence::NA.new(input_seq)
     my_aaseq = my_naseq.translate
-    
+
     puts my_aaseq
 
 このプログラムを na2aa.rb として、以下の塩基配列
@@ -1403,7 +1403,7 @@ ftp://ftp.ncbi.nih.gov/genbank/ から .seq ファイルをダウンロードします）。
 
   % wget ftp://ftp.hgc.jp/pub/mirror/ncbi/genbank/gbphg.seq.gz
   % gunzip gbphg.seq.gz
-  
+
 まずは、各エントリから ID と説明文、配列を取り出して FASTA 形式に変換して
 みましょう。
 
@@ -1412,12 +1412,12 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 を覚えていなくても良いようになっています。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     while entry = gets(Bio::GenBank::DELIMITER)
       gb = Bio::GenBank.new(entry)      # GenBank オブジェクト
-    
+
       print ">#{gb.accession} "         # ACCESSION 番号
       puts gb.definition                # DEFINITION 行
       puts gb.naseq                     # 塩基配列（Sequence::NA オブジェクト）
@@ -1428,9 +1428,9 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 以下のように区切り文字などを気にせず書くことができます。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ff = Bio::FlatFile.new(Bio::GenBank, ARGF)
     ff.each_entry do |gb|
       definition = "#{gb.accession} #{gb.definition}"
@@ -1440,9 +1440,9 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 形式の違うデータ、たとえばFASTAフォーマットのファイルを読み込むときでも、
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ff = Bio::FlatFile.new(Bio::FastaFormat, ARGF)
     ff.each_entry do |f|
       puts "definition : " + f.definition
@@ -1455,13 +1455,13 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 さらに、各 Bio::DB クラスの open メソッドで同様のことができます。たとえば、
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ff = Bio::GenBank.open("gbvrl1.seq")
     ff.each_entry do |gb|
       definition = "#{gb.accession} #{gb.definition}"
-      puts gb.naseq.to_fasta(definition, 60)    
+      puts gb.naseq.to_fasta(definition, 60)
     end
 
 などと書くことができます（ただし、この書き方はあまり使われていません)。
@@ -1473,12 +1473,12 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
     #!/usr/bin/env ruby
 
     require 'bio'
-    
+
     ff = Bio::FlatFile.new(Bio::GenBank, ARGF)
 
     # GenBank の１エントリごとに
     ff.each_entry do |gb|
-    
+
       # FEATURES の要素を一つずつ処理
       gb.features.each do |feature|
 
@@ -1499,9 +1499,9 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 両方表示して比べてみましょう。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ff = Bio::FlatFile.new(Bio::GenBank, ARGF)
 
     # GenBank の１エントリごとに
@@ -1509,7 +1509,7 @@ Bio::GenBank::DELIMITER は GenBank クラスで定義されている定数で、
 
       # ACCESSION 番号と生物種名を表示
       puts "### #{gb.accession} - #{gb.organism}"
-    
+
       # FEATURES の要素を一つずつ処理
       gb.features.each do |feature|
 
@@ -1554,7 +1554,7 @@ DDBJ フォーマットで使われている Location の表記を元に、塩基配列から
 この splicing メソッドの引数には GenBank 等の Location の文字列以外に
 BioRuby の Bio::Locations オブジェクトを渡すことも可能ですが、
 通常は見慣れている Location 文字列の方が分かりやすいかも知れません。
-Location 文字列のフォーマットや Bio::Locations について詳しく知りたい場合は 
+Location 文字列のフォーマットや Bio::Locations について詳しく知りたい場合は
 BioRuby の bio/location.rb を見てください。
 
 * GenBank 形式のデータの Feature で使われていた Location 文字列の例
@@ -1595,9 +1595,9 @@ Bio::FlatFile.new の引数にはデータベースに対応する BioRuby でのクラス
 を使うのが一番簡単です。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ff = Bio::FlatFile.auto(ARGF)
 
     ff.each_entry do |entry|
@@ -1612,9 +1612,9 @@ Bio::FlatFile.new の引数にはデータベースに対応する BioRuby でのクラス
 活用して以下のように書くのがよいでしょう。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     Bio::FlatFile.auto(ARGF) do |ff|
       ff.each_entry do |entry|
         p entry.entry_id          # エントリの ID
@@ -1933,14 +1933,14 @@ br_bioflat.rb によるインデックス作成には対応していますので、
 
 このエントリに対して conect メソッドを呼ぶと
 
-  { "C1"  => [ "C2", "O", "1H1", "2H1" ], 
-    "C2"  => [ "C1", "1H2", "2H2", "3H2" ], 
-    "O"   => [ "C1", "HO" ], 
-    "1H1" => [ "C1" ], 
-    "1H2" => [ "C2" ], 
-    "2H1" => [ "C1" ], 
-    "2H2" => [ "C2" ], 
-    "3H2" => [ "C2" ], 
+  { "C1"  => [ "C2", "O", "1H1", "2H1" ],
+    "C2"  => [ "C1", "1H2", "2H2", "3H2" ],
+    "O"   => [ "C1", "HO" ],
+    "1H1" => [ "C1" ],
+    "1H2" => [ "C2" ],
+    "2H1" => [ "C1" ],
+    "2H2" => [ "C2" ],
+    "3H2" => [ "C2" ],
     "HO"  => [ "O" ] }
 
 という Hash を返します。
@@ -2046,23 +2046,23 @@ FASTA がインストールされていることを確認してください。以下の例では、
 evalue が 0.0001 以下のものだけを表示します。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     # FASTA を実行する環境オブジェクトを作る（ssearch などでも良い）
     factory = Bio::Fasta.local('fasta34', ARGV.pop)
-    
+
     # フラットファイルを読み込み、FastaFormat オブジェクトのリストにする
     ff = Bio::FlatFile.new(Bio::FastaFormat, ARGF)
-    
+
     # １エントリずつの FastaFormat オブジェクトに対し
     ff.each do |entry|
       # '>' で始まるコメント行の内容を進行状況がわりに標準エラー出力に表示
       $stderr.puts "Searching ... " + entry.definition
-   
+
       # FASTA による相同性検索を実行、結果は Fasta::Report オブジェクト
       report = factory.query(entry)
-    
+
       # ヒットしたものそれぞれに対し
       report.each do |hit|
         # evalue が 0.0001 以下の場合
@@ -2100,7 +2100,7 @@ Bio::Fasta#query メソッドなどの返り値は Bio::Fasta::Report オブジェクト
       puts hit.evalue           # E-value
       puts hit.sw               # Smith-Waterman スコア (*)
       puts hit.identity         # % identity
-      puts hit.overlap          # オーバーラップしている領域の長さ 
+      puts hit.overlap          # オーバーラップしている領域の長さ
       puts hit.query_id         # 問い合わせ配列の ID
       puts hit.query_def        # 問い合わせ配列のコメント
       puts hit.query_len        # 問い合わせ配列の長さ
@@ -2162,7 +2162,7 @@ GenomeNet で使用可能な検索対象データベース：
 
     program = 'fasta'
     database = 'genes'
-    
+
     factory = Bio::Fasta.remote(program, database)
 
 としてファクトリーを作り、ローカルの場合と同じように factory.query など
@@ -2172,13 +2172,13 @@ GenomeNet で使用可能な検索対象データベース：
 == BLAST による相同性検索を行う（Bio::Blast クラス）
 
 BLAST もローカルと GenomeNet (blast.genome.jp) での検索をサポートして
-います。できるだけ Bio::Fasta と API を共通にしていますので、上記の例を 
+います。できるだけ Bio::Fasta と API を共通にしていますので、上記の例を
 Bio::Blast と書き換えただけでも大丈夫な場合が多いです。
 
 たとえば、先の f_search.rb は
 
     # BLAST を実行する環境オブジェクトを作る
-    factory = Bio::Blast.local('blastp', ARGV.pop) 
+    factory = Bio::Blast.local('blastp', ARGV.pop)
 
 と変更するだけで同じように実行できます。
 
@@ -2214,10 +2214,10 @@ XMLParser または REXML が使用可能な場合は、XML 出力を利用します。
       puts hit.query_seq        # 問い合わせ配列
       puts hit.midline          # アライメントの midline 文字列 (*)
       puts hit.target_seq       # ヒットした配列
-      
+
       puts hit.evalue           # E-value
       puts hit.identity         # % identity
-      puts hit.overlap          # オーバーラップしている領域の長さ 
+      puts hit.overlap          # オーバーラップしている領域の長さ
       puts hit.query_id         # 問い合わせ配列の ID
       puts hit.query_def        # 問い合わせ配列のコメント
       puts hit.query_len        # 問い合わせ配列の長さ
@@ -2259,7 +2259,7 @@ BLAST を実行した結果ファイルがすでに保存してあって、これを解析したい場合
 "-m 7" オプションの XML フォーマット出力です。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
 
     # BLAST出力を順にパースして Bio::Blast::Report オブジェクトを返す
@@ -2311,9 +2311,9 @@ Blast 検索は NCBI をはじめ様々なサイトでサービスされていますが、今のとこ
 次は、NCBI の文献データベース PubMed を検索して引用文献リストを作成する例です。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     ARGV.each do |id|
       entry = Bio::PubMed.query(id)     # PubMed を取得するクラスメソッド
       medline = Bio::MEDLINE.new(entry) # Bio::MEDLINE オブジェクト
@@ -2332,15 +2332,15 @@ Blast 検索は NCBI をはじめ様々なサイトでサービスされていますが、今のとこ
 他に、キーワードで検索する機能もあります。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     # コマンドラインで与えたキーワードのリストを１つの文字列にする
     keywords = ARGV.join(' ')
-    
+
     # PubMed をキーワードで検索
     entries = Bio::PubMed.search(keywords)
-    
+
     entries.each do |entry|
       medline = Bio::MEDLINE.new(entry) # Bio::MEDLINE オブジェクト
       reference = medline.reference     # Bio::Reference オブジェクト
@@ -2359,18 +2359,18 @@ Blast 検索は NCBI をはじめ様々なサイトでサービスされていますが、今のとこ
 Bio::PubMed.efetch メソッドを使う方が良いでしょう。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
-    
+
     keywords = ARGV.join(' ')
-    
+
     options = {
       'maxdate' => '2003/05/31',
       'retmax' => 1000,
     }
-    
+
     entries = Bio::PubMed.esearch(keywords, options)
-    
+
     Bio::PubMed.efetch(entries).each do |entry|
       medline = Bio::MEDLINE.new(entry)
       reference = medline.reference
@@ -2412,7 +2412,7 @@ NCBI E-Utils を活用することにより、検索対象の日付や最大ヒット件数などを
     % platex hoge   # → 文献番号
 
 とすると無事 hoge.dvi ができあがります。
-    
+
 === bibitem の使い方のメモ
 
 文献用に別の .bib ファイルを作りたくない場合は Reference#bibitem メソッ
@@ -2528,10 +2528,10 @@ BioRegistry を使うには、まず Bio::Registryオブジェクトを作成します。
 すると、設定ファイルが読み込まれます。
 
     reg = Bio::Registry.new
-    
+
     # 設定ファイルに書いたデータベース名でサーバへ接続
     serv = reg.get_database('genbank')
-    
+
     # ID を指定してエントリを取得
     entry = serv.get_by_id('AA2CG')
 
@@ -2628,18 +2628,18 @@ Halobacterium のバクテリアロドプシン遺伝子 (VNG1467G) を取ってきて、同じ
 指標 (BURA740101) を使って、幅 15 残基のウィンドウサーチをする例です。
 
     #!/usr/bin/env ruby
-    
+
     require 'bio'
 
     entry = Bio::Fetch.query('hal', 'VNG1467G')
     aaseq = Bio::KEGG::GENES.new(entry).aaseq
-    
+
     entry = Bio::Fetch.query('aax1', 'BURA740101')
     helix = Bio::AAindex1.new(entry).index
-    
+
     position = 1
     win_size = 15
-    
+
     aaseq.window_search(win_size) do |subseq|
       score = subseq.total(helix)
       puts [ position, score ].join("\t")
@@ -2648,7 +2648,7 @@ Halobacterium のバクテリアロドプシン遺伝子 (VNG1467G) を取ってきて、同じ
 
 ここで使っているクラスメソッド Bio::Fetch.query は暗黙に bioruby.org の
 BioFetch サーバを使う専用のショートカットです。（このサーバは内部的には
-ゲノムネットからデータを取得しています。KEGG/GENES データベースの hal や 
+ゲノムネットからデータを取得しています。KEGG/GENES データベースの hal や
 AAindex データベース aax1 のエントリは、他の BioFetch サーバでは取得でき
 ないこともあって、あえて query メソッドを使っています。）
 

@@ -35,7 +35,7 @@
 #   dbname=biosql
 #   driver=mysql
 #   user=root
-#   pass= 
+#   pass=
 #   biodbname=swissprot
 #
 # The first line means that this configration file is version 1.00.
@@ -76,7 +76,7 @@
 # to use http://www.open-bio.org/registry/seqdatabase.ini file.
 #
 # == References
-# 
+#
 # * http://obda.open-bio.org/
 # * http://cvs.open-bio.org/cgi-bin/viewcvs/viewcvs.cgi/obda-specs/?cvsroot=obf-common
 # * http://www.open-bio.org/registry/seqdatabase.ini

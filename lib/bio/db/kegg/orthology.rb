@@ -24,7 +24,7 @@ class KEGG
 # * ftp://ftp.genome.jp/pub/kegg/genes/ko
 #
 class ORTHOLOGY < KEGGDB
-  
+
   DELIMITER	= RS = "\n///\n"
   TAGSIZE	= 12
 
@@ -63,7 +63,7 @@ class ORTHOLOGY < KEGGDB
   def initialize(entry)
     super(entry, TAGSIZE)
   end
-  
+
   # Returns ID of the entry.
   def entry_id
     field_fetch('ENTRY')[/\S+/]
@@ -104,7 +104,7 @@ class ORTHOLOGY < KEGGDB
   # *OBSOLETE* Do not use this method.
   # Because KEGG ORTHOLOGY format is changed and PATHWAY field is added,
   # older "pathways" method is renamed and remain only for compatibility.
-  # 
+  #
   # Returns an Array of KEGG/PATHWAY ID in CLASS field.
   def pathways_in_keggclass
     keggclass.scan(/\[PATH:(.*?)\]/).flatten
@@ -116,7 +116,7 @@ class ORTHOLOGY < KEGGDB
   def modules_as_strings
     lines_fetch('MODULE')
   end
-  
+
   # Returns an Array of a database name and entry IDs in DBLINKS field.
   def dblinks_as_strings
     lines_fetch('DBLINKS')
@@ -128,7 +128,7 @@ class ORTHOLOGY < KEGGDB
   end
 
 end # ORTHOLOGY
-    
+
 end # KEGG
 end # Bio
 

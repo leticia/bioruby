@@ -12,10 +12,10 @@ test:
   adapter: postgresql
   database: biorails_test
   username: rails
-  password: 
-  
+  password:
+
 production:
   adapter: postgresql
   database: biorails_production
   username: rails
-  password: 
+  password:

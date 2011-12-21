@@ -71,7 +71,7 @@ module Bio
       include LibXML
 
       SCHEMA_LOCATION = 'http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd'
-            
+
       attr_accessor :write_branch_length_as_subelement
 
       #
@@ -107,8 +107,8 @@ module Bio
       #  writer.write(tree)
       #
       def write(tree)
-        @root << phylogeny = XML::Node.new('phylogeny')        
-        
+        @root << phylogeny = XML::Node.new('phylogeny')
+
         PhyloXML::Writer.generate_xml(phylogeny, tree, [
             [:attr, 'rooted'],
             [:simple, 'name', tree.name],
@@ -118,8 +118,8 @@ module Bio
             [:objarr, 'confidence', 'confidences']])
 
         root_clade = tree.root.to_xml(nil, @write_branch_length_as_subelement)
-        
-        phylogeny << root_clade 
+
+        phylogeny << root_clade
 
         tree.children(tree.root).each do |node|
           root_clade << node_to_xml(tree, node, tree.root)
@@ -161,12 +161,12 @@ module Bio
 
       #
       # Used by to_xml methods of PhyloXML element classes. Generally not to be
-      # invoked directly. 
+      # invoked directly.
       #
       def self.generate_xml(root, elem, subelement_array)
        #example usage: generate_xml(node, self, [[ :complex,'accession', ], [:simple, 'name',  @name], [:simple, 'location', @location]])
       subelement_array.each do |subelem|
-        if subelem[0] == :simple         
+        if subelem[0] == :simple
           root << XML::Node.new(subelem[1], subelem[2].to_s) if subelem[2] != nil and not subelem[2].to_s.empty?
 
         elsif subelem[0] == :complex

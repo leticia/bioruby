@@ -154,7 +154,7 @@ class GenBank < NCBIDB
 
   # converts Bio::GenBank to Bio::Sequence
   # ---
-  # *Arguments*: 
+  # *Arguments*:
   # *Returns*:: Bio::Sequence object
   def to_biosequence
     Bio::Sequence.adapter(self, Bio::Sequence::Adapter::GenBank)

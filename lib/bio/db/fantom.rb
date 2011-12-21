@@ -1,7 +1,7 @@
 #
 # bio/db/fantom.rb - RIKEN FANTOM2 database classes
 #
-# Copyright:: Copyright (C) 2003 GOTO Naohisa <ng@bioruby.org> 
+# Copyright:: Copyright (C) 2003 GOTO Naohisa <ng@bioruby.org>
 # License::   The Ruby License
 #
 #  $Id:$
@@ -213,7 +213,7 @@ module Bio
         # (MaXML sequence)
         # ftp://fantom2.gsc.riken.go.jp/fantom/2.1/allseq.sep.xml.gz
         # ftp://fantom2.gsc.riken.go.jp/fantom/2.1/repseq.sep.xml.gz
-        
+
         Data_XPath = 'maxml-sequences/sequence'
 
         def altid(t = nil)

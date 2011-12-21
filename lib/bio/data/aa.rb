@@ -47,7 +47,7 @@ class AminoAcid
       'U' => 'Sec',	# 'uga' (stop)
       'O' => 'Pyl',	# 'uag' (stop)
       'X' => 'Xaa',	# (unknown)
-     
+
       'Ala' => 'alanine',
       'Cys' => 'cysteine',
       'Asp' => 'aspartic acid',

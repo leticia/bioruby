@@ -26,7 +26,7 @@ module Bio
       belongs_to :bioentry, :class_name => "Bioentry"
       belongs_to :term, :class_name => "Term"
     end #BioentryQualifierValue
-  
+
     class Bioentry < DummyBase
       belongs_to :biodatabase, :class_name => "Biodatabase"
       belongs_to :taxon, :class_name => "Taxon"
@@ -46,13 +46,13 @@ module Bio
       has_many :terms, :through=>:bioentry_qualifier_values, :class_name => "Term"
       #NOTE: added order_by for multiple hit and manage ranks correctly
       has_many :bioentry_qualifier_values, :order=>"bioentry_id,term_id,rank", :class_name => "BioentryQualifierValue"
-        
+
       #per la creazione richiesti:
       #name, accession, version
       #				validates_uniqueness_of :accession, :scope=>[:biodatabase_id]
       #				validates_uniqueness_of :name, :scope=>[:biodatabase_id]
 			#	validates_uniqueness_of :identifier, :scope=>[:biodatabase_id]
-				
+
     end
     class BioentryReference < DummyBase
       set_primary_keys :bioentry_id, :reference_id, :rank
@@ -104,27 +104,27 @@ module Bio
       belongs_to :dbxref, :class_name => "Dbxref"
       belongs_to :term, :class_name => "Term"
       has_many :location_qualifier_values, :class_name => "LocationQualifierValue"
-      
+
       def to_s
         if strand==-1
           str="complement("+start_pos.to_s+".."+end_pos.to_s+")"
         else
           str=start_pos.to_s+".."+end_pos.to_s
         end
-        return str    
+        return str
       end
-      
+
       def sequence
         seq=""
         unless self.seqfeature.bioentry.biosequence.seq.nil?
           seq=Bio::Sequence::NA.new(self.seqfeature.bioentry.biosequence.seq[start_pos-1..end_pos-1])
           seq.reverse_complement! if strand==-1
         end
-        return seq        
+        return seq
       end
-      
-      
-      
+
+
+
     end
     class Ontology < DummyBase
       has_many :terms, :class_name => "Term"
@@ -154,8 +154,8 @@ module Bio
       set_sequence_name nil
       belongs_to :seqfeature
       belongs_to :term, :class_name => "Term"
-    end		
-    class Seqfeature <DummyBase  
+    end
+    class Seqfeature <DummyBase
       set_sequence_name "seqfeature_pk_seq"
       belongs_to :bioentry
       #, :class_name => "Bioentry"
@@ -174,9 +174,9 @@ module Bio
       def sequence
         return self.locations.inject(Bio::Sequence::NA.new("")){|seq, location| seq<<location.sequence}
       end
-    
+
       #translate the subsequences represented by the feature and its locations
-      #not considering the qualifiers 
+      #not considering the qualifiers
       #Return a Bio::Sequence::AA object
       def translate(*args)
         self.sequence.translate(*args)

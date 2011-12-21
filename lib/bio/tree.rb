@@ -15,7 +15,7 @@ module Bio
 
   # This is the class for phylogenetic tree.
   # It stores a phylogenetic tree.
-  # 
+  #
   # Internally, it is based on Bio::Pathway class.
   # However, users cannot handle Bio::Pathway object directly.
   #
@@ -730,7 +730,7 @@ module Bio
       result
     end
 
-    # If _node_ is nil, returns an array of 
+    # If _node_ is nil, returns an array of
     # all leaves (nodes connected with one edge).
     # Otherwise, gets all descendent leaf nodes of the _node_.
     # If _root_ isn't specified or _root_ is <code>nil</code>, @root is used.

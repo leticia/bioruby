@@ -1,7 +1,7 @@
 #
 # = bio/io/soapwsdl.rb - SOAP/WSDL interface class
 #
-# Copyright::   Copyright (C) 2004 
+# Copyright::   Copyright (C) 2004
 #               Toshiaki Katayama <k@bioruby.org>
 # License::     The Ruby License
 #
@@ -15,7 +15,7 @@ end
 module Bio
 
 # == Examples
-# 
+#
 # class API < Bio::SOAPWSDL
 #   def initialize
 #     @wsdl = 'http://example.com/example.wsdl'
@@ -38,7 +38,7 @@ module Bio
 # Set the URL of your proxy server (http://myproxy.com:8080 etc.).
 #
 # === Example to use HTTP proxy
-# 
+#
 # % export soap_use_proxy=on
 # % export http_proxy=http://localhost:8080
 #
@@ -74,7 +74,7 @@ class SOAPWSDL
   #   serv = Bio::SOAPWSDL.new("http://soap.genome.jp/KEGG.wsdl")
   #
   # or
-  # 
+  #
   #   serv = Bio::SOAPWSDL.new
   #   serv.wsdl = "http://soap.genome.jp/KEGG.wsdl"
   #

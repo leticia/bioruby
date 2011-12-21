@@ -64,7 +64,7 @@ class AA < String
   end
 
 
-  # Estimate molecular weight based on 
+  # Estimate molecular weight based on
   # Fasman1976[http://www.genome.ad.jp/dbget-bin/www_bget?aaindex+FASG760101]
   #
   #   s = Bio::Sequence::AA.new("RRLE")
@@ -75,8 +75,8 @@ class AA < String
     Bio::AminoAcid.weight(self)
   end
 
-  # Create a ruby regular expression instance 
-  # (Regexp)[http://corelib.rubyonrails.org/classes/Regexp.html]  
+  # Create a ruby regular expression instance
+  # (Regexp)[http://corelib.rubyonrails.org/classes/Regexp.html]
   #
   #   s = Bio::Sequence::AA.new("RRLE")
   #   puts s.to_re                        #=> /RRLE/
@@ -107,7 +107,7 @@ class AA < String
   # Bio::AminoAcid::NAMES hash.
   #
   #   s = Bio::Sequence::AA.new("RRLE")
-  #   puts s.names  
+  #   puts s.names
   #               #=> ["arginine", "arginine", "leucine", "glutamic acid"]
   # ---
   # *Returns*:: Array object

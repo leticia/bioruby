@@ -24,7 +24,7 @@ module Bio
 
     # Bio::PDB::ChemicalComponet is a parser for a entry of
     # the PDB Chemical Component Dictionary.
-    # 
+    #
     # The PDB Chemical Component Dictionary is available in
     # http://deposit.pdb.org/het_dictionary.txt
     class ChemicalComponent
@@ -85,7 +85,7 @@ module Bio
 
         # HETSYN field.
         # It is very similar to Bio::PDB::Record::HETSYN.
-        HETSYN = 
+        HETSYN =
             def_rec([  9, 10, Pdb_Continuation, nil ],
                     [ 12, 14, Pdb_LString(3),   :hetID ],
                     [ 16, 70, Pdb_String,       :hetSynonyms ]
@@ -126,7 +126,7 @@ module Bio
 
         #Flag to say whether the current line is part of a continuation
         cont = false
-        
+
         #Goes through each line and replace that line with a PDB::Record
         @data.collect! do |line|
           #Go to next if the previous line was contiunation able, and
@@ -174,7 +174,7 @@ module Bio
         end
         @hetsyn
       end
-      
+
       # The name of the chemical component.
       # Returns a string (or nil, if the entry is something wrong).
       def hetnam

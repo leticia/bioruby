@@ -110,7 +110,7 @@ module TestRPSBlast
     def test_version_date
       assert_equal('Mar-02-2008', @obj.version_date)
     end
-      
+
     def test_db
       assert_equal('Pfam.v.22.0', @obj.db)
     end

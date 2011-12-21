@@ -159,7 +159,7 @@ module Bio
 
     # Last output to the stdout.
     attr_accessor :data_stdout
-    
+
     # Clear the internal data and status, except program and options.
     def reset
       @command = nil

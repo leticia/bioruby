@@ -21,7 +21,7 @@ require 'bio/command'
 
 module Bio
   class TestCommand < Test::Unit::TestCase
-    
+
     def test_command_constants
       assert(Bio::Command::UNSAFE_CHARS_UNIX)
       assert(Bio::Command::QUOTE_CHARS_WINDOWS)
@@ -62,35 +62,35 @@ module Bio
     end
 
     def test_make_command_line
-      ary = [ "ruby", 
+      ary = [ "ruby",
         "test.rb", "atgcatgc", "bio\'\"r u\"b\\y123@456:789" ]
       case RUBY_PLATFORM
       when /mswin32|bccwin32/
-        assert_equal("ruby" + 
-                       " test.rb atgcatgc" + 
+        assert_equal("ruby" +
+                       " test.rb atgcatgc" +
                        " \"bio'\"\"r u\"\"b\\y123@456:789\"",
                      Bio::Command.make_command_line(ary))
       else
-        assert_equal("ruby" + 
-                       " test.rb atgcatgc" + 
+        assert_equal("ruby" +
+                       " test.rb atgcatgc" +
                        " bio\\'\\\"r\\ u\\\"b\\\\y123@456:789",
                      Bio::Command.make_command_line(ary))
       end
     end
 
     def test_make_command_line_windows
-      ary = [ "C:\\Program Files\\Ruby\\bin\\ruby.exe", 
+      ary = [ "C:\\Program Files\\Ruby\\bin\\ruby.exe",
         "test.rb", "atgcatgc", "bio\'\"r u\"b\\y123@456:789" ]
-      assert_equal("\"C:\\Program Files\\Ruby\\bin\\ruby.exe\"" + 
-                     " test.rb atgcatgc" + 
+      assert_equal("\"C:\\Program Files\\Ruby\\bin\\ruby.exe\"" +
+                     " test.rb atgcatgc" +
                      " \"bio'\"\"r u\"\"b\\y123@456:789\"",
                    Bio::Command.make_command_line_windows(ary))
     end
 
     def test_make_command_line_unix
-      ary = [ "/usr/local/bin/ruby", 
+      ary = [ "/usr/local/bin/ruby",
         "test.rb", "atgcatgc", "bio\'\"r u\"b\\y123@456:789" ]
-      assert_equal("/usr/local/bin/ruby" + 
+      assert_equal("/usr/local/bin/ruby" +
                      " test.rb atgcatgc" +
                      " bio\\'\\\"r\\ u\\\"b\\\\y123@456:789",
                    Bio::Command.make_command_line_unix(ary))
@@ -235,7 +235,7 @@ module Bio
             ]
       array_of_array = [
         ["type1", 'bp'],
-        ["type2", 'bp'], 
+        ["type2", 'bp'],
         ["downstream", ''],
         ["upstream", ''],
         ["format", 'fasta'],

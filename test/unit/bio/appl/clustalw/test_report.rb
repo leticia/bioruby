@@ -1,7 +1,7 @@
 #
 # test/unit/bio/appl/clustalw/test_report.rb - Unit test for Bio::ClustalW::Report
 #
-# Copyright::  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+# Copyright::  Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl>
 # License::    The Ruby License
 #
 
@@ -30,7 +30,7 @@ module Bio
     # query                      -MKNTLLKLGVCVSLLGITPFVSTISSVQAERTVEHKVIKNETGTISISQ
     # gi|115023|sp|P10425|       MKKNTLLKVGLCVSLLGTTQFVSTISSVQASQKVEQIVIKNETGTISISQ
     #                                                                          .: :
-    # 
+    #
     # query                      LNKNVWVHTELGYFSG-EAVPSNGLVLNTSKGLVLVDSSWDDKLTKELIE
     # gi|115023|sp|P10425|       LNKNVWVHTELGYFNG-EAVPSNGLVLNTSKGLVLVDSSWDNKLTKELIE
     #                                *:   .     .     **. .   ..   ::*:       . * :

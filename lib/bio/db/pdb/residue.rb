@@ -23,7 +23,7 @@ module Bio
     # The object would contain some atoms (Bio::PDB::Record::ATOM objects).
     #
     class Residue
-      
+
       include Utils
       include AtomFinder
 
@@ -36,13 +36,13 @@ module Bio
       end
 
       # Creates a new Residue object.
-      def initialize(resName = nil, resSeq = nil, iCode = nil, 
+      def initialize(resName = nil, resSeq = nil, iCode = nil,
                      chain = nil)
-        
+
         @resName = resName
         @resSeq  = resSeq
         @iCode   = iCode
-        
+
         @chain   = chain
         @atoms   = []
 
@@ -100,21 +100,21 @@ module Bio
         update_residue_id
         @iCode
       end
-      
+
       # Adds an atom to this residue
       def addAtom(atom)
         raise "Expecting ATOM or HETATM" unless atom.is_a? Bio::PDB::Record::ATOM
         @atoms.push(atom)
         self
       end
-      
+
       # Iterator over the atoms
       def each
         @atoms.each{ |atom| yield atom }
       end
       # Alias to override AtomFinder#each_atom
       alias each_atom each
-      
+
       # Sorts based on resSeq and iCode if need be
       def <=>(other)
         if @resSeq != other.resSeq
@@ -123,7 +123,7 @@ module Bio
           return @iCode <=> other.iCode
         end
       end
-      
+
       # Stringifies each atom
       def to_s
         @atoms.join('')

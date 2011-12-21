@@ -1,7 +1,7 @@
 #
 # = sample/demo_tmhmm_report.rb - demonstration of Bio::TMHMM::Report
-# 
-# Copyright::  Copyright (C) 2003 
+#
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #

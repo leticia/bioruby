@@ -19,25 +19,25 @@ module Bio
   # A class for journal reference information.
   #
   # = USAGE
-  # 
-  #    hash = {'authors' => [ "Hoge, J.P.", "Fuga, F.B." ], 
+  #
+  #    hash = {'authors' => [ "Hoge, J.P.", "Fuga, F.B." ],
   #            'title' => "Title of the study.",
-  #            'journal' => "Theor. J. Hoge", 
-  #            'volume' => 12, 
-  #            'issue' => 3, 
+  #            'journal' => "Theor. J. Hoge",
+  #            'volume' => 12,
+  #            'issue' => 3,
   #            'pages' => "123-145",
-  #            'year' => 2001, 
-  #            'pubmed' => 12345678, 
-  #            'medline' => 98765432, 
+  #            'year' => 2001,
+  #            'pubmed' => 12345678,
+  #            'medline' => 98765432,
   #            'abstract' => "Hoge fuga. ...",
-  #            'url' => "http://example.com", 
-  #            'mesh' => [], 
+  #            'url' => "http://example.com",
+  #            'mesh' => [],
   #            'affiliations' => []}
   #    ref = Bio::Reference.new(hash)
   #
   #    # Formats in the BiBTeX style.
   #    ref.format("bibtex")
-  #    
+  #
   #    # Short-cut for Bio::Reference#format("bibtex")
   #    ref.bibtex
   #
@@ -54,7 +54,7 @@ module Bio
 
     # volume number (typically Fixnum)
     attr_reader :volume
-    
+
     # issue number (typically Fixnum)
     attr_reader :issue
 
@@ -72,7 +72,7 @@ module Bio
 
     # DOI identifier (typically String, e.g. "10.1126/science.1110418")
     attr_reader :doi
-    
+
     # Abstract text in String.
     attr_reader :abstract
 
@@ -84,17 +84,17 @@ module Bio
 
     # Affiliations in an Array.
     attr_reader :affiliations
-    
+
     # Sequence number in EMBL/GenBank records
     attr_reader :embl_gb_record_number
-    
+
     # Position in a sequence that this reference refers to
     attr_reader :sequence_position
 
     # Comments for the reference (typically Array of String, or nil)
     attr_reader :comments
 
-    # Create a new Bio::Reference object from a Hash of values. 
+    # Create a new Bio::Reference object from a Hash of values.
     # Data is extracted from the values for keys:
     #
     # * authors - expected value: Array of Strings
@@ -112,18 +112,18 @@ module Bio
     # * affiliations - expected value: Array of Strings
     #
     #
-    #    hash = {'authors' => [ "Hoge, J.P.", "Fuga, F.B." ], 
+    #    hash = {'authors' => [ "Hoge, J.P.", "Fuga, F.B." ],
     #            'title' => "Title of the study.",
-    #            'journal' => "Theor. J. Hoge", 
-    #            'volume' => 12, 
-    #            'issue' => 3, 
+    #            'journal' => "Theor. J. Hoge",
+    #            'volume' => 12,
+    #            'issue' => 3,
     #            'pages' => "123-145",
-    #            'year' => 2001, 
-    #            'pubmed' => 12345678, 
-    #            'medline' => 98765432, 
+    #            'year' => 2001,
+    #            'pubmed' => 12345678,
+    #            'medline' => 98765432,
     #            'abstract' => "Hoge fuga. ...",
-    #            'url' => "http://example.com", 
-    #            'mesh' => [], 
+    #            'url' => "http://example.com",
+    #            'mesh' => [],
     #            'affiliations' => []}
     #    ref = Bio::Reference.new(hash)
     # ---
@@ -141,7 +141,7 @@ module Bio
       @pubmed   = hash['pubmed']  || '' # 12345678
       @medline  = hash['medline'] || '' # 98765432
       @doi      = hash['doi']
-      @abstract = hash['abstract'] || '' 
+      @abstract = hash['abstract'] || ''
       @url      = hash['url']
       @mesh     = hash['mesh'] || []
       @embl_gb_record_number = hash['embl_gb_record_number'] || nil
@@ -196,7 +196,7 @@ module Bio
     #   # ref is Bio::Reference object
     #   # using simplest possible call (for general style)
     #   puts ref.format
-    #   
+    #
     #   # output in Nature style
     #   puts ref.format("nature")      # alternatively, puts ref.nature
     #
@@ -351,7 +351,7 @@ module Bio
     #       volume  = {12},
     #       number  = {3},
     #       pages   = {123--145},
-    #     }    
+    #     }
     # ---
     # *Arguments*:
     # * (optional) _section_: BiBTeX section as String
@@ -418,11 +418,11 @@ module Bio
     #   puts ref.rd
     #
     #     == Title of the study.
-    #     
+    #
     #     * Hoge, J.P. and Fuga, F.B.
-    #     
+    #
     #     * Theor. J. Hoge 2001 12:123-145 [PMID:12345678]
-    #     
+    #
     #     Hoge fuga. ...
     #
     # An optional string argument can be supplied, but does nothing.
@@ -440,7 +440,7 @@ module Bio
       return lines.join("\n\n")
     end
 
-    # Formats in the Nature Publishing Group 
+    # Formats in the Nature Publishing Group
     # (http://www.nature.com) style.
     #
     #   # ref is a Bio::Reference object
@@ -472,7 +472,7 @@ module Bio
       end
     end
 
-    # Returns reference formatted in the 
+    # Returns reference formatted in the
     # Science[http://www.sciencemag.org] style.
     #
     #   # ref is a Bio::Reference object
@@ -491,7 +491,7 @@ module Bio
       "#{authors}, #{@journal} #{@volume} #{page_from} (#{@year})."
     end
 
-    # Returns reference formatted in the Genome Biology 
+    # Returns reference formatted in the Genome Biology
     # (http://genomebiology.com) style.
     #
     #   # ref is a Bio::Reference object
@@ -505,8 +505,8 @@ module Bio
       journal = strip_dots(@journal)
       "#{authors}: #{@title} #{journal} #{@year}, #{@volume}:#{@pages}."
     end
-    
-    # Returns reference formatted in the Current Biology 
+
+    # Returns reference formatted in the Current Biology
     # (http://current-biology.com) style. (Same as the Genome Biology style)
     #
     #   # ref is a Bio::Reference object
@@ -515,11 +515,11 @@ module Bio
     #     Hoge JP, Fuga FB: Title of the study. Theor J Hoge 2001, 12:123-145.
     # ---
     # *Returns*:: String
-    def current 
+    def current
       self.genome_biol
     end
 
-    # Returns reference formatted in the Genome Research 
+    # Returns reference formatted in the Genome Research
     # (http://genome.org) style.
     #
     #   # ref is a Bio::Reference object
@@ -534,7 +534,7 @@ module Bio
       "#{authors} #{@year}.\n  #{@title} #{@journal} #{@volume}: #{@pages}."
     end
 
-    # Returns reference formatted in the Nucleic Acids Reseach 
+    # Returns reference formatted in the Nucleic Acids Reseach
     # (http://nar.oxfordjournals.org) style.
     #
     #   # ref is a Bio::Reference object
@@ -548,7 +548,7 @@ module Bio
       "#{authors} (#{@year}) #{@title} #{@journal}, #{@volume}, #{@pages}."
     end
 
-    # Returns reference formatted in the 
+    # Returns reference formatted in the
     # CELL[http://www.cell.com] Press style.
     #
     #   # ref is a Bio::Reference object
@@ -561,8 +561,8 @@ module Bio
       authors = authors_join(' and ')
       "#{authors} (#{@year}). #{@title} #{@journal} #{@volume}, #{pages}."
     end
-    
-    # Returns reference formatted in the 
+
+    # Returns reference formatted in the
     # TRENDS[http://www.trends.com] style.
     #
     #   # ref is a Bio::Reference object

@@ -20,7 +20,7 @@ require 'stringio'
 
 
 module Bio
-    
+
 module TestFlatFile
 
   TestDataPath = BioRubyTestDataPath

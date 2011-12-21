@@ -1,7 +1,7 @@
 #
 # test/unit/bio/test_feature.rb - Unit test for Features/Feature classes
 #
-# Copyright::  Copyright (C) 2005 
+# Copyright::  Copyright (C) 2005
 #              Mitsuteru Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -62,7 +62,7 @@ module Bio
     def test_qualifiers
       assert_equal([@qualifier], @obj.qualifiers)
     end
-    
+
     def test_locations
       assert_equal(1, @obj.locations.first.from)
       assert_equal(615, @obj.locations.first.to)
@@ -80,7 +80,7 @@ module Bio
     end
 
     def test_each
-      @obj.each do |qua| 
+      @obj.each do |qua|
         assert_equal('Arabidopsis thaliana', qua.value)
       end
     end
@@ -123,7 +123,7 @@ module Bio
       # bring back $stderr
       $stderr = @stderr_orig
     end
-    
+
     def test_features
       assert_equal(1, @obj.features.size)
     end
@@ -134,7 +134,7 @@ module Bio
     end
 
     def test_each
-      @obj.each do |feature| 
+      @obj.each do |feature|
         assert_equal('gene', feature.feature)
       end
     end

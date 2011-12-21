@@ -63,7 +63,7 @@ class TestDoubleStranded < Test::Unit::TestCase #:nodoc:
     assert_equal('gar^raxtnn^n', @obj_9.primary.with_cut_symbols)
 
     assert_equal('gar^raxtnn^n', @obj_10.primary.with_cut_symbols)
-    
+
     assert_equal('n^ngar^raxtnn^n', @obj_11.primary.with_cut_symbols)
     assert_equal('n^ngar^raxtnn^n', @obj_12.primary.with_cut_symbols)
 

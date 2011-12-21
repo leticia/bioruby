@@ -36,7 +36,7 @@ unless defined? BioRubyTestLibPath and BioRubyTestLibPath then
   # (String) Path to be added to $:.
   # It may or may not be the path of bioruby.
   BioRubyTestLibPath = libpath
-  
+
   if BioRubyTestDebug then
     $stderr.print "$: = [", "\n"
     $stderr.puts($:.collect { |x| "\t#{x.inspect}" }.join(",\n"))
@@ -54,7 +54,7 @@ unless defined? BioRubyTestDataPath and BioRubyTestDataPath
 
   # (String) Path to the test data.
   BioRubyTestDataPath = datapath
-  
+
   if BioRubyTestDebug then
     $stderr.print "DataPath = ", BioRubyTestDataPath.inspect, "\n"
   end

@@ -1,6 +1,6 @@
 #
 # = bio/appl/fasta/format10.rb - FASTA output (-m 10) parser
-# 
+#
 # Copyright::  Copyright (C) 2002 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
@@ -186,7 +186,7 @@ class Report
         end
       end
     end
-    
+
     # Returns a String containing query and library filenames.
     attr_reader :definition
 

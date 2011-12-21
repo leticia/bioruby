@@ -1,5 +1,5 @@
 #
-# bio/util/restriction_enzyme/range/sequence_range/fragment.rb - 
+# bio/util/restriction_enzyme/range/sequence_range/fragment.rb -
 #
 # Author::    Trevor Wennblom  <mailto:trevor@corevx.com>
 # Copyright:: Copyright (c) 2005-2007 Midwinter Laboratories, LLC (http://midwinterlabs.com)
@@ -36,7 +36,7 @@ class Fragment
       @primary_bin.include?(item) ? df.primary << p_str[item] : df.primary << ' '
       @complement_bin.include?(item) ? df.complement << c_str[item] : df.complement << ' '
     end
-    
+
     df.p_left  = @primary_bin.first
     df.p_right = @primary_bin.last
     df.c_left  = @complement_bin.first

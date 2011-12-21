@@ -35,7 +35,7 @@ class TestCodemlRates < Test::Unit::TestCase
     assert_equal(0.828, @example_rates[150][:rate])
     assert_equal(8, @example_rates[150][:freq])
   end
-  
+
   def test_rates_last_position
     assert_equal('PHPP', @example_rates.last[:data])
     assert_equal(1.752, @example_rates.last[:rate])

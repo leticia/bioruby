@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/remote.rb - remote BLAST wrapper basic module
-# 
+#
 # Copyright::  Copyright (C) 2008  Naohisa Goto <ng@bioruby.org>
 # License::    The Ruby License
 #

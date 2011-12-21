@@ -21,14 +21,14 @@ module Bio
 # cases, it is convenient to have the original list of the
 # ((<Bio::Relation>))s, Bio::Pathway object also stores the list (as
 # the instance variable @relations) redundantly.
-# 
+#
 # Note: you can clear the @relations list by calling clear_relations!
 # method to reduce the memory usage, and the content of the @relations
 # can be re-generated from the @graph by to_relations method.
 class Pathway
 
   # Initial graph (adjacency list) generation from the list of Relation.
-  # 
+  #
   # Generate Bio::Pathway object from the list of Bio::Relation objects.
   # If the second argument is true, undirected graph is generated.
   #
@@ -98,7 +98,7 @@ class Pathway
 
   # Changes the internal state of the graph from 'directed' to
   # 'undirected' and re-generate adjacency list.
-  # 
+  #
   # Note: this method can not be used without the list of the
   # Bio::Relation objects (internally stored in @relations variable).
   # Thus if you already called clear_relations! method, call
@@ -179,7 +179,7 @@ class Pathway
 
 
   # Convert adjacency list to adjacency matrix
-  # 
+  #
   # Returns the adjacency matrix expression of the graph as a Matrix
   # object.  If the first argument was assigned, the matrix will be
   # filled with the given value.  The second argument indicates the
@@ -188,11 +188,11 @@ class Pathway
   # The result of this method depends on the order of Hash#each
   # (and each_key, etc.), which may be variable with Ruby version
   # and Ruby interpreter variations (JRuby, etc.).
-  # For a workaround to remove such dependency, you can use @index 
+  # For a workaround to remove such dependency, you can use @index
   # to set order of Hash keys. Note that this behavior might be
   # changed in the future. Be careful that @index is overwritten by
   # this method.
-  # 
+  #
   def to_matrix(default_value = nil, diagonal_value = nil)
 
     #--
@@ -279,17 +279,17 @@ class Pathway
   end
 
   # Pretty printer of the adjacency list.
-  # 
+  #
   # Useful when you want to check the internal state of the adjacency
   # list (for debug purpose etc.) easily.
   #
   # The result of this method depends on the order of Hash#each
   # (and each_key, etc.), which may be variable with Ruby version
   # and Ruby interpreter variations (JRuby, etc.).
-  # For a workaround to remove such dependency, you can use @index 
+  # For a workaround to remove such dependency, you can use @index
   # to set order of Hash keys. Note that this behavior might be
-  # changed in the future. 
-  # 
+  # changed in the future.
+  #
   def dump_list
     # begin workaround removing depencency to order of Hash#each
     if @index.empty? then
@@ -380,7 +380,7 @@ class Pathway
   # Note: cliquishness (clustering coefficient) for a directed graph
   # is also calculated.
   # Reference: http://en.wikipedia.org/wiki/Clustering_coefficient
-  # 
+  #
   # Note: Cliquishness (clustering coefficient) for a node that has
   # only one neighbor node is undefined. Currently, it returns NaN,
   # but the behavior may be changed in the future.
@@ -469,13 +469,13 @@ class Pathway
   #
   # If $DEBUG is true (e.g. ruby -d), this method prints the progression
   # of the search.
-  # 
+  #
   # The weight of the edges are not considered in this method.
   #
   # Note: The result of this method depends on the order of Hash#each
   # (and each_key, etc.), which may be variable with Ruby version
   # and Ruby interpreter variations (JRuby, etc.).
-  # For a workaround to remove such dependency, you can use @index 
+  # For a workaround to remove such dependency, you can use @index
   # to set order of Hash keys. Note that this bahavior might be
   # changed in the future.
   def depth_first_search

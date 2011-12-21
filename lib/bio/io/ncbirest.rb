@@ -158,7 +158,7 @@ class REST
   public
 
   # List the NCBI database names E-Utils (einfo) service
-  # 
+  #
   # * http://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi
   #
   #  pubmed protein nucleotide nuccore nucgss nucest structure genome
@@ -188,7 +188,7 @@ class REST
 
   # Search the NCBI database by given keywords using E-Utils (esearch) service
   # and returns an array of entry IDs.
-  # 
+  #
   # For information on the possible arguments, see
   #
   # * http://eutils.ncbi.nlm.nih.gov/entrez/query/static/esearch_help.html

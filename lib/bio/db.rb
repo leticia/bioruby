@@ -43,114 +43,114 @@
 #       DEFINITION       Hoge gene of the Pokemonia pikachuae
 #
 # === Template of the sub class
-# 
+#
 #   module Bio
 #   class Hoge < DB
-# 
+#
 #     DELIMITER	= RS = "\n//\n"
 #     TAGSIZE		= 12		# You can omit this line if not needed
-# 
+#
 #     def initialize(entry)
 #     end
-# 
+#
 #     def entry_id
 #     end
-# 
+#
 #   end # class Hoge
 #   end # module Bio
-# 
+#
 # === Recommended method names for sub classes
-# 
+#
 # In general, the method name should be in the singular form when returns
 # a Object (including the case when the Object is a String), and should be
 # the plural form when returns same Objects in Array.  It depends on the
 # database classes that which form of the method name can be use.
-# 
+#
 # For example, GenBank has several REFERENCE fields in one entry, so define
 # Bio::GenBank#references and this method should return an Array of the
 # Reference objects.  On the other hand, MEDLINE has one REFERENCE information
 # per one entry, so define Bio::MEDLINE#reference method and this should
 # return a Reference object.
-# 
+#
 # The method names used in the sub classes should be taken from the following
 # list if appropriate:
-# 
+#
 # --- entry_id #=> String
-# 
+#
 # The entry identifier.
-# 
+#
 # --- definition #=> String
-# 
+#
 # The description of the entry.
-# 
+#
 # --- reference	#=> Bio::Reference
 # --- references #=> Array of Bio::Reference
-# 
+#
 # The reference field(s) of the entry.
-# 
+#
 # --- dblink #=> String
 # --- dblinks #=> Array of String
-# 
+#
 # The link(s) to the other database entry.
-# 
+#
 # --- naseq #=> Bio::Sequence::NA
-# 
+#
 # The DNA/RNA sequence of the entry.
-# 
+#
 # --- nalen #=> Integer
-# 
+#
 # The length of the DNA/RNA sequence of the entry.
-# 
+#
 # --- aaseq #=> Bio::Sequence::AA
-# 
+#
 # The amino acid sequence of the entry.
-# 
+#
 # --- aalen #=> Integer
-# 
+#
 # The length of the amino acid sequence of the entry.
-# 
+#
 # --- seq #=> Bio::Sequence::NA or Bio::Sequence::AA
-# 
+#
 # Returns an appropriate sequence object.
-# 
+#
 # --- position #=> String
-# 
+#
 # The position of the sequence in the entry or in the genome (depends on
 # the database).
-# 
+#
 # --- locations #=> Bio::Locations
-# 
+#
 # Returns Bio::Locations.new(position).
-# 
+#
 # --- division #=> String
-# 
+#
 # The sub division name of the database.
-# 
+#
 # * Example:
 #   * EST, VRL etc. for GenBank
 #   * PATTERN, RULE etc. for PROSITE
-# 
+#
 # --- date #=> String
-# 
+#
 # The date of the entry.
 # Should we use Date (by ParseDate) instead of String?
-# 
+#
 # --- gene #=> String
 # --- genes #=> Array of String
-# 
+#
 # The name(s) of the gene.
-# 
+#
 # --- organism #=> String
-# 
+#
 # The name of the organism.
-# 
+#
 
 require 'bio/sequence'
 require 'bio/reference'
 require 'bio/feature'
 
 module Bio
-  
+
 class DB
 
   def self.open(filename, *mode, &block)

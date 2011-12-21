@@ -31,7 +31,7 @@ class NCBI
 # * run_eFetch(_MS)
 #   * "db", "id", "WebEnv", "query_key", "tool", "email", "retstart",
 #     "retmax", "rettype", "strand", "seq_start", "seq_stop", "complexity",
-#     "report" 
+#     "report"
 #
 # * run_eGquery(_MS)
 #   * "term", "tool", "email"
@@ -134,7 +134,7 @@ if __FILE__ == $0
   result = eutils.run_eSpell(hash)
   p result
   p result["CorrectedQuery"]
-  
+
   puts "### run_eLink"
   hash = {"db" => "protein", "id" => "37776955"}
   result = eutils.run_eLink(hash)        #  working?

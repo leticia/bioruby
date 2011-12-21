@@ -4,7 +4,7 @@
 # Copyright:: Copyright (C) 2005 Mitsuteru Nakao <n@bioruby.org>
 # License::   The Ruby License
 #
-#  $Id:$ 
+#  $Id:$
 #
 
 # loading helper routine for testing bioruby
@@ -21,7 +21,7 @@ module Bio
 class TestDDBJXMLConstants < Test::Unit::TestCase
 
   def test_constants
-    constants = ["DDBJ", "TxSearch", "ClustalW", "PML", "Gib", "Fasta", 
+    constants = ["DDBJ", "TxSearch", "ClustalW", "PML", "Gib", "Fasta",
                  "BASE_URI", "SRS", "SERVER_URI", "Gtop", "GetEntry",
                  "Blast", "RequestManager"].sort
     assert_equal(constants, Bio::DDBJ::XML.constants.sort.collect{|x| x.to_s})

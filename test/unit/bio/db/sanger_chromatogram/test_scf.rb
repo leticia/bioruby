@@ -30,23 +30,23 @@ module Bio
   module TestScf_common
     Scf_sequence = "attaacgtaaaaggtttggttggttcgctataaaaactcttattttggataatttgtttagctgttgcaatataaattgacccatttaatttataaattggattctcgttgcaataaatttccagatcctgaaaaagctctggcttaaccaaattgccttggctatcaatgcttctacaccaagaaggctttaaagagataggactaactgaaacgacactttttcccgttgcttgatgtatttcaacagcatgtcttatggtttctggcttcctgaatggagaagttggttgtaaaagcaatacactgtcaaaaaaaacctccatttgctgaaacttaaacaggaggtcaataacagtatgaatcacatccgaagtatccgtggctaaatcttccgatcttagccaaggtactgaagccccatattgaacggann".freeze
     Scf_RC_sequence = "nntccgttcaatatggggcttcagtaccttggctaagatcggaagatttagccacggatacttcggatgtgattcatactgttattgacctcctgtttaagtttcagcaaatggaggttttttttgacagtgtattgcttttacaaccaacttctccattcaggaagccagaaaccataagacatgctgttgaaatacatcaagcaacgggaaaaagtgtcgtttcagttagtcctatctctttaaagccttcttggtgtagaagcattgatagccaaggcaatttggttaagccagagctttttcaggatctggaaatttattgcaacgagaatccaatttataaattaaatgggtcaatttatattgcaacagctaaacaaattatccaaaataagagtttttatagcgaaccaaccaaaccttttacgttaat".freeze
-      
+
     Scf_first_10_peak_indices = [16,24,37,49,64,64,80,92,103,113].freeze
     Scf_last_10_peak_indices = [5120,5132,5145,5157,5169,5182,5195,5207,5219,5231].freeze
 
     Scf_atrace_size = 5236
-      
+
     Scf_RC_first_10_peak_indices = Scf_last_10_peak_indices.collect{|index| Scf_atrace_size - index}.reverse.freeze
     Scf_RC_last_10_peak_indices = Scf_first_10_peak_indices.collect{|index| Scf_atrace_size - index}.reverse.freeze
 
     def test_seq
       assert_equal(Scf_sequence, @scf.seq.to_s)
     end
-     
+
     def test_to_biosequence
       assert_equal(Scf_sequence, @scf.to_biosequence.to_s)
     end
-    
+
     def test_complement
       @RC_chromatogram = @scf.complement
       # check reverse complemented sequence

@@ -54,13 +54,13 @@ require 'bio'
 
   puts ">>> Bio::CodonTable#start_codon?('atg')"
   p ct1.start_codon?('atg')
-  
+
   puts ">>> Bio::CodonTable#start_codon?('aaa')"
   p ct1.start_codon?('aaa')
 
   puts ">>> Bio::CodonTable#stop_codon?('tag')"
   p ct1.stop_codon?('tag')
-  
+
   puts ">>> Bio::CodonTable#stop_codon?('aaa')"
   p ct1.stop_codon?('aaa')
 

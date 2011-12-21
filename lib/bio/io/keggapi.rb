@@ -70,31 +70,31 @@ class KEGG
 # * get_reactions_by_enzyme(enzyme_id)
 # * get_reactions_by_compound(compound_id)
 # * get_genes_by_organism(org, start, max_results)
-# * get_number_of_genes_by_organism(org)                             
+# * get_number_of_genes_by_organism(org)
 #
 # == KEGG API methods implemented only in BioRuby
-# 
+#
 # In BioRuby, returned values are added filter method to pick up
 # values in a complex data type as an array.
-# 
+#
 #   #!/usr/bin/env ruby
-# 
+#
 #   require 'bio'
-# 
+#
 #   serv = Bio::KEGG::API.new
 #   results = serv.get_best_neighbors_by_gene("eco:b0002", "bsu")
-# 
+#
 #   # case 0 : without filter
 #   results.each do |hit|
 #     print hit.genes_id1, "\t", hit.genes_id2, "\t", hit.sw_score, "\n"
 #   end
-# 
+#
 #   # case 1 : select gene names and SW score only
 #   fields = [:genes_id1, :genes_id2, :sw_score]
 #   results.each do |hit|
 #     puts hit.filter(fields).join("\t")
 #   end
-#   
+#
 #   # case 2 : also uses aligned position in each amino acid sequence etc.
 #   fields1 = [:genes_id1, :start_position1, :end_position1, :best_flag_1to2]
 #   fields2 = [:genes_id2, :start_position2, :end_position2, :best_flag_2to1]
@@ -103,10 +103,10 @@ class KEGG
 #     print "1:\t", hit.filter(fields1).join("\t"), "\n"
 #     print "2:\t", hit.filter(fields2).join("\t"), "\n"
 #   end
-# 
+#
 # Using filter method will make it easy to change fields to select and
 # keep the script clean.
-# 
+#
 # * Bio::KEGG::API#get_all_neighbors_by_gene(genes_id, org)
 # * Bio::KEGG::API#get_all_best_best_neighbors_by_gene(genes_id)
 # * Bio::KEGG::API#get_all_best_neighbors_by_gene(genes_id)
@@ -116,22 +116,22 @@ class KEGG
 # * Bio::KEGG::API#get_all_oc_members_by_gene(genes_id)
 # * Bio::KEGG::API#get_all_pc_members_by_gene(genes_id)
 # * Bio::KEGG::API#get_all_genes_by_organism(org)
-# 
+#
 # These methods are wrapper for the methods without _all_ in its name
 # and internally iterate to retrive all the results using start/max_results
 # value pairs described above.  For example,
-# 
+#
 #   #!/usr/bin/env ruby
-#   
+#
 #   require 'soap/wsdlDriver'
-#   
+#
 #   wsdl = "http://soap.genome.jp/KEGG.wsdl"
 #   serv = SOAP::WSDLDriverFactory.new(wsdl).create_driver
 #   serv.generate_explicit_type = true
-#   
+#
 #   start = 1
 #   max_results = 100
-#   
+#
 #   loop do
 #     results = serv.get_best_neighbors_by_gene('eco:b0002', start, max_results)
 #     break unless results	# when no more results returned
@@ -140,51 +140,51 @@ class KEGG
 #     end
 #     start += max_results
 #   end
-# 
+#
 # can be witten as
-# 
+#
 #   #!/usr/bin/env ruby
-#   
+#
 #   require 'bio'
-#   
+#
 #   serv = Bio::KEGG::API.new
-#   
+#
 #   results = serv.get_all_best_neighbors_by_gene('eco:b0002')
 #   results.each do |hit|
 #     print hit.genes_id1, "\t", hit.genes_id2, "\t", hit.sw_score, "\n"
 #   end
-# 
-# 
+#
+#
 # * Bio::KEGG::API#save_image(url, filename = nil)
-# 
+#
 # Some methods of the KEGG API will return a URL of the generated image.
 # This method save an image specified by the URL.  The filename can be
 # specified by its second argument, otherwise basename of the URL will
 # be used.
-# 
+#
 #   #!/usr/bin/env ruby
-#   
+#
 #   require 'bio'
-#   
+#
 #   serv = Bio::KEGG::API.new("http://soap.genome.jp/v3.0/KEGG.wsdl")
-#   
+#
 #   list = ["eco:b1002", "eco:b2388"]
 #   url = serv.mark_pathway_by_objects("path:eco00010", list)
-#   
+#
 #   # Save with the original filename (eco00010.gif in this case)
 #   serv.save_image(url)
-# 
+#
 #   # or save as "save_image.gif"
 #   serv.save_image(url, "save_image.gif")
-# 
+#
 # * Bio::KEGG::API#get_entries(entry_id_list)
 # * Bio::KEGG::API#get_aaseqs(entry_id_list)
 # * Bio::KEGG::API#get_naseqs(entry_id_list)
 # * Bio::KEGG::API#get_definitions(entry_id_list)
-# 
+#
 # These methods are for the shortcut and backward compatibility
 # (these methods existed in the older version of the KEGG API).
-# 
+#
 class API < Bio::SOAPWSDL
 
   SERVER_URI = "http://soap.genome.jp/KEGG.wsdl"
@@ -201,12 +201,12 @@ class API < Bio::SOAPWSDL
     create_driver
   end
 
-  # Returns current value for the 'start' count for the methods having 
+  # Returns current value for the 'start' count for the methods having
   # start/max_results argument pairs or changes the default value for
   # the 'start' count.
   attr_accessor :start
 
-  # Returns current value for the 'max_results' number for the methods having 
+  # Returns current value for the 'max_results' number for the methods having
   # start/max_results argument pairs or changes the default value for the
   # 'max_results' count. If your request timeouts, try smaller value for
   # the max_results.

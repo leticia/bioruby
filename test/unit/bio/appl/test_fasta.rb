@@ -94,13 +94,13 @@ module Bio
       assert_equal('', @obj.output)
 #      assert_raise(NoMethodError) { @obj.output = "" }
     end
-    
+
     def test_option
       option = ['-M'].join(' ')
       assert(@obj.option = option)
       assert_equal(option, @obj.option)
     end
-    
+
     def test_format
       assert_equal(10, @obj.format)
     end

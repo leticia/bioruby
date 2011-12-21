@@ -101,7 +101,7 @@
 
 	  Bug Fix: stack overflow problem, and added support for multiple
 	  query sequences.
-	
+
 	  * Bug fix: stack overflow problem. Thanks to Fredrik Johansson who
             reports the bug ([BioRuby] Made a change in format10.rb).
 	  * Changed to set @entry_overrun when a report containing multiple
@@ -120,14 +120,14 @@
 	  (commit 1607b60d905eb8cb5ca289e357cbb2cbb7a118ff)
 
 	* test/unit/bio/appl/test_blast.rb
-	
+
 	  Bug fix: method redefined: TestBlast#test_self_local
 	  (commit 9caa4c9d94126b3568c439878876062c84afbdec)
 
 	* test/unit/bio/appl/hmmer/test_report.rb
 	  Bug fix: method name conflict:
 	  TestHMMERReportClassMethods#test_reports_ary
-	  (commit cc3e1b85cf885736a7b1293c7e0951e099cd7e6b) 
+	  (commit cc3e1b85cf885736a7b1293c7e0951e099cd7e6b)
 
 	* test/unit/bio/appl/bl2seq/test_report.rb
 
@@ -420,10 +420,10 @@
 	    2) Moderate. date wrong format IN(26-SEP-2006), OUT(2006-09-26)
 	    3) Minor. Organism in output as more terms.
 	    4) Minor. Title has a dot at the end, input was without
-	
+
 	  ref for GI in genbank are functions ncbi_gi_number/other_seqids
 	  (commit 03662955a45e1c3d5d32150b423a92d40c0c33c7)
-	
+
 2009-03-17  Raoul Jean Pierre Bonnal <ilpuccio.febo@gmail.com>
 
 	* lib/bio/io/sql.rb
@@ -688,7 +688,7 @@
 
 	  Newly added functional and unit tests for Bio::TogoWS::REST.
 	  (commit f04152b80d07f44f146fa3fa0729facede865aac)
-	
+
 	* lib/bio/io/togows.rb
 
 	  New class Bio::TogoWS::REST, a REST client for the TogoWS web
@@ -718,7 +718,7 @@
 	    BIORUBY_EXTRA_VERSION.
 	  * Added dependency on lib/bio/version.rb to bioruby.gemspec.
 	    (commit fb27eaa584cda1bb4cb75e10085996503361c98a)
-	
+
 	* lib/bio.rb, lib/bio/version.rb
 
 	  Bio::BIORUBY_VERSION is split into lib/bio/version.rb.
@@ -796,7 +796,7 @@
 	  (commit 4c54597eaf09107c34ad06bc5f5f9cead77a0198)
 
 	* lib/bio/appl/blast/wublast.rb
-	
+
 	  Bug fix: parsing of exit code failed when ignoring fatal errors
 	  (commit 44ed958acebe4324a9a48e7292c4f0ad5c0fb685)
 
@@ -980,7 +980,7 @@
 	  (commit 1bc59708137fd46911d5892e4712cc49c71fa031)
 
 	* lib/bio/io/flatfile/splitter.rb
-	
+
 	  Checks for undefined constants are added for running without
 	  "require 'bio'" in unit tests.
 	  (commit 311176d4d390e5948348f623ff3632454136a03f)
@@ -1269,7 +1269,7 @@
 	    because treefile can be optional parameter depending on runmode.
 	    test/data/paml/codeml/config.missing_align.txt is also removed
 	    because test is changed to use normal control file parameters.
-	
+
 	* lib/bio/command.rb, test/functional/bio/test_command.rb
 
 	  Improvement of Bio::Command.query_command, call_command, etc.
@@ -1327,7 +1327,7 @@
 	  * New classes: Bio::NCBI::REST::ESearch, Bio::NCBI::REST::EFetch.
 	  (commit 637f97deefd6cc113ef18fe18ab628eb619f3dc1)
 	  (committer: Naohisa Goto)
-	
+
 2008-10-14  Naohisa Goto <ng@bioruby.org>
 
 	* lib/bio/sequence/common.rb, test/unit/bio/sequence/test_common.rb,
@@ -1375,11 +1375,11 @@
 
 	  Fix: check on nil objects (to_biosql)
 	  (commit f701e9a71f524ee4373c94ee1bd345e87f16f6ce)
-	
+
 	  BugFix: ex. /focus="true" in output was /focus="t",
 	  qualifier.value.to_s fix the bug
 	  (commit f6e1530f3372c87031b551e5c76e24f264891e64)
-	
+
 	* lib/bio/io/biosql/seqfeature.rb
 
 	  BugFix: seqfeature_qualifier_value returned ordered only by rank
@@ -1427,7 +1427,7 @@
 
 	  Changed the demonstration code in the "if __FILE__ == $0".
 	  (commit efb61d7c21d229e882c6706838c284404343fa9c)
-	
+
 	* lib/bio/db/biosql/sequence.rb
 
 	  Added support for reference. ToDo: handling comments.
@@ -1457,7 +1457,7 @@
 	    is newly added. This file is only used on mswin32 or bccwin32.
 	  * URL for test to fetch a web page is changed to
 	    http://bioruby.open-bio.org/.
-	
+
 2008-10-07  Naohisa Goto <ng@bioruby.org>
 
 	* test/unit/bio/appl/paml/test_codeml.rb
@@ -1465,7 +1465,7 @@
 	  Bug fix: error on mswin32 in
 	  test_expected_options_set_in_config_file.
 	  (commit  16b8f321c653502ef801d801383a019bc45f67de)
-	
+
 	  Bug fix: On mswin32, test_expected_options_set_in_config_file
 	  in Bio::TestCodemlConfigGeneration failed with the error
 	  "Errno::EACCESS: Permission denied" because it attempts to remove
@@ -1504,14 +1504,14 @@
 	  :class_name => "TaxonName",
 	  :conditions => "name_class = 'genbank common name'"
 	  (commit dc7a18b17cad8e603e0d3c20a5a80bc2a6f0899c)
-	
+
 	* lib/bio/db/biosql/sequence.rb
 
 	  Fix taxon identification by splitting scientific name and genbank
 	  common name. Fix organism/source's name composed by scientific
 	  name and genbank common name.
 	  (commit 5d6abcc0dcd05d7083622360489a5f4c361e0cc7)
-	
+
 	* lib/bio/io/sql.rb
 
 	Working on tests about format import/export.
@@ -1541,7 +1541,7 @@
 
 	  to_biosequence: removed not adapter comments.
 	  (commit 591fda23464c7b7031db09a8ca85deca320a5c87)
-	
+
 	  Removed main garbage comments.
 	  (commit c46d7a2b4e188a0592d5b49def17b9e6fd598268)
 
@@ -1668,7 +1668,7 @@
 2008-09-18  Naohisa Goto <ng@bioruby.org>
 
 	* lib/bio/appl/blast/rpsblast.rb, lib/bio/appl/blast/format0.rb,
-	  lib/bio/io/flatfile/autodetection.rb, 
+	  lib/bio/io/flatfile/autodetection.rb,
 	  test/unit/bio/appl/blast/test_rpsblast.rb,
 	  test/data/rpsblast/misc.rpsblast
 
@@ -1809,7 +1809,7 @@
 	* test/data/paml/codeml/rates
 
 	  Added rates file that includes positions with * characters.
-	
+
 2008-08-18  Naohisa Goto <ng@bioruby.org>
 
 	* test/unit/bio/io/test_ddbjxml.rb
@@ -1863,7 +1863,7 @@
 
 	  Bio::Blast#exec_genomenet is moved to genomenet.rb, with bug fix.
 
-	  * Bio::Blast#exec_genomenet is moved to 
+	  * Bio::Blast#exec_genomenet is moved to
 	    lib/bio/appl/blast/genomenet.rb.
 	  * Incompatible change: Bio::Blast#exec_* is changed to return
 	    String. Parsing the string is now processed in query method.
@@ -1896,7 +1896,7 @@
 	  * Some common codes are moved from
 	    Bio::Blast::Remote::GenomeNet::Information to
 	    Bio::Blast::Remote::Information.
-	
+
 	* lib/bio/io/ddbjxml.rb
 
 	  Changed to use DDBJ REST interface for a workaround instead of
@@ -1931,7 +1931,7 @@
 	  Supported formats are: EMBL, GenBank, Fasta, or raw.
 
 	  Written by Naohisa Goto and Jan Aerts.
-	
+
 	* lib/bio/db/biosql/
 	* lib/bio/io/sql.rb, lib/bio/io/biosql/
 
@@ -1973,7 +1973,7 @@
 	* README.rdoc
 	* README_DEV.rdoc
 	* gemspec.rb
-	
+
 	  Renamed README files to RDoc gets parsed on github website.
 	  (commit 34b7693f74de2358759e955d8ce36cfe15e64b54)
 	  Edited README.rdoc and README_DEV.rdoc to reflect move from CVS
@@ -2031,7 +2031,7 @@
 
 	* lib/bio/appl/blast/format0.rb
 
-	  Bug fix: Bio::Blast::Default::Report#eff_space returns wrong value 
+	  Bug fix: Bio::Blast::Default::Report#eff_space returns wrong value
 	  ("Effective length of database"). It should return the value of
 	  "Effective search space".
 
@@ -2234,7 +2234,7 @@
 	  OriginalAlignment#index methods, local variable names outside the
 	  iterator loops are changed not to be shadowed by iterator
 	  variables.
-	  
+
 	  Warning messages for uninitialized instance variables of
 	  @gap_regexp, @gap_char, @missing_char, and @seqclass
 	  are suppressed.
@@ -2349,7 +2349,7 @@
 
 	  New modules and classes Bio::Alignment::FactoryTemplate::* are added.
 	  They are used by following three new classes.
-	
+
 	* lib/bio/appl/muscle.rb
 	* lib/bio/appl/probcons.rb
 	* lib/bio/appl/tcoffee.rb
@@ -2527,7 +2527,7 @@
 
 	  KEGG KO database is renamed to KEGG ORTHOLOG database, thus we
 	  follow the change. Bio::KEGG::KO is renamed to Bio::KEGG::ORTHOLOG.
-	  
+
 	  Bio::KEGG::ORTHOLOG#genes, dblinks methods are rewrited to use
 	  lines_fetch method.
 
@@ -2660,7 +2660,7 @@
 	* lib/bio/util/restriction_enzyme*
 
 	  Bio::RestrictionEnzyme stabilized.
-	
+
 2007-02-02  Trevor Wennblom <trevor@corevx.com>
 
 	* lib/bio/db/lasergene.rb
@@ -2712,7 +2712,7 @@
 
 	  Bio::KEGG::ENZYME#all_reac, iubmb_reactions, kegg_reactions methods
 	  are added to support newly added ALL_REAC field.
-	
+
 	  Bio::KEGG::ENZYME#inhibitors and orthologs methods are added.
 
 	  Bio::KEGG::ENZYME#substrates, products, inhibitors, cofactors,
@@ -2775,8 +2775,8 @@
 2006-12-15  Mitsuteru Nakao <n@bioruby.org>
 
 	* lib/bio/appl/iprscan/report.rb
-	
-	  Bio::Iprscan::Report for InterProScan output is newly added.		
+
+	  Bio::Iprscan::Report for InterProScan output is newly added.
 2006-12-15  Naohisa Goto <ng@bioruby.org>
 
 	* lib/bio/appl/mafft/report.rb
@@ -2814,7 +2814,7 @@
 	* lib/bio/appl/clustalw.rb, lib/bio/appl/mafft.rb, lib/bio/appl/sim4.rb
 
 	  Changed to use Bio::Command instead of Open3.popen3.
-	
+
 2006-12-13  Naohisa Goto <ng@bioruby.org>
 
 	* lib/bio/tree.rb, lib/bio/db/newick.rb
@@ -2916,7 +2916,7 @@
 	  incompatible attribute names with KGML tags by this change:
 	    <entry>
 	      :id -> :entry_id
-	      :type -> :entry_type 
+	      :type -> :entry_type
 	      names()
 	    <graphics>
 	      :name -> :label
@@ -2945,7 +2945,7 @@
 
 	  lib/bio/appl/blast.rb, lib/bio/appl/fasta.rb,
 	  lib/bio/appl/emboss.rb, lib/bio/appl/psort.rb,
-	  lib/bio/appl/hmmer.rb, lib/bio/db/fantom.rb, 
+	  lib/bio/appl/hmmer.rb, lib/bio/db/fantom.rb,
 	  lib/bio/io/fastacmd.rb, lib/bio/io/fetch.rb,
 	  lib/bio/io/keggapi.rb, lib/bio/io/pubmed.rb, and
 	  lib/bio/io/registry.rb are changed to use the new Bio::Command
@@ -3132,7 +3132,7 @@
 	  Bio::Sequence.auto(str) method is added which auto detect the
 	  molecular type of the string and then returns the
 	  Bio::Sequence::NA or Bio::Sequence::AA object.
-	  
+
 	  Bio::Sequence#blast and Bio::Sequence#fasta methods are removed.
 
 	* lib/bio/shell/plugin/codon.rb
@@ -3149,7 +3149,7 @@
 	  as adviced by Koichi Sasada.
 
 	  The MIDI plugin is now able to select musical scales.
-	
+
 2005-10-23  Toshiaki Katayama <k@bioruby.org>
 
 	* lib/bio/util/color_scheme
@@ -3299,10 +3299,10 @@
 
         * lib/bio/db/embl/sptr.rb:
 
-          Added Bio::SPTR#protein_name and Bio::SPTR#synoyms methods. 
+          Added Bio::SPTR#protein_name and Bio::SPTR#synoyms methods.
           contributed by Luca Pireddu.
 
-          Changed Bio::SPTR#gn, Bio::SPTR#gene_name and 
+          Changed Bio::SPTR#gn, Bio::SPTR#gene_name and
           Bio::SPTR#gene_names methods. contributed by Luca Pireddu.
 
 2005-08-08  Naohisa Goto <ng@bioruby.org>
@@ -3393,7 +3393,7 @@
 	  Bio::KEGG::GLYCAN, Bio::KEGG::REACTION, Bio::Blat::Report
 	  and Bio::Sim4::Report.
 
-	  In order to distinguish Bio::KEGG::REACTION and 
+	  In order to distinguish Bio::KEGG::REACTION and
 	  Bio::KEGG::COMPOUND, autodetection regexp. of
 	  Bio::KEGG::COMPOUND were modified.
 
@@ -3700,13 +3700,13 @@
 	    <http://www.geneontology.org/>
 
 	* lib/bio/feature.rb:
-	
+
 	    'each' method now accepts an argument to select specific feature.
 
 	* lib/bio/db/fasta.rb: definition=, data= to change comment line.
 
 	* lib/bio/db/genbank.rb:
-	
+
 	    References and features now accept a block. 'acc_version' method
 	    is added to return the Accsession.Version string.
 	    'accession' method now returns Accession part of the acc_version.
@@ -3874,21 +3874,21 @@
 	* lib/bio/db/fasta.rb: entry method added
 
 2002-05-15  KATAYAMA Toshiaki  <k@bioruby.org>
-	
+
 	* lib/bio/io/dbget.rb: bug fixed for pfam (was wrongly skip # lines)
 	* lib/bio/location.rb: offset method added, eased range check
 
 2002-04-26  KATAYAMA Toshiaki  <k@bioruby.org>
-	
+
 	* sample/biofetch.rb: new 'info=' option added
 
 2002-04-22  KATAYAMA Toshiaki  <k@bioruby.org>
-	
+
 	* lib/bio/appl/fasta.rb: follow changes made at fasta.genome.ad.jp
 	* sample/gb2tab.rb: fixed to use authors.inspect for reference
 
 2002-04-15  KATAYAMA Toshiaki  <k@bioruby.org>
-	
+
 	* sample/gb2fasta.rb: changed to follow new genbank.rb spec.
 	* sample/gt2fasta.rb: changed to follow new genbank.rb spec.
 	* sample/gbtab2mysql.rb: added for loading tab delimited data.
@@ -3948,7 +3948,7 @@
 	    * gc_percent, complement, translate, to_re, molecular_weight
 	      methods are adapted to this change
 	  * molecular_weight changed to calculate more precisely
-	  * test code added 
+	  * test code added
 	* lib/bio.rb -k
 	  * rescue for require 'bio/appl/blast' is deleted
 

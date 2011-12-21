@@ -32,14 +32,14 @@ class AlignedStrands
   # Pad and align two String objects without cut symbols.
   #
   # This will look for the sub-sequence without left and right 'n' padding
-  # and re-apply 'n' padding to both strings on both sides equal to the 
+  # and re-apply 'n' padding to both strings on both sides equal to the
   # maximum previous padding on that side.
   #
   # The sub-sequences stripped of left and right 'n' padding must be of equal
   # length.
   #
   # Example:
-  #   AlignedStrands.align('nngattacannnnn', 'nnnnnctaatgtnn') # => 
+  #   AlignedStrands.align('nngattacannnnn', 'nnnnnctaatgtnn') # =>
   #    <struct Bio::RestrictionEnzyme::DoubleStranded::AlignedStrands::Result
   #      primary="nnnnngattacannnnn",
   #      complement="nnnnnctaatgtnnnnn">
@@ -64,7 +64,7 @@ class AlignedStrands
   # Pad and align two String objects with cut symbols.
   #
   # Example:
-  #   AlignedStrands.with_cuts('nngattacannnnn', 'nnnnnctaatgtnn', [0, 10, 12], [0, 2, 12]) # => 
+  #   AlignedStrands.with_cuts('nngattacannnnn', 'nnnnnctaatgtnn', [0, 10, 12], [0, 2, 12]) # =>
   #     <struct Bio::RestrictionEnzyme::DoubleStranded::AlignedStrands::Result
   #       primary="n n n n^n g a t t a c a n n^n n^n",
   #       complement="n^n n^n n c t a a t g t n^n n n n">

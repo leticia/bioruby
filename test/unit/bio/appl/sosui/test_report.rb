@@ -73,7 +73,7 @@ module Bio
     def test_grade
       assert_equal('SECONDARY', @obj.grade)
     end
-    
+
     def test_sequence
       assert_equal('HIRMTFLRKVYSILSLQVLLTTV', @obj.sequence)
     end

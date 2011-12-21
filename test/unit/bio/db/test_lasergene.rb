@@ -20,7 +20,7 @@ require 'bio/db/lasergene'
 
 module Bio #:nodoc:
   class TestLasergene < Test::Unit::TestCase #:nodoc:
-    
+
     def setup
       file_format_1 = <<END
 "Contig 1" (1,934)
@@ -56,7 +56,7 @@ VERSION     U87392.3  GI:11192298
 [...cut...]
      3'UTR           15261..15411
      polyA_site      15409
-ORIGIN      
+ORIGIN
 ^^
 atgacgtataggtgttggctctatgccttggcatttgtattgtcaggagctgtgaccattggcacagcccaaaacttgctgcacagaaacacccttctgtgatagcctccttcaggggagcttagggtttgtccctagcaccttgcttccggagttgcactgctttacggtctctccacccctttaaccatgtctgggatacttgatcggtgcacgtgtacccccaatgccagggtgtttatggcggagggccaagtctactgcacacgatgcctcagtgcacggtctctccttcccctgaacctccaagtttctgagctcggggtgctaggcctattctacaggcccgaagagccactccggtggacgttgccacgtgcattccccactgttgagtgctcccccgccggggcctgctggctttctgcaatctttccaatcgcacgaatgaccagtggaaacctgaacttccaacaaagaatggtacgggtcgcagctgagctttacagagccggccagctcacccctgcagtcttgaaggctctacaagtttatgaacggggttgccgctggtaccccattgttggacctgtccctggagtggccgttttcgccaattccctacatgtgagtgataaacctttcccgggagcaactcacgtgttgaccaacctgccgctcccgcagagacccaagcctgaagacttttgcccctttgagtgtgctatggctactgtctatgacattggtcatgacgccgtcatgtatgtggccgaaaggaaagtctcctgggcccctcgtggcggggatgaagtgaaatttgaagctgtccccggggagttgaagttgattgcgaaccggctccgcacctccttcccgccccaccacacagtggacatgtctaagttcgccttcacagcccctgggtgtggtgtttctatgcgggtcgaacgccaacacggctgccttcccgctgacactgtccctgaaggcaactgctggtggagcttgtttgacttgcttccactggaagttcagaacaaagaaattcgccatgctaaccaatttggctaccagaccaagcatggtgtctctggcaagtacctacagcggaggctgca
 END
@@ -74,22 +74,22 @@ END
       a2_seq = 'atgtcggggaaatgcttgaccgcgggctactgctcatcattgctttctttgtggtatatcgtgccgttctgttttgctgtgctcgtcaacgccagcggcgacagcagctctcattttcagtcgatttataacttgacgttatgtgagctgaatggcacgaactggctggcagacaactttaactgggctgtggagacttttgtcatcttccccgtgttgactcacattgtttcctatggtgcactcactaccagtcattttcttgacacagttggtctagttactgtgtctaccgccgggttttatcacgggcggtacgtcttgagtagcatctacgcggtctgtgctctggctgcgttgatttgcttcgccatcaggtttgcgaagaactgcatgtcctggcgctactcttgcactagatacaccaacttcctcctggacaccaagggcagactctatcgttggcggtcgcctgtcatcatagagaaagggggtaaggttgaggtcgaaggtcatctgatcgatctcaaaagagttgtgcttgatggctctgtggcgacacctttaaccagagtttcagcggaacaatggggtcgtccctagacgacttttgccatgatagtacagccccacagaaggtgctcttggcgttttccatcacctacacgccagtgatgatatatgccctaaaggtaagccgcggccgacttttggggcttctgcaccttttgatttttttgaactgtgcctttactttcgggtacatgacattcgtgcactttcggagcacgaacaaggtcgcgctcactatgggagcagtagtcgcactcctttggggggtgtactcagccatagaaacctggaaattcatcacctccagatgccgttgtgcttgctaggccgcaagtacattctggcccctgcccaccacgttg'
       a3 = @obj3
       a3_seq = 'atgacgtataggtgttggctctatgccttggcatttgtattgtcaggagctgtgaccattggcacagcccaaaacttgctgcacagaaacacccttctgtgatagcctccttcaggggagcttagggtttgtccctagcaccttgcttccggagttgcactgctttacggtctctccacccctttaaccatgtctgggatacttgatcggtgcacgtgtacccccaatgccagggtgtttatggcggagggccaagtctactgcacacgatgcctcagtgcacggtctctccttcccctgaacctccaagtttctgagctcggggtgctaggcctattctacaggcccgaagagccactccggtggacgttgccacgtgcattccccactgttgagtgctcccccgccggggcctgctggctttctgcaatctttccaatcgcacgaatgaccagtggaaacctgaacttccaacaaagaatggtacgggtcgcagctgagctttacagagccggccagctcacccctgcagtcttgaaggctctacaagtttatgaacggggttgccgctggtaccccattgttggacctgtccctggagtggccgttttcgccaattccctacatgtgagtgataaacctttcccgggagcaactcacgtgttgaccaacctgccgctcccgcagagacccaagcctgaagacttttgcccctttgagtgtgctatggctactgtctatgacattggtcatgacgccgtcatgtatgtggccgaaaggaaagtctcctgggcccctcgtggcggggatgaagtgaaatttgaagctgtccccggggagttgaagttgattgcgaaccggctccgcacctccttcccgccccaccacacagtggacatgtctaagttcgccttcacagcccctgggtgtggtgtttctatgcgggtcgaacgccaacacggctgccttcccgctgacactgtccctgaaggcaactgctggtggagcttgtttgacttgcttccactggaagttcagaacaaagaaattcgccatgctaaccaatttggctaccagaccaagcatggtgtctctggcaagtacctacagcggaggctgca'
-      
+
       assert_equal(a1_seq, a1.seq.seq)
       assert_equal(a2_seq, a2.seq.seq)
       assert_equal(a3_seq, a3.seq.seq)
-      
+
       assert_equal('"Contig 1"', a1.entry_id)
       assert_equal('Contig 1', a2.name)
       assert_equal(nil, a3.name)
-      
+
       assert_equal(4, a1.total_sequences)
       assert_equal(4, a2.total_sequences)
       assert_equal(nil, a3.total_sequences)
 
       assert_equal(true, a1.standard_comment?)
       assert_equal(true, a2.standard_comment?)
-      assert_equal(false, a3.standard_comment?) 
+      assert_equal(false, a3.standard_comment?)
     end
 
   end

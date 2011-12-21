@@ -19,7 +19,7 @@ module Bio::Sequence::Format::NucFormatter
 
     # helper methods
     include Bio::Sequence::Format::INSDFeatureHelper
-    
+
     private
 
     # wrapping with EMBL style
@@ -94,9 +94,9 @@ module Bio::Sequence::Format::NucFormatter
                           "\"#{ref.title}\"") + ';')
       unless ref.journal.to_s.empty? then
         volissue = "#{ref.volume.to_s}"
-        volissue = "#{volissue}(#{ref.issue})" unless ref.issue.to_s.empty? 
+        volissue = "#{volissue}(#{ref.issue})" unless ref.issue.to_s.empty?
         rl = "#{ref.journal}"
-        rl += " #{volissue}" unless volissue.empty? 
+        rl += " #{volissue}" unless volissue.empty?
         rl += ":#{ref.pages}" unless ref.pages.to_s.empty?
         rl += "(#{ref.year})" unless ref.year.to_s.empty?
         rl += '.'
@@ -157,28 +157,28 @@ module Bio::Sequence::Format::NucFormatter
     # Erb template of EMBL format for Bio::Sequence
     erb_template <<'__END_OF_TEMPLATE__'
 ID   <%= primary_accession || entry_id %>; SV <%= sequence_version %>; <%= topology %>; <%= mol_type_embl %>; <%= data_class %>; <%= division %>; <%= seq.length %> BP.
-XX   
+XX
 <%= embl_wrap('AC   ', accessions.reject{|a| a.nil?}.join('; ') + ';') %>
-XX   
+XX
 DT   <%= format_date(date_created || null_date) %> (Rel. <%= release_created || 0 %>, Created)
 DT   <%= format_date(date_modified || null_date) %> (Rel. <%= release_modified || 0 %>, Last updated, Version <%= entry_version || 0 %>)
-XX   
+XX
 <%= embl_wrap('DE   ', definition) %>
-XX   
+XX
 <%= embl_wrap('KW   ', (keywords || []).join('; ') + '.') %>
-XX   
+XX
 OS   <%= species %>
 <%= embl_wrap('OC   ', (classification || []).join('; ') + '.') %>
-XX   
+XX
 <% hash = {}; (references || []).each do |ref| %><%= reference_format_embl(ref, hash) %>
 <% end %><% (dblinks || []).each do |r|
 %>DR   <%= r.database %>; <%= r.id %><% unless r.secondary_ids.empty? %>; <%= r.secondary_ids[0] %><% end %>.
 <% end %><% if dblinks and !dblinks.empty? then
- %>XX   
+ %>XX
 <% end %><%= comments_format_embl(comments)
 %>FH   Key             Location/Qualifiers
-FH   
-<%= format_features_embl(features || []) %>XX   
+FH
+<%= format_features_embl(features || []) %>XX
 SQ   Sequence <%= seq.length %> BP; <% c = seq_composition(seq) %><%= c[:a] %> A; <%= c[:c] %> C; <%= c[:g] %> G; <%= c[:t] %> T; <%= c[:other] %> other;
 <%= seq_format_embl(seq) %>
 //

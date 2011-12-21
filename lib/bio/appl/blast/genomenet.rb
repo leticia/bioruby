@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/genomenet.rb - Remote BLAST wrapper using GenomeNet
-# 
+#
 # Copyright::  Copyright (C) 2001,2008  Mitsuteru C. Nakao <n@bioruby.org>
 # Copyright::  Copyright (C) 2002,2003  Toshiaki Katayama <k@bioruby.org>
 # Copyright::  Copyright (C) 2006       Jan Aerts <jan.aerts@bbsrc.ac.uk>
@@ -19,14 +19,14 @@ require 'bio/appl/blast/remote'
 module Bio::Blast::Remote
 
   # == Description
-  # 
+  #
   # The Bio::Blast::Remote::GenomeNet class contains methods for running
   # remote BLAST searches on GenomeNet (http://blast.genome.jp/).
   #
   # == Usage
   #
   #   require 'bio'
-  #   
+  #
   #   # To run an actual BLAST analysis:
   #   #   1. create a BLAST factory
   #   blast_factory = Bio::Blast.remote('blastp', 'nr-aa',
@@ -51,7 +51,7 @@ module Bio::Blast::Remote
   #  ----------+-------+---------------------------------------------------
   #   blastp   | AA    | nr-aa, genes, vgenes.pep, swissprot, swissprot-upd,
   #  ----------+-------+ pir, prf, pdbstr
-  #   blastx   | NA    | 
+  #   blastx   | NA    |
   #  ----------+-------+---------------------------------------------------
   #   blastn   | NA    | nr-nt, genbank-nonst, gbnonst-upd, dbest, dbgss,
   #  ----------+-------+ htgs, dbsts, embl-nonst, embnonst-upd, epd,
@@ -66,7 +66,7 @@ module Bio::Blast::Remote
   # * Bio::Blast::Report::Hsp
   #
   # == References
-  # 
+  #
   # * http://www.ncbi.nlm.nih.gov/blast/
   # * http://www.ncbi.nlm.nih.gov/Education/BLASTinfo/similarity.html
   # * http://www.genome.jp/tools/blast/
@@ -79,7 +79,7 @@ module Bio::Blast::Remote
     # Returns Bio::Blast object.
     #
     # Note for future improvement: In the future, it might return
-    # Bio::Blast::Remote::GenomeNet or other object. 
+    # Bio::Blast::Remote::GenomeNet or other object.
     #
     def self.new(program, db, options = [])
       Bio::Blast.new(program, db, options, 'genomenet')
@@ -195,8 +195,8 @@ module Bio::Blast::Remote
         'other_param'    => optstr,
         'matrix'         => matrix,
         'filter'         => filter,
-        'V_value'        => opt_v, 
-        'B_value'        => opt_b, 
+        'V_value'        => opt_v,
+        'B_value'        => opt_b,
         'alignment_view' => 0,
       }
 

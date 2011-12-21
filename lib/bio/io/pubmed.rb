@@ -34,7 +34,7 @@ module Bio
 #
 # The different methods within the same group are interchangeable and should
 # return the same result.
-# 
+#
 # Additional information about the MEDLINE format and PubMed programmable
 # APIs can be found on the following websites:
 #
@@ -59,7 +59,7 @@ module Bio
 #   Bio::PubMed.search("(genome AND analysis) OR bioinformatics").each do |x|
 #     p x
 #   end
-#   
+#
 #   # To retrieve the MEDLINE entry for a given PubMed ID:
 #   puts Bio::PubMed.efetch("10592173", "14693808")
 #   puts Bio::PubMed.query("10592173")
@@ -68,12 +68,12 @@ module Bio
 #   # This can be converted into a Bio::MEDLINE object:
 #   manuscript = Bio::PubMed.query("10592173")
 #   medline = Bio::MEDLINE.new(manuscript)
-#  
+#
 class PubMed < Bio::NCBI::REST
 
-  # Search the PubMed database by given keywords using E-Utils and returns 
+  # Search the PubMed database by given keywords using E-Utils and returns
   # an array of PubMed IDs.
-  # 
+  #
   # For information on the possible arguments, see
   # http://eutils.ncbi.nlm.nih.gov/entrez/query/static/esearch_help.html#PubMed
   # ---

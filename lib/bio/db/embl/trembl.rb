@@ -1,6 +1,6 @@
 #
 # = bio/db/embl/trembl.rb - TrEMBL database class
-# 
+#
 # Copyright::  Copyright (C) 2001, 2002 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
@@ -16,8 +16,8 @@ module Bio
 # Parser class for TrEMBL database entry. See also Bio::SPTR class.
 # This class holds name space for TrEMBL specific methods.
 #
-# UniProtKB/SwissProt specific methods are defined in this class. 
-# Shared methods for UniProtKB/SwissProt and TrEMBL classes are 
+# UniProtKB/SwissProt specific methods are defined in this class.
+# Shared methods for UniProtKB/SwissProt and TrEMBL classes are
 # defined in Bio::SPTR class.
 #
 # == Examples
@@ -28,12 +28,12 @@ module Bio
 #
 # == Referencees
 #
-# * TrEMBL Computer-annotated supplement to Swiss-Prot	
+# * TrEMBL Computer-annotated supplement to Swiss-Prot
 #   http://au.expasy.org/sprot/
 #
 # * TrEMBL Computer-annotated supplement to Swiss-Prot User Manual
 #   http://au.expasy.org/sprot/userman.html
-# 
+#
 class TrEMBL < SPTR
   # Nothing to do (TrEMBL format is abstracted in SPTR)
 end

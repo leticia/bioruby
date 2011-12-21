@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/report.rb - BLAST Report class
-# 
+#
 # Copyright::  Copyright (C) 2003 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
@@ -17,10 +17,10 @@ module Bio
 class Blast
 
 # = Bio::Blast::Report
-# 
+#
 # Parsed results of the blast execution for Tab-delimited and XML output
 # format.  Tab-delimited reports are consists of
-# 
+#
 #   Query id,
 #   Subject id,
 #   percent of identity,
@@ -33,14 +33,14 @@ class Blast
 #   end of alignment in subject,
 #   expected value,
 #   bit score.
-# 
+#
 # according to the MEGABLAST document (README.mbl).  As for XML output,
 # see the following DTDs.
-# 
+#
 #   * http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.dtd
 #   * http://www.ncbi.nlm.nih.gov/dtd/NCBI_BlastOutput.mod
 #   * http://www.ncbi.nlm.nih.gov/dtd/NCBI_Entity.mod
-# 
+#
 class Report
 
   # for Bio::FlatFile support (only for XML data)
@@ -377,7 +377,7 @@ class Report
   # the query can not be detected, because the result XML is
   # completely the same as the result XML without the query.
   attr_reader :reports
- 
+
   private
   # (private method)
   # In new BLAST XML (blastall >= 2.2.14), results of multiple queries
@@ -570,9 +570,9 @@ end # Report
 # NCBI BLAST tabular (-m 8) output parser.
 # All methods are equal to Bio::Blast::Report.
 # Only DELIMITER (and RS) is different.
-# 
+#
 class Report_tab < Report
-  # Delimter of each entry. Bio::FlatFile uses it. 
+  # Delimter of each entry. Bio::FlatFile uses it.
   DELIMITER = RS = nil
 end #class Report_tabular
 

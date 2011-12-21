@@ -68,7 +68,7 @@ module Bio
     def setup
       @report = create_report_object
     end
-    
+
     def test_iterations
       assert(@report.iterations)
     end
@@ -204,7 +204,7 @@ module Bio
       assert_equal(nil, @report.message)
     end
   end
-  
+
   class TestBlastReportIteration < Test::Unit::TestCase
     include TestBlastReportHelper
 
@@ -218,8 +218,8 @@ module Bio
     end
 
     def test_statistics
-      stat = {"kappa" => 0.041, "eff-space" => 605284, "db-num" => 1, 
-              "hsp-len" => 42, "db-len" => 820, "lambda" => 0.267, 
+      stat = {"kappa" => 0.041, "eff-space" => 605284, "db-num" => 1,
+              "hsp-len" => 42, "db-len" => 820, "lambda" => 0.267,
               "entropy" => 0.14}
       assert_equal(stat, @itr.statistics)
     end
@@ -262,7 +262,7 @@ module Bio
     end
 
     def test_Hit_hit_id
-      assert_equal('gnl|BL_ORD_ID|0', @hit.hit_id) 
+      assert_equal('gnl|BL_ORD_ID|0', @hit.hit_id)
     end
 
     def test_Hit_len
@@ -288,7 +288,7 @@ module Bio
     def test_Hit_target_id
       assert(@hit.target_id)
     end
-    
+
     def test_Hit_evalue
       assert_equal(0, @hit.evalue)
     end
@@ -352,7 +352,7 @@ module Bio
       report = create_report_object
       @hsp = report.hits.first.hsps.first
     end
-    
+
     def test_Hsp_num
       assert_equal(1, @hsp.num)
     end
@@ -444,7 +444,7 @@ module Bio
       assert_nothing_raised { @hsp.mismatch_count }
     end
 
-  end 
+  end
 
   class TestBlastReportREXML < TestBlastReport
   end
@@ -597,7 +597,7 @@ module Bio
       seq = @filtered_query_sequence.gsub(/x/, 'X')
       assert_equal(seq, @hsp.qseq)
     end
-    
+
     def test_Hsp_bit_score
       # differs from XML because of truncation in the default format
       assert_equal(1567.0, @hsp.bit_score)
@@ -765,8 +765,8 @@ module Bio
       assert_equal({}, @report.statistics)
 
       stat = {
-        "kappa" => 0.041, "eff-space" => 0, "db-num" => 5361, 
-        "hsp-len" => 0, "db-len" => 1609188, "lambda" => 0.267, 
+        "kappa" => 0.041, "eff-space" => 0, "db-num" => 5361,
+        "hsp-len" => 0, "db-len" => 1609188, "lambda" => 0.267,
         "entropy" => 0.14
       }
       stats = [ {}, stat, stat, {}, stat ]
@@ -837,7 +837,7 @@ module Bio
       end
     end
   end
-  
+
   class TestBlastReportIterationMulti < Test::Unit::TestCase
     include TestBlastReportHelper
 
@@ -872,8 +872,8 @@ module Bio
 
     def test_statistics
       stat = {
-        "kappa" => 0.041, "eff-space" => 0, "db-num" => 5361, 
-        "hsp-len" => 0, "db-len" => 1609188, "lambda" => 0.267, 
+        "kappa" => 0.041, "eff-space" => 0, "db-num" => 5361,
+        "hsp-len" => 0, "db-len" => 1609188, "lambda" => 0.267,
         "entropy" => 0.14
       }
       assert_equal(stat, @itr.statistics)
@@ -917,7 +917,7 @@ module Bio
     end
 
     def test_Hit_hit_id
-      assert_equal('gi|13363792|dbj|BAB37741.1|', @hit.hit_id) 
+      assert_equal('gi|13363792|dbj|BAB37741.1|', @hit.hit_id)
     end
 
     def test_Hit_len
@@ -944,7 +944,7 @@ module Bio
       #assert_equal('gi|13363792|dbj|BAB37741.1|', @hit.target_id)
       assert_equal('BAB37741', @hit.target_id)
     end
-    
+
     def test_Hit_evalue
       assert_equal(0.000899657, @hit.evalue)
     end
@@ -1009,7 +1009,7 @@ module Bio
       report = create_report_object('blastp-multi')
       @hsp = report.reports[4].iterations[0].hits[1].hsps[0]
     end
-    
+
     def test_Hsp_num
       assert_equal(1, @hsp.num)
     end
@@ -1101,7 +1101,7 @@ module Bio
       assert_nothing_raised { @hsp.mismatch_count }
     end
 
-  end 
+  end
 
   # Tests for REXML version
   class TestBlastReportMultiREXML < TestBlastReportMulti

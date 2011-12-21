@@ -29,7 +29,7 @@ class TRANSFAC < EMBLDB
   #  AC  R00001   in the case of SITE
   #  AC  G000001  in the case of GENE
   #  AC  C00001   in the case of CLASS
-  #  AC  00001    in the case of CELL 
+  #  AC  00001    in the case of CELL
   #
   def ac
     unless @data['AC']
@@ -178,7 +178,7 @@ class TRANSFAC < EMBLDB
       field_fetch('BF')
     end
 
-    def so 
+    def so
       field_fetch('SO')
     end
 
@@ -220,14 +220,14 @@ class TRANSFAC < EMBLDB
       field_fetch('HO')
     end
 
-    # CL      Classification (class accession no.; class identifier; decimal 
+    # CL      Classification (class accession no.; class identifier; decimal
     # CL      classification number.)
     def cl
       field_fetch('CL')
     end
 
-    # SZ      Size (length (number of amino acids); calculated molecular mass 
-    # SZ      in kDa; experimental molecular mass (or range) in kDa 
+    # SZ      Size (length (number of amino acids); calculated molecular mass
+    # SZ      in kDa; experimental molecular mass (or range) in kDa
     # SZ      (experimental method) [Ref]
     def sz
       field_fetch('SZ')
@@ -268,7 +268,7 @@ class TRANSFAC < EMBLDB
       field_fetch('FF')
     end
 
-    # IN      Interacting factors (factor accession no.; factor name; 
+    # IN      Interacting factors (factor accession no.; factor name;
     # IN      biological species.)
     def in
       field_fetch('IN')

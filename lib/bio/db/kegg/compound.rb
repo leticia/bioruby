@@ -19,7 +19,7 @@ class KEGG
 # KEGG COMPOUND is a chemical structure database.
 #
 # == References
-# 
+#
 # * http://www.genome.jp/kegg/compound/
 #
 class COMPOUND < KEGGDB
@@ -102,7 +102,7 @@ class COMPOUND < KEGGDB
 
   # PATHWAY
   def pathways_as_strings
-    lines_fetch('PATHWAY') 
+    lines_fetch('PATHWAY')
   end
 
   # ENZYME

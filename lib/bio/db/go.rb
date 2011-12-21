@@ -1,7 +1,7 @@
 #
 # = bio/db/go.rb - Classes for Gene Ontology
 #
-# Copyright::   Copyright (C) 2003 
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -35,7 +35,7 @@ class GO
 
     # Bio::GO::Ontology.parse_ogids(line)
     #
-    # Parsing GOID line in the DAGEdit format  
+    # Parsing GOID line in the DAGEdit format
     #  GO:ID[ ; GO:ID...]
     def self.parse_goids(line)
       goids = []
@@ -57,7 +57,7 @@ class GO
     # Returns a Hash instance of the header lines in ontology flatfile.
     attr_reader :header_lines
 
-    # 
+    #
     attr_reader :id2term
 
     #
@@ -74,7 +74,7 @@ class GO
       super(adj_list)
     end
 
-        
+
     # Returns a GO_Term correspondig with the given GO_ID.
     def goid2term(goid)
       term = id2term[goid]
@@ -88,7 +88,7 @@ class GO
     def dag_edit_format_parser(str)
       stack    = []
       adj_list = []
-      
+
       str.each_line {|line|
         if /^!(.+?):\s+(\S.+)$/ =~ line  # Parsing head lines
           tag   = $1
@@ -98,7 +98,7 @@ class GO
           instance_eval("@header_lines['#{tag}'] = '#{value}'")
           next
         end
-        
+
         case line
         when /^( *)([$<%])(.+?) ; GO:(\d{7})(\n*)/ # GO Term ; GO:ID
           depth = $1.length.to_i
@@ -110,7 +110,7 @@ class GO
           synonyms = parse_synonyms(line)  # synonym:Term[ ; synonym:Term...]
           stack[depth]   = goids.first
           @id2term[goid] = term
-          
+
           next if depth == 0
 
           goids.each {|goid|
@@ -118,7 +118,7 @@ class GO
             @id2id[goid]   = goids.first
             adj_list << Bio::Relation.new(stack[depth - 1], goid, rel)
           }
-            
+
           if en == ""
             loop {
               case line
@@ -130,7 +130,7 @@ class GO
                 goid1 = $3
                 goids1 = parse_goids(line)
                 synonyms1 = parse_synonyms(line)
-                
+
                 @id2term[goid1] = term1
                 goids.each {|goid|
                   adj_list << Bio::Relation.new(goid1, goid, rel1)
@@ -146,7 +146,7 @@ class GO
     end
 
 
-    # Returns an ary of GO IDs by parsing an entry line in the DAG Edit 
+    # Returns an ary of GO IDs by parsing an entry line in the DAG Edit
     # format.
     def parse_goids(line)
       Ontology.parse_goids(line)
@@ -192,10 +192,10 @@ class GO
     DELIMITER = "\n"
 
     # Delimiter
-    RS = DELIMITER 
+    RS = DELIMITER
 
     # Retruns an Array of parsed gene_association flatfile.
-    # Block is acceptable.  
+    # Block is acceptable.
     def self.parser(str)
       if block_given?
         str.each_line(DELIMITER) {|line|
@@ -223,7 +223,7 @@ class GO
 
     # Returns Db_Object_Name variable.
     attr_reader :qualifier
-    
+
     # Returns Db_Reference variable.
     attr_reader :db_reference      # -> []
 
@@ -250,35 +250,35 @@ class GO
 
     # Returns Date variable.
     attr_reader :date
-    
-    # 
-    attr_reader :assigned_by 
-    
+
+    #
+    attr_reader :assigned_by
+
     alias entry_id db_object_id
 
 
-    # Parsing an entry (in a line) in the gene_association flatfile.  
-    def initialize(entry) 
+    # Parsing an entry (in a line) in the gene_association flatfile.
+    def initialize(entry)
       tmp = entry.chomp.split(/\t/)
-      @db                = tmp[0] 
+      @db                = tmp[0]
       @db_object_id      = tmp[1]
       @db_object_symbol  = tmp[2]
-      @qualifier         = tmp[3]  # 
+      @qualifier         = tmp[3]  #
       @goid              = tmp[4]
       @db_reference      = tmp[5].split(/\|/)  #
       @evidence          = tmp[6]
-      @with              = tmp[7].split(/\|/)  # 
+      @with              = tmp[7].split(/\|/)  #
       @aspect            = tmp[8]
       @db_object_name    = tmp[9]  #
       @db_object_synonym = tmp[10].split(/\|/) #
       @db_object_type    = tmp[11]
       @taxon             = tmp[12] # taxon:4932
       @date              = tmp[13] # 20010118
-      @assigned_by       = tmp[14] 
+      @assigned_by       = tmp[14]
     end
 
 
-    # Returns GO_ID in /\d{7}/ format. Giving not nil arg, returns 
+    # Returns GO_ID in /\d{7}/ format. Giving not nil arg, returns
     # /GO:\d{7}/ style.
     #
     # * Bio::GO::GeneAssociation#goid -> "001234"
@@ -293,24 +293,24 @@ class GO
 
     # Bio::GO::GeneAssociation#to_str -> a line of gene_association file.
     def to_str
-      return [@db, @db_object_id, @db_object_symbol, @qualifier, @goid, 
+      return [@db, @db_object_id, @db_object_symbol, @qualifier, @goid,
               @db_reference.join("|"), @evidence, @with.join("|"), @aspect,
               @db_object_name, @db_object_synonym.join("|"), @db_object_type,
               @taxon, @date, @assigned_by].join("\t")
     end
 
-  end # class GeneAssociation   
+  end # class GeneAssociation
 
 
 
   # = Container class for files in geneontology.org/go/external2go/*2go.
   #
-  # The line syntax is: 
+  # The line syntax is:
   #
   # database:<identifier> > GO:<term> ; GO:<GO_id>
   #
   # == Example
-  # 
+  #
   #  spkw2go = Bio::GO::External2go.new(File.read("spkw2go"))
   #  spkw2go.size
   #  spkw2go.each do |relation|
@@ -378,7 +378,7 @@ class GO
         self.map { |e| [e[:db], ':', e[:db_id], ' > GO:', e[:go_term], ' ; ', e[:go_id]].join }
       ].join("\n")
     end
-    
+
 
     # Returns ary of databases.
     def dbs
@@ -402,7 +402,7 @@ class GO
     end
 
   end # class External2go
-  
+
 end # class GO
 
 end # module Bio
