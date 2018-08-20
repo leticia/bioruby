@@ -16,7 +16,7 @@ class RestrictionEnzyme
 #   #require 'bio/util/restriction_enzyme/cut_symbol'
 #   require 'cut_symbol'
 #   include Bio::RestrictionEnzyme::CutSymbol
-#   
+#
 #   cut_symbol                            # => "^"
 #   set_cut_symbol('|')                   # => "|"
 #   cut_symbol                            # => "|"
@@ -83,25 +83,25 @@ module CutSymbol
   #########
   #protected  # NOTE this is a Module, can't hide CutSymbol__
   #########
-  
+
   require 'singleton'
-  
+
   # Class to keep state
   class CutSymbol__
     include Singleton
 
     @cut_symbol = '^'
-    
+
     def self.cut_symbol; @cut_symbol; end
-    
+
     def self.cut_symbol=(glyph);
       raise ArgumentError if glyph.size != 1
       @cut_symbol = glyph
     end
-    
+
     def self.escaped_cut_symbol; "\\" + self.cut_symbol; end
   end
-  
+
 end # CutSymbol
 end # RestrictionEnzyme
 end # Bio

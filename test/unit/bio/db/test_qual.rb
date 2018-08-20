@@ -23,8 +23,8 @@ module Bio
 
     def setup
       text =<<END
->CRA3575282.F 
-24 15 23 29 20 13 20 21 21 23 22 25 13 22 17 15 25 27 32 26  
+>CRA3575282.F
+24 15 23 29 20 13 20 21 21 23 22 25 13 22 17 15 25 27 32 26
 32 29 29 25
 END
       @obj = Bio::FastaNumericFormat.new(text)
@@ -35,7 +35,7 @@ END
     end
 
     def test_entry_id
-      assert_equal('CRA3575282.F', @obj.entry_id) 
+      assert_equal('CRA3575282.F', @obj.entry_id)
     end
 
     def test_definition

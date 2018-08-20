@@ -239,7 +239,7 @@ module Bio
           (@midline and @seq1.seq and @seq2.seq) ? @midline.length : nil
         end
       end #class SegmentPair
-      
+
       # Segment informations of a segment pair.
       class Segment
         #--
@@ -286,7 +286,7 @@ module Bio
           end
           @seq1 = SeqDesc.parse(a0[0], a1[0])
           @seq2 = SeqDesc.parse(a0[1], a1[1])
-          
+
           if @data[0].to_s.sub!(/\A\(complement\)\s*$/, '') then
             @complement = true
             @data.shift if @data[0].strip.empty?

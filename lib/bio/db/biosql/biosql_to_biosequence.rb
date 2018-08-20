@@ -23,8 +23,8 @@ module Bio::Sequence::Adapter::BioSQL
 
   private
 
-  def_biosequence_adapter :seq 
-  
+  def_biosequence_adapter :seq
+
   def_biosequence_adapter :entry_id
 
   def_biosequence_adapter :primary_accession
@@ -34,7 +34,7 @@ module Bio::Sequence::Adapter::BioSQL
   def_biosequence_adapter :molecule_type
 
   #--
-  #TODO: identify where is stored data_class in biosql      
+  #TODO: identify where is stored data_class in biosql
   #++
 
   def_biosequence_adapter :data_class
@@ -63,7 +63,7 @@ module Bio::Sequence::Adapter::BioSQL
   def_biosequence_adapter :references
 
   def_biosequence_adapter :features
-  
+
   def_biosequence_adapter :comments
 
   def_biosequence_adapter :other_seqids do |orig|

@@ -7,7 +7,7 @@
 = KEGG API
 
 KEGG API はプログラムなどから KEGG を利用するためのウェブサービスです。
-前半では、KEGG データベースから情報を取得したり検索したりするために 
+前半では、KEGG データベースから情報を取得したり検索したりするために
 KEGG API を使う方法を説明します。後半のリファレンスで KEGG API の全機能を
 解説します。例として主に Ruby 言語を使って解説しますが、SOAP と WSDL を
 扱うことのできる言語（Perl, Python, Java など）であれば簡単に KEGG API を
@@ -179,16 +179,16 @@ XML のパーザなど) もインストールする必要がありますので、あらかじめ SOAP4R
 を、Smith-Waterman スコアの高い順に 5 個検索して表示するプログラムです。
 
   #!/usr/bin/env ruby
-  
+
   require 'soap/wsdlDriver'
-  
+
   wsdl = "http://soap.genome.jp/KEGG.wsdl"
   serv = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
   serv.generate_explicit_type = true	# SOAP と Ruby の型変換を有効にする
-  
+
   offset = 1
   limit = 5
-  
+
   top5 = serv.get_best_neighbors_by_gene('eco:b0002', offset, limit)
   top5.each do |hit|
     print hit.genes_id1, "\t", hit.genes_id2, "\t", hit.sw_score, "\n"
@@ -221,16 +221,16 @@ offset, limit に名称変更しました）。このため、これらのメソッドで
 全ての結果を得るためにはループを用いる必要があります。
 
   #!/usr/bin/env ruby
-  
+
   require 'soap/wsdlDriver'
-  
+
   wsdl = "http://soap.genome.jp/KEGG.wsdl"
   serv = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
   serv.generate_explicit_type = true
-  
+
   offset = 1
   limit = 100
-  
+
   loop do
     results = serv.get_best_neighbors_by_gene('eco:b0002', offset, limit)
     break unless results	# 結果が返ってこなければ終了
@@ -245,11 +245,11 @@ WSDL を用いているため、これらの例でも Ruby の場合は十分に簡単に書けま
 ことができます。
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   serv = Bio::KEGG::API.new
-  
+
   results = serv.get_all_best_neighbors_by_gene('eco:b0002')
   results.each do |hit|
     print hit.genes_id1, "\t", hit.genes_id2, "\t", hit.sw_score, "\n"
@@ -261,19 +261,19 @@ BioRuby では 'get_all_best_neighbors_by_gene' メソッドが定義されており、
 ドを使うこともできます。
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   serv = Bio::KEGG::API.new
-  
+
   results = serv.get_all_best_neighbors_by_gene('eco:b0002')
-  
+
   # 欲しい値が遺伝子名のペアと SW スコアだけの場合の例
   fields = [:genes_id1, :genes_id2, :sw_score]
   results.each do |hit|
     puts hit.filter(fields).join("\t")
   end
-  
+
   # それぞれの遺伝子でアライメントされたポジションなども表示させる例
   fields1 = [:genes_id1, :start_position1, :end_position1, :best_flag_1to2]
   fields2 = [:genes_id2, :start_position2, :end_position2, :best_flag_2to1]
@@ -286,11 +286,11 @@ BioRuby では 'get_all_best_neighbors_by_gene' メソッドが定義されており、
 次は、大腸菌 (eco) に対する KEGG パスウェイの一覧を返す例です。
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   serv = Bio::KEGG::API.new
-  
+
   list = serv.list_pathways("eco")
   list.each do |path|
     print path.entry_id, "\t", path.definition, "\n"
@@ -305,14 +305,14 @@ sw_score などを取り出していたのでした）。
 たパスウェイ eco00010 の画像を生成して、ファイルに保存する例です。
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   serv = Bio::KEGG::API.new
-  
+
   genes = ["eco:b1002", "eco:b2388"]
   url = serv.mark_pathway_by_objects("path:eco00010", genes)
-  
+
   puts url
 
   # BioRuby の場合、画像を取得して保存するのに save_image メソッドが使える
@@ -331,18 +331,18 @@ Perl では、以下のライブラリを追加インストールしておく必要があります。
 以下、Ruby の最初の例と同じ処理を実行するサンプルコードです。
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite;
-  
+
   $wsdl = 'http://soap.genome.jp/KEGG.wsdl';
-  
+
   $serv = SOAP::Lite -> service($wsdl);
-  
+
   $offset = 1;
   $limit = 5;
-  
+
   $top5 = $serv->get_best_neighbors_by_gene('eco:b0002', $offset, $limit);
-  
+
   foreach $hit (@{$top5}) {
     print "$hit->{genes_id1}\t$hit->{genes_id2}\t$hit->{sw_score}\n";
   }
@@ -350,15 +350,15 @@ Perl では、以下のライブラリを追加インストールしておく必要があります。
 同じく、大腸菌の KEGG パスウェイのリストを返す例です。
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite;
-  
+
   $wsdl = 'http://soap.genome.jp/KEGG.wsdl';
-  
+
   $results = SOAP::Lite
                -> service($wsdl)
                -> list_pathways("eco");
-  
+
   foreach $path (@{$results}) {
     print "$path->{entry_id}\t$path->{definition}\n";
   }
@@ -371,17 +371,17 @@ SOAP::Lite では引数に配列を渡す時には、
 づけで遺伝子のリストを渡す場合は、
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite;
-  
+
   $wsdl = 'http://soap.genome.jp/KEGG.wsdl';
-  
+
   $serv = SOAP::Lite -> service($wsdl);
-  
+
   $genes = SOAP::Data->type(array => ["eco:b1002", "eco:b2388"]);
-  
+
   $result = $serv -> mark_pathway_by_objects("path:eco00010", $genes);
-  
+
   print $result;
 
 のようになります。
@@ -433,7 +433,7 @@ SOAP::Lite v0.69 で ArrayOfstring の変換がうまく働いているかどうかは
 以下のプログラムでテストできます。画像の URL が表示されれば OK です。
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite +trace => [qw(debug)];
 
   print "SOAP::Lite = ", $SOAP::Lite::VERSION, "\n";
@@ -509,15 +509,15 @@ javadoc の英語版が必要な場合は javadoc に -locale en_US オプションを
 リストを表示するサンプルコードです。
 
   import keggapi.*;
-  
+
   class GetGenesByPathway {
           public static void main(String[] args) throws Exception {
                   KEGGLocator  locator = new KEGGLocator();
                   KEGGPortType serv    = locator.getKEGGPort();
-  
+
                   String   query   = args[0];
                   String[] results = serv.get_genes_by_pathway(query);
-  
+
                   for (int i = 0; i < results.length; i++) {
                           System.out.println(results[i]);
                   }
@@ -527,17 +527,17 @@ javadoc の英語版が必要な場合は javadoc に -locale en_US オプションを
 次は、SSDBRelation 型の配列が戻ってくる例です。
 
   import keggapi.*;
-  
+
   class GetBestNeighborsByGene {
           public static void main(String[] args) throws Exception {
                   KEGGLocator    locator  = new KEGGLocator();
                   KEGGPortType   serv     = locator.getKEGGPort();
-  
+
                   String         query    = args[0];
                   SSDBRelation[] results  = null;
-  
+
                   results = serv.get_best_neighbors_by_gene(query, 1, 50);
-  
+
                   for (int i = 0; i < results.length; i++) {
                           String gene1  = results[i].getGenes_id1();
                           String gene2  = results[i].getGenes_id2();
@@ -1129,7 +1129,7 @@ SSDB データベースについて詳しくは以下のページを参照してください。
 
   * ((<URL:http://www.genome.jp/kegg/ssdb/>))
 
-  
+
 --- get_best_best_neighbors_by_gene(string:genes_id, int:offset, int:limit)
 
 クエリとターゲットが best-best の関係にある遺伝子だけを検索します。
@@ -1427,7 +1427,7 @@ KGML について詳しくは下記のページを参照してください。
       puts sub.element_id
       puts sub.relation
       puts sub.type
-    end  
+    end
   end
 
 + パスウェイ上のオブジェクト検索

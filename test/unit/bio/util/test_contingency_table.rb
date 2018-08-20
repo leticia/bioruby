@@ -19,7 +19,7 @@ require 'bio/util/contingency_table'
 
 module Bio #:nodoc:
   class TestContingencyTable < Test::Unit::TestCase #:nodoc:
- 
+
     def lite_example(sequences, max_length, characters)
 
       output = []

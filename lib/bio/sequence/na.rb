@@ -122,7 +122,7 @@ class NA < String
     self
   end
 
-  # Returns a new sequence object with the reverse complement 
+  # Returns a new sequence object with the reverse complement
   # sequence to the original.  The original sequence is not modified.
   #
   #   s = Bio::Sequence::NA.new('atgc')
@@ -136,7 +136,7 @@ class NA < String
     s
   end
 
-  # Converts the original sequence into its reverse complement.  
+  # Converts the original sequence into its reverse complement.
   # The original sequence is modified.
   #
   #   s = Bio::Sequence::NA.new('atgc')
@@ -151,13 +151,13 @@ class NA < String
 
   # Alias for Bio::Sequence::NA#reverse_complement
   alias complement reverse_complement
-  
+
   # Alias for Bio::Sequence::NA#reverse_complement!
   alias complement! reverse_complement!
 
 
   # Translate into an amino acid sequence.
-  #   
+  #
   #   s = Bio::Sequence::NA.new('atggcgtga')
   #   puts s.translate                        #=> "MA*"
   #
@@ -175,9 +175,9 @@ class NA < String
   #   puts s.reverse_complement.translate(1)  #=> "SRH"
   #
   # The default codon table in the translate function is the Standard
-  # Eukaryotic codon table.  The translate function takes either a 
-  # number or a Bio::CodonTable object for its table argument. 
-  # The available tables are 
+  # Eukaryotic codon table.  The translate function takes either a
+  # number or a Bio::CodonTable object for its table argument.
+  # The available tables are
   # (NCBI[http://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=t]):
   #
   #   1. "Standard (Eukaryote)"
@@ -198,7 +198,7 @@ class NA < String
   #   22. "Scenedesmus obliquus mitochondrial"
   #   23. "Thraustochytrium Mitochondrial"
   #
-  # If you are using anything other than the default table, you must specify 
+  # If you are using anything other than the default table, you must specify
   # frame in the translate method call,
   #
   #   puts s.translate                #=> "MA*"  (using defaults)
@@ -210,16 +210,16 @@ class NA < String
   #   mt_table = Bio::CodonTable[2]
   #   puts s.translate(1, mt_table)           #=> "MAW"
   #
-  # By default, any invalid or unknown codons (as could happen if the 
-  # sequence contains ambiguities) will be represented by 'X' in the 
-  # translated sequence. 
+  # By default, any invalid or unknown codons (as could happen if the
+  # sequence contains ambiguities) will be represented by 'X' in the
+  # translated sequence.
   # You may change this to any character of your choice.
   #
   #   s = Bio::Sequence::NA.new('atgcNNtga')
   #   puts s.translate                        #=> "MX*"
   #   puts s.translate(1,1,'9')               #=> "M9*"
   #
-  # The translate method considers gaps to be unknown characters and treats 
+  # The translate method considers gaps to be unknown characters and treats
   # them as such (i.e. does not collapse sequences prior to translation), so
   #
   #   s = Bio::Sequence::NA.new('atgc--tga')
@@ -280,7 +280,7 @@ class NA < String
     return hash
   end
 
-  # Calculate the ratio of GC / ATGC bases as a percentage rounded to 
+  # Calculate the ratio of GC / ATGC bases as a percentage rounded to
   # the nearest whole number. U is regarded as T.
   #
   #   s = Bio::Sequence::NA.new('atggcgtga')
@@ -352,7 +352,7 @@ class NA < String
     return (a - t).quo(a + t)
   end
 
-  # Returns an alphabetically sorted array of any non-standard bases 
+  # Returns an alphabetically sorted array of any non-standard bases
   # (other than 'atgcu').
   #
   #   s = Bio::Sequence::NA.new('atgStgQccR')
@@ -363,7 +363,7 @@ class NA < String
     self.scan(/[^atgcu]/).sort.uniq
   end
 
-  # Estimate molecular weight (using the values from BioPerl's 
+  # Estimate molecular weight (using the values from BioPerl's
   # SeqStats.pm[http://doc.bioperl.org/releases/bioperl-1.0.1/Bio/Tools/SeqStats.html] module).
   #
   #   s = Bio::Sequence::NA.new('atggcgtga')
@@ -383,8 +383,8 @@ class NA < String
     end
   end
 
-  # Create a ruby regular expression instance 
-  # (Regexp)[http://corelib.rubyonrails.org/classes/Regexp.html]  
+  # Create a ruby regular expression instance
+  # (Regexp)[http://corelib.rubyonrails.org/classes/Regexp.html]
   #
   #   s = Bio::Sequence::NA.new('atggcgtga')
   #   puts s.to_re                            #=> /atggcgtga/
@@ -442,7 +442,7 @@ class NA < String
   # The original sequence is not modified.
   #
   #   s = Bio::Sequence::NA.new('atgc')
-  #   puts s.dna                              #=> 'augc'  
+  #   puts s.dna                              #=> 'augc'
   #   puts s                                  #=> 'atgc'
   # ---
   # *Returns*:: new Bio::Sequence::NA object

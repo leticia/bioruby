@@ -69,7 +69,7 @@ module Bio
 
 module PhyloXML
 
-  
+
   # Taxonomy class
   class Taxonomy < Bio::Taxonomy
     # String. Unique identifier of a taxon.
@@ -120,7 +120,7 @@ module PhyloXML
 
     # String. Description of tree.
     attr_accessor :description
-   
+
     # Boolean. Can be used to indicate that the phylogeny is not allowed to be rooted differently (i.e. because it is associated with root dependent data, such as gene duplications).
     attr_accessor :rerootable
 
@@ -229,11 +229,11 @@ module PhyloXML
     end
 
 
-    # Converts to a Bio::Tree::Node object. If it contains several taxonomies 
-    # Bio::Tree::Node#scientific name will get the scientific name of the first 
+    # Converts to a Bio::Tree::Node object. If it contains several taxonomies
+    # Bio::Tree::Node#scientific name will get the scientific name of the first
     # taxonomy.
-    # 
-    # If there are several confidence values, the first with bootstrap type will 
+    #
+    # If there are several confidence values, the first with bootstrap type will
     # be returned as Bio::Tree::Node#bootstrap
     #
     # tree = phyloxmlparser.next_tree
@@ -256,13 +256,13 @@ module PhyloXML
             break
           end
         end
-      end      
+      end
       return node
     end
 
     # Extracts the relevant information from node (specifically taxonomy and
     # sequence) to create Bio::Sequence object. Node can have several sequences,
-    # so parameter to this method is to specify which sequence to extract. 
+    # so parameter to this method is to specify which sequence to extract.
     #
     # ---
     # *Returns*:: Bio::Sequence
@@ -286,10 +286,10 @@ module PhyloXML
     # Converts elements to xml representation. Called by PhyloXML::Writer class.
     def to_xml(branch_length,  write_branch_length_as_subelement)
       clade = LibXML::XML::Node.new('clade')
-      
+
       PhyloXML::Writer.generate_xml(clade, self, [[:simple, 'name', @name]])
 
-      if branch_length != nil       
+      if branch_length != nil
         if write_branch_length_as_subelement
           clade << LibXML::XML::Node.new('branch_length', branch_length.to_s)
         else
@@ -307,12 +307,12 @@ module PhyloXML
           [:objarr, 'taxonomy', 'taxonomies'],
           [:objarr, 'sequence', 'sequences'],
           [:complex, 'events', @events],
-          [:complex, 'binary_characters', @binary_characters],          
+          [:complex, 'binary_characters', @binary_characters],
           [:objarr, 'distribution', 'distributions'],
-          [:complex, 'date', @date],          
+          [:complex, 'date', @date],
           [:objarr, 'reference', 'references'],
           [:objarr, 'propery', 'properties']])
-     
+
       return clade
     end
 
@@ -393,7 +393,7 @@ module PhyloXML
           raise "Type is a required attribute for confidence."
         else
           confidence = LibXML::XML::Node.new('confidence', @value.to_s)
-          confidence["type"] = @type          
+          confidence["type"] = @type
           return confidence
         end
       end
@@ -402,7 +402,7 @@ module PhyloXML
     # == Description
     #
     # The geographic distribution of the items of a clade (species, sequences),
-    # intended for phylogeographic applications. 
+    # intended for phylogeographic applications.
     class Distribution
       # String. Free text description of location.
       attr_accessor :desc
@@ -426,7 +426,7 @@ module PhyloXML
             [:objarr, 'polygon', 'polygons']])
         return distr
       end
-      
+
     end #Distribution class
 
 
@@ -441,7 +441,7 @@ module PhyloXML
 
       # Float. Longitute
       attr_accessor :long
-      
+
       # Float. Altitude
       attr_accessor :alt
 
@@ -495,7 +495,7 @@ module PhyloXML
 
       # Converts elements to xml representation. Called by PhyloXML::Writer class.
       def to_xml
-        if @points.length > 2          
+        if @points.length > 2
           pol = LibXML::XML::Node.new('polygon')
           @points.each do |p|
             pol << p.to_xml
@@ -538,7 +538,7 @@ module PhyloXML
       # as well (which, in most cases, means that gaps were introduced, and that
       # all sequences for which 'is aligned' is true must have the same length)
       attr_reader :is_aligned
-      
+
       # Uri object
       attr_accessor :uri
       # Array of Annotation objects. Annotations of molecular sequence.
@@ -579,16 +579,16 @@ module PhyloXML
 
       # Converts elements to xml representation. Called by PhyloXML::Writer class.
       def to_xml
-        
+
         seq = LibXML::XML::Node.new('sequence')
         if @type != nil
           if ["dna", "rna", "protein"].include?(@type)
             seq["type"] = @type
-          else 
+          else
             raise "Type attribute of Sequence has to be one of dna, rna or a."
           end
         end
-        
+
         PhyloXML::Writer.generate_xml(seq, self, [
             [:attr, 'id_source'],
             [:attr, 'id_ref'],
@@ -672,10 +672,10 @@ module PhyloXML
       # String. For example, image.
       attr_accessor :type
       # String. URL of the resource.
-      attr_accessor :uri 
+      attr_accessor :uri
 
       # Converts elements to xml representation. Called by PhyloXML::Writer class.
-      def to_xml        
+      def to_xml
         if @uri != nil
           xml_node = LibXML::XML::Node.new('uri', @uri)
           Writer.generate_xml(xml_node, self, [
@@ -702,7 +702,7 @@ module PhyloXML
       attr_accessor :evidence
       # String. Type of the annotation.
       attr_accessor :type
-      # String. Free text description. 
+      # String. Free text description.
       attr_accessor :desc
       # Confidence object. Type and value of support for a annotation.
       attr_accessor :confidence
@@ -717,7 +717,7 @@ module PhyloXML
         @properties = []
       end
 
-      # Converts elements to xml representation. Called by PhyloXML::Writer class. 
+      # Converts elements to xml representation. Called by PhyloXML::Writer class.
       def to_xml
         annot = LibXML::XML::Node.new('annotation')
         annot["ref"] = @ref if @ref != nil
@@ -732,7 +732,7 @@ module PhyloXML
     class Id
       # The provider of Id, for example, NCBI.
       attr_accessor :provider
-      # The value of Id. 
+      # The value of Id.
       attr_accessor :value
 
       # Converts elements to xml representation. Called by PhyloXML::Writer class.
@@ -869,7 +869,7 @@ module PhyloXML
     class ProteinDomain
       #Float, for example to store E-values    4.7E-14
       attr_accessor :confidence
-      
+
       # String
       attr_accessor :id, :value
 
@@ -886,7 +886,7 @@ module PhyloXML
       def to=(str)
         @to = str.to_i
       end
-      
+
       def confidence=(str)
         @confidence = str.to_f
       end
@@ -1022,7 +1022,7 @@ module PhyloXML
               [:attr, 'id_ref_1'],
               [:attr, 'distance'],
               [:attr, 'type'],
-              [:complex, 'confidence', @confidnece]])         
+              [:complex, 'confidence', @confidnece]])
 
           return cr
         end
@@ -1147,7 +1147,7 @@ module PhyloXML
 
    class Other
       attr_accessor :element_name, :attributes, :children, :value
-      
+
       def initialize
         @children = []
         @attributes = Hash.new
@@ -1165,7 +1165,7 @@ module PhyloXML
         end
         return o
       end
-      
+
     end
 
 

@@ -19,7 +19,7 @@
 #
 # Example usage using test data:
 #
-#  $ ruby -Ilib sample/demo_kegg_reaction.rb test/data/KEGG/R00006.reaction 
+#  $ ruby -Ilib sample/demo_kegg_reaction.rb test/data/KEGG/R00006.reaction
 #
 # == Example of running this script
 #

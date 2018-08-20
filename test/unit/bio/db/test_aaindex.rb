@@ -1,7 +1,7 @@
 #
 # test/unit/bio/db/test_aaindex.rb - Unit test for Bio::AAindex
 #
-# Copyright::  Copyright (C) 2006 
+# Copyright::  Copyright (C) 2006
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -65,7 +65,7 @@ module Bio
       str = DataAAindex.aax1
       @obj = Bio::AAindex1.new(str)
     end
-    
+
     def test_entry_id
       assert_equal('PRAM900102', @obj.entry_id)
     end
@@ -194,5 +194,5 @@ module Bio
       ary = Matrix.row_vector([2.0, -2.0, 0.0, 0.0, -2.0, 0.0, 0.0, 1.0, -1.0, -1.0, -2.0, -1.0, -1.0, -4.0, 1.0, 1.0, 1.0, -6.0, -3.0, 0.0]).row(0)
       assert_equal(ary, @obj.matrix.transpose.row(0))
     end
-  end    
+  end
 end

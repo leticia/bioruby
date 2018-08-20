@@ -1,6 +1,6 @@
 #
 # = bio/db/embl/swissprot.rb - SwissProt database class
-# 
+#
 # Copyright::   Copyright (C) 2001, 2002 Toshiaki Katayama <k@bioruby.org>
 # License::     The Ruby License
 #
@@ -12,12 +12,12 @@ require 'bio/db/embl/sptr'
 module Bio
 
 # == Description
-# 
+#
 # Parser class for SwissProt database entry. See also Bio::SPTR class.
 # This class holds name space for SwissProt specific methods.
 #
-# SwissProt (before UniProtKB/SwissProt) specific methods are defined in 
-# this class. Shared methods for UniProtKB/SwissProt and TrEMBL classes 
+# SwissProt (before UniProtKB/SwissProt) specific methods are defined in
+# this class. Shared methods for UniProtKB/SwissProt and TrEMBL classes
 # are defined in Bio::SPTR class.
 #
 # == Examples
@@ -33,7 +33,7 @@ module Bio
 #
 # * Swiss-Prot Protein Knowledgebase User Manual
 #   http://au.expasy.org/sprot/userman.html
-# 
+#
 class SwissProt < SPTR
   # Nothing to do (SwissProt format is abstracted in SPTR)
 end

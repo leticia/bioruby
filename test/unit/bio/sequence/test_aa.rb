@@ -1,7 +1,7 @@
 #
 # = test/unit/bio/sequence/test_aa.rb - Unit test for Bio::Sequencce::AA
 #
-# Copyright::   Copyright (C) 2006 
+# Copyright::   Copyright (C) 2006
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -48,7 +48,7 @@ module Bio
 
   end
 
-  
+
   class TestSequenceAA < Test::Unit::TestCase
 
     def setup
@@ -64,7 +64,7 @@ module Bio
     def test_molecular_weight
       assert_in_delta(2612.105, @obj.molecular_weight, 1e-4)
     end
-    
+
     def test_to_re
       re = /RRLEHTFVFLRNFSLMLLRY/
       assert_equal(re, @obj.to_re)
@@ -74,17 +74,17 @@ module Bio
     end
 
     def test_codes
-      ary = ["Arg", "Arg", "Leu", "Glu", "His", "Thr", "Phe", "Val", 
-             "Phe", "Leu", "Arg", "Asn", "Phe", "Ser", "Leu", "Met", 
+      ary = ["Arg", "Arg", "Leu", "Glu", "His", "Thr", "Phe", "Val",
+             "Phe", "Leu", "Arg", "Asn", "Phe", "Ser", "Leu", "Met",
              "Leu", "Leu", "Arg", "Tyr"]
       assert_equal(ary, @obj.codes)
     end
 
     def test_names
-      ary = ["arginine", "arginine", "leucine", "glutamic acid", 
-             "histidine", "threonine", "phenylalanine", "valine", 
-             "phenylalanine", "leucine", "arginine", "asparagine", 
-             "phenylalanine", "serine", "leucine", "methionine", 
+      ary = ["arginine", "arginine", "leucine", "glutamic acid",
+             "histidine", "threonine", "phenylalanine", "valine",
+             "phenylalanine", "leucine", "arginine", "asparagine",
+             "phenylalanine", "serine", "leucine", "methionine",
              "leucine", "leucine", "arginine", "tyrosine"]
       assert_equal(ary, @obj.names)
     end
@@ -93,7 +93,7 @@ module Bio
 
 
 
-  require 'bio/sequence/aa'  
+  require 'bio/sequence/aa'
 
   class TestSequenceAACompat < Test::Unit::TestCase
     def test_aa_self_randomize

@@ -122,7 +122,7 @@ module Bio::Shell::Ghost
     load_config
     load_plugin
   end
- 
+
   def load_session
     load_object
     unless @cache[:mode] == :script
@@ -403,7 +403,7 @@ module Bio::Shell::Ghost
       STDERR.puts "done"
     end
   end
-  
+
   # not used (use open_history/close_history instead)
   def save_history
     if @cache[:readline]

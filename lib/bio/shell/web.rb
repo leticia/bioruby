@@ -47,7 +47,7 @@ module Bio::Shell
         basedir = File.dirname(__FILE__)
         puts "Installing Rails plugin for BioRuby shell ... "
         FileUtils.cp_r("#{basedir}/rails/.", savedir)
-        Dir.chdir(savedir) do 
+        Dir.chdir(savedir) do
           system("./script/generate bioruby shell")
         end
         puts "done"

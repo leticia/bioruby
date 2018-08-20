@@ -271,7 +271,7 @@ In 0.7.2:
   method after creating a new object.
 * Now, first argument of Bio::FlatFile.open, which shall be a database
   class or nil, can be omitted, and you can do
-  Bio::FlatFile.open(filename, ...). Note that 
+  Bio::FlatFile.open(filename, ...). Note that
   Bio::FlatFile.open(dbclass, filaname, ...) is still available.
 * Bio::FlatFile#io is obsoleted. Please use Bio::FlatFile#to_io instead.
 * When reading GenBank or GenPept files, comments at the  head of the file

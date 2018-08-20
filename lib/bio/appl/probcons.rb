@@ -13,7 +13,7 @@
 # of Amino Acid Sequences).
 #
 # == References
-# 
+#
 # * http://probcons.stanford.edu/
 # * Do, C.B., Mahabhashyam, M.S.P., Brudno, M., and Batzoglou, S.
 #   ProbCons: Probabilistic Consistency-based Multiple Sequence Alignment.

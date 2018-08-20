@@ -1,7 +1,7 @@
 #
 # = bio/appl/genscan/report.rb - Genscan report classes
 #
-# Copyright::  Copyright (C) 2003 
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -140,7 +140,7 @@ class Genscan
       if /^Parameter matrix: (\w.+)$/ =~ line.chomp
         @matrix = $1
       else
-        raise "Error: [#{line}]"  
+        raise "Error: [#{line}]"
       end
     end
     private :parse_parameter
@@ -151,7 +151,7 @@ class Genscan
       @predictions[gn - 1] = Gene.new(gn)
     end
     private :add_gene
-    
+
 
     # Bio::Genscan::Report#add_exon
     def add_exon(gn, en, line)
@@ -176,7 +176,7 @@ class Genscan
       end
     end
     private :add_exon
-      
+
 
     # Bio::Genscan::Report#add_seq
     def add_seq(seq)
@@ -228,7 +228,7 @@ class Genscan
         @aaseq = seq
       end
 
-        
+
       # Bio::Genescan::Report::Gene#seq_naseq
       def set_naseq(seq)
         @naseq = seq
@@ -254,7 +254,7 @@ class Genscan
 
       #
       TYPES = {
-        'Init' => 'Initial exon', 
+        'Init' => 'Initial exon',
         'Intr' => 'Internal exon',
         'Term' => 'Terminal exon',
         'Sngl' => 'Single-exon gene',
@@ -272,7 +272,7 @@ class Genscan
           e[11] = 0
           [6,7,8,9,10].each {|i| e[i] = nil }
         end
-        self.new(e[0], e[1], e[2], e[3], e[4], e[5], e[6], 
+        self.new(e[0], e[1], e[2], e[3], e[4], e[5], e[6],
                  e[7], e[8], e[9], e[10], e[11], e[12])
       end
 
@@ -309,11 +309,11 @@ class Genscan
 
       # Returns "Tscr" field.
       attr_reader :t_score
-      alias_method :coding_region_score, :score 
+      alias_method :coding_region_score, :score
 
-      
-      # Bio::Genescan::Report::Exon.new(gene_number, exon_type, strand, first, 
-      # end, length, frame, phase, acceptor_score, donor_score, score, p_value, 
+
+      # Bio::Genescan::Report::Exon.new(gene_number, exon_type, strand, first,
+      # end, length, frame, phase, acceptor_score, donor_score, score, p_value,
       # t_score)
       def initialize(gnex, t, s, b, e, len, fr, ph, iac, dot, cr, prob, ts)
         @gene_number, @number = gnex.split(".").map {|n| n.to_i }
@@ -333,18 +333,18 @@ class Genscan
 
 
 
-      # Bio::Genescan::Report::Exon#exon_type_long      
+      # Bio::Genescan::Report::Exon#exon_type_long
       #
       # Returns a human-readable "Type" of exon.
       def exon_type_long
         TYPES[exon_type]
       end
 
-        
+
       # Bio::Genescan::Report::Exon#range
       #
       # Returns Range object of the region.
-      def range 
+      def range
         Range.new(@first, @last)
       end
 
@@ -355,7 +355,7 @@ class Genscan
       def acceptor_score
         @i_ac
       end
-      alias_method :initiation_score, :acceptor_score 
+      alias_method :initiation_score, :acceptor_score
 
 
       # Bio::Genescan::Report::Exon#donor_score
@@ -364,12 +364,12 @@ class Genscan
       def donor_score
         @do_t
       end
-      alias_method :termination_score, :donor_score 
+      alias_method :termination_score, :donor_score
 
     end # class Exon
-    
+
   end # class Report
-  
+
 end # class Genscan
 
 end # module Bio

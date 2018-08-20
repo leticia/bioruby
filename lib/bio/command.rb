@@ -348,7 +348,7 @@ module Command
   # Executes the program with the query (String) given to the standard input,
   # waits the program termination, and returns the output data printed to the
   # standard output as a string.
-  # 
+  #
   # Automatically select popen for Ruby 1.9 or Windows environment and
   # fork for the others.
   #
@@ -491,7 +491,7 @@ module Command
   # *Arguments*:
   # * (optional) <em>prefix_suffix</em>: String (or Array, etc.)
   # * (optional) <em>tmpdir</em>: String: temporary directory's path
-  # 
+  #
   def mktmpdir(prefix_suffix = nil, tmpdir = nil, &block)
     begin
       Dir.mktmpdir(prefix_suffix, tmpdir, &block)
@@ -549,7 +549,7 @@ module Command
 
     # Returns finalizer object for Tmpdir class.
     # Internal use only. Users should not call this method directly.
-    # 
+    #
     # Acknowledgement: The essense of the code is taken from tempfile.rb
     # in Ruby 1.8.7.
     #
@@ -613,7 +613,7 @@ module Command
   end #class Tmpdir
 
   # Same as OpenURI.open_uri(uri).read
-  # and 
+  # and
   # it uses proxy if an environment variable (same as OpenURI.open_uri)
   # is set.
   #
@@ -627,7 +627,7 @@ module Command
 
   # Same as:
   #   Net::HTTP.start(address, port)
-  # and 
+  # and
   # it uses proxy if an environment variable (same as OpenURI.open_uri)
   # is set.
   #
@@ -651,7 +651,7 @@ module Command
 
   # Same as:
   #   Net::HTTP.new(address, port)
-  # and 
+  # and
   # it uses proxy if an environment variable (same as OpenURI.open_uri)
   # is set.
   #
@@ -674,7 +674,7 @@ module Command
 
   # Same as:
   #  http = Net::HTTP.new(...); http.post_form(path, params)
-  # and 
+  # and
   # it uses proxy if an environment variable (same as OpenURI.open_uri)
   # is set.
   # In addition, +header+ can be set.
@@ -704,7 +704,7 @@ module Command
 
   # Same as:
   # Net::HTTP.post_form(uri, params)
-  # and 
+  # and
   # it uses proxy if an environment variable (same as OpenURI.open_uri)
   # is set.
   # In addition, +header+ can be set.

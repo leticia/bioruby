@@ -48,7 +48,7 @@ module Bio; class PDB
   # Bio::PDB::Utils is included by Bio::PDB, Bio::PDB::Model,
   # Bio::PDB::Chain, Bio::PDB::Residue, and Bio::PDB::Heterogen classes.
   module Utils
-    
+
     # Returns the coordinates of the geometric centre (average co-ord)
     # of any AtomFinder (or .atoms) implementing object
     #
@@ -56,18 +56,18 @@ module Bio; class PDB
     # call geometricCentre(:each_hetatm).
     def geometricCentre(method = :each_atom)
       x = y = z = count = 0
-      
+
       self.__send__(method) do |atom|
         x += atom.x
         y += atom.y
         z += atom.z
         count += 1
       end
-      
+
       x = (x / count)
       y = (y / count)
       z = (z / count)
-     
+
       Coordinate[x,y,z]
     end
 
@@ -88,7 +88,7 @@ module Bio; class PDB
     # calculates centre of gravitiy
     def centreOfGravity()
       x = y = z = total = 0
-      
+
       self.each_atom{ |atom|
         element = atom.element[0,1]
         mass    = ElementMass[element]
@@ -97,11 +97,11 @@ module Bio; class PDB
         y += atom.y * mass
         z += atom.z * mass
       }
-      
+
       x = x / total
       y = y / total
       z = z / total
-      
+
       Coordinate[x,y,z]
     end
 
@@ -122,9 +122,9 @@ module Bio; class PDB
     def dihedral_angle(coord1, coord2, coord3, coord4)
       (a1,b1,c1,d) = calculatePlane(coord1,coord2,coord3)
       (a2,b2,c2)   = calculatePlane(coord2,coord3,coord4)
-      
+
       torsion = acos((a1*a2 + b1*b2 + c1*c2)/(Math.sqrt(a1**2 + b1**2 + c1**2) * Math.sqrt(a2**2 + b2**2 + c2**2)))
-      
+
       if ((a1*coord4.x + b1*coord4.y + c1*coord4.z + d) < 0)
         -torsion
       else
@@ -132,7 +132,7 @@ module Bio; class PDB
       end
     end
     module_function :dihedral_angle
-      
+
     # Implicit conversion into Vector or Bio::PDB::Coordinate
     def convert_to_xyz(obj)
       unless obj.is_a?(Vector)
@@ -171,13 +171,13 @@ module Bio; class PDB
     # calculates plane
     def calculatePlane(coord1, coord2, coord3)
       a = coord1.y * (coord2.z - coord3.z) +
-          coord2.y * (coord3.z - coord1.z) + 
+          coord2.y * (coord3.z - coord1.z) +
           coord3.y * (coord1.z - coord2.z)
       b = coord1.z * (coord2.x - coord3.x) +
-          coord2.z * (coord3.x - coord1.x) + 
+          coord2.z * (coord3.x - coord1.x) +
           coord3.z * (coord1.x - coord2.x)
       c = coord1.x * (coord2.y - coord3.y) +
-          coord2.x * (coord3.y - coord1.y) + 
+          coord2.x * (coord3.y - coord1.y) +
           coord3.x * (coord1.y - coord2.y)
       d = -1 *
           (
@@ -190,10 +190,10 @@ module Bio; class PDB
     end
     module_function :calculatePlane
 
-    # Every class in the heirarchy implements finder, this takes 
+    # Every class in the heirarchy implements finder, this takes
     # a class which determines which type of object to find, the associated
     # block is then run in classic .find style.
-    # 
+    #
     # The method might be deprecated.
     # You'd better using find_XXX  directly.
     def finder(findtype, &block) #:yields: obj
@@ -235,7 +235,7 @@ module Bio; class PDB
       return array
     end
   end #module ModelFinder
-  
+
   #--
   #The heirarchical nature of the objects allow us to re-use the
   #methods from the previous level - e.g. A PDB object can use the .models
@@ -273,7 +273,7 @@ module Bio; class PDB
       return array
     end
   end #module ChainFinder
-  
+
   # methods to access residues
   #
   # XXX#each_chain must be defined.
@@ -305,7 +305,7 @@ module Bio; class PDB
       return array
     end
   end #module ResidueFinder
-  
+
   # methods to access atoms
   #
   # XXX#each_residue must be defined.

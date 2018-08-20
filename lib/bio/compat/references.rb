@@ -28,7 +28,7 @@ module Bio
   # This class is OBSOLETED, and will soon be removed.
   # Instead of this class, an array is to be used.
   #
-  # 
+  #
   # A container class for Bio::Reference objects.
   #
   # = USAGE
@@ -86,7 +86,7 @@ module Bio
     # Normally, users can not call this method.
     #
     # Create a new Bio::References object
-    # 
+    #
     #   refs = Bio::References.new
     # ---
     # *Arguments*:

@@ -70,7 +70,7 @@ module Bio
         assert_equal([17, "I", 0.988, 3.293], @c.nb_sites[0].to_a)
       end
 
-      # We also provide the raw buffers to adhere to the principle of 
+      # We also provide the raw buffers to adhere to the principle of
       # unexpected use. Test the raw buffers for content:
       def test_header
         assert_equal(1, @c.header.to_s =~ /seed/)
@@ -115,7 +115,7 @@ module Bio
       def test_alpha
         assert_equal(nil, @m0.alpha)
       end
-    
+
       # We also have a tree (as a string)
       def test_tree
         str = "((((PITG_23265T0: 0.000004, PITG_23253T0: 0.400074): 0.000004, PITG_23257T0: 0.952614): 0.000004, PITG_23264T0: 0.445507): 0.000004, PITG_23267T0: 0.011814, PITG_23293T0: 0.092242);"
@@ -185,9 +185,9 @@ module Bio
         c = Bio::PAML::Codeml::Report.new(buf)
         @nb_sites = c.nb_sites
       end
-  
-      # Now we generate special string 'graph' for positive selection. The 
-      # following returns a string the length of the input alignment and 
+
+      # Now we generate special string 'graph' for positive selection. The
+      # following returns a string the length of the input alignment and
       # shows the locations of positive selection:
       def test_graph
         str = "                **    *       * *"
@@ -239,8 +239,8 @@ module Bio
         assert_equal(array, @c.sites[0].to_a)
         str = "                **    *       * *"
         assert_equal(str, @c.sites.graph[0..32])
-        
-        # Note the differences of omega with earlier M0-M3 naive Bayesian 
+
+        # Note the differences of omega with earlier M0-M3 naive Bayesian
         # analysis:
         str2 = "                24    3       3 2"
         assert_equal(str2, @c.sites.graph_omega[0..32])

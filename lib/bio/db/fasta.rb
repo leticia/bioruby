@@ -7,9 +7,9 @@
 # License::    The Ruby License
 #
 # $Id:$
-# 
+#
 # == Description
-# 
+#
 # FASTA format class.
 #
 # == Examples
@@ -20,7 +20,7 @@
 #
 # * FASTA format (WikiPedia)
 #   http://en.wikipedia.org/wiki/FASTA_format
-#   
+#
 # * Fasta format description (NCBI)
 #   http://www.ncbi.nlm.nih.gov/BLAST/fasta.shtml
 #
@@ -39,7 +39,7 @@ module Bio
   #   ATGCATGCATGCATGCATGCATGCATGCATGCATGC        <== sequence lines
   #   ATGCATGCATGCATGCATGCATGCATGCATGCATGC
   #   ATGCATGCATGC
-  # 
+  #
   # The precedent '>' can be omitted and the trailing '>' will be removed
   # automatically.
   #
@@ -94,7 +94,7 @@ module Bio
   #
   # === References
   #
-  # * FASTA format (WikiPedia) 
+  # * FASTA format (WikiPedia)
   #   http://en.wikipedia.org/wiki/FASTA_format
   #
   class FastaFormat < DB
@@ -135,7 +135,7 @@ module Bio
     #
     #   #!/usr/bin/env ruby
     #   require 'bio'
-    #   
+    #
     #   factory = Bio::Fasta.local('fasta34', 'db/swissprot.f')
     #   flatfile = Bio::FlatFile.open(Bio::FastaFormat, 'queries.f')
     #   flatfile.each do |entry|
@@ -216,7 +216,7 @@ module Bio
     # the sequence or definition in this FastaFormat object
     # might also be changed (but not always be changed)
     # because of efficiency.
-    # 
+    #
     def to_biosequence
       Bio::Sequence.adapter(self, Bio::Sequence::Adapter::FastaFormat)
     end

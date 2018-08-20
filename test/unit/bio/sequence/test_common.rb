@@ -57,7 +57,7 @@ module Bio; module TestSequenceCommon
     end
 
     # +(*arg)
-    def test_sum 
+    def test_sum
       str = "atgcatgcatgcatgcaaaaatgcatgcatgcatgcaaaa"
       assert_equal(str, @obj + @obj)
     end
@@ -79,7 +79,7 @@ module Bio; module TestSequenceCommon
       composition = {"a"=>8, "c"=>4, "g"=>4, "t"=>4}
       assert_equal(composition, @obj.composition)
     end
-    
+
     def test_splicing
       #(position)
       assert_equal("atgcatgc", @obj.splicing("join(1..4, 13..16)"))
@@ -109,7 +109,7 @@ module Bio; module TestSequenceCommon
       obj = seq.normalize!
       assert_equal("atgcatgcatgcatgcaaa", obj)
     end
-  end 
+  end
 
 
   class TestSequenceCommonRandomize < Test::Unit::TestCase
@@ -352,7 +352,7 @@ module Bio; module TestSequenceCommon
 
   # Test Sequence#window_wearch
   class TestSequenceCommonWindowSearch < Test::Unit::TestCase
-    
+
     def test_window_search_with_width_3_default_step_no_residual
       sequence = TSequence.new("agtca")
       windows = []
@@ -360,7 +360,7 @@ module Bio; module TestSequenceCommon
       assert_equal(["agt", "gtc", "tca"], windows, "windows wrong")
       assert_equal("", returned_value, "returned value wrong")
     end
-    
+
     # added
     def test_window_search_with_width_3_step_two_with_residual
       sequence = TSequence.new("agtcat")

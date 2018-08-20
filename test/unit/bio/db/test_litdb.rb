@@ -25,7 +25,7 @@ module Bio
 
     # it return the reference infromation formatted as part of a Bio::Reference object.
     def test_reference
-      expected = 
+      expected =
  {:authors=>
   ["Boyd, L.A.",
    "Adam, L.",

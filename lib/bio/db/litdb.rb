@@ -30,10 +30,10 @@ module Bio
 
     # Returns
     def reference
-      hash = Hash.new('') 
+      hash = Hash.new('')
 
       hash['authors'] = author.split(/;/).map {|x| x.sub(/,/, ', ')}
-      hash['title']   = title 
+      hash['title']   = title
       hash['journal'] = journal.gsub(/\./, '. ').strip
 
       vol = volume.split(/,\s+/)
@@ -44,7 +44,7 @@ module Bio
         hash['issue'] = vol.shift.sub(/No\./, '') unless vol.empty?
       end
 
-      return Reference.new(hash) 
+      return Reference.new(hash)
     end
 
     # CODE

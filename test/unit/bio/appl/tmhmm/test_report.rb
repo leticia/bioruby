@@ -68,7 +68,7 @@ module Bio
       assert_equal(7, @obj.helix.size)
       assert_equal(Bio::TMHMM::TMH, @obj.helix[0].class)
     end
-    
+
     def test_to_s
       str = ["# O42385\tLength:\t423",
              "# O42385\tNumber of predicted TMHs:\t7",

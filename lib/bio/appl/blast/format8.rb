@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/format8.rb - BLAST tab-delimited output (-m 8) parser
-# 
+#
 # Copyright::  Copyright (C) 2002, 2003, 2007 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #

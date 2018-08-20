@@ -17,7 +17,7 @@ module Bio::Sequence::Format::NucFormatter
 
     # helper methods
     include Bio::Sequence::Format::INSDFeatureHelper
-    
+
     private
 
     # string wrapper for GenBank format
@@ -66,9 +66,9 @@ module Bio::Sequence::Format::NucFormatter
         pos = " (bases #{pos})"
       end
       volissue = "#{ref.volume.to_s}"
-      volissue += " (#{ref.issue})" unless ref.issue.to_s.empty? 
+      volissue += " (#{ref.issue})" unless ref.issue.to_s.empty?
       journal = "#{ref.journal.to_s}"
-      journal += " #{volissue}" unless volissue.empty? 
+      journal += " #{volissue}" unless volissue.empty?
       journal += ", #{ref.pages}" unless ref.pages.to_s.empty?
       journal += " (#{ref.year})" unless ref.year.to_s.empty?
 
@@ -151,9 +151,9 @@ __END_OF_REFERENCE__
     def strandedness_genbank
       return nil unless strandedness
       case strandedness
-      when 'single'; 'ss-'; 
-      when 'double'; 'ds-'; 
-      when 'mixed';  'ms-'; 
+      when 'single'; 'ss-';
+      when 'double'; 'ds-';
+      when 'mixed';  'ms-';
       else; nil
       end
     end
@@ -168,7 +168,7 @@ KEYWORDS    <%= genbank_wrap_dot((keywords or []).join('; ')) %>
 SOURCE      <%= genbank_wrap(species) %>
   ORGANISM  <%= genbank_wrap(species) %>
             <%= genbank_wrap_dot((classification or []).join('; ')) %>
-<% 
+<%
     n = 0
     (references or []).each do |ref|
       n += 1

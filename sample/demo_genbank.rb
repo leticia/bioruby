@@ -34,7 +34,7 @@
 # * By default, arguments are sequence IDs (accession numbers).
 # * New option "--files" (or "-files", "--file", or "-file") to
 #   read sequences from file(s).
-# 
+#
 
 require 'bio'
 

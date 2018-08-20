@@ -25,7 +25,7 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
   def setup
     @enz = Bio::RestrictionEnzyme
     @t = Bio::RestrictionEnzyme::Analysis
-    
+
     @obj_1 = @t.cut('cagagag', 'ag^ag')
     @obj_2 = @t.cut('agagag', 'ag^ag')
     @obj_3 = @t.cut('cagagagt', 'ag^ag')
@@ -45,7 +45,7 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     @obj_7 = @t.cut('gaccaggaaaaagaccaggaaagcctggaaaagttaac', 'EcoRII')
     @obj_7b = @t.cut('gaccaggaaaaagaccaggaaagcctggaaaagttaaccc', 'EcoRII', 'HincII', 'cc^c')
     @obj_7bd = @t.cut_without_permutations('gaccaggaaaaagaccaggaaagcctggaaaagttaaccc', 'EcoRII', 'HincII', 'cc^c')
-    
+
     @obj_8 = @t.cut('gaccaggaaaaagaccaggaaagcctggaaaagttaac', 'EcoRII', 'HincII')
 
     @obj_9 = @t.cut('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'EcoRII')
@@ -88,19 +88,19 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
 
 =begin
     A T G^C A T G C
-    
+
     A T G C A T G C A T G C
-    
+
     A T G^C A T G^C A T G C
-    
+
     A T G C A T G^C A T G C
 =end
-    
+
     assert_equal(["atg", "atgcatg", "catgc", "catgcatgc"], @obj_5.primary)
     assert_equal(["a", "ag", "g", "ga"], @obj_6.primary)
     assert_equal(["ccaggaaaaaga", "ccaggaaag", "cctggaaaagttaac", "ga"], @obj_7.primary)
     assert_equal(["aac", "ccaggaaaaaga", "ccaggaaag", "cctggaaaagtt", "ga"], @obj_8.primary)
-    
+
 =begin
     e1 = @enz.new('atgcatgc', [3,3])
     @obj_4bd = @t.cut('atgcatgcatgccc', e1, 'cc^c') # mix of sometimes cut and always cut
@@ -121,7 +121,7 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
       primary="catg",
       complement="gtac">]
 =end
-    assert_equal(["atg", "atgcatg", "c", "catg", "catgcc"], @obj_4bd.primary)    
+    assert_equal(["atg", "atgcatg", "c", "catg", "catgcc"], @obj_4bd.primary)
     assert_equal(["gg", "gtac", "gtacg", "tac", "tacgtac"], @obj_4bd.complement)
   end
 
@@ -142,9 +142,9 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(["ag", "cag"], Bio::Sequence::NA.new('cagagag').cut_with_enzymes('ag^ag', 'EcoRII').primary )
 
     # Note how EcoRII needs extra padding on the beginning and ending of the
-    # sequence 'ccagg' to make the match since the cut must occur between 
+    # sequence 'ccagg' to make the match since the cut must occur between
     # two nucleotides and can not occur on the very end of the sequence.
-    #   
+    #
     #   EcoRII:
     #     :blunt: "0"
     #     :c2: "5"
@@ -155,11 +155,11 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     #     :name: EcoRII
     #     :c3: "0"
     #     :ncuts: "2"
-    #   
+    #
     #        -1 1 2 3 4 5
     #   5' - n^c c w g g n - 3'
     #   3' - n g g w c c^n - 5'
-    #   
+    #
     #   (w == [at])
 
     assert_equal(["ag", "agccagg", "cag"], Bio::Sequence::NA.new('cagagagccagg').cut_with_enzymes('ag^ag', 'EcoRII').primary )
@@ -169,9 +169,9 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(["ag", "ag", "cag", "ccaggt"], Bio::Sequence::NA.new('cagagagccaggt').cut_with_enzymes('ag^ag', 'EcoRII').primary )
     assert_equal(["ag", "agccaggt", "cag"], Bio::Sequence::NA.new('cagagagccaggt').cut_with_enzymes('ag^ag').primary )
     assert_equal(["cagagag", "ccaggt"], Bio::Sequence::NA.new('cagagagccaggt').cut_with_enzymes('EcoRII').primary )
-    assert_equal(["a", "gtctctcggtcc"], Bio::Sequence::NA.new('cagagagccaggt').cut_with_enzymes('EcoRII').complement )  
+    assert_equal(["a", "gtctctcggtcc"], Bio::Sequence::NA.new('cagagagccaggt').cut_with_enzymes('EcoRII').complement )
   end
-  
+
   def test_view_ranges
     assert_equal(["ccaggaaaaaga", "ccaggaaag", "cctggaaaagttaac", "ga"], @obj_vr1.primary)
     assert_equal(["ctggtcc", "tttcggacc", "ttttcaattg", "tttttctggtcc"], @obj_vr1.complement)
@@ -183,14 +183,14 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(1, a0.p_right)
     assert_equal(0, a0.c_left)
     assert_equal(6, a0.c_right)
-    
+
     a1 = @obj_vr1[1]
     assert_equal('ccaggaaaaaga     ', a1.primary)
     assert_equal('     tttttctggtcc', a1.complement)
     assert_equal(2,  a1.p_left)
     assert_equal(13, a1.p_right)
     assert_equal(7,  a1.c_left)
-    assert_equal(18, a1.c_right)     
+    assert_equal(18, a1.c_right)
 
     a2 = @obj_vr1[2]
     assert_equal('ccaggaaag     ', a2.primary)
@@ -207,10 +207,10 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(37, a3.p_right)
     assert_equal(28, a3.c_left)
     assert_equal(37, a3.c_right)
-    
+
     a4 = @obj_vr1[4]
     assert_equal(nil, a4)
-    
+
     assert_equal(["ag", "ag", "cag"], @obj_vr2.primary)
     assert_equal(["gtc", "tc", "tc"], @obj_vr2.complement)
 
@@ -221,7 +221,7 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(2, a0.p_right)
     assert_equal(0, a0.c_left)
     assert_equal(2, a0.c_right)
-    
+
     a1 = @obj_vr2[1]
     assert_equal('ag', a1.primary)
     assert_equal('tc', a1.complement)
@@ -229,7 +229,7 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(4, a1.p_right)
     assert_equal(3, a1.c_left)
     assert_equal(4, a1.c_right)
-    
+
     a2 = @obj_vr2[2]
     assert_equal('ag', a2.primary)
     assert_equal('tc', a2.complement)
@@ -237,11 +237,11 @@ class TestAnalysis < Test::Unit::TestCase #:nodoc:
     assert_equal(6, a2.p_right)
     assert_equal(5, a2.c_left)
     assert_equal(6, a2.c_right)
-    
+
     a3 = @obj_vr2[3]
     assert_equal(nil, a3)
   end
-  
+
 
 end
 

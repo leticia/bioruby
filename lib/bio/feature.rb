@@ -68,7 +68,7 @@ class Feature
   end
 
   # Appends a Qualifier object to the Feature.
-  # 
+  #
   # *Arguments*:
   # * (required) _qualifier_: Bio::Feature::Qualifier object
   # *Returns*:: Bio::Feature object

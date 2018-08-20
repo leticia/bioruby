@@ -31,25 +31,25 @@ class SequenceRange
 
   # Left-most index of primary strand
   attr_reader :p_left
-  
+
   # Right-most index of primary strand
   attr_reader :p_right
-  
+
   # Left-most index of complementary strand
   attr_reader :c_left
-  
+
   # Right-most index of complementary strand
   attr_reader :c_right
 
   # Left-most index of DNA sequence
   attr_reader :left
-  
+
   # Right-most index of DNA sequence
   attr_reader :right
-  
+
   # Size of DNA sequence
   attr_reader :size
-  
+
   # CutRanges in this SequenceRange
   attr_reader :cut_ranges
 
@@ -71,7 +71,7 @@ class SequenceRange
   # If the first object is HorizontalCutRange or VerticalCutRange, that is
   # added to the SequenceRange.  Otherwise this method
   # builds a VerticalCutRange object and adds it to the SequenceRange.
-  # 
+  #
   # Note:
   # Cut occurs immediately after the index supplied.
   # For example, a cut at '0' would mean a cut occurs between bases 0 and 1.
@@ -117,10 +117,10 @@ class SequenceRange
     @__fragments_current = false
     @cut_ranges << HorizontalCutRange.new( left, right )
   end
-  
-  # A Bio::RestrictionEnzyme::Range::SequenceRange::Bin holds an +Array+ of 
+
+  # A Bio::RestrictionEnzyme::Range::SequenceRange::Bin holds an +Array+ of
   # indexes for the primary and complement strands (+p+ and +c+ accessors).
-  # 
+  #
   # Example hash with Bin values:
   #   {0=>#<struct Bio::RestrictionEnzyme::Range::SequenceRange::Bin c=[0, 1], p=[0]>,
   #    2=>#<struct Bio::RestrictionEnzyme::Range::SequenceRange::Bin c=[], p=[1, 2]>,
@@ -158,7 +158,7 @@ class SequenceRange
   def fragments
     return @__fragments if @__fragments_current == true
     @__fragments_current = true
-    
+
     num_txt = '0123456789'
     num_txt_repeat = (num_txt * ( @size / num_txt.size.to_f ).ceil)[0..@size-1]
     fragments = Fragments.new(num_txt_repeat, num_txt_repeat)
@@ -166,22 +166,22 @@ class SequenceRange
     cc = Bio::RestrictionEnzyme::Range::SequenceRange::CalculatedCuts.new(@size)
     cc.add_cuts_from_cut_ranges(@cut_ranges)
     cc.remove_incomplete_cuts
-    
+
     create_bins(cc).sort.each { |k, bin| fragments << Fragment.new( bin.p, bin.c ) }
     @__fragments = fragments
     return fragments
   end
-  
+
   #########
   protected
   #########
-  
+
   # Example:
   #   cc = Bio::RestrictionEnzyme::Range::SequenceRange::CalculatedCuts.new(@size)
   #   cc.add_cuts_from_cut_ranges(@cut_ranges)
   #   cc.remove_incomplete_cuts
   #   bins = create_bins(cc)
-  # 
+  #
   # Example return value:
   #   {0=>#<struct Bio::RestrictionEnzyme::Range::SequenceRange::Bin c=[0, 1], p=[0]>,
   #    2=>#<struct Bio::RestrictionEnzyme::Range::SequenceRange::Bin c=[], p=[1, 2]>,
@@ -196,12 +196,12 @@ class SequenceRange
     p_cut = cc.vc_primary
     c_cut = cc.vc_complement
     h_cut = cc.hc_between_strands
-    
+
     if @circular
       # NOTE
       # if it's circular we should start at the beginning of a cut for orientation
       # scan for it, hack off the first set of hcuts and move them to the back
-  
+
       unique_id = 0
     else
       p_cut.unshift(-1) unless p_cut.include?(-1)
@@ -214,7 +214,7 @@ class SequenceRange
     setup_new_bin(bins, unique_id)
 
     -1.upto(@size-1) do |idx| # NOTE - circular, for the future - should '-1' be replace with 'unique_id'?
-      
+
       # if bin_ids are out of sync but the strands are attached
       if (p_bin_id != c_bin_id) and !h_cut.include?(idx)
         min_id, max_id = [p_bin_id, c_bin_id].sort
@@ -224,7 +224,7 @@ class SequenceRange
 
       bins[ p_bin_id ].p << idx
       bins[ c_bin_id ].c << idx
-      
+
       if p_cut.include? idx
         p_bin_id = (unique_id += 1)
         setup_new_bin(bins, p_bin_id)
@@ -234,15 +234,15 @@ class SequenceRange
         c_bin_id = (unique_id += 1)     # repetition
         setup_new_bin(bins, c_bin_id)   # repetition
       end                               # repetition
-       
+
     end
-  
+
     # Bin "-1" is an easy way to indicate the start of a strand just in case
     # there is a horizontal cut at position 0
     bins.delete(-1) unless @circular
     bins
   end
-  
+
   # Modifies bins in place by creating a new element with key bin_id and
   # initializing the bin.
   def setup_new_bin(bins, bin_id)
@@ -250,7 +250,7 @@ class SequenceRange
     bins[ bin_id ].p = []
     bins[ bin_id ].c = []
   end
-  
+
 end # SequenceRange
 end # Range
 end # RestrictionEnzyme

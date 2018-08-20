@@ -18,7 +18,7 @@ class Sequence
   autoload :NA,     'bio/sequence/na'
   autoload :AA,     'bio/sequence/aa'
 
-  # Return sequence as 
+  # Return sequence as
   # String[http://corelib.rubyonrails.org/classes/String.html].
   # The original sequence is unchanged.
   #
@@ -38,11 +38,11 @@ class Sequence
 module Common
 
   # <b>Bio::Sequence#to_fasta is DEPRECIATED</b>
-  # Do not use Bio::Sequence#to_fasta ! Use Bio::Sequence#output instead. 
+  # Do not use Bio::Sequence#to_fasta ! Use Bio::Sequence#output instead.
   # Note that Bio::Sequence::NA#to_fasta, Bio::Sequence::AA#to_fasata,
   # and Bio::Sequence::Generic#to_fasta <b>can still be used</b>,
   # because there are no alternative methods.
-  # 
+  #
   # Output the FASTA format string of the sequence.  The 1st argument is
   # used as the comment string.  If the 2nd option is given, the output
   # sequence will be folded.
@@ -69,7 +69,7 @@ class NA
   # Generate a new random sequence with the given frequency of bases.
   # The sequence length is determined by their cumulative sum.
   # (See also Bio::Sequence::Common#randomize which creates a new
-  # randomized sequence object using the base composition of an existing 
+  # randomized sequence object using the base composition of an existing
   # sequence instance).
   #
   #   counts = {'a'=>1,'c'=>2,'g'=>3,'t'=>4}
@@ -100,7 +100,7 @@ class AA
   # Generate a new random sequence with the given frequency of bases.
   # The sequence length is determined by their cumulative sum.
   # (See also Bio::Sequence::Common#randomize which creates a new
-  # randomized sequence object using the base composition of an existing 
+  # randomized sequence object using the base composition of an existing
   # sequence instance).
   #
   #   counts = {'R'=>1,'L'=>2,'E'=>3,'A'=>4}

@@ -63,7 +63,7 @@ class Bio::Blast
     # Normalize options.
     # For two or more same options (e.g. '-p blastn -p blastp'),
     # only the last option is used. (e.g. '-p blastp' for above example).
-    # 
+    #
     # Note that completely illegal options are left untouched.
     #
     # ---
@@ -199,7 +199,7 @@ class Bio::Blast
       rescue
         return false
       end
-      return self.options == oopts 
+      return self.options == oopts
     end
 
     # Returns an array for command-line options.

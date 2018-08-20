@@ -81,7 +81,7 @@ module Bio::TestFlatFileBufferedInputStream
       str = @obj.gets
       assert_equal(0, @obj.pos = 0)
     end
-      
+
     def test_eof_false_first
       assert_equal(false, @obj.eof?)
     end
@@ -137,7 +137,7 @@ __END_OF_STR__
       a = []
       20.times {a.push @obj.gets }
       @obj.ungets(a.join(''))
-      
+
       assert_equal(">At1g02580 mRNA (2291 bp) UTR's and CDS\naggcgagtggttaatggagaaggaaaaccatgaggacgatggtg", @obj.gets(rs))
 
       assert_equal('ggctgaaagtgattctgtgattggtaagagacaaatctattatttgaatggtg',
@@ -172,7 +172,7 @@ __END_OF_STR__
       a = []
       20.times {a.push @obj.gets }
       @obj.ungets(a.join(''))
-     
+
       assert_equal('>At1g65300: mRNA 837bp',
                    @obj.gets('').split(/\n/)[0])
 
@@ -246,7 +246,7 @@ __END_OF_STR__
       assert_nil(@obj.skip_spaces)
       assert_equal(?a, @obj.getc)
     end
-                   
+
   end #class TestBufferedInputStream
 end #module Bio::TestFlatFile
 

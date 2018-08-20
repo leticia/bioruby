@@ -32,10 +32,10 @@ a:hover, a:focus {
 
 /* header */
 
-h1 {     
+h1 {
 	color: #000000;
 	background-color: transparent;
-	border-color: #49ba18; 
+	border-color: #49ba18;
 /*	border-width: 1px 0px 1px 0px;*/
 	border-width: 0px 0px 5px 0px;
 	border-style: solid;

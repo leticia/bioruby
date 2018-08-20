@@ -69,7 +69,7 @@ module Bio
     end
 
     def test_references
-      data = 
+      data =
         [ { "authors" => [ "Stillman B." ],
             "journal" => "Cell",
             "pages"   => "725-8",

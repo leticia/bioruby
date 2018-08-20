@@ -1,7 +1,7 @@
 #
 # = test/unit/bio/sequence/test_na.rb - Unit test for Bio::Sequencce::NA
 #
-# Copyright::   Copyright (C) 2006 
+# Copyright::   Copyright (C) 2006
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -16,7 +16,7 @@ load Pathname.new(File.join(File.dirname(__FILE__), ['..'] * 3,
 # libraries needed for the tests
 require 'test/unit'
 require 'bio/sequence'
-require 'bio/sequence/na'  
+require 'bio/sequence/na'
 
 module Bio
 
@@ -45,7 +45,7 @@ module Bio
     end
 
   end
-  
+
   class TestSequenceNA < Test::Unit::TestCase
 
     def setup
@@ -209,7 +209,7 @@ module Bio
     end
 
     # +(*arg)
-    def test_sum 
+    def test_sum
       str = "atgcatgcatgcatgcaaaaatgcatgcatgcatgcaaaa"
       assert_equal(str, @obj + @obj)
     end
@@ -231,7 +231,7 @@ module Bio
       composition = {"a"=>8, "c"=>4, "g"=>4, "t"=>4}
       assert_equal(composition, @obj.composition)
     end
-    
+
     def test_splicing
       #(position)
       assert_equal("atgcatgc", @obj.splicing("join(1..4, 13..16)"))
@@ -250,7 +250,7 @@ module Bio
       #     "tttgggcccaaaatt"
       #      <<F<<G<<P<<K<<L
       #        <<G<<P<<N<<*
-      #       <<V<<R<<T<<K            
+      #       <<V<<R<<T<<K
       @obj = Bio::Sequence::NA.new(str)
     end
 

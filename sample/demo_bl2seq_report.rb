@@ -1,6 +1,6 @@
 #
 # = sample/demo_bl2seq_report.rb - demo of bl2seq (BLAST 2 sequences) parser
-# 
+#
 # Copyright:: Copyright (C) 2005 Naohisa Goto <ng@bioruby.org>
 # License::   The Ruby License
 #
@@ -99,7 +99,7 @@ ff.each do |rep|
   puts
 
   rep.iterations.each do |itr|
-      
+
   print "# --- Bio::Blast::Bl2seq::Report::Iteration\n"
   puts
 
@@ -178,7 +178,7 @@ ff.each do |rep|
   print " ([#{j}])\n"
   puts
   #print "        hsp.num         #=> "; p hsp.num
-  print "        hsp.bit_score   #=> "; p hsp.bit_score 
+  print "        hsp.bit_score   #=> "; p hsp.bit_score
   print "        hsp.score       #=> "; p hsp.score
   print "        hsp.evalue      #=> "; p hsp.evalue
   print "        hsp.identity    #=> "; p hsp.identity

@@ -6,7 +6,7 @@
 # License::    The Ruby License
 #
 # == Description
-# 
+#
 # Bio::Sequence::SequenceMasker is a mix-in module to provide helpful
 # methods for masking a sequence.
 #
@@ -28,7 +28,7 @@ class Sequence
 
     # Masks the sequence with each value in the <em>enum</em>.
     # The <em>enum<em> should be an array or enumerator.
-    # A block must be given. 
+    # A block must be given.
     # When the block returns true, the sequence is masked with
     # <em>mask_char</em>.
     # ---

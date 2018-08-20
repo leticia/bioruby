@@ -31,7 +31,7 @@ module Bio::Sequence::Format::Formatter
 
     # INTERNAL USE ONLY, YOU SHOULD NOT CALL THIS METHOD.
     #
-    # Output the FASTA format string of the sequence.  
+    # Output the FASTA format string of the sequence.
     #
     # Currently, this method is used in Bio::Sequence#output like so,
     #
@@ -43,7 +43,7 @@ module Bio::Sequence::Format::Formatter
       header = @options[:header]
       width = @options.has_key?(:width) ? @options[:width] : 70
       seq = @sequence.seq
-      entry_id = @sequence.entry_id || 
+      entry_id = @sequence.entry_id ||
         "#{@sequence.primary_accession}.#{@sequence.sequence_version}"
       definition = @sequence.definition
       header ||= "#{entry_id} #{definition}"
@@ -66,7 +66,7 @@ module Bio::Sequence::Format::Formatter
 
     # INTERNAL USE ONLY, YOU SHOULD NOT CALL THIS METHOD.
     #
-    # Output the FASTA format string of the sequence.  
+    # Output the FASTA format string of the sequence.
     #
     # Currently, this method is used in Bio::Sequence#output like so,
     #

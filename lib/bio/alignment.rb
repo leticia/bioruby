@@ -16,7 +16,7 @@
 #
 # * Bio::Align::AlignI class of the BioPerl.
 # http://doc.bioperl.org/releases/bioperl-1.4/Bio/Align/AlignI.html
-# 
+#
 # * Bio::SimpleAlign class of the BioPerl.
 # http://doc.bioperl.org/releases/bioperl-1.4/Bio/SimpleAlign.html
 #
@@ -32,44 +32,44 @@ require 'bio/sequence'
 
 module Bio
 
-# 
+#
 # = About Bio::Alignment
-# 
+#
 # Bio::Alignment is a namespace of classes/modules for multiple sequence
 # alignment.
-# 
+#
 # = Multiple alignment container classes
-# 
+#
 # == Bio::Alignment::OriginalAlignment
-# 
+#
 # == Bio::Alignment::SequenceArray
-# 
+#
 # == Bio::Alignment::SequenceHash
-# 
+#
 # = Bio::Alignment::Site
-# 
+#
 # = Modules
-# 
+#
 # == Bio::Alignment::EnumerableExtension
-# 
+#
 # Mix-in for classes included Enumerable.
-# 
+#
 # == Bio::Alignment::ArrayExtension
-# 
+#
 # Mix-in for Array or Array-like classes.
-# 
+#
 # == Bio::Alignment::HashExtension
-# 
+#
 # Mix-in for Hash or Hash-like classes.
-# 
+#
 # == Bio::Alignment::SiteMethods
-# 
+#
 # == Bio::Alignment::PropertyMethods
-# 
+#
 # = Bio::Alignment::GAP
-# 
+#
 # = Compatibility from older BioRuby
-# 
+#
   module Alignment
 
     autoload :MultiFastaFormat, 'bio/appl/mafft/report'
@@ -239,8 +239,8 @@ module Bio
       # (Bio/SimpleAlign.pm in BioPerl 1.0),
       # and the BioPerl's document says that
       # it is taken from Clustalw documentation and
-      #   These are all the positively scoring groups that occur in the 
-      #   Gonnet Pam250 matrix. The strong and weak groups are 
+      #   These are all the positively scoring groups that occur in the
+      #   Gonnet Pam250 matrix. The strong and weak groups are
       #   defined as strong score >0.5 and weak score =<0.5 respectively.
       #
       StrongConservationGroups = %w(STA NEQK NHQK NDEQ QHRK MILV MILF
@@ -298,7 +298,7 @@ module Bio
       end
     end #module SiteMethods
 
-    # Bio::Alignment::Site stores bases or amino-acids in a 
+    # Bio::Alignment::Site stores bases or amino-acids in a
     # site of the alignment.
     # It would store multiple String objects of length 1.
     # Please refer to the document of Array and SiteMethods for methods.
@@ -310,10 +310,10 @@ module Bio
     # methods for multiple sequence alignment.
     # It can be included by any classes or can be extended to any objects.
     # The classes or objects must have methods defined in Enumerable,
-    # and must have the <tt>each</tt> method 
+    # and must have the <tt>each</tt> method
     # which iterates over each sequence (or string) and yields
     # a sequence (or string) object.
-    # 
+    #
     # Optionally, if <tt>each_seq</tt> method is defined,
     # which iterates over each sequence (or string) and yields
     # each sequence (or string) object, it is used instead of <tt>each</tt>.
@@ -375,7 +375,7 @@ module Bio
 
       # Gets a site of the position.
       # Returns a Bio::Alignment::Site object.
-      # 
+      #
       # If the position is out of range, it returns the site
       # of which all are gaps.
       #
@@ -397,7 +397,7 @@ module Bio
 
       # Gets a site of the position.
       # Returns a Bio::Alignment::Site object.
-      # 
+      #
       # If the position is out of range, it returns the site
       # of which all are gaps.
       def alignment_site(position)
@@ -570,7 +570,7 @@ module Bio
 
       # Returns the match line stirng of the alignment
       # of amino-acid sequences.
-      # 
+      #
       # It resembles the BioPerl's AlignI::match_line method.
       #
       #   opt[:match_line_char]   ==> 100% equal    default: '*'
@@ -589,7 +589,7 @@ module Bio
 
       # Returns the match line stirng of the alignment
       # of nucleic-acid sequences.
-      # 
+      #
       # It resembles the BioPerl's AlignI::match_line method.
       #
       #   opt[:match_line_char]   ==> 100% equal    default: '*'
@@ -617,7 +617,7 @@ module Bio
       #   opt[:weak_match_char]   ==> weak match    default: '.'
       #   opt[:mismatch_char]     ==> mismatch      default: ' '
       #     :strong_ and :weak_match_char are used only in amino mode (:aa)
-      # 
+      #
       # More opt can be accepted.
       # Please refer to the consensus_each_site method for opt.
       #
@@ -837,7 +837,7 @@ module Bio
       # Concatenates the given alignment.
       # <em>align</em> must have <tt>each_seq</tt>
       # or <tt>each</tt> method.
-      # 
+      #
       # Returns self.
       #
       # Note that it is a destructive method.
@@ -977,7 +977,7 @@ module Bio
         if !options.has_key?(:avoid_same_name) or options[:avoid_same_name]
           sn = __clustal_avoid_same_name(sn)
         end
-        
+
         if sn.find { |x| x.length > 10 } then
           seqwidth = 50
           namewidth = 30
@@ -999,7 +999,7 @@ module Bio
           mopt = {}
         end
         mline = (options[:match_line] or seqs.match_line(mopt))
-        
+
         aseqs = Array.new(seqs.number_of_sequences).clear
         seqs.each_seq do |s|
           aseqs << s.to_s.gsub(seqs.gap_regexp, gchar)
@@ -1010,7 +1010,7 @@ module Bio
         when /upper/i
           aseqs.each { |s| s.upcase! }
         end
-        
+
         aseqs << mline
         aseqs.collect! do |s|
           snx = sn.shift
@@ -1129,7 +1129,7 @@ module Bio
         when /upper/i
           aseqs.each { |s| s.upcase! }
         end
-        
+
         aseqs.collect! do |s|
           snx = sn.shift
           head = sprintf("%*s", -namewidth, snx.to_s)[0, namewidth]
@@ -1179,7 +1179,7 @@ module Bio
         when /upper/i
           aseqs.each { |s| s.upcase! }
         end
-        
+
         aseqs.collect! do |s|
           s << (gchar * (len - s.length))
           s.gsub!(seqregexp, "\\1\n")
@@ -1294,7 +1294,7 @@ module Bio
           n_r = [ i + seqwidth - 1, len ].min
           if n_l != n_r then
             w = [ n_r - n_l + 1 - n_l.to_s.length - n_r.to_s.length, 1 ].max
-            msf << (' ' * namewidth + sep + n_l.to_s + 
+            msf << (' ' * namewidth + sep + n_l.to_s +
                     ' ' * w + n_r.to_s + "\n")
           else
             msf << (' ' * namewidth + sep + n_l.to_s + "\n")
@@ -1402,7 +1402,7 @@ module Bio
       # Otherwise, <em>align</em> must have <tt>each_seq</tt>
       # or <tt>each</tt> method and
       # works same as EnumerableExtension#alignment_concat.
-      # 
+      #
       # Returns self.
       #
       # Note that it is a destructive method.
@@ -1537,7 +1537,7 @@ module Bio
         end
         aln
       end
-      
+
       # Creates a new alignment object from given arguments.
       #
       # It will be obsoleted.
@@ -1566,14 +1566,14 @@ module Bio
           false
         end
       end
-      
+
       # convert to hash
       def to_hash
         #(Hash-like)
         @seqs
       end
 
-      # Adds sequences to the alignment. 
+      # Adds sequences to the alignment.
       # <em>seqs</em> may be one of follows:
       # an array of sequences (or strings),
       # an array of sequence database objects,
@@ -1940,7 +1940,7 @@ module Bio
         purged
       end
 
-      # If block is given, it acts like Array#select (Enumerable#select). 
+      # If block is given, it acts like Array#select (Enumerable#select).
       # Returns a new alignment containing all sequences of the alignment
       # for which return value of given block is not false nor nil.
       #
@@ -2169,7 +2169,7 @@ module Bio
         olen = seq.gsub(gap_regexp, '').length
         pos = olen if pos >= olen
         pos = olen + pos if pos < 0
-        
+
         i = 0
         l = pos + 1
         while l > 0 and i < seq.length

@@ -19,10 +19,10 @@ module Bio
 #
 #
 # = Description
-# 
+#
 # The Bio::ColorScheme module contains classes that return popular color codings
 # for nucleic and amino acids in RGB hex format suitable for HTML code.
-# 
+#
 # The current schemes supported are:
 # * Buried - Buried index
 # * Helix - Helix propensity
@@ -32,29 +32,29 @@ module Bio
 # * Taylor - Taylor color coding
 # * Turn - Turn propensity
 # * Zappo - Zappo color coding
-# 
+#
 # Planned color schemes include:
 # * BLOSUM62
 # * ClustalX
 # * Percentage Identity (PID)
-# 
+#
 # Color schemes BLOSUM62, ClustalX, and Percentage Identity are all dependent
 # on the alignment consensus.
-# 
+#
 # This data is currently referenced from the JalView alignment editor.
-# Clamp, M., Cuff, J., Searle, S. M. and Barton, G. J. (2004), 
+# Clamp, M., Cuff, J., Searle, S. M. and Barton, G. J. (2004),
 # "The Jalview Java Alignment Editor," Bioinformatics, 12, 426-7
 # http://www.jalview.org
-# 
+#
 # Currently the score data for things such as hydropathy, helix, turn, etc. are contained
 # here but should be moved to bio/data/aa once a good reference is found for these
 # values.
-# 
-# 
+#
+#
 # = Usage
-# 
+#
 #   require 'bio'
-# 
+#
 #   seq = 'gattaca'
 #   scheme = Bio::ColorScheme::Zappo
 #   postfix = '</span>'
@@ -64,12 +64,12 @@ module Bio
 #     prefix = %Q(<span style="background:\##{color};">)
 #     html += prefix + c.chr + postfix
 #   end
-# 
+#
 #   puts html
-# 
-# 
+#
+#
 # == Accessing colors
-# 
+#
 #   puts Bio::ColorScheme::Buried['A']  # 00DC22
 #   puts Bio::ColorScheme::Buried[:c]   # 00BF3F
 #   puts Bio::ColorScheme::Buried[nil]  # nil
@@ -77,7 +77,7 @@ module Bio
 #   puts Bio::ColorScheme::Buried[7]    # FFFFFF
 #   puts Bio::ColorScheme::Buried['junk']  # FFFFFF
 #   puts Bio::ColorScheme::Buried['t']  # 00CC32
-# 
+#
 
 module ColorScheme
   cs_location = File.join(File.dirname(File.expand_path(__FILE__)), 'color_scheme')

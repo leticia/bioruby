@@ -1,9 +1,9 @@
 #
 # = sample/demo_hmmer_report.rb - demonstration of Bio::HMMER::Report
 #
-# Copyright::   Copyright (C) 2002 
+# Copyright::   Copyright (C) 2002
 #               Hiroshi Suga <suga@biophys.kyoto-u.ac.jp>,
-# Copyright::   Copyright (C) 2005 
+# Copyright::   Copyright (C) 2005
 #               Masashi Fujita <fujita@kuicr.kyoto-u.ac.jp>
 # License::     The Ruby License
 #
@@ -142,8 +142,8 @@ require 'bio'
       p hsp.query_from		# hmm_f, seq_f
       print "query_to : ".rjust(indent)
       p hsp.query_to		# hmm_t, seq_t
-    end 
+    end
   end
 
-#end 
+#end
 

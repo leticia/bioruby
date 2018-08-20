@@ -1,7 +1,7 @@
 #
 # = bio/appl/targetp/report.rb - TargetP report class
-# 
-# Copyright::  Copyright (C) 2003 
+#
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -26,12 +26,12 @@ module Bio
       # Delimiter
       DELIMITER = "\n \n"
 
-      # Delimiter      
+      # Delimiter
       RS = DELIMITER
 
       # Returns the program version.
       attr_reader :version
-      
+
       # Returns the query sequences.
       attr_reader :query_sequences
 
@@ -39,7 +39,7 @@ module Bio
       # If the value is 'included', Bio::TargetP::Report#prediction['TPlen']
       # contains a valid value.
       attr_reader :cleavage_site_prediction
-      
+
       # Returns ``PLANT'' or ``NON-PLANT'' networks.
       attr_reader :networks
 
@@ -47,7 +47,7 @@ module Bio
       #
       # {"Name"=>"MGI_2141503", "Loc."=>"_", "RC"=>3, "SP"=>0.271,
       #  "other"=>0.844, "mTP"=>0.161, "cTP"=>0.031, "Length"=>640}
-      # 
+      #
       # Keys: Name, Len, SP, mTP, other, Loc, RC
       # Optional key for PLANT networks: cTP
       # Optional key in Cleavage site: TPlen
@@ -76,7 +76,7 @@ module Bio
       def name
         @prediction['Name']
       end
-      alias entry_id name 
+      alias entry_id name
 
       # Returns length of query sequence.
       def query_len
@@ -88,14 +88,14 @@ module Bio
       end
       alias length query_len
 
-      # Returns the predicted localization signal: 
+      # Returns the predicted localization signal:
       # 1. S (Signal peptide)
       # 2. M (mTP)
       # 3. C (cTP)
-      # 4. * 
+      # 4. *
       # 5. _
       def loc
-        if @prediction['Loc'] 
+        if @prediction['Loc']
           @prediction['Loc']   # version 1.0
         else
           @prediction['Loc.']  # version 1.1
@@ -106,10 +106,10 @@ module Bio
       def rc
         @prediction['RC']
       end
-      
+
       private
 
-      # 
+      #
       def parse_entry(str)
         labels = []
         cutoff = []
@@ -123,7 +123,7 @@ module Bio
           when /Number of (query|input) sequences:\s+(\d+)/
             @query_sequences = $1.to_i
 
-          when /Cleavage site predictions (\w.+)\./ 
+          when /Cleavage site predictions (\w.+)\./
             @cleavage_site_prediction = $1
 
           when /Using (\w+.+) networks/
@@ -145,7 +145,7 @@ module Bio
             values.each_with_index {|val, i|
               label = labels[i]
               case label
-              when 'RC', /Len/ 
+              when 'RC', /Len/
                 val = val.to_i
               when 'SP','mTP','cTP','other'
                 val = val.to_f
@@ -157,7 +157,7 @@ module Bio
       end
 
     end # class Report
-    
+
   end # class TargetP
 
 end # moudel Bio

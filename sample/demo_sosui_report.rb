@@ -1,7 +1,7 @@
 #
 # = sample/demo_sosui_report.rb - demonstration of Bio::SOSUI::Report
-# 
-# Copyright::   Copyright (C) 2003 
+#
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -42,7 +42,7 @@ require 'bio'
 
   begin
     require 'pp'
-    alias p pp 
+    alias p pp
   rescue LoadError
   end
 
@@ -79,7 +79,7 @@ if ARGV.empty? then
     demo_sosui_report(ent)
   }
 
-else 
+else
 
   while ent = $<.gets(Bio::SOSUI::Report::DELIMITER)
     demo_sosui_report(ent)

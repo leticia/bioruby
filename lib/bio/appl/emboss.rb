@@ -1,6 +1,6 @@
 #
 # = bio/appl/emboss.rb - EMBOSS wrapper
-# 
+#
 # Copyright::  Copyright (C) 2002, 2005 Toshiaki Katayama<k@bioruby.org>
 # Copyright::  Copyright (C) 2006       Jan Aerts <jan.aerts@bbsrc.ac.uk>
 # License::    The Ruby License
@@ -14,7 +14,7 @@ module Bio
 #
 # This file holds classes pertaining to the EMBOSS software suite.
 #
-# This class provides a wrapper for the applications of the EMBOSS suite, which 
+# This class provides a wrapper for the applications of the EMBOSS suite, which
 # is a mature and stable collection of open-source applications that can handle
 # a huge range of sequence formats.
 # Applications include:
@@ -74,7 +74,7 @@ module Bio
 # * http://emboss.sourceforge.net
 # * Rice P, Longden I and Bleasby A. \
 #    EMBOSS: the European Molecular Biology Open Software Suite. \
-#    Trends Genet. 2000 Jun ; 16(6): 276-7 
+#    Trends Genet. 2000 Jun ; 16(6): 276-7
 #
 class EMBOSS
 
@@ -152,10 +152,10 @@ class EMBOSS
       @io.close
     end
   end
-  
+
   # Pipe for the command
   attr_reader :io
-  
+
   # Result of the executed command
   attr_reader :result
 

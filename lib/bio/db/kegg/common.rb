@@ -10,7 +10,7 @@
 #
 # == Description
 #
-# Note that the modules in this file are intended to be Bio::KEGG::* 
+# Note that the modules in this file are intended to be Bio::KEGG::*
 # internal use only.
 #
 # This file contains modules that implement methods commonly used from

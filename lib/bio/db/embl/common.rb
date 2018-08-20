@@ -11,8 +11,8 @@
 #
 # EMBL style databases class
 #
-# This module defines a common framework among EMBL, UniProtKB, SWISS-PROT, 
-# TrEMBL. For more details, see the documentations in each embl/*.rb 
+# This module defines a common framework among EMBL, UniProtKB, SWISS-PROT,
+# TrEMBL. For more details, see the documentations in each embl/*.rb
 # libraries.
 #
 # EMBL style format:
@@ -43,7 +43,7 @@
 #     // - termination line           (ends each entry; 1 per entry)
 #
 # == Examples
-# 
+#
 #  # Make a new parser class for EMBL style database entry.
 #  require 'bio/db/embl/common'
 #  module Bio
@@ -59,15 +59,15 @@
 #
 # * The EMBL Nucleotide Sequence Database: Users Manual
 #   http://www.ebi.ac.uk/embl/Documentation/User_manual/usrman.html
-# 
-# * Swiss-Prot Protein knowledgebase. TrEMBL Computer-annotated supplement 
-#   to Swiss-Prot 
+#
+# * Swiss-Prot Protein knowledgebase. TrEMBL Computer-annotated supplement
+#   to Swiss-Prot
 #   http://au.expasy.org/sprot/
-# 
-# * UniProt 
+#
+# * UniProt
 #   http://uniprot.org/
-# 
-# * The UniProtKB/SwissProt/TrEMBL User Manual 
+#
+# * The UniProtKB/SwissProt/TrEMBL User Manual
 #   http://www.expasy.org/sprot/userman.html
 #
 
@@ -126,13 +126,13 @@ module Common
   end
   alias description de
   alias definition de   # API
-  
+
 
 
   # returns contents in the OS line.
   # * Bio::EMBLDB#os  -> Array of <OS Hash>
   # where <OS Hash> is:
-  #  [{'name'=>'Human', 'os'=>'Homo sapiens'}, 
+  #  [{'name'=>'Human', 'os'=>'Homo sapiens'},
   #   {'name'=>'Rat', 'os'=>'Rattus norveticus'}]
   # * Bio::SPTR#os[0]['name'] => "Human"
   # * Bio::SPTR#os[0] => {'name'=>"Human", 'os'=>'Homo sapiens'}
@@ -151,7 +151,7 @@ module Common
       fetch('OS').split(/, and|, /).each do |tmp|
         if tmp =~ /([A-Z][a-z]* *[\w\d \:\'\+\-]+[\w\d])/
           org = $1
-          tmp =~ /(\(.+\))/ 
+          tmp =~ /(\(.+\))/
           os.push({'name' => $1, 'os' => org})
         else
           raise "Error: OS Line. #{$!}\n#{fetch('OS')}\n"
@@ -193,7 +193,7 @@ module Common
     end
     @data['OG']
   end
-  
+
 
   # returns contents in the OC line.
   # * Bio::EMBLDB::Common#oc  -> [ <organism class String>* ]
@@ -204,7 +204,7 @@ module Common
     unless @data['OC']
       begin
         @data['OC'] = fetch('OC').sub(/.$/,'').split(/;/).map {|e|
-          e.strip 
+          e.strip
         }
       rescue NameError
         nil
@@ -234,16 +234,16 @@ module Common
   # returns contents in the R lines.
   # * Bio::EMBLDB::Common#ref -> [ <refernece information Hash>* ]
   # where <reference information Hash> is:
-  #  {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '', 
+  #  {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '',
   #   'RA' => '', 'RT' => '', 'RL' => '', 'RG' => ''}
-  # 
+  #
   # R Lines
   # * RN RC RP RX RA RT RL RG
   def ref
     unless @data['R']
       ary = Array.new
       get('R').split(/\nRN   /).each do |str|
-        raw = {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '', 
+        raw = {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '',
                'RA' => '', 'RT' => '', 'RL' => '', 'RG' => ''}
         str = 'RN   ' + str unless /^RN   / =~ str
         str.split("\n").each do |line|
@@ -253,8 +253,8 @@ module Common
             raise "Invalid format in R lines, \n[#{line}]\n"
           end
         end
-        raw.each_value {|v| 
-          v.strip! 
+        raw.each_value {|v|
+          v.strip!
           v.sub!(/^"/,'')
           v.sub!(/;$/,'')
           v.sub!(/"$/,'')
@@ -321,8 +321,8 @@ module Common
   # returns contents in the DR line.
   # * Bio::EMBLDB::Common#dr  -> [ <Database cross-reference Hash>* ]
   # where <Database cross-reference Hash> is:
-  # * Bio::EMBLDB::Common#dr {|k,v| } 
-  # 
+  # * Bio::EMBLDB::Common#dr {|k,v| }
+  #
   # DR Line; defabases cross-reference (>=0)
   # a cross_ref pre one line
   #  "DR  database_identifier; primary_identifier; secondary_identifier."

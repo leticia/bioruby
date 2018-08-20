@@ -1,11 +1,11 @@
-# 
-# = bio/io/flatfile/index.rb - OBDA flatfile index 
-# 
+#
+# = bio/io/flatfile/index.rb - OBDA flatfile index
+#
 # Copyright:: Copyright (C) 2002
-#             GOTO Naohisa <ng@bioruby.org> 
+#             GOTO Naohisa <ng@bioruby.org>
 # License:: The Ruby License
 #
-#  $Id: index.rb,v 1.19 2007/04/05 23:35:41 trevor Exp $ 
+#  $Id: index.rb,v 1.19 2007/04/05 23:35:41 trevor Exp $
 #
 # = About Bio::FlatFileIndex
 #
@@ -151,7 +151,7 @@ module Bio
     # <code>default_namespaces= [ str1, str2, ... ]</code>
     # means set default namespeces to str1, str2, ...
     #
-    # Default namespaces specified in this method only affect 
+    # Default namespaces specified in this method only affect
     # #get_by_id, #search, and #include? methods.
     #
     # Default of default namespaces is nil (that is, all namespaces
@@ -301,7 +301,7 @@ module Bio
     #--
     # private methods
     #++
-    
+
     # If the databank is closed, raises IOError.
     def check_closed?
       @db or raise IOError, 'closed databank'
@@ -741,7 +741,7 @@ module Bio
         end
         attr_accessor :mode
         attr_reader :filename
-        
+
         def open
           unless @file then
             DEBUG.print "FlatMappingFile: open #{@filename}\n"
@@ -888,7 +888,7 @@ module Bio
           self
         end
 
-        def self.external_sort_proc(sort_program = [ '/usr/bin/env', 
+        def self.external_sort_proc(sort_program = [ '/usr/bin/env',
                                                      'LC_ALL=C',
                                                      '/usr/bin/sort' ])
           Proc.new do |out, in1, *files|
@@ -897,7 +897,7 @@ module Bio
           end
         end
 
-        def self.external_merge_sort_proc(sort_program = [ '/usr/bin/env', 
+        def self.external_merge_sort_proc(sort_program = [ '/usr/bin/env',
                                                            'LC_ALL=C',
                                                            '/usr/bin/sort' ])
           Proc.new do |out, in1, *files|
@@ -920,7 +920,7 @@ module Bio
           end
         end
 
-        def self.external_merge_proc(sort_program =  [ '/usr/bin/env', 
+        def self.external_merge_proc(sort_program =  [ '/usr/bin/env',
                                                        'LC_ALL=C',
                                                        '/usr/bin/sort' ])
           Proc.new do |out, in1, *files|

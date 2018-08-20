@@ -19,7 +19,7 @@ require 'bio/db/rebase'
 
 module Bio #:nodoc:
   class TestREBASE < Test::Unit::TestCase #:nodoc:
-    
+
     def setup
       enzyme_data = <<END
 #
@@ -91,7 +91,7 @@ END
 
       assert_equal(a['AatI'].supplier_names, ['Toyobo Biochemicals'])
       assert_equal(a['AatI'].suppliers, ['O'])
-      
+
       assert_equal(a.enzyme_name?('aasi'), true)
       assert_equal(a.enzyme_name?('AarI'), true)
       assert_equal(a.enzyme_name?('Aari'), true)

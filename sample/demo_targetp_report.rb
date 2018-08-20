@@ -1,7 +1,7 @@
 #
 # = sample/demo_targetp_report.rb - demonstration of Bio::TargetP::Report
-# 
-# Copyright::  Copyright (C) 2003 
+#
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -37,19 +37,19 @@ require 'bio'
 
   begin
     require 'pp'
-    alias p pp 
+    alias p pp
   rescue LoadError
   end
 
 
   plant = <<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions not included.
 # Using PLANT networks.
- 
+
 #                        Name   Length	  cTP   mTP    SP other  Loc.  RC
 #----------------------------------------------------------------------------------
                    MGI_2141503	  640	0.031 0.161 0.271 0.844   _     3
@@ -60,13 +60,13 @@ require 'bio'
 HOGE
 
 plant_c = <<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions included.
 # Using PLANT networks.
- 
+
 #                        Name   Length	  cTP   mTP    SP other  Loc.  RC     TPlen
 #----------------------------------------------------------------------------------
                    MGI_2141503	  640	0.031 0.161 0.271 0.844   _     3	  -
@@ -78,13 +78,13 @@ plant_c = <<HOGE
 HOGE
 
 non_plant_c = <<HOGE
- 
-### ### ###  T A R G E T P  1.0  prediction results  ### ### ### 
- 
+
+### ### ###  T A R G E T P  1.0  prediction results  ### ### ###
+
 # Number of input sequences:  1
 # Cleavage site predictions included.
 # Using NON-PLANT networks.
- 
+
 #                        Name   Length    mTP   SP  other  Loc.  RC   TPlen
 #--------------------------------------------------------------------------
                      MGI_96083	 2187	0.292 0.053 0.746   _     3	  -

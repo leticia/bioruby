@@ -1,7 +1,7 @@
 #
 # = sample/demo_genscan_report.rb - demonstration of Bio::Genscan::Report
 #
-# Copyright::  Copyright (C) 2003 
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -67,28 +67,28 @@ require 'bio'
   print " report.isochore #=> "
   p report.isochore
 
-  print " report.matrix #=> " 
+  print " report.matrix #=> "
   p report.matrix
 
-  puts " report.predictions (Array of Bio::Genscan::Report::Gene)  " 
+  puts " report.predictions (Array of Bio::Genscan::Report::Gene)  "
   print " report.predictions.size #=> "
   p report.predictions.size
 
 
   report.predictions.each {|gene|
     puts "\n== class Bio::Genscan::Report::Gene "
-    print " gene.number #=> " 
+    print " gene.number #=> "
     p gene.number
-    print " gene.aaseq (Bio::FastaFormat) #=> " 
+    print " gene.aaseq (Bio::FastaFormat) #=> "
     p gene.aaseq
-    print " gene.naseq (Bio::FastaFormat) #=> " 
+    print " gene.naseq (Bio::FastaFormat) #=> "
     p gene.naseq
-    print " ene.promoter (Bio::Genscan::Report::Exon) #=> " 
+    print " ene.promoter (Bio::Genscan::Report::Exon) #=> "
     p gene.promoter
-    print " gene.polyA (Bio::Genscan::Report::Exon) #=> " 
+    print " gene.polyA (Bio::Genscan::Report::Exon) #=> "
     p gene.polyA
-    puts " gene.exons (Array of Bio::Genscan::Report::Exon) " 
-    print " gene.exons.size #=> " 
+    puts " gene.exons (Array of Bio::Genscan::Report::Exon) "
+    print " gene.exons.size #=> "
     p gene.exons.size
 
 

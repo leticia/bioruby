@@ -26,7 +26,7 @@ class KEGG
 # == Format
 #
 # File format is something like
-# 
+#
 #   # KEGGTAB
 #   #
 #   # name            type            directory                    abbreviation

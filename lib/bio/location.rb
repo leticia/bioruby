@@ -31,12 +31,12 @@ module Bio
 class Location
 
   include Comparable
-	
+
   # Parses a'location' segment, which can be 'ID:' + ('n' or 'n..m' or 'n^m'
   # or "seq") with '<' or '>', and returns a Bio::Location object.
   #
   #   location = Bio::Location.new('500..550')
-  # 
+  #
   # ---
   # *Arguments*:
   # * (required) _str_: GenBank style position string (see Bio::Locations
@@ -221,7 +221,7 @@ end # Location
 #   #   range = 500..550 (strand = -1)
 #   #   class = Bio::Location
 #   #   range = 600..625 (strand = 1)
-# 
+#
 #  # For the following three location strings, print the span and range
 #  ['one-of(898,900)..983',
 #   'one-of(5971..6308,5971..6309)',
@@ -232,82 +232,82 @@ end # Location
 #  end
 #
 # === GenBank location descriptor classification
-# 
+#
 # ==== Definition of the position notation of the GenBank location format
-# 
+#
 # According to the GenBank manual 'gbrel.txt', position notations were
 # classified into 10 patterns - (A) to (J).
-# 
+#
 #   3.4.12.2 Feature Location
-#   
+#
 #     The second column of the feature descriptor line designates the
 #   location of the feature in the sequence. The location descriptor
 #   begins at position 22. Several conventions are used to indicate
 #   sequence location.
-#   
+#
 #     Base numbers in location descriptors refer to numbering in the entry,
 #   which is not necessarily the same as the numbering scheme used in the
 #   published report. The first base in the presented sequence is numbered
 #   base 1. Sequences are presented in the 5 to 3 direction.
-#   
+#
 #   Location descriptors can be one of the following:
-#       
+#
 #   (A) 1. A single base;
-#         
+#
 #   (B) 2. A contiguous span of bases;
-#         
+#
 #   (C) 3. A site between two bases;
-#         
+#
 #   (D) 4. A single base chosen from a range of bases;
-#     
+#
 #   (E) 5. A single base chosen from among two or more specified bases;
-#     
+#
 #   (F) 6. A joining of sequence spans;
-#     
+#
 #   (G) 7. A reference to an entry other than the one to which the feature
 #        belongs (i.e., a remote entry), followed by a location descriptor
 #        referring to the remote sequence;
-#     
+#
 #   (H) 8. A literal sequence (a string of bases enclosed in quotation marks).
-#   
+#
 # ==== Description commented with pattern IDs.
-#  
+#
 #   (C)   A site between two residues, such as an endonuclease cleavage site, is
 #       indicated by listing the two bases separated by a carat (e.g., 23^24).
-#     
+#
 #   (D)   A single residue chosen from a range of residues is indicated by the
 #       number of the first and last bases in the range separated by a single
 #       period (e.g., 23.79). The symbols < and > indicate that the end point
 #   (I) of the range is beyond the specified base number.
-# 
+#
 #   (B)   A contiguous span of bases is indicated by the number of the first and
 #       last bases in the range separated by two periods (e.g., 23..79). The
 #   (I) symbols < and > indicate that the end point of the range is beyond the
 #       specified base number. Starting and ending positions can be indicated
 #       by base number or by one of the operators described below.
-# 
+#
 #         Operators are prefixes that specify what must be done to the indicated
 #       sequence to locate the feature. The following are the operators
 #       available, along with their most common format and a description.
-# 
+#
 #   (J) complement (location): The feature is complementary to the location
 #       indicated. Complementary strands are read 5 to 3.
-# 
+#
 #   (F) join (location, location, .. location): The indicated elements should
 #       be placed end to end to form one contiguous sequence.
-# 
+#
 #   (F) order (location, location, .. location): The elements are found in the
 #       specified order in the 5 to 3 direction, but nothing is implied about
 #       the rationality of joining them.
-# 
+#
 #   (F) group (location, location, .. location): The elements are related and
 #       should be grouped together, but no order is implied.
-# 
+#
 #   (E) one-of (location, location, .. location): The element can be any one,
 #     but only one, of the items listed.
-# 
+#
 # === Reduction strategy of the position notations
-# 
+#
 # * (A) Location n
 # * (B) Location n..m
 # * (C) Location n^m
@@ -329,7 +329,7 @@ end # Location
 #   * <n..>m			=> Location n..m with lt, gt flag
 # * (J) complement(loc)		=> Sequence
 # * (K) replace(loc, str)	=> Location with replacement Sequence
-# 
+#
 class Locations
 
   include Enumerable
@@ -439,9 +439,9 @@ class Locations
   end
   alias size length
 
-  # Converts absolute position in the whole of the DNA sequence to relative 
+  # Converts absolute position in the whole of the DNA sequence to relative
   # position in the locus.
-  # 
+  #
   # This method can for example be used to relate positions in a DNA-sequence
   # with those in RNA. In this use, the optional ':aa'-flag returns the
   # position of the associated amino-acid rather than the nucleotide.
@@ -472,7 +472,7 @@ class Locations
 
   # Converts relative position in the locus to position in the whole of the
   # DNA sequence.
-  # 
+  #
   # This method can for example be used to relate positions in a DNA-sequence
   # with those in RNA. In this use, the optional ':aa'-flag returns the
   # position of the associated amino-acid rather than the nucleotide.
@@ -505,7 +505,7 @@ class Locations
   # Note: In some cases, it fails to detect whether
   # "complement(join(...))" or "join(complement(..))", and whether
   # "complement(order(...))" or "order(complement(..))".
-  # 
+  #
   # ---
   # *Returns*:: String
   def to_s
@@ -657,27 +657,27 @@ class Locations
 
 
   # Convert the relative position to the absolute position
-  def rel2abs(n) 
-    return nil unless n > 0			# out of range 
+  def rel2abs(n)
+    return nil unless n > 0			# out of range
 
-    cursor = 0 
-    @locations.each do |x|      
-      if x.sequence 
-        len = x.sequence.size 
-      else 
-        len = x.to - x.from + 1 
-      end  
-      if n > cursor + len 
-        cursor += len 
-      else 
-        if x.strand < 0 
-          return x.to - (n - cursor - 1) 
-        else 
-          return x.from + (n - cursor - 1) 
-        end 
-      end                             
-    end 
-    return nil					# out of range 
+    cursor = 0
+    @locations.each do |x|
+      if x.sequence
+        len = x.sequence.size
+      else
+        len = x.to - x.from + 1
+      end
+      if n > cursor + len
+        cursor += len
+      else
+        if x.strand < 0
+          return x.to - (n - cursor - 1)
+        else
+          return x.from + (n - cursor - 1)
+        end
+      end
+    end
+    return nil					# out of range
   end
 
   # Convert the absolute position to the relative position
@@ -711,17 +711,17 @@ end # Bio
 
 
 # === GenBank location examples
-# 
+#
 # (C) n^m
-# 
+#
 # * [AB015179]	754^755
 # * [AF179299]	complement(53^54)
 # * [CELXOL1ES]	replace(4480^4481,"")
 # * [ECOUW87]	replace(4792^4793,"a")
 # * [APLPCII]	replace(1905^1906,"acaaagacaccgccctacgcc")
-# 
+#
 # (D) (n.m)
-# 
+#
 # * [HACSODA]	157..(800.806)
 # * [HALSODB]	(67.68)..(699.703)
 # * [AP001918]	(45934.45974)..46135
@@ -734,22 +734,22 @@ end # Bio
 # * [BOVMHDQBY4]	join(M30006.1:(392.467)..575,M30005.1:415..681,M30004.1:129..410,M30004.1:907..1017,521..534)
 # * [HUMMIC2A]	replace((651.655)..(651.655),"")
 # * [HUMSOD102]	order(L44135.1:(454.445)..>538,<1..181)
-# 
+#
 # (E) one-of
-# 
+#
 # * [ECU17136]	one-of(898,900)..983
 # * [CELCYT1A]	one-of(5971..6308,5971..6309)
 # * [DMU17742]	8050..one-of(10731,10758,10905,11242)
 # * [PFU27807]	one-of(623,627,632)..one-of(628,633,637)
 # * [BTBAINH1]	one-of(845,953,963,1078,1104)..1354
 # * [ATU39449]	join(one-of(969..1094,970..1094,995..1094,1018..1094),1518..1587,1726..2119,2220..2833,2945..3215)
-# 
+#
 # (F) join, order, group
-# 
+#
 # * [AB037374S2]	join(AB037374.1:1..177,1..807)
 # * [AP000001]	join(complement(1..61),complement(AP000007.1:252907..253505))
 # * [ASNOS11]	join(AF130124.1:<2563..2964,AF130125.1:21..157,AF130126.1:12..174,AF130127.1:21..112,AF130128.1:21..162,AF130128.1:281..595,AF130128.1:661..842,AF130128.1:916..1030,AF130129.1:21..115,AF130130.1:21..165,AF130131.1:21..125,AF130132.1:21..428,AF130132.1:492..746,AF130133.1:21..168,AF130133.1:232..401,AF130133.1:475..906,AF130133.1:970..1107,AF130133.1:1176..1367,21..>128)
-# 
+#
 # * [AARPOB2]	order(AF194507.1:<1..510,1..>871)
 # * [AF006691]	order(912..1918,20410..21416)
 # * [AF024666]	order(complement(18919..19224),complement(13965..14892))
@@ -759,9 +759,9 @@ end # Bio
 # * [S72388S2]	order(join(S72388.1:757..911,S72388.1:609..1542),1..>139)
 # * [HEYRRE07]	order(complement(1..38),complement(M82666.1:1..140),complement(M82665.1:1..176),complement(M82664.1:1..215),complement(M82663.1:1..185),complement(M82662.1:1..49),complement(M82661.1:1..133))
 # * [COL11A1G34]	order(AF101079.1:558..1307,AF101080.1:1..749,AF101081.1:1..898,AF101082.1:1..486,AF101083.1:1..942,AF101084.1:1..1734,AF101085.1:1..2385,AF101086.1:1..1813,AF101087.1:1..2287,AF101088.1:1..1073,AF101089.1:1..989,AF101090.1:1..5017,AF101091.1:1..3401,AF101092.1:1..1225,AF101093.1:1..1072,AF101094.1:1..989,AF101095.1:1..1669,AF101096.1:1..918,AF101097.1:1..1114,AF101098.1:1..1074,AF101099.1:1..1709,AF101100.1:1..986,AF101101.1:1..1934,AF101102.1:1..1699,AF101103.1:1..940,AF101104.1:1..2330,AF101105.1:1..4467,AF101106.1:1..1876,AF101107.1:1..2465,AF101108.1:1..1150,AF101109.1:1..1170,AF101110.1:1..1158,AF101111.1:1..1193,1..611)
-# 
+#
 # group() are found in the COMMENT field only (in GenBank 122.0)
-# 
+#
 #   gbpat2.seq:            FT   repeat_region   group(598..606,611..619)
 #   gbpat2.seq:            FT   repeat_region   group(8..16,1457..1464).
 #   gbpat2.seq:            FT   variation       group(t1,t2)
@@ -769,17 +769,17 @@ end # Bio
 #   gbpat2.seq:            FT   variation       group(t1,t2,t3)
 #   gbpat2.seq:            FT   repeat_region   group(11..202,203..394)
 #   gbpri9.seq:COMMENT     Residues reported = 'group(1..2145);'.
-# 
+#
 # (G) ID:location
-# 
+#
 # * [AARPOB2]	order(AF194507.1:<1..510,1..>871)
 # * [AF178221S4]	join(AF178221.1:<1..60,AF178222.1:1..63,AF178223.1:1..42,1..>90)
 # * [BOVMHDQBY4]	join(M30006.1:(392.467)..575,M30005.1:415..681,M30004.1:129..410,M30004.1:907..1017,521..534)
 # * [HUMSOD102]	order(L44135.1:(454.445)..>538,<1..181)
 # * [SL16SRRN1]	order(<1..>267,X67092.1:<1..>249,X67093.1:<1..>233)
-# 
+#
 # (I) <, >
-# 
+#
 # * [A5U48871]	<1..>318
 # * [AA23SRRNP]	<1..388
 # * [AA23SRRNP]	503..>1010
@@ -790,9 +790,9 @@ end # Bio
 # * [BBU17998]	(88.89)..>1122
 # * [AARPOB2]	order(AF194507.1:<1..510,1..>871)
 # * [SL16SRRN1]	order(<1..>267,X67092.1:<1..>249,X67093.1:<1..>233)
-# 
+#
 # (J) complement
-# 
+#
 # * [AF179299]	complement(53^54)	<= hoge insertion site etc.
 # * [AP000001]	join(complement(1..61),complement(AP000007.1:252907..253505))
 # * [AF209868S2]	order(complement(1..>308),complement(AF209868.1:75..336))
@@ -804,9 +804,9 @@ end # Bio
 # * [LPATOVGNS]	complement((64.74)..1525)
 # * [AF129075]	complement(join(71606..71829,75327..75446,76039..76203,76282..76353,76914..77029,77114..77201,77276..77342,78138..78316,79755..79892,81501..81562,81676..81856,82341..82490,84208..84287,85032..85122,88316..88403))
 # * [ZFDYST2]	join(AF137145.1:<1..18,complement(<1..99))
-# 
+#
 # (K) replace
-# 
+#
 # * [CSU27710]	replace(64,"A")
 # * [CELXOL1ES]	replace(5256,"t")
 # * [ANICPC]	replace(1..468,"")

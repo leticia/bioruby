@@ -74,10 +74,10 @@ module Bio
 
 end #end module TestPhyloXMLData
 
-  
+
 
   class TestPhyloXML_class_methods < Test::Unit::TestCase
-  
+
     def test_open
       filename = TestPhyloXMLData.example_xml
       assert_instance_of(Bio::PhyloXML::Parser,
@@ -106,11 +106,11 @@ end #end module TestPhyloXMLData
       while tree != nil do
         tree_arr[tree_arr.length] = tree.name
         tree = phyloxml.next_tree
-      end      
+      end
       assert_equal(13, tree_arr.length)
     end
     private :common_test_next_tree
-    
+
   end #class TestPhyloXML_class_methods
 
 
@@ -227,7 +227,7 @@ end #end module TestPhyloXMLData
 
 
   class TestPhyloXML1 < Test::Unit::TestCase
-  
+
     def setup
       @phyloxml = Bio::PhyloXML::Parser.open(TestPhyloXMLData.example_xml)
     end
@@ -235,11 +235,11 @@ end #end module TestPhyloXMLData
     def teardown
       @phyloxml.close
     end
-    
+
     def test_initialize
       assert_instance_of(Bio::PhyloXML::Parser, @phyloxml)
-    end 
-      
+    end
+
     def test_next_tree()
       tree = @phyloxml.next_tree
       tree_arr = []
@@ -247,30 +247,30 @@ end #end module TestPhyloXMLData
 
         tree_arr[tree_arr.length] = tree.name
         tree = @phyloxml.next_tree
-      end      
+      end
       assert_equal(13, tree_arr.length)
     end
-     
+
   end #class TestPhyloXML1
 
 
 
   class TestPhyloXML2 < Test::Unit::TestCase
-  
-    #setup is called before and every time any function es executed.  
+
+    #setup is called before and every time any function es executed.
     def setup
       @phyloxml = Bio::PhyloXML::Parser.open(TestPhyloXMLData.example_xml)
       @tree = @phyloxml.next_tree
     end
-    
+
     def test_tree_name
       assert_equal("example from Prof. Joe Felsenstein's book \"Inferring Phylogenies\"", @tree.name)
     end
-    
+
     def test_tree_description
       assert_equal("phyloXML allows to use either a \"branch_length\" attribute or element to indicate branch lengths.", @tree.description)
     end
-    
+
     def test_branch_length_attribute
       assert_equal(0.792, @tree.total_distance)
     end
@@ -278,13 +278,13 @@ end #end module TestPhyloXMLData
     def test_rooted_atr
        assert_equal(true, @tree.rooted)
     end
-    
-   
+
+
     def test_branch_length_tag
       @tree = @phyloxml.next_tree
       assert_equal(0.792, @tree.total_distance)
     end
-    
+
     def test_bootstrap
       #iterate throuch first 2 trees to get to the third
       @tree = @phyloxml.next_tree
@@ -512,12 +512,12 @@ end #end module TestPhyloXMLData
      end
 
 
-    
+
   end #class TestPhyloXML2
-  
+
   class TestPhyloXML3 < Test::Unit::TestCase
-  
-  TEST_STRING = 
+
+  TEST_STRING =
   """<phylogeny rooted=\"true\">
       <name>same example, with support of type \"bootstrap\"</name>
       <clade>
@@ -536,13 +536,13 @@ end #end module TestPhyloXMLData
          </clade>
       </clade>
    </phylogeny>"""
-   
+
     def setup
       phyloxml = Bio::PhyloXML::Parser.new(TEST_STRING)
-      @tree = phyloxml.next_tree()  
+      @tree = phyloxml.next_tree()
 
     end
-  
+
     def test_children
       node =  @tree.get_node_by_name("AB")
       # nodes  = @tree.children(node).sort { |a,b| a.name <=> b.name }
@@ -554,7 +554,7 @@ end #end module TestPhyloXMLData
       assert_equal(["A", "B"], node_names)
     end
 
-  
+
   end # class
 
   class TestPhyloXML4 < Test::Unit::TestCase
@@ -580,7 +580,7 @@ end #end module TestPhyloXMLData
       end
 
       sr = @tree.sequence_relations[0]
-       
+
        assert_equal("x", sr.id_ref_0)
        assert_equal("y", sr.id_ref_1)
        assert_equal("paralogy", sr.type)

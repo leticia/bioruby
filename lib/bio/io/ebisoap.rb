@@ -153,6 +153,6 @@ if __FILE__ == $0
   poll = serv.run(hash, [])
   puts poll
   base = serv.poll(poll, "tooloutput")
-  puts Base64.decode64(base)  
+  puts Base64.decode64(base)
 end
 

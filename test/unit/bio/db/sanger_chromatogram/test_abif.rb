@@ -45,11 +45,11 @@ module Bio
     def test_seq
       assert_equal(Abif_sequence, @abi.seq.to_s)
     end
-     
+
     def test_to_biosequence
       assert_equal(Abif_sequence, @abi.to_biosequence.to_s)
     end
-    
+
     def test_complement
       @RC_chromatogram = @abi.complement
       # check reverse complemented sequence

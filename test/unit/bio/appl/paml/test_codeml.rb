@@ -141,7 +141,7 @@ module Bio; module TestPAMLCodeml
   end #class TestCodemlControlGeneration
 
   class TestControlFileUsage < Test::Unit::TestCase
-    
+
     def setup
       @codeml = Bio::PAML::Codeml.new
       @codeml.load_parameters(File.read(TestCodemlData.example_control))
@@ -160,7 +160,7 @@ module Bio; module TestPAMLCodeml
   end #class TestControlFileUsage
 
   class TestExpectedErrorsThrown < Test::Unit::TestCase
-  
+
     def test_error_thrown_if_seqfile_does_not_specified
       codeml = Bio::PAML::Codeml.new('echo')
       codeml.load_parameters(File.read(TestCodemlData.example_control))
@@ -169,7 +169,7 @@ module Bio; module TestPAMLCodeml
         codeml.query_by_string()
       end
     end
-  
+
   end #class TestExpectedErrorsThrown
 
 end; end #module TestPAMLCodeml; module Bio

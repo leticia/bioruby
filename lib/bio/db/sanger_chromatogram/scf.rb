@@ -1,5 +1,5 @@
 #
-# = bio/db/sanger_chromatogram/scf.rb - Scf class 
+# = bio/db/sanger_chromatogram/scf.rb - Scf class
 #
 # Copyright::	Copyright (C) 2009 Anthony Underwood <anthony.underwood@hpa.org.uk>, <email2ants@gmail.com>
 # License::	The Ruby License
@@ -15,7 +15,7 @@ module Bio
   # for usage
   class Scf < SangerChromatogram
     # sequence attributes
-    
+
     # The quality of each base at each position along the length of the sequence is captured
     # by the nqual attributes where n is one of a, c, g or t. Generally the quality will be
     # high for the base that is called at a particular position and low for all the other bases.
@@ -32,7 +32,7 @@ module Bio
     attr_accessor :tqual
     # A hash of extra information extracted from the chromatogram file
     attr_accessor :comments
-    
+
     # see SangerChromatogram class for how to create an Scf object and its usage
     def initialize(string)
       header = string.slice(0,128)

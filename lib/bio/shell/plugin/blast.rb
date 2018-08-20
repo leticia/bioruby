@@ -25,7 +25,7 @@ module Bio::Shell
       desc = "query"
       tmp = getseq(query)
     end
-    
+
     if tmp.respond_to?(:translate)
       aaseq = tmp.translate
     else

@@ -23,7 +23,7 @@ class Sequence
 
 # = DESCRIPTION
 # A Mixin[http://www.rubycentral.com/book/tut_modules.html]
-# of methods used by Bio::Sequence#output to output sequences in 
+# of methods used by Bio::Sequence#output to output sequences in
 # common bioinformatic formats.  These are not called in isolation.
 #
 # = USAGE
@@ -148,10 +148,10 @@ module Format
   #   s = Bio::Sequence.new('atgc')
   #   puts s.output(:fasta)                   #=> "> \natgc\n"
   #
-  # The style argument is given as a Ruby 
+  # The style argument is given as a Ruby
   # Symbol(http://www.ruby-doc.org/core/classes/Symbol.html)
   # ---
-  # *Arguments*: 
+  # *Arguments*:
   # * (required) _format_: :fasta, :genbank, *or* :embl
   # *Returns*:: String object
   def output(format = :fasta, options = {})
@@ -174,7 +174,7 @@ module Format
 
   # Returns a list of available output formats for the sequence
   # ---
-  # *Arguments*: 
+  # *Arguments*:
   # *Returns*:: Array of Symbols
   def list_output_formats
     a = get_formatter_repositories.collect { |mod| mod.constants }
@@ -189,7 +189,7 @@ module Format
   #   s = Bio::Sequence.new('atgc')
   #   puts s.output_fasta                   #=> "> \natgc\n"
   # ---
-  # *Arguments*: 
+  # *Arguments*:
   # * (optional) _definition_: (String) definition line
   # * (optional) _width_: (Integer) width (default 70)
   # *Returns*:: String object
@@ -238,7 +238,7 @@ module INSDFeatureHelper
     prefix = ' ' * 5
     indent = prefix + ' ' * 16
     fwidth = 79 - indent.length
-  
+
     format_features(features, prefix, indent, fwidth)
   end
 
@@ -254,7 +254,7 @@ module INSDFeatureHelper
     prefix = 'FT   '
     indent = prefix + ' ' * 16
     fwidth = 80 - indent.length
-  
+
     format_features(features, prefix, indent, fwidth)
   end
 
@@ -355,7 +355,7 @@ module INSDFeatureHelper
 
   #--
   # internal use only
-  MonthStr = [ nil, 
+  MonthStr = [ nil,
                'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
                'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'
              ].collect { |x| x.freeze }.freeze

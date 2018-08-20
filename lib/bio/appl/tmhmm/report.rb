@@ -1,7 +1,7 @@
 #
 # = bio/appl/tmhmm/report.rb - TMHMM report class
-# 
-# Copyright::  Copyright (C) 2003 
+#
+# Copyright::  Copyright (C) 2003
 #              Mitsuteru C. Nakao <n@bioruby.org>
 # License::    The Ruby License
 #
@@ -145,8 +145,8 @@ module Bio
           when /^[^\#]/
             eid,version,status,r0,r1 = line.split(/\s+/)
             tmhs << Bio::TMHMM::TMH.new(eid.strip,
-                                        version.strip, 
-                                        status.strip, 
+                                        version.strip,
+                                        status.strip,
                                         Range.new(r0.to_i, r1.to_i))
           end
         end

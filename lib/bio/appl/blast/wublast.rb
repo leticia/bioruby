@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/wublast.rb - WU-BLAST default output parser
-# 
+#
 # Copyright::  Copyright (C) 2003, 2008 Naohisa GOTO <ng@bioruby.org>
 # License::    The Ruby License
 #
@@ -88,7 +88,7 @@ module Bio
         # The message will be shown when WU-BLAST ignores a fatal error
         # due to the command line option "-nonnegok", "-novalidctxok",
         # or "-shortqueryok".
-        # 
+        #
         # Returns a String or nil.
         def exit_code_message
           if defined? @exit_code_message then
@@ -210,7 +210,7 @@ module Bio
           @f0wu_params = []
           @f0wu_stats = []
           ary = @f0wu_params
-          while r = data.shift 
+          while r = data.shift
             case r
             when /\AStatistics\:/
               ary = @f0wu_stats
@@ -351,7 +351,7 @@ module Bio
             unless defined?(@parse_hitlist)
               r = @f0hitlist.shift.to_s
               if /Reading/ =~ r and /Frame/ =~ r then
-                flag_tblast = true 
+                flag_tblast = true
                 spnum = 5
               else
                 flag_tblast = nil
@@ -368,7 +368,7 @@ module Bio
                   z = y.split(/\s+/, spnum)
                   z.each { |y| y.reverse! }
                   dfl  = z.pop
-                  h = @hits[i] 
+                  h = @hits[i]
                   unless h then
                     h = Hit.new([ dfl.to_s.sub(/\.+\z/, '') ])
                     @hits[i] = h

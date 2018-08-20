@@ -29,35 +29,35 @@ module Bio
 
 
     # "main" method tests translated into unit tests
-    
+
     # Test Sequence::NA.new
-    
+
     def test_DNA_new_blank_sequence
       sequence = Sequence::NA.new('')
       assert_equal(0, sequence.size)
     end
-    
+
     def test_DNA_new_sequence_downcases_symbols
       string = 'atgcatgcATGCATGCAAAA'
       sequence = Sequence::NA.new(string)
       assert_equal(string.downcase, sequence.to_s)
     end
-    
+
     def test_RNA_new_sequence
       string = 'augcaugcaugcaugcaaaa'
       sequence = Sequence::NA.new(string)
       assert_equal(string, sequence.to_s)
     end
-    
+
     # added
-    
+
     def test_DNA_new_sequence_removes_whitespace
       sequence = Sequence::NA.new("a g\tc\nt\ra")
       assert_equal("agcta", sequence)
     end
 
     # Test Sequence::AA.new
-    
+
     def test_AA_new_blank_sequence
       sequence = Sequence::AA.new('')
       assert_equal(0, sequence.size)
@@ -70,7 +70,7 @@ module Bio
     end
 
     # added
-    
+
     def test_AA_new_sequence_upcases_symbols
       string = 'upcase'
       sequence = Sequence::AA.new(string)
@@ -83,28 +83,28 @@ module Bio
     end
 
     # test element indexing
-    
+
     def test_element_reference_operator_with_two_arguments
       sequence = Sequence::NA.new("atggggggtc")
       assert_equal("gggggg", sequence[2,6])
     end
-    
+
     # added
     def test_element_reference_operator_with_one_argument
       sequence = Sequence::NA.new("atggggggtc")
       assert_equal(?t, sequence[1])
     end
-    
-    
+
+
     # Test Sequence#total
-    
+
     def test_total
       sequence = Sequence::NA.new("catccagtccctggt")
       assert_equal(2346, sequence.total({'a'=>1000, 'g'=>100, 't'=>10, 'c'=>1}))
     end
 
     # Test Sequence#composition
-    
+
     def test_dna_composition
       sequence = Sequence::NA.new("aggtttcccc")
       expected = {'a'=>1,'g'=>2,'t'=>3,'c'=>4}
@@ -130,7 +130,7 @@ module Bio
     def test_rna_sequence_complement
       assert_equal('uuuugcaugcaugcaugcau', @rna.complement)
     end
-    
+
     def test_ambiguous_dna_sequence_complement
       assert_equal("nwsbvhdkmyrcgta", Sequence::NA.new('tacgyrkmhdbvswn').complement)
     end
@@ -184,7 +184,7 @@ module Bio
     def test_dna_molecular_weight
       assert_in_delta(6174.3974, @na.molecular_weight, 1e-5)
     end
-    
+
     def test_rna_molecular_weight
       assert_in_delta(6438.2774, @rna.molecular_weight, 1e-5)
     end
@@ -257,8 +257,8 @@ module Bio
     # Test Sequence::AA#codes
 
     def test_amino_acid_codes
-      assert_equal(["Ala", "Cys", "Asp", "Glu", "Phe", "Gly", "His", "Ile", "Lys", 
-                    "Leu", "Met", "Asn", "Pro", "Gln", "Arg", "Ser", "Thr", "Val", "Trp", 
+      assert_equal(["Ala", "Cys", "Asp", "Glu", "Phe", "Gly", "His", "Ile", "Lys",
+                    "Leu", "Met", "Asn", "Pro", "Gln", "Arg", "Ser", "Thr", "Val", "Trp",
                     "Tyr", "Sec"], @aa.codes)
     end
 

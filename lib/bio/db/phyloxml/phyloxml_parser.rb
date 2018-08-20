@@ -12,7 +12,7 @@
 # This file containts parser for PhyloXML.
 #
 # == Requirements
-# 
+#
 # Libxml2 XML parser is required. Install libxml-ruby bindings from
 # http://libxml.rubyforge.org or
 #
@@ -42,7 +42,7 @@ module PhyloXML
   # == Description
   #
   # Bio::PhyloXML::Parser is for parsing phyloXML format files.
-  # 
+  #
   # == Requirements
   #
   # Libxml2 XML parser is required. Install libxml-ruby bindings from
@@ -262,7 +262,7 @@ module PhyloXML
     #   p = Bio::PhyloXML::Parser.new("./phyloxml_examples.xml")
     #
     # Taking filename is deprecated. Use Bio::PhyloXML::Parser.open(filename).
-    # 
+    #
     # ---
     # *Arguments*:
     # * (required) _str_: PhyloXML-formatted string
@@ -325,7 +325,7 @@ module PhyloXML
     # Parse and return the next phylogeny tree. If there are no more phylogeny
     # element, nil is returned. If there is something else besides phylogeny
     # elements, it is saved in the PhyloXML::Parser#other.
-    # 
+    #
     #  p = Bio::PhyloXML::Parser.open("./phyloxml_examples.xml")
     #  tree = p.next_tree
     #
@@ -344,11 +344,11 @@ module PhyloXML
               return nil
             end
           end
-        end        
+        end
         # phyloxml can hold only phylogeny and "other" elements. If this is not
         # phylogeny element then it is other. Also, "other" always comes after
-        # all phylogenies        
-        @other << parse_other        
+        # all phylogenies
+        @other << parse_other
         #return nil for tree, since this is not valid phyloxml tree.
         return nil
       end
@@ -359,7 +359,7 @@ module PhyloXML
       # last element in the clades array
       clades = []
       clades.push tree
-      
+
       #keep track of current edge to be able to parse branch_length tag
       current_edge = nil
 
@@ -372,7 +372,7 @@ module PhyloXML
 
       while not is_end_element?('phylogeny') do
         break if is_end_element?('phyloxml')
-        
+
         # parse phylogeny elements, except clade
         if not parsing_clade
 
@@ -432,7 +432,7 @@ module PhyloXML
             # set current node (clades[-1) to the previous clade in the array
             clades.pop
           end
-        end          
+        end
 
         #parsing phylogeny elements
         if not parsing_clade
@@ -473,20 +473,20 @@ module PhyloXML
             end
           end
         end
-        # go to next element        
-        @reader.read    
+        # go to next element
+        @reader.read
       end #end while not </phylogeny>
       #move on to the next tag after /phylogeny which is text, since phylogeny
       #end tag is empty element, which value is nil, therefore need to move to
       #the next meaningful element (therefore @reader.read twice)
-      @reader.read 
+      @reader.read
       @reader.read
 
       return tree
-    end  
+    end
 
     # return tree of specified name.
-    # @todo Implement this method. 
+    # @todo Implement this method.
     # def get_tree_by_name(name)
 
 #      while not is_end_element?('phyloxml')
@@ -524,7 +524,7 @@ module PhyloXML
     end
 
     def has_reached_end_element?(str)
-      if not(is_end_element?(str))        
+      if not(is_end_element?(str))
         raise "Warning: Should have reached </#{str}> element here"
       end
     end
@@ -545,7 +545,7 @@ module PhyloXML
     def parse_simple_elements(object, elements)
       elements.each do |elmt|
           parse_simple_element(object, elmt)
-      end      
+      end
     end
 
     #Parses list of attributes
@@ -563,7 +563,7 @@ module PhyloXML
         case @reader.name
         when 'branch_length'
           # @todo add unit test for this. current_edge is nil, if the root clade
-          # has branch_length attribute. 
+          # has branch_length attribute.
           @reader.read
           branch_length = @reader.value
           current_edge.distance = branch_length.to_f if current_edge != nil
@@ -710,7 +710,7 @@ module PhyloXML
     def parse_sequence
       sequence = Sequence.new
       parse_attributes(sequence, ["type", "id_source", "id_ref"])
-      
+
       @reader.read
       while not(is_end_element?('sequence'))
 
@@ -756,7 +756,7 @@ module PhyloXML
             end
           else
             sequence.other << parse_other
-            #@todo add unit test            
+            #@todo add unit test
           end
         end
 
@@ -786,12 +786,12 @@ module PhyloXML
           annotation.properties << parse_property if is_element?('property')
 
           if is_element?('uri')
-            annotation.uri = parse_uri        
+            annotation.uri = parse_uri
           end
 
           @reader.read
         end
-        
+
       end
       return annotation
     end
@@ -802,7 +802,7 @@ module PhyloXML
       @reader.read
       property.value = @reader.value
       @reader.read
-      has_reached_end_element?('property')     
+      has_reached_end_element?('property')
       return property
     end #parse_property
 
@@ -931,7 +931,7 @@ module PhyloXML
       code = @reader.move_to_first_attribute
       while code ==1
         other_obj.attributes[@reader.name] = @reader.value
-        code = @reader.move_to_next_attribute        
+        code = @reader.move_to_next_attribute
       end
 
       while not is_end_element?(other_obj.element_name) do
@@ -950,5 +950,5 @@ module PhyloXML
   end #class phyloxmlParser
 
 end #module PhyloXML
-  
+
 end #module Bio

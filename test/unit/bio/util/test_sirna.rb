@@ -225,7 +225,7 @@ END
     def test_blocK_it_
       assert_raises(NotImplementedError) { @obj.block_it("") }
     end
-    
+
     def test_report
       report =<<END
 ### shRNA

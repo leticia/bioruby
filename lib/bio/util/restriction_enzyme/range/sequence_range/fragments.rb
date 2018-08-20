@@ -1,5 +1,5 @@
 #
-# bio/util/restriction_enzyme/analysis/fragments.rb - 
+# bio/util/restriction_enzyme/analysis/fragments.rb -
 #
 # Author::    Trevor Wennblom  <mailto:trevor@corevx.com>
 # Copyright:: Copyright (c) 2005-2007 Midwinter Laboratories, LLC (http://midwinterlabs.com)
@@ -16,7 +16,7 @@ class Range
 class SequenceRange
 
 class Fragments < Array
-  
+
   attr_accessor :primary
   attr_accessor :complement
 

@@ -15,13 +15,13 @@ class RestrictionEnzyme
 
 # A pair of SingleStrand and SingleStrandComplement objects with methods to
 # add utility to their relation.
-# 
+#
 # = Notes
 # * This is created by Bio::RestrictionEnzyme.new for convenience.
 # * The two strands accessible are +primary+ and +complement+.
 # * SingleStrand methods may be used on DoubleStranded and they will be passed to +primary+.
-# 
-# 
+#
+#
 # FIXME needs better docs
 class DoubleStranded
 
@@ -151,8 +151,8 @@ class DoubleStranded
   def sticky?
     !blunt?
   end
-  
-  # Takes a RestrictionEnzyme object and a numerical offset to the sequence and 
+
+  # Takes a RestrictionEnzyme object and a numerical offset to the sequence and
   # returns an EnzymeAction
   #
   # +restriction_enzyme+:: RestrictionEnzyme
@@ -163,9 +163,9 @@ class DoubleStranded
     #
     # For example -
     # Note how EcoRII needs extra padding on the beginning and ending of the
-    # sequence 'ccagg' to make the match since the cut must occur between 
+    # sequence 'ccagg' to make the match since the cut must occur between
     # two nucleotides and can not occur on the very end of the sequence.
-    #   
+    #
     #   EcoRII:
     #     :blunt: "0"
     #     :c2: "5"
@@ -176,15 +176,15 @@ class DoubleStranded
     #     :name: EcoRII
     #     :c3: "0"
     #     :ncuts: "2"
-    #   
+    #
     #        -1 1 2 3 4 5
     #   5' - n^c c w g g n - 3'
     #   3' - n g g w c c^n - 5'
-    #   
+    #
     #   (w == [at])
-    
+
     x = aligned_strands.primary.size
-    
+
     enzyme_action = EnzymeAction.new( offset,
                                       offset + x-1,
                                       offset,
@@ -202,7 +202,7 @@ class DoubleStranded
 
     enzyme_action
   end
-  
+
   # An EnzymeAction is a way of representing a potential effect that a
   # RestrictionEnzyme may have on a nucleotide sequence, an 'action'.
   #
@@ -212,28 +212,28 @@ class DoubleStranded
   # An EnzymeAction is a series of locations that represents where the restriction
   # enzyme will bind on the sequence, as well as what ranges are cut on the
   # sequence itself.  The complexity is due to the fact that our virtual
-  # restriction enzyme may create multiple segments from its cutting action, 
+  # restriction enzyme may create multiple segments from its cutting action,
   # on which another restriction enzyme may operate upon.
   #
   # For example, the DNA sequence:
-  # 
+  #
   #   5' - G A A T A A A C G A - 3'
   #   3' - C T T A T T T G C T - 5'
   #
   # When mixed with the restriction enzyme with the following cut pattern:
   #
   #   5' -   A|A T A A A C|G   - 3'
-  #           +-+         +  
+  #           +-+         +
   #   3' -   T T|A T T T G|C   - 5'
   #
   # And also mixed with the restriction enzyme of the following cut pattern:
   #
   #   5' -         A A|A C     - 3'
-  #                 +-+  
+  #                 +-+
   #   3' -         T|T T G     - 5'
   #
   # Would result in a DNA sequence with these cuts:
-  # 
+  #
   #   5' - G A|A T A A|A C|G A - 3'
   #           +-+   +-+   +
   #   3' - C T T|A T|T T G|C T - 5'
@@ -248,17 +248,17 @@ class DoubleStranded
   #
   #   5' -   A C - 3'
   #   3' - T T G - 5'
-  #  
+  #
   #   5' - G A - 3'
   #   3' - C T - 5'
   #
   # This would be represented by two EnzymeActions - one for each
   # RestrictionEnzyme.
-  # 
+  #
   # This is, however, subject to competition.  If the second enzyme reaches
   # the target first, the the first enzyme will not be able to find the
   # appropriate bind site.
-  # 
+  #
   # FIXME complete these docs
   #
   # To initialize an EnzymeAction you must first instantiate it with the

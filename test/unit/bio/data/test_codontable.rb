@@ -40,7 +40,7 @@ module Bio
 
 
   class TestCodonTable < Test::Unit::TestCase
-    
+
     def setup
       @ct = Bio::CodonTable[1]
     end
@@ -60,7 +60,7 @@ module Bio
     def test_definition
       assert_equal("Standard (Eukaryote)", @ct.definition)
     end
-    
+
     def test_start
       assert_equal(['ttg', 'ctg', 'atg', 'gtg'], @ct.start)
     end

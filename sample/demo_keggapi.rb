@@ -281,7 +281,7 @@ require 'bio'
   end
 
   # The method "get_ko_members" is removed in 2005-06-01.
-  # 
+  #
   #puts "### get_ko_members('ko:K00003')"
   #list = serv.get_ko_members("ko:K00003")
   #list.each do |gene|
@@ -466,7 +466,7 @@ require 'bio'
   list.each do |compound|
     puts compound
   end
-  
+
   puts "### get_reactions_by_enzyme('ec:2.7.1.12')"
   list = serv.get_reactions_by_enzyme("ec:2.7.1.12")
   list.each do |reaction|
@@ -478,7 +478,7 @@ require 'bio'
   list.each do |reaction|
     puts reaction
   end
-  
+
   puts "=== GENES"
 
   puts "### get_genes_by_organism('mge', 1, 5)"
@@ -492,7 +492,7 @@ require 'bio'
   list.each do |gene|
     puts gene
   end
-  
+
   puts "=== GENOME"
 
   puts "### get_number_of_genes_by_organism(org)"

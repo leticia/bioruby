@@ -14,10 +14,10 @@ require 'bio/sequence'
 module Bio
 class RestrictionEnzyme
 
-# A single strand of restriction enzyme sequence pattern with a 5' to 3' 
+# A single strand of restriction enzyme sequence pattern with a 5' to 3'
 # orientation.
-#  
-# DoubleStranded puts the SingleStrand and SingleStrandComplement together to 
+#
+# DoubleStranded puts the SingleStrand and SingleStrandComplement together to
 # create the sequence pattern with cuts on both strands.
 #
 class SingleStrand < Bio::Sequence::NA
@@ -27,12 +27,12 @@ class SingleStrand < Bio::Sequence::NA
   include CutSymbol
   include StringFormatting
 
-  # The cut locations in enzyme notation. Contains a 
+  # The cut locations in enzyme notation. Contains a
   # CutLocationsInEnzymeNotation object set when the SingleStrand
   # object is initialized.
   attr_reader :cut_locations_in_enzyme_notation
 
-  # The cut locations transformed from enzyme index notation to 0-based 
+  # The cut locations transformed from enzyme index notation to 0-based
   # array index notation.  Contains an Array.
   attr_reader :cut_locations
 
@@ -46,7 +46,7 @@ class SingleStrand < Bio::Sequence::NA
   # ---
   # *Arguments*
   # * +sequence+: (_required_) The enzyme sequence.
-  # * +c+: (_optional_) Cut locations in enzyme notation.  
+  # * +c+: (_optional_) Cut locations in enzyme notation.
   #   See Bio::RestrictionEnzyme::SingleStrand::CutLocationsInEnzymeNotation
   #
   # *Constraints*
@@ -71,7 +71,7 @@ class SingleStrand < Bio::Sequence::NA
   # NOTE t| 2009-09-19 commented out for library efficiency
     # validate_args(sequence, c)
     sequence = sequence.downcase
-    
+
     if sequence =~ re_cut_symbol
       @cut_locations_in_enzyme_notation = CutLocationsInEnzymeNotation.new( strip_padding(sequence) )
     else
@@ -88,11 +88,11 @@ class SingleStrand < Bio::Sequence::NA
   # Does not report if the +cut_locations+ are palindromic or not.
   #
   # Examples:
-  # * This would be palindromic: 
+  # * This would be palindromic:
   #     5' - ATGCAT - 3'
   #          TACGTA
   #
-  # * This would not be palindromic: 
+  # * This would not be palindromic:
   #     5' - ATGCGTA - 3'
   #          TACGCAT
   #
@@ -132,7 +132,7 @@ class SingleStrand < Bio::Sequence::NA
     return stripped if @cut_locations_in_enzyme_notation.min == nil
     left = (@cut_locations_in_enzyme_notation.min < 0 ? 'n' * @cut_locations_in_enzyme_notation.min.abs : '')
 
-    # Add one more 'n' if a cut is at the last position 
+    # Add one more 'n' if a cut is at the last position
     right = ( (@cut_locations_in_enzyme_notation.max >= @stripped.length) ? ('n' * (@cut_locations_in_enzyme_notation.max - @stripped.length + 1)) : '')
     [left, stripped, right].join('')
   end
@@ -168,7 +168,7 @@ class SingleStrand < Bio::Sequence::NA
       raise ArgumentError, err
     end
 
-    input_pattern.each_byte do |c| 
+    input_pattern.each_byte do |c|
       c = c.chr.downcase
       unless Bio::NucleicAcid::NAMES.has_key?(c) or c == 'x' or c == 'X' or c == cut_symbol
         err = "Invalid character in pattern.\n"

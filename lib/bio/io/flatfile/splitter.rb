@@ -148,7 +148,7 @@ module Bio
 
         # (Integer) excess read data size included in delimiter.
         attr_accessor :delimiter_overrun
-        
+
         # Skips leader of the entry.
         #
         # If @header is not nil, it reads till the contents of @header
@@ -250,7 +250,7 @@ module Bio
             line_overrun = nil
             self.flag_to_fetch_header = false
           end
-              
+
           while line = stream.gets("\n")
             unless ent.add_line(line) then
               line_overrun = line

@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
             i
           end.reverse
     ver.push suffix if suffix
-    %><%= 
+    %><%=
     (env_ver || ver.join('.'))
        ###### Above is executed in ERB environment ######
     %>"
@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
     # When git-ls-files isn't available, creates a list from current files.
     if !($?.success?) or files.size <= 0 then
       files =
-        [ "README.rdoc", "README_DEV.rdoc", 
+        [ "README.rdoc", "README_DEV.rdoc",
           "ChangeLog", "KNOWN_ISSUES.rdoc",
           "Rakefile", "bioruby.gemspec.erb",
           "bioruby.gemspec", "setup.rb",
@@ -67,14 +67,14 @@ Gem::Specification.new do |s|
               end
             end
     end
-    %><%= 
+    %><%=
     files.sort.collect { |x| x.dump }.join(",\n    ")
        ###### Above is executed in ERB environment ######
     %>
   ]
 
   s.has_rdoc = true
-  s.extra_rdoc_files = [ 
+  s.extra_rdoc_files = [
     <%= ###### Below is executed in ERB environment ######
         # Files whose suffix are .rdoc are selected.
         rdoc_files = files.find_all { |item| /\.rdoc\z/ =~ item }

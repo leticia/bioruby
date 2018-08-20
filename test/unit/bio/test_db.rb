@@ -19,7 +19,7 @@ require 'bio/db'
 module Bio
   class TestDB < Test::Unit::TestCase
     def setup
-      
+
      @obj = Bio::DB.new
       @obj.instance_eval { @orig = {"TAG" => "TAG value1\n    value2"} }
     end
@@ -27,7 +27,7 @@ module Bio
     def test_open
       assert(Bio::DB.respond_to?(:open))
     end
- 
+
     def test_entry_id
       assert_raises(NotImplementedError) { @obj.entry_id }
     end
@@ -35,7 +35,7 @@ module Bio
     def test_tags
       assert_equal(["TAG"], @obj.tags)
     end
-    
+
     def test_exists
       assert_equal(true, @obj.exists?("TAG"))
     end
@@ -75,7 +75,7 @@ END
 
 #  class TestKEGGDB < Test::Unit::TestCase
 #  end
-  
+
   class TestEMBLDB < Test::Unit::TestCase
     def setup
       @entry =<<END

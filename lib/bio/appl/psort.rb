@@ -16,9 +16,9 @@ autoload :Command, 'bio/command'
 require 'cgi'
 require 'uri'
 
-  # == A client for PSORT WWW Server 
+  # == A client for PSORT WWW Server
   #
-  # A client for PSORT WWW Server for predicting protein subcellular 
+  # A client for PSORT WWW Server for predicting protein subcellular
   # localization.
   #
   # PSORT family members,
@@ -37,9 +37,9 @@ require 'uri'
     # a Hash for PSORT official hosts:
     #   Key      value (host)
     #   -------  -----------------------
-    #   IMSUT    psort.ims.u-tokyo.ac.jp  
-    #   Okazaki  psort.nibb.ac.jp        
-    #   Peking   srs.pku.edu.cn:8088     
+    #   IMSUT    psort.ims.u-tokyo.ac.jp
+    #   Okazaki  psort.nibb.ac.jp
+    #   Peking   srs.pku.edu.cn:8088
     ServerURI = {
       :IMSUT   => {
         :PSORT1 => URI.parse("http://psort.hgc.jp/cgi-bin/okumura.pl"),
@@ -54,11 +54,11 @@ require 'uri'
 
     # = Generic CGI client class
     # A generic CGI client class for Bio::PSORT::* classes.
-    # The class provides an interface for CGI argument processing and output 
+    # The class provides an interface for CGI argument processing and output
     # report parsing.
     #
     # == Example
-    # 
+    #
     #  class NewClient < CGIDriver
     #    def initialize(host, path)
     #      super(host, path)
@@ -106,7 +106,7 @@ require 'uri'
 
       # Executes a CGI ``query'' and returns aReport
       def exec(query)
-        data = make_args(query)  
+        data = make_args(query)
 
         begin
           result = nil
@@ -155,17 +155,17 @@ require 'uri'
     # Bio::PSORT::PSORT1 is a wapper class for the original PSORT program.
     #
     # == Example
-    # 
+    #
     #  serv = Bio::PSORT::PSORT1.imsut
     #  serv.title = 'Query_title_splited_by_white space'
     #  serv.exec(seq, false)  # seq.class => String
     #  serv.exec(seq)
     #  report = serv.exec(Bio::FastaFormat.new(seq))
     #  report_raw = serv.exec(Bio::FastaFormat.new(seq), false)
-    # 
+    #
     # == References
     #
-    # 1. Nakai, K. and Kanehisa, M., A knowledge base for predicting protein 
+    # 1. Nakai, K. and Kanehisa, M., A knowledge base for predicting protein
     #    localization sites in eukaryotic cells, Genomics 14, 897-911 (1992).
     #    [PMID:1478671]
     #
@@ -173,7 +173,7 @@ require 'uri'
 
       autoload :Report, 'bio/appl/psort/report'
 
-      # Returns a PSORT1 CGI Driver object (Bio::PSORT::PSORT1::Remote)     
+      # Returns a PSORT1 CGI Driver object (Bio::PSORT::PSORT1::Remote)
       # connecting to the IMSUT server.
       def self.imsut
         self.new(Remote.new(ServerURI[:IMSUT][:PSORT1]))
@@ -185,7 +185,7 @@ require 'uri'
       def self.okazaki
         self.new(Remote.new(ServerURI[:Okazaki][:PSORT1]))
       end
-      
+
 
       # Returns a PSORT1 CGI Driver object (Bio::PSORT::PSORT1::Remote)
       # connecting to the Peking server.
@@ -225,10 +225,10 @@ require 'uri'
 
       # Executes the query (faa) and returns an Bio::PSORT::PSORT1::Report.
       #
-      # The ``faa'' argument is acceptable a sequence both in String and in 
+      # The ``faa'' argument is acceptable a sequence both in String and in
       # Bio::FastaFormat.
       #
-      # If you set the second argument is ``parsing = false'', 
+      # If you set the second argument is ``parsing = false'',
       # returns ourput text without any parsing.
       def exec(faa, parsing = true)
         if faa.class == Bio::FastaFormat
@@ -261,7 +261,7 @@ require 'uri'
 
         # Accessor for Bio::PSORT::PSORT1#title to contain the query title.
         attr_accessor :parsing
-        
+
         # Sets remote ``host'' and cgi ``path''.
         def initialize(host, path = nil, title = 'MYSEQ', origin = 'yeast')
           @title   = title
@@ -280,7 +280,7 @@ require 'uri'
         end
 
 
-        # Returns parsed output report. 
+        # Returns parsed output report.
         # An API implementation.
         def parse_report(str)
           str = erase_html_tags(str)
@@ -292,12 +292,12 @@ require 'uri'
 
     end # class PSORT1
 
-      
+
     # = Bio::PSORT::PSORT2
     # Bio::PSORT::PSORT2 is a wapper class for the original PSORT program.
     #
     # == Example
-    # 
+    #
     #  serv = Bio::PSORT::PSORT2.imsut
     #  serv.title = 'Query_title_splited_by_white space'
     #  serv.exec(seq, false)  # seq.class => String
@@ -306,8 +306,8 @@ require 'uri'
     #  report_raw = serv.exec(Bio::FastaFormat.new(seq), false)
     #
     # == References
-    # 1. Nakai, K. and Horton, P., PSORT: a program for detecting the sorting 
-    #    signals of proteins and predicting their subcellular localization, 
+    # 1. Nakai, K. and Horton, P., PSORT: a program for detecting the sorting
+    #    signals of proteins and predicting their subcellular localization,
     #    Trends Biochem. Sci, 24(1) 34-35 (1999).
     #    [PMID:10087920]
     class PSORT2
@@ -326,7 +326,7 @@ require 'uri'
         self.new(Remote.new(host, path))
       end
 
-      # Returns a PSORT2 CGI Driver object (Bio::PSORT::PSORT2::Remote)     
+      # Returns a PSORT2 CGI Driver object (Bio::PSORT::PSORT2::Remote)
       # connecting to the IMSUT server.
       def self.imsut
         self.remote(ServerURI[:IMSUT][:PSORT2])
@@ -361,7 +361,7 @@ require 'uri'
       end
 
 
-      # Executes PSORT II prediction and returns Report object 
+      # Executes PSORT II prediction and returns Report object
       # (Bio::PSORT::PSORT2::Report) if parsing = true.
       # Returns PSORT II report in text if parsing = false.
       def exec(faa, parsing = true)
@@ -387,7 +387,7 @@ require 'uri'
           super(host, path)
           @parsing = true
         end
-        
+
         # An accessor of the origin argument.
         # Default setting is ``yeast''.
         attr_accessor :origin
@@ -396,9 +396,9 @@ require 'uri'
         # Default setting is ``true''.
         attr_accessor :parsing
 
-        
+
         private
-         
+
         # Returns parsed CGI argument.
         # An API implementation.
         def make_args(query)
@@ -407,7 +407,7 @@ require 'uri'
         end
 
 
-        # Returns parsed output report. 
+        # Returns parsed output report.
         # An API implementation.
         def parse_report(str)
           str = str.gsub(/\n<hr>/i, Report::BOUNDARY)
@@ -418,13 +418,13 @@ require 'uri'
 
       end # class Remote
 
-    end # class PSORT2      
+    end # class PSORT2
 
 
     class IPSORT
     end # class IPSORT
 
-    
+
     class PSORTB
     end # class PSORTB
 

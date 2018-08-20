@@ -28,8 +28,8 @@ module Bio
     end
 
   end
-  
-  
+
+
   class TestIprscanPTxtReport < Test::Unit::TestCase
 
     def setup
@@ -45,9 +45,9 @@ ProfileScan\tPS50310\tALA_RICH\t10.224\t805-856
 //
 END
       @obj = Bio::Iprscan::Report.parse_ptxt_entry(test_entry)
-    end 
-   
- 
+    end
+
+
     def test_query_id
       assert_equal('slr0002', @obj.query_id)
     end
@@ -59,7 +59,7 @@ END
     def test_matches_size
       assert_equal(4, @obj.matches.size)
     end
-    
+
     def test_match_ipr_id
       assert_equal('IPR001264', @obj.matches.first.ipr_id)
     end
@@ -99,12 +99,12 @@ END
     def setup
       test_txt = Bio::TestIprscanData.txt_format.read.split(/\n\nSequence/)[0]
       @obj = Bio::Iprscan::Report.parse_txt_entry(test_txt)
-    end 
+    end
 
     def test_iprscan_report_class
       assert_equal(Bio::Iprscan::Report, @obj.class)
     end
- 
+
     def test_query_id
       assert_equal('Q9RHD9', @obj.query_id)
     end
@@ -116,7 +116,7 @@ END
     def test_matches_size
       assert_equal(16, @obj.matches.size)
     end
-    
+
     def test_match_ipr_id
       assert_equal('IPR000110', @obj.matches.first.ipr_id)
     end
@@ -158,9 +158,9 @@ END
     end
 
     def test_match_go_terms
-      ary = [["Molecular Function", "RNA binding", "GO:0003723"], 
-             ["Molecular Function", "structural constituent of ribosome", "GO:0003735"], 
-             ["Cellular Component", "ribosome", "GO:0005840"], 
+      ary = [["Molecular Function", "RNA binding", "GO:0003723"],
+             ["Molecular Function", "structural constituent of ribosome", "GO:0003735"],
+             ["Cellular Component", "ribosome", "GO:0005840"],
              ["Biological Process", "protein biosynthesis", "GO:0006412"]]
       assert_equal(ary, @obj.matches.first.go_terms)
     end
@@ -171,8 +171,8 @@ END
     def setup
       test_txt = Bio::TestIprscanData.txt_format.read.split(/\n\nSequence/)[0]
       @obj = Bio::Iprscan::Report.parse_txt_entry(test_txt)
-    end 
-    
+    end
+
     def test_to_hash
       hsh = {"IPR008994" => [12, 13, 14].map {|x| @obj.matches[x] },
              "IPR000110" => [0, 1, 2].map {|x| @obj.matches[x] },
@@ -195,9 +195,9 @@ END
   class TestIprscanTxtReport < Test::Unit::TestCase
     def setup
       @test_txt = Bio::TestIprscanData.txt_format
-    end 
+    end
 
-    def test_parse_txt 
+    def test_parse_txt
       Bio::Iprscan::Report.parse_txt(@test_txt) do |report|
         assert_equal(Bio::Iprscan::Report, report.class)
       end
@@ -227,21 +227,21 @@ END
     end
 
     def test_self_reports_in_raw
-      io = File.open(File.join(Bio::TestIprscanData::TestDataIprscan, 
+      io = File.open(File.join(Bio::TestIprscanData::TestDataIprscan,
                                "merged.raw"))
       result = []
       Bio::Iprscan::Report.parse_raw(io) {|x| result << x }
       assert_equal(@obj.size, result.size)
-      assert_equal(@obj.first.query_id, result.first.query_id)      
-      assert_equal(@obj.first.query_id, result.first.query_id)            
-      assert_equal(@obj[2].query_id, result[2].query_id)      
-      assert_equal(@obj.last.query_id, result.last.query_id)      
+      assert_equal(@obj.first.query_id, result.first.query_id)
+      assert_equal(@obj.first.query_id, result.first.query_id)
+      assert_equal(@obj[2].query_id, result[2].query_id)
+      assert_equal(@obj.last.query_id, result.last.query_id)
     end
-    
+
     def test_obj
       assert_equal(3, @obj.size)
     end
-    
+
     def test_query_id
       assert_equal('Q9RHD9', @obj.first.query_id)
     end
@@ -253,43 +253,43 @@ END
     def test_query_length
       assert_equal(267, @obj.first.query_length)
     end
-    
+
     def test_match_query_id
       assert_equal('Q9RHD9', @obj.first.matches.first.query_id)
     end
-    
+
     def test_match_crc64
       assert_equal('D44DAE8C544CB7C1', @obj.first.matches.first.crc64)
     end
-    
+
     def test_match_query_length
       assert_equal(267, @obj.first.matches.first.query_length)
     end
-    
+
     def test_match_method
       assert_equal('HMMPfam', @obj.first.matches.first.method_name)
     end
-    
+
     def test_match_accession
       assert_equal('PF00575', @obj.first.matches.first.accession)
     end
-    
+
     def test_match_description
       assert_equal('S1', @obj.first.matches.first.description)
     end
-    
+
     def test_match_match_start
       assert_equal(1, @obj.first.matches.first.match_start)
     end
-    
+
     def test_match_match_end
       assert_equal(55, @obj.first.matches.first.match_end)
     end
-    
+
     def test_match_evalue
       assert_equal('3.3E-6', @obj.first.matches.first.evalue)
     end
-    
+
     def test_match_status
       assert_equal('T', @obj.first.matches.first.status)
     end
@@ -307,7 +307,7 @@ END
     end
 
     def test_match_go_terms
-      ary = ["Biological Process:phosphorylation (GO:0016310)", 
+      ary = ["Biological Process:phosphorylation (GO:0016310)",
              "Molecular Function:transferase activity, transferring phosphorus-containing groups (GO:0016772)"]
       assert_equal(ary,
                    @obj.last.matches.last.go_terms)
@@ -320,18 +320,18 @@ END
       @test_txt = Bio::TestIprscanData.txt_format.read.split(/\n\nSequence/)[0]
       @obj = Bio::Iprscan::Report.parse_txt_entry(@test_txt)
       @test_raw = Bio::TestIprscanData.raw_format.read.split("RS16_ECOLI")[0]
-    end 
+    end
 
     def test_to_raw
-#      assert_equal(@test_raw.split("\n").sort, 
-#                   @obj.format_raw.split("\n").sort)      
+#      assert_equal(@test_raw.split("\n").sort,
+#                   @obj.format_raw.split("\n").sort)
     end
 
     def test_output_raw
-#      assert_equal(@test_raw.split("\n").sort, 
-#                   @obj.output(:raw).split("\n").sort)      
-#      assert_equal(@test_raw.split("\n").sort, 
-#                   @obj.output('raw').split("\n").sort)      
+#      assert_equal(@test_raw.split("\n").sort,
+#                   @obj.output(:raw).split("\n").sort)
+#      assert_equal(@test_raw.split("\n").sort,
+#                   @obj.output('raw').split("\n").sort)
     end
 
   end # TestIprscanReport

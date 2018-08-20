@@ -68,7 +68,7 @@ module Bio
 
     def test_call_command_open3
       begin
-        ret = Bio::Command.call_command_open3(@arg) do |pin, pout, perr| 
+        ret = Bio::Command.call_command_open3(@arg) do |pin, pout, perr|
           t = Thread.start { perr.read }
           begin
             pin.close
@@ -190,7 +190,7 @@ module Bio
       return unless Thread.respond_to?(:critical)
       str = nil
       begin
-        Bio::Command.call_command_fork(@arg, 
+        Bio::Command.call_command_fork(@arg,
                                        { :chdir => @dirname }) do |io|
           io.close_write
           str = io.read

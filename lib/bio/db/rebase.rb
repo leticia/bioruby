@@ -22,36 +22,36 @@ module Bio
 #
 #
 # = Description
-# 
+#
 # Bio::REBASE provides utilties for interacting with REBASE data in EMBOSS
 # format.  REBASE is the Restriction Enzyme Database, more information
 # can be found here:
-# 
+#
 # * http://rebase.neb.com
-# 
+#
 # EMBOSS formatted files located at:
-# 
+#
 # * http://rebase.neb.com/rebase/rebase.f37.html
-# 
+#
 # These files are the same as the "emboss_?.???" files located at:
-# 
+#
 # * ftp://ftp.neb.com/pub/rebase/
-# 
+#
 # To easily get started with the data you can simply type this command
 # at your shell prompt:
-# 
+#
 #   % wget "ftp://ftp.neb.com/pub/rebase/emboss_*"
-# 
-# 
+#
+#
 # = Usage
-# 
+#
 #   require 'bio'
 #   require 'pp'
-# 
+#
 #   enz = File.read('emboss_e')
 #   ref = File.read('emboss_r')
 #   sup = File.read('emboss_s')
-# 
+#
 #   # When creating a new instance of Bio::REBASE
 #   # the contents of the enzyme file must be passed.
 #   # The references and suppiers file contents
@@ -59,24 +59,24 @@ module Bio
 #   rebase = Bio::REBASE.new( enz )
 #   rebase = Bio::REBASE.new( enz, ref )
 #   rebase = Bio::REBASE.new( enz, ref, sup )
-# 
+#
 #   # The 'read' class method allows you to read in files
 #   # that are REBASE EMBOSS formatted
 #   rebase = Bio::REBASE.read( 'emboss_e' )
 #   rebase = Bio::REBASE.read( 'emboss_e', 'emboss_r' )
 #   rebase = Bio::REBASE.read( 'emboss_e', 'emboss_r', 'emboss_s' )
-# 
+#
 #   # The data loaded may be saved in YAML format
 #   rebase.save_yaml( 'enz.yaml' )
 #   rebase.save_yaml( 'enz.yaml', 'ref.yaml' )
 #   rebase.save_yaml( 'enz.yaml', 'ref.yaml', 'sup.yaml' )
-# 
+#
 #   # YAML formatted files can also be read with the
 #   # class method 'load_yaml'
 #   rebase = Bio::REBASE.load_yaml( 'enz.yaml' )
 #   rebase = Bio::REBASE.load_yaml( 'enz.yaml', 'ref.yaml' )
 #   rebase = Bio::REBASE.load_yaml( 'enz.yaml', 'ref.yaml', 'sup.yaml' )
-# 
+#
 #   pp rebase.enzymes[0..4]                     # ["AarI", "AasI", "AatI", "AatII", "Acc16I"]
 #   pp rebase.enzyme_name?('aasi')              # true
 #   pp rebase['AarI'].pattern                   # "CACCTGC"
@@ -89,20 +89,20 @@ module Bio
 #   pp rebase['AarI'].complementary_strand_cut2 # 0
 #   pp rebase['AarI'].suppliers                 # ["F"]
 #   pp rebase['AarI'].supplier_names            # ["Fermentas International Inc."]
-# 
+#
 #   pp rebase['AarI'].isoschizomers             # Currently none stored in the references file
 #   pp rebase['AarI'].methylation               # ""
-# 
+#
 #   pp rebase['EcoRII'].methylation             # "2(5)"
 #   pp rebase['EcoRII'].suppliers               # ["F", "J", "M", "O", "S"]
 #   pp rebase['EcoRII'].supplier_names  # ["Fermentas International Inc.", "Nippon Gene Co., Ltd.",
 #                                       # "Roche Applied Science", "Toyobo Biochemicals",
 #                                       # "Sigma Chemical Corporation"]
-# 
+#
 #   # Number of enzymes in the database
 #   pp rebase.size                              # 673
 #   pp rebase.enzymes.size                      # 673
-# 
+#
 #   rebase.each do |name, info|
 #     pp "#{name}:  #{info.methylation}" unless info.methylation.empty?
 #   end
@@ -166,10 +166,10 @@ class REBASE
   #
   # ---
   # *Arguments*
-  # * +enzyme_lines+: (_required_) contents of EMBOSS formatted enzymes file 
-  # * +reference_lines+: (_optional_) contents of EMBOSS formatted references file 
-  # * +supplier_lines+: (_optional_) contents of EMBOSS formatted suppliers files 
-  # * +yaml+: (_optional_, _default_ +false+) enzyme_lines, reference_lines, and supplier_lines are read as YAML if set to true 
+  # * +enzyme_lines+: (_required_) contents of EMBOSS formatted enzymes file
+  # * +reference_lines+: (_optional_) contents of EMBOSS formatted references file
+  # * +supplier_lines+: (_optional_) contents of EMBOSS formatted suppliers files
+  # * +yaml+: (_optional_, _default_ +false+) enzyme_lines, reference_lines, and supplier_lines are read as YAML if set to true
   # *Returns*:: Bio::REBASE
   def initialize( enzyme_lines, reference_lines = nil, supplier_lines = nil, yaml = false )
     # All your REBASE are belong to us.
@@ -197,7 +197,7 @@ class REBASE
   def enzymes
     @enzyme_names
   end
-  
+
   # Check if supplied name is the name of an available enzyme
   #
   # ---
@@ -217,7 +217,7 @@ class REBASE
   # *Arguments*
   # * +f_enzyme+: (_required_) Filename to save YAML formatted output of enzyme data
   # * +f_reference+: (_optional_) Filename to save YAML formatted output of reference data
-  # * +f_supplier+: (_optional_) Filename to save YAML formatted output of supplier data  
+  # * +f_supplier+: (_optional_) Filename to save YAML formatted output of supplier data
   # *Returns*:: nothing
   def save_yaml( f_enzyme, f_reference=nil, f_supplier=nil )
     File.open(f_enzyme, 'w') { |f| f.puts YAML.dump(@enzyme_data) }
@@ -235,7 +235,7 @@ class REBASE
   # *Arguments*
   # * +f_enzyme+: (_required_) Filename to read enzyme data
   # * +f_reference+: (_optional_) Filename to read reference data
-  # * +f_supplier+: (_optional_) Filename to read supplier data  
+  # * +f_supplier+: (_optional_) Filename to read supplier data
   # *Returns*:: Bio::REBASE object
   def self.read( f_enzyme, f_reference=nil, f_supplier=nil )
     e = IO.readlines(f_enzyme)
@@ -253,7 +253,7 @@ class REBASE
   # *Arguments*
   # * +f_enzyme+: (_required_) Filename to read YAML-formatted enzyme data
   # * +f_reference+: (_optional_) Filename to read YAML-formatted reference data
-  # * +f_supplier+: (_optional_) Filename to read YAML-formatted supplier data  
+  # * +f_supplier+: (_optional_) Filename to read YAML-formatted supplier data
   # *Returns*:: Bio::REBASE object
   def self.load_yaml( f_enzyme, f_reference=nil, f_supplier=nil )
     e = YAML.load_file(f_enzyme)
@@ -268,7 +268,7 @@ class REBASE
 
   def setup_enzyme_data
     @data = {}
-    
+
     @enzyme_data.each do |name, hash|
       @data[name] = EnzymeEntry.new
       d = @data[name]
@@ -281,7 +281,7 @@ class REBASE
       d.complementary_strand_cut2 = hash[:c4].to_i
 
       # Set up keys just in case there's no reference data supplied
-      [:organism, :isoschizomers, 
+      [:organism, :isoschizomers,
       :methylation, :source].each { |k| d[k] = '' }
       d.suppliers = []
       d.references = []
@@ -296,7 +296,7 @@ class REBASE
     return unless @reference_data
     @reference_data.each do |name, hash|
       d = @data[name]
-      [:organism, :isoschizomers, 
+      [:organism, :isoschizomers,
       :methylation, :source].each { |k| d[k] = hash[k] }
       d.suppliers = hash[:suppliers].split('')
       d.references = []
@@ -317,9 +317,9 @@ class REBASE
     lines.each_line do |line|
       next if line[0].chr == '#'
       line.chomp!
-      
+
       a = line.split("\s")
-      
+
       data[ a[0] ] = {
         :name => a[0],
         :pattern => a[1],

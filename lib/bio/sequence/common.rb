@@ -16,7 +16,7 @@ module Bio
 class Sequence
 
 # = DESCRIPTION
-# Bio::Sequence::Common is a 
+# Bio::Sequence::Common is a
 # Mixin[http://www.rubycentral.com/book/tut_modules.html]
 # implementing methods common to
 # Bio::Sequence::AA and Bio::Sequence::NA.  All of these methods
@@ -37,8 +37,8 @@ class Sequence
 #   # Create a random sequence with the composition of a current sequence
 #   puts dna.randomize
 module Common
-  
-  # Return sequence as 
+
+  # Return sequence as
   # String[http://corelib.rubyonrails.org/classes/String.html].
   # The original sequence is unchanged.
   #
@@ -56,7 +56,7 @@ module Common
 
   # Create a new sequence based on the current sequence.
   # The original sequence is unchanged.
-  # 
+  #
   #   s = Bio::Sequence::NA.new('atgc')
   #   s2 = s.seq
   #   puts s2                                 #=> 'atgc'
@@ -65,8 +65,8 @@ module Common
   def seq
     self.class.new(self)
   end
-  
-  # Normalize the current sequence, removing all whitespace and 
+
+  # Normalize the current sequence, removing all whitespace and
   # transforming all positions to uppercase if the sequence is AA or
   # transforming all positions to lowercase if the sequence is NA.
   # The original sequence is modified.
@@ -107,7 +107,7 @@ module Common
   #   puts s2                                 #=> "atgcatgc"
   #   puts s                                  #=> "atgc"
   #
-  # The new sequence is of the same class as the existing sequence if 
+  # The new sequence is of the same class as the existing sequence if
   # the new data was added to an existing sequence,
   #
   #   puts s2.class == s.class                #=> true
@@ -122,16 +122,16 @@ module Common
     self.class.new(super(*arg))
   end
 
-  # Returns a new sequence containing the subsequence identified by the 
-  # start and end numbers given as parameters.  *Important:* Biological 
-  # sequence numbering conventions (one-based) rather than ruby's 
-  # (zero-based) numbering conventions are used.  
+  # Returns a new sequence containing the subsequence identified by the
+  # start and end numbers given as parameters.  *Important:* Biological
+  # sequence numbering conventions (one-based) rather than ruby's
+  # (zero-based) numbering conventions are used.
   #
   #   s = Bio::Sequence::NA.new('atggaatga')
   #   puts s.subseq(1,3)                      #=> "atg"
   #
   # Start defaults to 1 and end defaults to the entire existing string, so
-  # subseq called without any parameters simply returns a new sequence 
+  # subseq called without any parameters simply returns a new sequence
   # identical to the existing sequence.
   #
   #   puts s.subseq                           #=> "atggaatga"
@@ -147,7 +147,7 @@ module Common
     self[s..e]
   end
 
-  # This method steps through a sequences in steps of 'step_size' by 
+  # This method steps through a sequences in steps of 'step_size' by
   # subsequences of 'window_size'. Typically used with a block.
   # Any remaining sequence at the terminal end will be returned.
   #
@@ -156,7 +156,7 @@ module Common
   #   s.window_search(100) do |subseq|
   #     puts subseq.gc
   #   end
-  #   
+  #
   # Prints every translated peptide (length 5aa) in the same frame
   #
   #   s.window_search(15, 3) do |subseq|
@@ -178,11 +178,11 @@ module Common
   # *Returns*:: new Bio::Sequence::NA/AA object
   def window_search(window_size, step_size = 1)
     last_step = 0
-    0.step(self.length - window_size, step_size) do |i| 
-      yield self[i, window_size]                        
+    0.step(self.length - window_size, step_size) do |i|
+      yield self[i, window_size]
       last_step = i
-    end                          
-    return self[last_step + window_size .. -1] 
+    end
+    return self[last_step + window_size .. -1]
   end
 
   # Returns a float total value for the sequence given a hash of
@@ -220,10 +220,10 @@ module Common
     return count
   end
 
-  # Returns a randomized sequence. The default is to retain the same 
-  # base/residue composition as the original.  If a hash of base/residue 
-  # counts is given, the new sequence will be based on that hash 
-  # composition.  If a block is given, each new randomly selected 
+  # Returns a randomized sequence. The default is to retain the same
+  # base/residue composition as the original.  If a hash of base/residue
+  # counts is given, the new sequence will be based on that hash
+  # composition.  If a block is given, each new randomly selected
   # position will be passed into the block.  In all cases, the
   # original sequence is not modified.
   #
@@ -267,7 +267,7 @@ module Common
     end
   end
 
-  # Return a new sequence extracted from the original using a GenBank style 
+  # Return a new sequence extracted from the original using a GenBank style
   # position string.  See also documentation for the Bio::Location class.
   #
   #   s = Bio::Sequence::NA.new('atgcatgcatgcatgc')
@@ -276,7 +276,7 @@ module Common
   #   puts s.splice('complement(1..3)')               #=> "cat"
   #   puts s.splice('complement(join(1..3,8..10))')   #=> "atgcat"
   #
-  # Note that 'complement'ed Genbank position strings will have no 
+  # Note that 'complement'ed Genbank position strings will have no
   # effect on Bio::Sequence::AA objects.
   # ---
   # *Arguments*:

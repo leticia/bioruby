@@ -1,15 +1,15 @@
 #
 # = bio/appl/blast/rexml.rb - BLAST XML output (-m 7) parser by REXML
-# 
+#
 # Copyright::  Copyright (C) 2002, 2003 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
 # $Id:$
 #
 # == Note
-# 
+#
 # This file is automatically loaded by bio/appl/blast/report.rb
-# 
+#
 
 begin
   require 'rexml/document'

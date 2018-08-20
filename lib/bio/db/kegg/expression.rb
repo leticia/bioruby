@@ -26,7 +26,7 @@ class EXPRESSION
         ary = line.split("\t")
         orf = ary.shift
         val = ary[2, 4].collect {|x| x.to_f}
-        @orf2val[orf] = val 
+        @orf2val[orf] = val
       end
     end
   end
@@ -134,19 +134,19 @@ class EXPRESSION
     @orf2val.each do |k, v|
       tmp_val = ((v[0] - v[1])/col_unit).to_i
       if tmp_val > 255
-        g = "ff" 
+        g = "ff"
       else
         g = format("%02x", tmp_val)
       end
       tmp_val = ((v[2] - v[3])/col_unit).to_i
       if tmp_val > 255
-        r = "ff" 
+        r = "ff"
       else
         r = format("%02x", tmp_val)
       end
       @orf2rgb[k] = r + g + "00"
     end
-  
+
   end
 
 end # class EXPRESSION

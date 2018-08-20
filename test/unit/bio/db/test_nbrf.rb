@@ -15,7 +15,7 @@ require 'test/unit'
 require 'bio/db/nbrf'
 
 #some condition is not covered with it. This unit test need a nucleotide acid sequence.
-#I can't find a nucleic acid sequence in PIR format 
+#I can't find a nucleic acid sequence in PIR format
 module Bio
   class TestBioNBRF < Test::Unit::TestCase
 
@@ -29,9 +29,9 @@ module Bio
       expected = <<END_OF_EXPECTED_ENTRY
 >P1;CRAB_ANAPL
 ALPHA CRYSTALLIN B CHAIN (ALPHA(B)-CRYSTALLIN).
-  MDITIHNPLI RRPLFSWLAP SRIFDQIFGE HLQESELLPA SPSLSPFLMR 
-  SPIFRMPSWL ETGLSEMRLE KDKFSVNLDV KHFSPEELKV KVLGDMVEIH 
-  GKHEERQDEH GFIAREFNRK YRIPADVDPL TITSSLSLDG VLTVSAPRKQ 
+  MDITIHNPLI RRPLFSWLAP SRIFDQIFGE HLQESELLPA SPSLSPFLMR
+  SPIFRMPSWL ETGLSEMRLE KDKFSVNLDV KHFSPEELKV KVLGDMVEIH
+  GKHEERQDEH GFIAREFNRK YRIPADVDPL TITSSLSLDG VLTVSAPRKQ
   SDVPERSIPI TREEKPAIAG AQRK*
 END_OF_EXPECTED_ENTRY
       assert_equal(expected, @obj.entry)

@@ -106,7 +106,7 @@ module Bio
     TestData =
       [
        # (C) n^m
-       # 
+       #
        # * [AB015179]	754^755
        [ 'AB015179', '754^755',
          nil,
@@ -115,7 +115,7 @@ module Bio
 
        # * [AF179299]	complement(53^54)
        # (see below)
-       
+
        # * [CELXOL1ES]	replace(4480^4481,"")
        # (see below)
 
@@ -127,7 +127,7 @@ module Bio
 
        # (n.m) and one-of() are not supported.
        # (D) (n.m)
-       # 
+       #
        # * [HACSODA]	157..(800.806)
        # * [HALSODB]	(67.68)..(699.703)
        # * [AP001918]	(45934.45974)..46135
@@ -140,20 +140,20 @@ module Bio
        # * [BOVMHDQBY4]	join(M30006.1:(392.467)..575,M30005.1:415..681,M30004.1:129..410,M30004.1:907..1017,521..534)
        # * [HUMMIC2A]	replace((651.655)..(651.655),"")
        # * [HUMSOD102]	order(L44135.1:(454.445)..>538,<1..181)
-       # 
+       #
        # (n.m) and one-of() are not supported.
        # (E) one-of
-       # 
+       #
        # * [ECU17136]	one-of(898,900)..983
        # * [CELCYT1A]	one-of(5971..6308,5971..6309)
        # * [DMU17742]	8050..one-of(10731,10758,10905,11242)
        # * [PFU27807]	one-of(623,627,632)..one-of(628,633,637)
        # * [BTBAINH1]	one-of(845,953,963,1078,1104)..1354
        # * [ATU39449]	join(one-of(969..1094,970..1094,995..1094,1018..1094),1518..1587,1726..2119,2220..2833,2945..3215)
-       # 
+       #
 
        # (F) join, order, group
-       # 
+       #
        # * [AB037374S2]	join(AB037374.1:1..177,1..807)
        [ 'AB037374S2',	'join(AB037374.1:1..177,1..807)',
          nil,
@@ -286,7 +286,7 @@ module Bio
        ],
 
        # group() are found in the COMMENT field only (in GenBank 122.0)
-       # 
+       #
        #   gbpat2.seq:            FT   repeat_region   group(598..606,611..619)
        #   gbpat2.seq:            FT   repeat_region   group(8..16,1457..1464).
        #   gbpat2.seq:            FT   variation       group(t1,t2)
@@ -294,7 +294,7 @@ module Bio
        #   gbpat2.seq:            FT   variation       group(t1,t2,t3)
        #   gbpat2.seq:            FT   repeat_region   group(11..202,203..394)
        #   gbpri9.seq:COMMENT     Residues reported = 'group(1..2145);'.
-       # 
+       #
 
        # (G) ID:location
        # * [AARPOB2]	order(AF194507.1:<1..510,1..>871)
@@ -385,7 +385,7 @@ module Bio
 
        # * [SL16SRRN1]	order(<1..>267,X67092.1:<1..>249,X67093.1:<1..>233)
        # (see above)
- 
+
        # (J) complement
        # * [AF179299]	complement(53^54)
        [ 'AF179299', 'complement(53^54)',

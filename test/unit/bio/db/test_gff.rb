@@ -21,7 +21,7 @@ require 'bio/db/gff'
 
 module Bio
   class TestGFF < Test::Unit::TestCase
-    
+
     def setup
       data = <<END_OF_DATA
 I	sgd	CEN	151453	151591	.	+	.	CEN "CEN1" ; Note "CEN1\; Chromosome I Centromere"
@@ -47,7 +47,7 @@ END_OF_DATA
   end # class TestGFF
 
   class TestGFFRecord < Test::Unit::TestCase
-    
+
     def setup
       data =<<END_OF_DATA
 I	sgd	gene	151453	151591	.	+	.	Gene "CEN1" ; Note "Chromosome I Centromere"
@@ -97,7 +97,7 @@ END_OF_DATA
     end
 
   end # class TestGFFRecord
-  
+
   class TestGFFRecordConstruct < Test::Unit::TestCase
 
     def setup
@@ -308,7 +308,7 @@ END_OF_DATA
       val_Comment = Bio::GFF::GFF2::Record::Value.new(["Please ignore this \"Comment\" attribute; Escape \x1a\037 and \\\t\r\n\f\b\a\e\v; This is test.", "123", "4.56e-34", "Test for freetext"])
       assert_equal([ val_Comment ], @obj.get_attributes('Comment'))
       assert_equal([ '' ], @obj.get_attributes('Note'))
-      assert_equal([ 'IdString', 'free text', '5678' ], 
+      assert_equal([ 'IdString', 'free text', '5678' ],
                    @obj.get_attributes('Misc'))
     end
 
@@ -714,7 +714,7 @@ END_OF_DATA
   end #class TestGFF3
 
   class TestGFF3Record < Test::Unit::TestCase
-    
+
     def setup
       data =<<END_OF_DATA
 chrI	SGD	centromere	151467	151584	.	+	.	ID=CEN1;Name=CEN1;gene=CEN1;Alias=CEN1,test%3B0001;Note=Chromosome%20I%20centromere;dbxref=SGD:S000006463;Target=test%2002 123 456 -,test%2C03 159 314;memo%3Dtest%3Battr=99.9%25%09match
@@ -798,11 +798,11 @@ END_OF_STR
     def test_attributes_none
       # test blank with tab
       data =<<END_OF_DATA
-I	sgd	gene	151453	151591	.	+	.	
+I	sgd	gene	151453	151591	.	+	.
 END_OF_DATA
       obj = Bio::GFF::GFF3::Record.new(data)
       assert_equal([], obj.attributes)
-      
+
       # test blank with no tab at end
       data =<<END_OF_DATA
 I	sgd	gene	151453	151591	.	+	.
@@ -810,7 +810,7 @@ END_OF_DATA
       obj = Bio::GFF::GFF3::Record.new(data)
       assert_equal([], obj.attributes)
     end
-    
+
     def test_attributes_one
       data =<<END_OF_DATA
 I	sgd	gene	151453	151591	.	+	.	ID=CEN1
@@ -819,7 +819,7 @@ END_OF_DATA
       at = [ ["ID", 'CEN1'] ]
       assert_equal(at, obj.attributes)
     end
-    
+
     def test_attributes_with_escaping
       data =<<END_OF_DATA
 I	sgd	gene	151453	151591	.	+	.	ID=CEN1;gene=CEN1%3Boh;Note=Chromosome I Centromere
@@ -829,9 +829,9 @@ END_OF_DATA
              ["gene", 'CEN1;oh'],
              ["Note", 'Chromosome I Centromere']
            ]
-      assert_equal(at, obj.attributes)      
+      assert_equal(at, obj.attributes)
     end
-    
+
     def test_score
       data =<<END_OF_DATA
 ctg123	src	match	456	788	1e-10	-	.	ID=test01
@@ -973,7 +973,7 @@ END_OF_DATA
     end
 
     def test_parse
-      strings = 
+      strings =
         [ 'ABCD1234 123 456 +',
           '%3EX%20Y%3DZ%3BP%25%2CQ%09R 78 90',
           ''
@@ -1102,7 +1102,7 @@ END_OF_DATA
       str2 = '-aaaaaaa-a-a---ggag--'
       c = Bio::GFF::GFF3::Record::Gap::Code
       data1 = [ c.new(:M, 8), c.new(:I, 3), c.new(:M, 13) ]
-      data2 = [ c.new(:I, 1), c.new(:M, 7), c.new(:I, 1), 
+      data2 = [ c.new(:I, 1), c.new(:M, 7), c.new(:I, 1),
                 c.new(:M, 1), c.new(:I, 1), c.new(:M, 1),
                 c.new(:I, 3), c.new(:M, 4), c.new(:I, 2) ]
 
@@ -1113,7 +1113,7 @@ END_OF_DATA
     def test_new_from_sequences_na
       ref_aligned = 'CAAGACCTAAACTGGAT-TCCAAT'
       tgt_aligned = 'CAAGACCT---CTGGATATCCAAT'
-      
+
       assert_equal(@gaps[0], Bio::GFF::GFF3::Record::Gap.new_from_sequences_na(ref_aligned, tgt_aligned))
     end
 
@@ -1190,7 +1190,7 @@ END_OF_DATA
     end
 
     def test_parse
-      strings = 
+      strings =
         [ '##sequence-region ABCD1234 123 456',
           '##sequence-region %3EX%20Y%3DZ%3BP%25%2CQ%09R 78 90',
           '##sequence-region'

@@ -1,6 +1,6 @@
 RPS-BLAST 2.2.18 [Mar-02-2008]
 
-Database: Pfam.v.22.0 
+Database: Pfam.v.22.0
            9318 sequences; 1,769,994 total letters
 
 Searching..................................................done
@@ -73,7 +73,7 @@ Query: 55  NFLTLYVTVQHKKLRTPLNYILLNLAVADLFMVLGGFTSTLYTSLHGYFVFGPTGCNLEG 114
 Sbjct: 2   NLLVILVILRTKRLRTPTNIFLLNLAVADLLFLLTLPPWALYYLVGGDWPFGDALCKLVG 61
 
 Query: 115 FFATLGGEIALWSLVVLAIERYVVVC 140
-               + G  ++  L  ++I+RY+ + 
+               + G  ++  L  ++I+RY+ +
 Sbjct: 62  ALFVVNGYASILLLTAISIDRYLAIV 87
 
 
@@ -89,7 +89,7 @@ Sbjct: 62  ALFVVNGYASILLLTAISIDRYLAIV 87
  Identities = 32/145 (22%), Positives = 58/145 (40%), Gaps = 7/145 (4%)
 
 Query: 336 IDYYTLKPEVNNESFVIYMFV--VHFT-IPMIIIFFCYGQLVFTVKEAAAQQQESATTQK 392
-           I+Y     E+   S+ I + +  + F  IP II+      L+F +K+       S+T+  
+           I+Y     E+   S+ I + +  + F  IP II+      L+F +K+       S+T+
 Sbjct: 192 IEYIIETTELFGSSYEILLLIEGILFKLIPSIILPIATILLIFQLKKNKKVSSRSSTSSS 251
 
 Query: 393 AEKEVTRMVIIMVIAFLICWVPYASVAFYIFTHQGSNFGPIFMTIPAFFAKSAAIYNPVI 452
@@ -97,7 +97,7 @@ Query: 393 AEKEVTRMVIIMVIAFLICWVPYASVAFYIFTHQGSNFGPIFMTIPAFFAKSAAIYNPVI 452
 Sbjct: 252 SNDRSTKLVTFVTISFLIATVPLGILYLIKFFVFEYEGLVMIIDKLAIIFTFLSTINGTI 311
 
 Query: 453 YIM----MNKQFRNCMLTTICCGKN 473
-           + +    M+ Q+RN +       K 
+           + +    M+ Q+RN +       K
 Sbjct: 312 HFLICYFMSSQYRNTVREMFGRKKK 336
 
 
@@ -136,11 +136,11 @@ gnl|CDD|84583 pfam00175, NAD_binding_1, Oxidoreductase NAD-bindi...    37   0.01
  Identities = 33/85 (38%), Positives = 40/85 (47%), Gaps = 2/85 (2%)
 
 Query: 505 RISIKDVNSLTSLSKSENNHNYQTEMLLRWNYPAA-SDLLRMYILKEHGGIYTDTDMMPA 563
-              I     L SL    N + +  EM LRW Y AA SD LR  IL ++GGIY DTD++P 
+              I     L SL    N + +  EM LRW Y AA SD LR  IL ++GGIY DTD++P
 Sbjct: 1   YDVILVTPDLESLFIDTNAYPWFQEMFLRWPYNAAASDFLRYAILYKYGGIYLDTDVIPL 60
 
 Query: 564 YSKQVIFKIMMQTN-GDNRFLEDLK 587
-            S  V+  I         R  E L 
+            S  V+  I         R  E L
 Sbjct: 61  KSLDVLINIEGSNFLDGERSFERLN 85
 
 
@@ -153,11 +153,11 @@ Sbjct: 61  KSLDVLINIEGSNFLDGERSFERLN 85
  Identities = 16/82 (19%), Positives = 36/82 (43%), Gaps = 3/82 (3%)
 
 Query: 959  IKGFLASNPHTKINILYSNKTEHNIFIKDLFSFAVMENELRDIINNMSKDKTPENWEGRV 1018
-            +K  L     T++ ++Y N+TE ++ +++       +   R  +  +    T + W GR 
+            +K  L     T++ ++Y N+TE ++ +++       +   R  +  +    T + W GR
 Sbjct: 16   LKALLEDEDGTEVYLVYGNRTEDDLLLREELEELAKKYPGRLKVVAVVSR-TDDGWYGRK 74
 
 Query: 1019 MLQRYLELKMKDHLSLQSSQEA 1040
-                  +  +++HLSL    + 
+                  +  +++HLSL    +
 Sbjct: 75   G--YVTDALLEEHLSLIDLDDT 94
 
 
@@ -165,13 +165,13 @@ Sbjct: 75   G--YVTDALLEEHLSLIDLDDT 94
     Posted date:  Nov 8, 2007  6:06 PM
   Number of letters in database: 1,769,994
   Number of sequences in database:  9318
-  
+
 Lambda     K      H
-   0.327    0.139    0.439 
+   0.327    0.139    0.439
 
 Gapped
 Lambda     K      H
-   0.267   0.0632    0.140 
+   0.267   0.0632    0.140
 
 
 Matrix: BLOSUM62

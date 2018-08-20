@@ -135,7 +135,7 @@ EOF
       str =<<EOS
 REMARK   1 REFERENCE 1
 REMARK   1  AUTH   C.H.CHEN,G.R.BUDAS,E.N.CHURCHILL,M.H.DISATNIK
-REMARK   2 
+REMARK   2
 REMARK   3
 EOS
 
@@ -146,7 +146,7 @@ EOS
         2=>[],
         3=>[]}
       obj = Bio::PDB.new(str)
-      actual = 
+      actual =
       { 1 => {:remarkNum=>obj.remark[1][0].remarkNum,
                 :sub_record=>obj.remark[1][0].sub_record,
                 :authorList=>obj.remark[1][0].authorList},
@@ -162,7 +162,7 @@ EOS
       assert_equal({"A"=>"SAAATQAVPAPNQ"},@pdb.seqres)
       assert_equal(nil,@pdb.seqres(7)) #I'm not sure why this returns nil
       str =<<EOS
-SEQRES   1 X   39    U   C   C   C   C   C   G   U   G   C   C   C   A 
+SEQRES   1 X   39    U   C   C   C   C   C   G   U   G   C   C   C   A
 EOS
       obj = Bio::PDB.new(str)
       assert_equal({"X"=>"ucccccgugccca"},obj.seqres)
@@ -177,7 +177,7 @@ EOS
       actual = []
       s.sheet.each do |obj2|
         obj2.each do |obj|
-      
+
       actual <<
   {:strand=>obj.strand,
    :sheetID=>obj.sheetID,
@@ -286,7 +286,7 @@ EOS
     def test_ssbond
       assert_instance_of(Bio::PDB::Record::SSBOND,@pdb.ssbond.first)
     end
-    
+
     #is this method correct?
     def test_to_s
       assert_equal("MODEL     1\nATOM      1  N   ALA A   7      23.484 -35.866  44.510  1.00 28.52           N  \nATOM      2  CA  ALA A   7      23.849 -34.509  44.904  1.00 27.89           C  \nATOM      3  C   ALA A   7      23.102 -34.082  46.159  1.00 26.68           C  \nATOM      4  O   ALA A   7      23.097 -32.903  46.524  1.00 30.02           O  \nATOM      5  CB  ALA A   7      23.581 -33.526  43.770  1.00 31.41           C  \nTER\nENDMDL\nMODEL     2\nATOM      1  N   ALA A   7      23.484 -35.866  44.510  1.00 28.52           N  \nTER\nHETATM30582  C1  EDO A 701      -0.205 -27.262  49.961  1.00 34.45           C  \nHETATM30583  O1  EDO A 701      -1.516 -26.859  49.587  1.00 35.20           O  \nHETATM30584  C2  EDO A 701      -0.275 -28.124  51.219  1.00 34.49           C  \nHETATM30585  O2  EDO A 701      -1.442 -28.941  51.167  1.00 33.95           O  \nHETATM30586  C1  EDO A 702       2.792   7.449  67.655  1.00 17.09           C  \nHETATM30587  O1  EDO A 702       1.451   7.273  67.213  1.00 15.74           O  \nHETATM30588  C2  EDO A 702       3.678   7.589  66.425  1.00 15.31           C  \nHETATM30589  O2  EDO A 702       3.391   6.512  65.550  1.00 17.67           O  \nHETATM30857  O   HOH A 502      13.654 -16.451  49.711  1.00 12.79           O  \nENDMDL\nEND\n",@pdb.to_s)
@@ -410,7 +410,7 @@ EOS
       end
 
       def test_to_s
-        assert_equal(@str + "\n", @atom.to_s) 
+        assert_equal(@str + "\n", @atom.to_s)
       end
 
 
@@ -652,12 +652,12 @@ TITLE    2 AGONIST ALDA-1                                                       
     class TestCOMPND < Test::Unit::TestCase
       def setup
         @str =<<EOS
-COMPND    MOL_ID: 1;                                                            
-COMPND   2 MOLECULE: ALDEHYDE DEHYDROGENASE, MITOCHONDRIAL;                     
-COMPND   3 CHAIN: A, B, C, D, E, F, G, H;                                       
-COMPND   4 SYNONYM: ALDH CLASS 2, ALDHI, ALDH-E2;                               
-COMPND   5 EC: 1.2.1.3;                                                         
-COMPND   6 ENGINEERED: YES                                                      
+COMPND    MOL_ID: 1;
+COMPND   2 MOLECULE: ALDEHYDE DEHYDROGENASE, MITOCHONDRIAL;
+COMPND   3 CHAIN: A, B, C, D, E, F, G, H;
+COMPND   4 SYNONYM: ALDH CLASS 2, ALDHI, ALDH-E2;
+COMPND   5 EC: 1.2.1.3;
+COMPND   6 ENGINEERED: YES
 
 EOS
         @compnd = Bio::PDB::Record::COMPND.new.initialize_from_string(@str)
@@ -946,13 +946,13 @@ SEQRES   5 A  500  GLU GLY ASP LYS GLU ASP VAL ASP LYS ALA VAL LYS ALA
 SEQRES   6 A  500  ALA ARG ALA ALA PHE GLN LEU GLY SER PRO TRP ARG ARG
 SEQRES   7 A  500  MET ASP ALA SER HIS ARG GLY ARG LEU LEU ASN ARG LEU
 SEQRES   8 A  500  ALA ASP LEU ILE GLU ARG ASP ARG THR TYR LEU ALA ALA
-SEQRES   9 A  500  LEU GLU THR LEU ASP ASN GLY LYS PRO TYR VAL ILE SER          
+SEQRES   9 A  500  LEU GLU THR LEU ASP ASN GLY LYS PRO TYR VAL ILE SER
 EOS
 
         @seqres = Bio::PDB::Record::SEQRES.new.initialize_from_string(@str)
       end
 
-      
+
       def test_chainID
         assert_equal('A', @seqres.chainID)
       end
@@ -1069,9 +1069,9 @@ EOS
     class TestSHEET < Test::Unit::TestCase
       def setup
         @str =<<EOS
-SHEET    1   A 2 ILE A  22  ILE A  24  0                             
+SHEET    1   A 2 ILE A  22  ILE A  24  0
 SHEET    2   A 2 GLU A  27  HIS A  29 -1  O  HIS A  29   N  ILE A  22
-SHEET    1   B 2 THR A  36  VAL A  40  0                             
+SHEET    1   B 2 THR A  36  VAL A  40  0
 EOS
         @sheet = Bio::PDB::Record::SHEET.new.initialize_from_string(@str)
       end
@@ -1520,7 +1520,7 @@ EOS
       def setup
         @str =<<EOS
 SITE     1 AC1  5 THR A  39  VAL A  40  ASP A 109  GLN A 196
-SITE     2 AC1  5 HOH A4009                                                     
+SITE     2 AC1  5 HOH A4009
 EOS
         @site = Bio::PDB::Record::SITE.new.initialize_from_string(@str)
       end
@@ -2357,7 +2357,7 @@ REMARK   3               : SACCHETTINI,NICHOLAS SAUTER,JACOB SMITH,
 REMARK   3               : LAURENT STORONI,TOM TERWILLIGER,PETER
 REMARK   3               : ZWART
 REMARK   3
-REMARK   3    REFINEMENT TARGET : TWIN_LSQ_F                                    
+REMARK   3    REFINEMENT TARGET : TWIN_LSQ_F
 EOS
         @remarkn = Bio::PDB::Record::RemarkN.new.initialize_from_string(@str)
       end
@@ -2407,10 +2407,10 @@ EOS
 
     #end
   end #module TestPDBRecord
-  
+
   #This class tests the behaviors of the complex types defined and used only in Bio::PDB classes.
-  class TestDataType < Test::Unit::TestCase      
-      
+  class TestDataType < Test::Unit::TestCase
+
     def test_pdb_integer
       actual = Bio::PDB::DataType::Pdb_Integer.new("1")
       assert_equal(1, actual)
@@ -2418,7 +2418,7 @@ EOS
     def test_pdb_slist
       actual = Bio::PDB::DataType::Pdb_SList.new("hoge; foo;  bar")
       assert_equal(["hoge", "foo", "bar"], actual)
-    end    
+    end
     def test_pdb_list
       actual = Bio::PDB::DataType::Pdb_List.new("hoge, foo,  bar")
       assert_equal(["hoge", "foo", "bar"], actual)
@@ -2466,28 +2466,28 @@ EOS
       actual =Bio::PDB::DataType::Pdb_IDcode[10].new("hoge")
       assert_equal("hoge      ", actual)
     end
-    
+
     def test_pdb_resudue_name
       actual = Bio::PDB::DataType::Pdb_Residue_name.new("hoge  \n  ")
       assert_equal("hoge", actual)
       actual =Bio::PDB::DataType::Pdb_Residue_name[10].new("hoge")
       assert_equal("hoge      ", actual)
     end
-    
+
     def test_pdb_symop
       actual = Bio::PDB::DataType::Pdb_Residue_name.new("hoge")
       assert_equal("hoge", actual)
       actual =Bio::PDB::DataType::Pdb_Residue_name[10].new("hoge")
       assert_equal("hoge      ", actual)
     end
-    
+
     def test_pdb_atom
       actual = Bio::PDB::DataType::Pdb_Residue_name.new("hoge")
       assert_equal("hoge", actual)
       actual =Bio::PDB::DataType::Pdb_Residue_name[10].new("hoge")
       assert_equal("hoge      ", actual)
     end
-    
+
     def test_pdb_achar
       actual = Bio::PDB::DataType::Pdb_Residue_name.new("hoge")
       assert_equal("hoge", actual)
@@ -2501,7 +2501,7 @@ EOS
       actual =Bio::PDB::DataType::Pdb_Residue_name[10].new("hoge")
       assert_equal("hoge      ", actual)
     end
-    
+
     def test_const_like_method
       extend Bio::PDB::DataType::ConstLikeMethod
       actual = Pdb_LString(5).new("aaa")
@@ -2511,7 +2511,7 @@ EOS
       actual = Pdb_Real(3).new("1.25")
       assert_equal(1.25, actual)
     end
-    
+
   end
 
   # test of Bio::PDB::Record::ATOM
@@ -2560,8 +2560,8 @@ EOS
         actual[m] = v
       end
       assert_equal(expected, actual)
-    end 
-    
+    end
+
     def test_each_atom
 expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A", :resSeq=>7, :iCode=>"", :x=>23.484, :y=>-35.866, :z=>44.51, :occupancy=>1.0, :tempFactor=>28.52, :segID=>"", :element=>"N", :charge=>""},
 {:serial=>2, :name=>"CA", :altLoc=>" ", :resName=>"ALA", :chainID=>"A", :resSeq=>7, :iCode=>"", :x=>23.849, :y=>-34.509, :z=>44.904, :occupancy=>1.0, :tempFactor=>27.89, :segID=>"", :element=>"C", :charge=>""},
@@ -2572,7 +2572,7 @@ expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A
         actual << {:serial=>atom.serial, :name=>atom.name, :altLoc=>atom.altLoc, :resName=>atom.resName, :chainID=>atom.chainID, :resSeq=>atom.resSeq, :iCode=>atom.iCode, :x=>atom.x, :y=>atom.y, :z=>atom.z, :occupancy=>atom.occupancy, :tempFactor=>atom.tempFactor, :segID=>atom.segID, :element=>atom.element, :charge=>atom.charge}
       end
       assert_equal(expected, actual)
-    end    
+    end
 
     def test_each
 expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A", :resSeq=>7, :iCode=>"", :x=>23.484, :y=>-35.866, :z=>44.51, :occupancy=>1.0, :tempFactor=>28.52, :segID=>"", :element=>"N", :charge=>""},
@@ -2584,7 +2584,7 @@ expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A
         actual << {:serial=>atom.serial, :name=>atom.name, :altLoc=>atom.altLoc, :resName=>atom.resName, :chainID=>atom.chainID, :resSeq=>atom.resSeq, :iCode=>atom.iCode, :x=>atom.x, :y=>atom.y, :z=>atom.z, :occupancy=>atom.occupancy, :tempFactor=>atom.tempFactor, :segID=>atom.segID, :element=>atom.element, :charge=>atom.charge}
       end
       assert_equal(expected, actual)
-    end    
+    end
     def test_het_atom
       assert_equal(false, @res.hetatm)
     end
@@ -2619,7 +2619,7 @@ expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A
       assert_equal(nil, res.residue_id)
     end
   end
-  
+
   class TestHeterogen < Test::Unit::TestCase
     def setup
       @res = Bio::PDB::Heterogen.new(resName="EDO",resSeq = 701, iCode = "", chain = nil)
@@ -2641,24 +2641,24 @@ expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A
       @res.addAtom(Bio::PDB::Record::HETATM.new.initialize_from_string("HETATM30584  C2  EDO A 701      -0.275 -28.124  51.219  1.00 34.49           C"))
       @res.addAtom(Bio::PDB::Record::HETATM.new.initialize_from_string("HETATM30585  O2  EDO A 701      -1.442 -28.941  51.167  1.00 33.95           O"))
       @res.addAtom(Bio::PDB::Record::HETATM.new.initialize_from_string("HETATM30586  C1  EDO A 702       2.792   7.449  67.655  1.00 17.09           C"))
-      @res.addAtom(Bio::PDB::Record::HETATM.new.initialize_from_string("HETATM30587  O1  EDO A 702       1.451   7.273  67.213  1.00 15.74           O")) 
+      @res.addAtom(Bio::PDB::Record::HETATM.new.initialize_from_string("HETATM30587  O1  EDO A 702       1.451   7.273  67.213  1.00 15.74           O"))
      }
     end
     def test_square_bracket
      expected = {
-:serial=>30586, 
-:name=>"C1", 
-:altLoc=>" ", 
-:resName=>"EDO", 
-:chainID=>"A", 
-:resSeq=>702, 
-:iCode=>"", 
-:x=>2.792, 
+:serial=>30586,
+:name=>"C1",
+:altLoc=>" ",
+:resName=>"EDO",
+:chainID=>"A",
+:resSeq=>702,
+:iCode=>"",
+:x=>2.792,
 :y=>7.449,
-:z=>67.655, 
+:z=>67.655,
 :occupancy=>1.0,
-:tempFactor=>17.09, 
-:segID=>"", 
+:tempFactor=>17.09,
+:segID=>"",
 :element=>"C",
 :charge=>""
 }
@@ -2667,8 +2667,8 @@ expected = [{:serial=>1, :name=>"N", :altLoc=>" ", :resName=>"ALA", :chainID=>"A
         actual[m] = v
       end
       assert_equal(expected, actual)
-    end 
-    
+    end
+
     def test_each_hetatm
 expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>35.2, :chainID=>"A", :y=>-26.859, :segID=>"", :x=>-1.516, :name=>"O1", :charge=>"", :element=>"O", :serial=>30583}, {:z=>51.219, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>34.49, :chainID=>"A", :y=>-28.124, :segID=>"", :x=>-0.275, :name=>"C2", :charge=>"", :element=>"C", :serial=>30584}, {:z=>51.167, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>33.95, :chainID=>"A", :y=>-28.941, :segID=>"", :x=>-1.442, :name=>"O2", :charge=>"", :element=>"O", :serial=>30585}, {:z=>67.655, :resName=>"EDO", :altLoc=>" ", :resSeq=>702, :occupancy=>1.0, :iCode=>"", :tempFactor=>17.09, :chainID=>"A", :y=>7.449, :segID=>"", :x=>2.792, :name=>"C1", :charge=>"", :element=>"C", :serial=>30586}, {:z=>67.213, :resName=>"EDO", :altLoc=>" ", :resSeq=>702, :occupancy=>1.0, :iCode=>"", :tempFactor=>15.74, :chainID=>"A", :y=>7.273, :segID=>"", :x=>1.451, :name=>"O1", :charge=>"", :element=>"O", :serial=>30587}]
       actual = []
@@ -2676,7 +2676,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
         actual << {:serial=>hetatm.serial, :name=>hetatm.name, :altLoc=>hetatm.altLoc, :resName=>hetatm.resName, :chainID=>hetatm.chainID, :resSeq=>hetatm.resSeq, :iCode=>hetatm.iCode, :x=>hetatm.x, :y=>hetatm.y, :z=>hetatm.z, :occupancy=>hetatm.occupancy, :tempFactor=>hetatm.tempFactor, :segID=>hetatm.segID, :element=>hetatm.element, :charge=>hetatm.charge}
       end
       assert_equal(expected, actual)
-    end    
+    end
     def test_each
 expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>35.2, :chainID=>"A", :y=>-26.859, :segID=>"", :x=>-1.516, :name=>"O1", :charge=>"", :element=>"O", :serial=>30583}, {:z=>51.219, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>34.49, :chainID=>"A", :y=>-28.124, :segID=>"", :x=>-0.275, :name=>"C2", :charge=>"", :element=>"C", :serial=>30584}, {:z=>51.167, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy=>1.0, :iCode=>"", :tempFactor=>33.95, :chainID=>"A", :y=>-28.941, :segID=>"", :x=>-1.442, :name=>"O2", :charge=>"", :element=>"O", :serial=>30585}, {:z=>67.655, :resName=>"EDO", :altLoc=>" ", :resSeq=>702, :occupancy=>1.0, :iCode=>"", :tempFactor=>17.09, :chainID=>"A", :y=>7.449, :segID=>"", :x=>2.792, :name=>"C1", :charge=>"", :element=>"C", :serial=>30586}, {:z=>67.213, :resName=>"EDO", :altLoc=>" ", :resSeq=>702, :occupancy=>1.0, :iCode=>"", :tempFactor=>15.74, :chainID=>"A", :y=>7.273, :segID=>"", :x=>1.451, :name=>"O1", :charge=>"", :element=>"O", :serial=>30587}]
       actual = []
@@ -2684,7 +2684,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
         actual << {:serial=>hetatm.serial, :name=>hetatm.name, :altLoc=>hetatm.altLoc, :resName=>hetatm.resName, :chainID=>hetatm.chainID, :resSeq=>hetatm.resSeq, :iCode=>hetatm.iCode, :x=>hetatm.x, :y=>hetatm.y, :z=>hetatm.z, :occupancy=>hetatm.occupancy, :tempFactor=>hetatm.tempFactor, :segID=>hetatm.segID, :element=>hetatm.element, :charge=>hetatm.charge}
       end
       assert_equal(expected, actual)
-    end    
+    end
 
     def test_het_atom
       assert_equal(true, @res.hetatm)
@@ -2720,14 +2720,14 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
       assert_equal(nil, res.residue_id)
     end
   end
-  
+
   class TestChain < Test::Unit::TestCase
       def setup
         @chain = Bio::PDB::Chain.new('A',nil)
         @chain.addResidue(Bio::PDB::Residue.new(resName="ALA",resSeq = 7, iCode = 1, chain = @chain))
         @chain.addResidue(Bio::PDB::Residue.new(resName="ALA",resSeq = 6, iCode = 2, chain = @chain))
         @chain.addResidue(Bio::PDB::Residue.new(resName="ALA",resSeq = 7,  iCode = 3, chain = @chain))
-        @chain.addLigand(Bio::PDB::Heterogen.new(resName="EDD",resSeq = 1, iCode = 2, chain = @chain)) 
+        @chain.addLigand(Bio::PDB::Heterogen.new(resName="EDD",resSeq = 1, iCode = 2, chain = @chain))
       end
 
       def test_square_brace #[]
@@ -2741,7 +2741,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
         actual = {:resName => residue.resName, :id => residue.id, :chain_id => residue.chain.id, :resSeq => residue.resSeq, :iCode => residue.iCode, :atoms_size => residue.atoms.size}
         assert_equal(expected, actual)
       end
-      def test_comp #<=> 
+      def test_comp #<=>
         expected = [{:iCode=>2,
                      :chain_id=>'A',
                      :atoms_size=>0,
@@ -2836,7 +2836,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
       end
       def test_rehash_heterogens
         assert_nothing_raised{@chain.rehash_heterogens}
-        
+
         #assert_raise{@chain.rehash_heterogens}
       end
       def test_rehash_residues
@@ -2862,7 +2862,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
 
         assert_equal(expected, actual)
       end
-      def test_comp #<=> 
+      def test_comp #<=>
         models = [Bio::PDB::Model.new(2,nil), Bio::PDB::Model.new(1,nil), Bio::PDB::Model.new(3,nil)]
         expected = [{:serial=>1, :chains_size=>0},
  {:serial=>2, :chains_size=>0},
@@ -2966,7 +2966,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
       end
       assert(expected.empty?)
     end
-    
+
     def test_distance
       actual1 = Bio::PDB::Utils.distance(
         Bio::PDB::Record::ATOM.new.initialize_from_string("ATOM      2  CA  ALA A   7      23.849 -34.509  44.904  1.00 27.89           C"),
@@ -3096,7 +3096,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
       finded = @residues.find_residue{|m| true}
       actual = []
       finded.each do |res|
-         actual << {:resName=> res.resName, :id=> res.id, :chain=> res.chain, :resSeq=> res.resSeq, :iCode=> res.iCode, :atoms_size=> res.atoms.size}    
+         actual << {:resName=> res.resName, :id=> res.id, :chain=> res.chain, :resSeq=> res.resSeq, :iCode=> res.iCode, :atoms_size=> res.atoms.size}
       end
       assert_equal(expected,actual)
     end
@@ -3127,7 +3127,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
 
     def test_residues
 #      expected = [Bio::PDB::Residue.new("", 1), Bio::PDB::Residue.new("",2), Bio::PDB::Residue.new("",3), Bio::PDB::Residue.new("",1), Bio::PDB::Residue.new("",2), Bio::PDB::Residue.new("",3)]
-      expected = [ 
+      expected = [
         {:resName=>"", :id=>"1", :chain=>nil, :resSeq=>1, :iCode=>nil, :atoms_size=>0},
         {:resName=>"", :id=>"2", :chain=>nil, :resSeq=>2, :iCode=>nil, :atoms_size=>0},
         {:resName=>"", :id=>"3", :chain=>nil, :resSeq=>3, :iCode=>nil, :atoms_size=>0},
@@ -3163,7 +3163,7 @@ expected = [{:z=>49.587, :resName=>"EDO", :altLoc=>" ", :resSeq=>701, :occupancy
     end
 
     def test_find_atom
-      expected = 
+      expected =
         [Bio::PDB::Record::ATOM.new.initialize_from_string("ATOM      2  CA  ALA A   7      23.849 -34.509  44.904  1.00 27.89           C"),
          Bio::PDB::Record::ATOM.new.initialize_from_string("ATOM      2  CA  ALA A   7      23.849 -34.509  44.904  1.00 27.89           C"),
          Bio::PDB::Record::ATOM.new.initialize_from_string("ATOM      2  CA  ALA A   7      23.849 -34.509  44.904  1.00 27.89           C")]

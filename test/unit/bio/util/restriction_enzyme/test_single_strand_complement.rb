@@ -136,7 +136,7 @@ class TestSingleStrandComplement < Test::Unit::TestCase #:nodoc:
     # assert_raise(ArgumentError) { @t.new('gaat^aca', [1,2,3]) }
     # assert_raise(ArgumentError) { @t.new('gaat^^aca') }
     # assert_raise(ArgumentError) { @t.new('z', [1,2,3]) }
-    # 
+    #
     # assert_raise(ArgumentError) { @t.new('g', [0,1,2]) }
     # assert_raise(ArgumentError) { @t.new('g', 0,1,2,0) }
     # assert_raise(ArgumentError) { @t.new('g', [0,1,1,2]) }

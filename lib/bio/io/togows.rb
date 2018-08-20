@@ -38,7 +38,7 @@ module Bio
       # This means real maximum waiting time is (max * 1.5).
       TOGOWS_ACCESS_WAIT_MAX = 60
 
-      # Sleeping if needed. 
+      # Sleeping if needed.
       # It sleeps about TOGOWS_ACCESS_WAIT * (number of waiting processes).
       #
       # ---
@@ -105,7 +105,7 @@ module Bio
     # * http://togows.dbcls.jp/site/en/rest.html
     #
     # == Examples
-    # 
+    #
     # For light users, class methods can be used.
     #
     #   print Bio::TogoWS::REST.entry('genbank', 'AF237819')
@@ -166,14 +166,14 @@ module Bio
       # If two or more databases are specified, sequentially tries
       # them until valid entry is obtained.
       #
-      # If database is not specified, preset default databases are used. 
+      # If database is not specified, preset default databases are used.
       # See DEFAULT_RETRIEVAL_DATABASES for details.
       #
       # When multiple IDs and multiple databases are specified, sequentially
       # tries each IDs. Note that results with no hits found or with server
       # errors are regarded as void strings. Also note that data format of
       # the result entries can be different from entries to entries.
-      # 
+      #
       # ---
       # *Arguments*:
       # * (required) _ids_: (String) an entry ID, or
@@ -215,7 +215,7 @@ module Bio
             end
           end #dbs.each
         end #ids.each
-        
+
         results.join('')
       end #def retrieve
 
@@ -377,7 +377,7 @@ module Bio
         @http.get(path, @header)
       end
 
-      # Access to the TogoWS by using GET method. 
+      # Access to the TogoWS by using GET method.
       # Always adds '/' at the end of the path.
       #
       # Example 1:

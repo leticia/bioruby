@@ -9,7 +9,7 @@
 #
 # == Description
 #
-# This file contains a wrapper for running the CODEML tool for estimating evolutionary rate 
+# This file contains a wrapper for running the CODEML tool for estimating evolutionary rate
 #
 # == References
 #
@@ -23,9 +23,9 @@ module PAML
 
   # == Description
   #
-  # Bio::PAML::Codeml is a wrapper for estimating evolutionary rate using the CODEML 
-  # tool. The class provides methods for generating the necessary configuration 
-  # file, and running codeml with the specified binary. Codeml output is 
+  # Bio::PAML::Codeml is a wrapper for estimating evolutionary rate using the CODEML
+  # tool. The class provides methods for generating the necessary configuration
+  # file, and running codeml with the specified binary. Codeml output is
   # returned when codeml is run. Bio::PAML::Codeml::Report and Bio::PAML::Codeml::Rates
   # provide simple classes for parsing and accessing the Codeml report and
   # rates files respectively.
@@ -49,7 +49,7 @@ module PAML
   #   codeml.parameters.update({ :alpha => 0.5, :fix_alpha => 0 })
   #   # Executes codeml with the alignment and the tree
   #   report = codeml.query(alignment, tree)
-  #       
+  #
   # Example 2 (Obsolete usage):
   #
   #   # Create a control file, setting some Codeml options
@@ -69,10 +69,10 @@ module PAML
   #     :treefile    => TEST_DATA + '/abglobin.trees',
   #     :outfile     => output_file.path,
   #   })
-  #   
+  #
   #   # Create an instance of Codeml specifying where the codeml binary is
   #   codeml = Bio::PAML::Codeml.new('/path/to/codeml')
-  #   
+  #
   #   # Run codeml using a control file
   #   # Returns the command line output
   #   codeml_output = codeml.run(control_file)
@@ -128,14 +128,14 @@ module PAML
       :method              => 0
     }
 
-    # OBSOLETE. This method should not be used. 
+    # OBSOLETE. This method should not be used.
     # Instead, use parameters.
     def options
       warn 'The method Codeml#options will be changed to be used for command line arguments in the future. Instead, use Codeml#parameters.'
       parameters
     end
 
-    # OBSOLETE. This method should not be used. 
+    # OBSOLETE. This method should not be used.
     # Instead, use parameters=(hash).
     def options=(hash)
       warn 'The method Codeml#options=() will be changed to be used for command line arguments in the future. Instead, use Codeml#parameters=().'
@@ -202,7 +202,7 @@ module PAML
     # or in the parameter.
     #
     # For other important information, see the document of query method.
-    # 
+    #
     # ---
     # *Arguments*:
     # * (optional) _alignment_: String

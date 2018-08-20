@@ -18,11 +18,11 @@ module Bio
 
 # = DESCRIPTION
 # Bio::Sequence objects represent annotated sequences in bioruby.
-# A Bio::Sequence object is a wrapper around the actual sequence, 
+# A Bio::Sequence object is a wrapper around the actual sequence,
 # represented as either a Bio::Sequence::NA or a Bio::Sequence::AA object.
 # For most users, this encapsulation will be completely transparent.
 # Bio::Sequence responds to all methods defined for Bio::Sequence::NA/AA
-# objects using the same arguments and returning the same values (even though 
+# objects using the same arguments and returning the same values (even though
 # these methods are not documented specifically for Bio::Sequence).
 #
 # = USAGE
@@ -30,33 +30,33 @@ module Bio
 #   dna = Bio::Sequence.auto('atgcatgcATGCATGCAAAA')
 #   rna = Bio::Sequence.auto('augcaugcaugcaugcaaaa')
 #   aa = Bio::Sequence.auto('ACDEFGHIKLMNPQRSTVWYU')
-# 
+#
 #   # Print it out
 #   puts dna.to_s
 #   puts aa.to_s
-# 
+#
 #   # Get a subsequence, bioinformatics style (first nucleotide is '1')
 #   puts dna.subseq(2,6)
-# 
+#
 #   # Get a subsequence, informatics style (first nucleotide is '0')
 #   puts dna[2,6]
-# 
+#
 #   # Print in FASTA format
 #   puts dna.output(:fasta)
-# 
+#
 #   # Print all codons
 #   dna.window_search(3,3) do |codon|
 #     puts codon
 #   end
-# 
+#
 #   # Splice or otherwise mangle your sequence
 #   puts dna.splicing("complement(join(1..5,16..20))")
 #   puts rna.splicing("complement(join(1..5,16..20))")
-# 
-#   # Convert a sequence containing ambiguity codes into a 
+#
+#   # Convert a sequence containing ambiguity codes into a
 #   # regular expression you can use for subsequent searching
 #   puts aa.to_re
-# 
+#
 #   # These should speak for themselves
 #   puts dna.complement
 #   puts dna.composition
@@ -87,8 +87,8 @@ class Sequence
   #
   #   puts s.seq.class                        #=> String
   #
-  # See Bio::Sequence#na, Bio::Sequence#aa, and Bio::Sequence#auto 
-  # for methods to transform the basic String of a just created 
+  # See Bio::Sequence#na, Bio::Sequence#aa, and Bio::Sequence#auto
+  # for methods to transform the basic String of a just created
   # Bio::Sequence object to a proper bioruby object
   # ---
   # *Arguments*:
@@ -121,35 +121,35 @@ class Sequence
       raise(evar)
     end
   end
-  
+
   # The sequence identifier (String).  For example, for a sequence
   # of Genbank origin, this is the locus name.
   # For a sequence of EMBL origin, this is the primary accession number.
   attr_accessor :entry_id
-  
+
   # A String with a description of the sequence (String)
   attr_accessor :definition
-  
+
   # Features (An Array of Bio::Feature objects)
   attr_accessor :features
-  
+
   # References (An Array of Bio::Reference objects)
   attr_accessor :references
-  
+
   # Comments (String or an Array of String)
   attr_accessor :comments
-  
+
   # Keywords (An Array of String)
   attr_accessor :keywords
-  
+
   # Links to other database entries.
   # (An Array of Bio::Sequence::DBLink objects)
   attr_accessor :dblinks
 
   # Bio::Sequence::NA/AA
   attr_accessor :moltype
-  
-  # The sequence object, usually Bio::Sequence::NA/AA, 
+
+  # The sequence object, usually Bio::Sequence::NA/AA,
   # but could be a simple String
   attr_accessor :seq
 
@@ -172,7 +172,7 @@ class Sequence
   #---
   # Attributes below have been added during BioHackathon2008
   #+++
-  
+
   # Version number of the sequence (String or Integer).
   # Unlike <tt>entry_version</tt>, <tt>sequence_version</tt> will be changed
   # when the submitter of the sequence updates the entry.
@@ -249,7 +249,7 @@ class Sequence
   # For database cross references, <tt>dblinks</tt> should be used.
   attr_accessor :other_seqids
 
-  # Guess the type of sequence, Amino Acid or Nucleic Acid, and create a 
+  # Guess the type of sequence, Amino Acid or Nucleic Acid, and create a
   # new sequence object (Bio::Sequence::AA or Bio::Sequence::NA) on the basis
   # of this guess.  This method will change the current Bio::Sequence object.
   #
@@ -271,7 +271,7 @@ class Sequence
   # Given a sequence String, guess its type, Amino Acid or Nucleic Acid, and
   # return a new Bio::Sequence object wrapping a sequence of the guessed type
   # (either Bio::Sequence::AA or Bio::Sequence::NA)
-  # 
+  #
   #   s = Bio::Sequence.auto('atgc')
   #   puts s.seq.class                        #=> Bio::Sequence::NA
   # ---
@@ -287,25 +287,25 @@ class Sequence
   # Guess the class of the current sequence.  Returns the class
   # (Bio::Sequence::AA or Bio::Sequence::NA) guessed.  In general, used by
   # developers only, but if you know what you are doing, feel free.
-  # 
+  #
   #   s = Bio::Sequence.new('atgc')
   #   puts s.guess                            #=> Bio::Sequence::NA
   #
-  # There are three parameters: `threshold`, `length`, and `index`.  
+  # There are three parameters: `threshold`, `length`, and `index`.
   #
-  # The `threshold` value (defaults to 0.9) is the frequency of 
+  # The `threshold` value (defaults to 0.9) is the frequency of
   # nucleic acid bases [AGCTUagctu] required in the sequence for this method
   # to produce a Bio::Sequence::NA "guess".  In the default case, if less
   # than 90% of the bases (after excluding [Nn]) are in the set [AGCTUagctu],
   # then the guess is Bio::Sequence::AA.
-  # 
+  #
   #   s = Bio::Sequence.new('atgcatgcqq')
   #   puts s.guess                            #=> Bio::Sequence::AA
   #   puts s.guess(0.8)                       #=> Bio::Sequence::AA
   #   puts s.guess(0.7)                       #=> Bio::Sequence::NA
   #
   # The `length` value is how much of the total sequence to use in the
-  # guess (default 10000).  If your sequence is very long, you may 
+  # guess (default 10000).  If your sequence is very long, you may
   # want to use a smaller amount to reduce the computational burden.
   #
   #   s = Bio::Sequence.new(A VERY LONG SEQUENCE)
@@ -337,32 +337,32 @@ class Sequence
     else
       return AA
     end
-  end 
+  end
 
   # Guess the class of a given sequence.  Returns the class
   # (Bio::Sequence::AA or Bio::Sequence::NA) guessed.  In general, used by
   # developers only, but if you know what you are doing, feel free.
-  # 
+  #
   #   puts .guess('atgc')        #=> Bio::Sequence::NA
   #
-  # There are three optional parameters: `threshold`, `length`, and `index`.  
+  # There are three optional parameters: `threshold`, `length`, and `index`.
   #
-  # The `threshold` value (defaults to 0.9) is the frequency of 
+  # The `threshold` value (defaults to 0.9) is the frequency of
   # nucleic acid bases [AGCTUagctu] required in the sequence for this method
   # to produce a Bio::Sequence::NA "guess".  In the default case, if less
   # than 90% of the bases (after excluding [Nn]) are in the set [AGCTUagctu],
   # then the guess is Bio::Sequence::AA.
-  # 
+  #
   #   puts Bio::Sequence.guess('atgcatgcqq')      #=> Bio::Sequence::AA
   #   puts Bio::Sequence.guess('atgcatgcqq', 0.8) #=> Bio::Sequence::AA
   #   puts Bio::Sequence.guess('atgcatgcqq', 0.7) #=> Bio::Sequence::NA
   #
   # The `length` value is how much of the total sequence to use in the
-  # guess (default 10000).  If your sequence is very long, you may 
+  # guess (default 10000).  If your sequence is very long, you may
   # want to use a smaller amount to reduce the computational burden.
   #
   #   # limit the guess to the first 1000 positions
-  #   puts Bio::Sequence.guess('A VERY LONG SEQUENCE', 0.9, 1000)  
+  #   puts Bio::Sequence.guess('A VERY LONG SEQUENCE', 0.9, 1000)
   #
   # The `index` value is where to start the guess.  Perhaps you know there
   # are a lot of gaps at the start...
@@ -389,7 +389,7 @@ class Sequence
   #   s.na
   #   puts s.seq.class                        #=> Bio::Sequence::NA !!!
   #
-  # However, if you know your sequence type, this method may be 
+  # However, if you know your sequence type, this method may be
   # constructively used after initialization,
   #
   #   s = Bio::Sequence.new('atgc')
@@ -410,7 +410,7 @@ class Sequence
   #   s.aa
   #   puts s.seq.class                        #=> Bio::Sequence::AA !!!
   #
-  # However, if you know your sequence type, this method may be 
+  # However, if you know your sequence type, this method may be
   # constructively used after initialization,
   #
   #   s = Bio::Sequence.new('RRLE')

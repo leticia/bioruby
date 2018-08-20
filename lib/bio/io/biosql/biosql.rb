@@ -18,7 +18,7 @@ module Bio
     end #DummyBase
 
     require 'bio/io/biosql/ar-biosql'
-    
+
   #  #no check is made
   def self.establish_connection(configurations, env)
     #  #configurations is an hash similar what YAML returns.
@@ -32,8 +32,8 @@ module Bio
     Ontology.first(:conditions => ["name = ?", 'SeqFeature Keys']) || Ontology.create({:name => 'SeqFeature Keys'})
     Ontology.first(:conditions => ["name = ?", 'SeqFeature Sources']) ||Ontology.create({:name => 'SeqFeature Sources'})
     Term.first(:conditions => ["name = ?", 'EMBLGenBankSwit']) || Term.create({:name => 'EMBLGenBankSwit', :ontology => Ontology.first(:conditions => ["name = ?", 'SeqFeature Sources'])})
-    connection 
+    connection
   end #establish_connection
-  
+
   end #SQL
 end #Bio

@@ -16,9 +16,9 @@ require 'bio/db/fasta'
 
 module Bio
   # == DESCRIPTION
-  # The Bio::GFF and Bio::GFF::Record classes describe data contained in a 
-  # GFF-formatted file. For information on the GFF format, see 
-  # http://www.sanger.ac.uk/Software/formats/GFF/. Data are represented in tab- 
+  # The Bio::GFF and Bio::GFF::Record classes describe data contained in a
+  # GFF-formatted file. For information on the GFF format, see
+  # http://www.sanger.ac.uk/Software/formats/GFF/. Data are represented in tab-
   # delimited format, including
   # * seqname
   # * source
@@ -29,7 +29,7 @@ module Bio
   # * strand
   # * frame
   # * attributes (optional)
-  # 
+  #
   # For example:
   #  SEQ1     EMBL        atg       103   105     .       +       0
   #  SEQ1     EMBL        exon      103   172     .       +       0
@@ -39,12 +39,12 @@ module Bio
   #  SEQ1     genie       sp5-10    168   177     2.1     +       .
   #  SEQ1     grail       ATG       17    19      2.1     -       0
   #
-  # The Bio::GFF object is a container for Bio::GFF::Record objects, each 
+  # The Bio::GFF object is a container for Bio::GFF::Record objects, each
   # representing a single line in the GFF file.
   class GFF
     # Creates a Bio::GFF object by building a collection of Bio::GFF::Record
     # objects.
-    # 
+    #
     # Create a Bio::GFF object the hard way
     #  this_gff =  "SEQ1\tEMBL\tatg\t103\t105\t.\t+\t0\n"
     #  this_gff << "SEQ1\tEMBL\texon\t103\t172\t.\t+\t0\n"
@@ -54,7 +54,7 @@ module Bio
     #  this_gff << "SEQ1\tgenie\tsp5-10\t168\t177\t2.1\t+\t.\n"
     #  this_gff << "SEQ1\tgrail\tATG\t17\t19\t2.1\t-\t0\n"
     #  p Bio::GFF.new(this_gff)
-    #  
+    #
     # or create one based on a GFF-formatted file:
     #  p Bio::GFF.new(File.open('my_data.gff')
     # ---
@@ -77,31 +77,31 @@ module Bio
 
       # Name of the reference sequence
       attr_accessor :seqname
-    
+
       # Name of the source of the feature (e.g. program that did prediction)
       attr_accessor :source
-    
+
       # Name of the feature
       attr_accessor :feature
-    
+
       # Start position of feature on reference sequence
       attr_accessor :start
-    
+
       # End position of feature on reference sequence
       attr_accessor :end
-    
+
       # Score of annotation (e.g. e-value for BLAST search)
       attr_accessor :score
-    
+
       # Strand that feature is located on
       attr_accessor :strand
-    
+
       # For features of type 'exon': indicates where feature begins in the reading frame
       attr_accessor :frame
-    
+
       # List of tag=value pairs (e.g. to store name of the feature: ID=my_id)
       attr_accessor :attributes
-    
+
       # Comments for the GFF record
       attr_accessor :comment
 
@@ -255,7 +255,7 @@ module Bio
           x.enum_for(:each_byte).collect { |y|
             sprintf("%03o", y) }.join("\\")
         end
- 
+
         # (private) escapes GFF2 attribute value string
         def escape_gff2_attribute_value(str)
           freetext?(str) ? escape_gff2_freetext(str) : str
@@ -361,7 +361,7 @@ module Bio
         def self.parse(str)
           self.new.parse(str)
         end
-       
+
         # Creates a Bio::GFF::GFF2::Record object.
         # Is typically not called directly, but
         # is called automatically when creating a Bio::GFF::GFF2 object.
@@ -470,10 +470,10 @@ module Bio
            gff2_column_to_s(@strand),
            gff2_column_to_s(@frame),
            attributes_to_s(@attributes)
-          ].join("\t") + 
+          ].join("\t") +
             (cmnt ? "\t\##{cmnt}\n" : "\n")
         end
-        
+
         # Returns true if self == other. Otherwise, returns false.
         def ==(other)
           super ||
@@ -639,7 +639,7 @@ module Bio
               raise ArgumentError, 'wrong number of arguments (0 for 1) or wrong argument value'
             end
             @attributes.sort! do |x, y|
-              r = (tags.index(x[0]) || tags.size) <=> 
+              r = (tags.index(x[0]) || tags.size) <=>
                 (tags.index(y[0]) || tags.size)
               if r == 0 then
                 r = (h[x] || s) <=> (h[y] || s)
@@ -814,7 +814,7 @@ module Bio
 
       # Creates a Bio::GFF::GFF2 object by building a collection of
       # Bio::GFF::GFF2::Record (and metadata) objects.
-      # 
+      #
       # ---
       # *Arguments*:
       # * _str_: string in GFF format
@@ -834,7 +834,7 @@ module Bio
       attr_accessor :metadata
 
       # Parses a GFF2 entries, and concatenated the parsed data.
-      # 
+      #
       # ---
       # *Arguments*:
       # * _str_: string in GFF format
@@ -863,10 +863,10 @@ module Bio
     #++
     class GFF3 < GFF
       VERSION = 3
-      
+
       # Creates a Bio::GFF::GFF3 object by building a collection of
       # Bio::GFF::GFF3::Record (and metadata) objects.
-      # 
+      #
       # ---
       # *Arguments*:
       # * _str_: string in GFF format
@@ -900,7 +900,7 @@ module Bio
       #
       # Note that after "##FASTA" line is given,
       # only fasta-formatted text is accepted.
-      # 
+      #
       # ---
       # *Arguments*:
       # * _str_: string in GFF format
@@ -1012,7 +1012,7 @@ module Bio
         def escape_seqid(string)
           URI.escape(string, UNSAFE_SEQID)
         end
-        
+
         # Escape attribute according to the specification at
         # http://song.sourceforge.net/gff3.shtml.
         # In addition to the normal escape rule, the following characters
@@ -1028,7 +1028,7 @@ module Bio
       # Stores meta-data "##sequence-region seqid start end".
       class SequenceRegion
         include Escape
-        
+
         # creates a new SequenceRegion class
         def initialize(seqid, start, endpos)
           @seqid = seqid
@@ -1109,7 +1109,7 @@ module Bio
         def self.parse(str)
           self.new.parse(str)
         end
-       
+
         # Creates a Bio::GFF::GFF3::Record object.
         # Is typically not called directly, but
         # is called automatically when creating a Bio::GFF::GFF3 object.
@@ -1155,10 +1155,10 @@ module Bio
            escape(column_to_s(@strand)),
            escape(column_to_s(@frame)),
            attributes_to_s(@attributes)
-          ].join("\t") + 
+          ].join("\t") +
             (cmnt ? "\t\##{cmnt}\n" : "\n")
         end
-        
+
         # Bio:GFF::GFF3::Record::Target is a class to store
         # data of "Target" attribute.
         class Target
@@ -1232,14 +1232,14 @@ module Bio
 
             # length (Integer)
             attr_reader :length if false #dummy for RDoc
- 
+
             def to_s
               "#{code}#{length}"
             end
           end #class code
 
           # Creates a new Gap object.
-          # 
+          #
           # ---
           # *Arguments*:
           # * _str_: a formatted string, or nil.
@@ -1292,7 +1292,7 @@ module Bio
           # initializes self. Existing data will be erased.
           def __initialize_from_sequences_na(reference, target,
                                              gap_regexp = /[^a-zA-Z]/)
-            
+
             data_ref = __scan_gap(reference, gap_regexp, :I, :M)
             data_tgt = __scan_gap(target,    gap_regexp, :D, :M)
             data = []
@@ -1362,7 +1362,7 @@ module Bio
           def self.new_from_sequences_na(reference, target,
                                          gap_regexp = /[^a-zA-Z]/)
             gap = self.new
-            gap.instance_eval { 
+            gap.instance_eval {
               __initialize_from_sequences_na(reference, target,
                                              gap_regexp)
             }
@@ -1371,7 +1371,7 @@ module Bio
 
           # (private method)
           # scans a codon or gap in reference sequence
-          def __scan_codon(sc_ref, 
+          def __scan_codon(sc_ref,
                            gap_regexp, space_regexp,
                            forward_frameshift_regexp,
                            reverse_frameshift_regexp)
@@ -1402,7 +1402,7 @@ module Bio
             return gap_count, fs_count
           end
           private :__scan_codon
-              
+
           # (private method)
           # internal use only
           def __push_code_to_data(cur, data, code, len)
@@ -1528,13 +1528,13 @@ module Bio
           # gap positions will be moved inside codons,
           # unwanted gaps will be removed, and
           # some forward or reverse frameshift will be inserted.
-          # 
+          #
           # For example,
           #    atgg-taagac-att
-          #    M  V  K  -  I  
+          #    M  V  K  -  I
           # is treated as:
           #    atggt<aagacatt
-          #    M  V  K  >>I  
+          #    M  V  K  >>I
           #
           # Incorrect combination of frameshift with frameshift or gap
           # may cause undefined behavior.
@@ -1546,7 +1546,7 @@ module Bio
           #
           # Priority of regular expressions:
           #   space > forward/reverse frameshift > gap
-          # 
+          #
           # ---
           # *Arguments*:
           # * _reference_: reference sequence (nucleotide sequence)
@@ -1561,7 +1561,7 @@ module Bio
                                             forward_frameshift_regexp = /\>/,
                                             reverse_frameshift_regexp = /\</)
             gap = self.new
-            gap.instance_eval { 
+            gap.instance_eval {
               __initialize_from_sequences_na_aa(reference, target,
                                                 gap_regexp,
                                                 space_regexp,
@@ -1655,7 +1655,7 @@ module Bio
                 rescue IndexError
                   raise 'reference sequence too short'
                 end
-                
+
               else
                 warn "ignored #{c.to_s.inspect}" if $VERBOSE
               end
@@ -1703,14 +1703,14 @@ module Bio
           # target must be an amino acid sequence.
           #
           # Note for reverse frameshift:
-          # Reverse_frameshift characers are inserted in the 
+          # Reverse_frameshift characers are inserted in the
           # reference sequence.
           # For example, alignment of "Gap=M3 R1 M2" is:
           #     atgaagat<aatgtc
-          #     M  K  I  N  V  
+          #     M  K  I  N  V
           # Alignment of "Gap=M3 R3 M3" is:
           #     atgaag<<<attaatgtc
-          #     M  K  I  I  N  V  
+          #     M  K  I  I  N  V
           #
           # ---
           # *Arguments*:
@@ -1738,7 +1738,7 @@ module Bio
                                        reverse_frameshift)
           end
         end #class Gap
-        
+
         private
         def parse_attributes(string)
           return [] if !string or string == '.'
@@ -1822,7 +1822,7 @@ module Bio
       private :parse_metadata
 
     end #class GFF3
-    
+
   end # class GFF
 
 end # module Bio

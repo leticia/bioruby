@@ -20,7 +20,7 @@ module Bio
   class TestSPTR < Test::Unit::TestCase
 
     def setup
-      data = File.read(File.join(BioRubyTestDataPath, 
+      data = File.read(File.join(BioRubyTestDataPath,
                                  'uniprot', 'p53_human.uniprot'))
       @obj = Bio::SPTR.new(data)
     end
@@ -31,7 +31,7 @@ module Bio
 
     def test_id_line_entry_name
       assert_equal('P53_HUMAN', @obj.id_line('ENTRY_NAME'))
-    end   
+    end
 
     def test_id_line_data_class
       assert_equal('STANDARD', @obj.id_line('DATA_CLASS'))
@@ -64,9 +64,9 @@ module Bio
     end
 
     def test_ac
-      acs = ["P04637", "Q15086", "Q15087", "Q15088", "Q16535", "Q16807", 
-             "Q16808", "Q16809", "Q16810", "Q16811", "Q16848", "Q86UG1", 
-             "Q8J016", "Q99659", "Q9BTM4", "Q9HAQ8", "Q9NP68", "Q9NPJ2", 
+      acs = ["P04637", "Q15086", "Q15087", "Q15088", "Q16535", "Q16807",
+             "Q16808", "Q16809", "Q16810", "Q16811", "Q16848", "Q86UG1",
+             "Q8J016", "Q99659", "Q9BTM4", "Q9HAQ8", "Q9NP68", "Q9NPJ2",
              "Q9NZD0", "Q9UBI2", "Q9UQ61"]
       assert_equal(acs, @obj.ac)
       assert_equal(acs, @obj.accessions)
@@ -122,12 +122,12 @@ module Bio
     end
 
     def test_dt_sequence
-      assert_equal('01-MAR-1989 (Rel. 10, Last sequence update)', 
+      assert_equal('01-MAR-1989 (Rel. 10, Last sequence update)',
                    @obj.dt('sequence'))
     end
 
     def test_dt_annotation
-      assert_equal('13-SEP-2005 (Rel. 48, Last annotation update)', 
+      assert_equal('13-SEP-2005 (Rel. 48, Last annotation update)',
                    @obj.dt('annotation'))
     end
 
@@ -145,19 +145,19 @@ module Bio
     end
 
     def test_gn
-      assert_equal([{:orfs=>[], :synonyms=>["P53"], :name=>"TP53", :loci=>[]}], 
+      assert_equal([{:orfs=>[], :synonyms=>["P53"], :name=>"TP53", :loci=>[]}],
                    @obj.gn)
     end
 
     def test_gn_uniprot_parser
       gn_uniprot_data = ''
-      assert_equal([{:orfs=>[], :loci=>[], :name=>"TP53", :synonyms=>["P53"]}], 
+      assert_equal([{:orfs=>[], :loci=>[], :name=>"TP53", :synonyms=>["P53"]}],
                    @obj.instance_eval("gn_uniprot_parser"))
     end
 
     def test_gn_old_parser
       gn_old_data = ''
-      assert_equal([["Name=TP53; Synonyms=P53;"]], 
+      assert_equal([["Name=TP53; Synonyms=P53;"]],
                    @obj.instance_eval("gn_old_parser"))
     end
 
@@ -210,24 +210,24 @@ module Bio
     end
 
     def test_og_5
-      og = "OG   Plasmid pSymA (megaplasmid 1)." 
+      og = "OG   Plasmid pSymA (megaplasmid 1)."
       ary = ["Plasmid pSymA (megaplasmid 1)"]
       @obj.instance_eval("@orig['OG'] = '#{og}'")
       assert_equal(ary, @obj.og)
     end
 
     def test_og_6
-      og = "OG   Plasmid pNRC100, Plasmid pNRC200, and Plasmid pHH1." 
+      og = "OG   Plasmid pNRC100, Plasmid pNRC200, and Plasmid pHH1."
       ary = ['Plasmid pNRC100', 'Plasmid pNRC200', 'Plasmid pHH1']
       @obj.instance_eval("@orig['OG'] = '#{og}'")
       assert_equal(ary, @obj.og)
     end
 
     def test_oc
-      assert_equal(["Eukaryota", "Metazoa", "Chordata", "Craniata", 
-                    "Vertebrata", "Euteleostomi", "Mammalia", "Eutheria", 
-                    "Euarchontoglires", "Primates", "Catarrhini", "Hominidae", 
-                    "Homo"], 
+      assert_equal(["Eukaryota", "Metazoa", "Chordata", "Craniata",
+                    "Vertebrata", "Euteleostomi", "Mammalia", "Eutheria",
+                    "Euarchontoglires", "Primates", "Catarrhini", "Hominidae",
+                    "Homo"],
                    @obj.oc)
     end
 
@@ -242,32 +242,32 @@ module Bio
     def test_cc
       assert_equal(Hash, @obj.cc.class)
     end
-   
+
     def test_cc_database
-      db = [{"NAME" => "IARC TP53 mutation database", 
-             "WWW" => "http://www.iarc.fr/p53/", 
+      db = [{"NAME" => "IARC TP53 mutation database",
+             "WWW" => "http://www.iarc.fr/p53/",
              "FTP" => nil, "NOTE" => "IARC db of somatic p53 mutations"},
-            {"NAME" => "Tokyo p53", 
-             "WWW" => "http://p53.genome.ad.jp/", "FTP" => nil, 
+            {"NAME" => "Tokyo p53",
+             "WWW" => "http://p53.genome.ad.jp/", "FTP" => nil,
              "NOTE" => "University of Tokyo db of p53 mutations"},
-            {"NAME" => "p53 web site at the Institut Curie", 
+            {"NAME" => "p53 web site at the Institut Curie",
              "WWW" => "http://p53.curie.fr/", "FTP" => nil, "NOTE" => nil},
-            {"NAME" => "Atlas Genet. Cytogenet. Oncol. Haematol.", 
-             "WWW" => "http://www.infobiogen.fr/services/chromcancer/Genes/P53ID88.html", 
+            {"NAME" => "Atlas Genet. Cytogenet. Oncol. Haematol.",
+             "WWW" => "http://www.infobiogen.fr/services/chromcancer/Genes/P53ID88.html",
              "FTP" => nil, "NOTE" => nil}]
       assert_equal(db, @obj.cc('DATABASE'))
     end
 
     def test_cc_alternative_products
       ap = {"Comment" => "",
-            "Named isoforms" => "2", 
-            "Variants" => [{"IsoId" => ["P04637-1"], 
-                            "Name" => "1", 
-                            "Synonyms" => [], 
+            "Named isoforms" => "2",
+            "Variants" => [{"IsoId" => ["P04637-1"],
+                            "Name" => "1",
+                            "Synonyms" => [],
                             "Sequence" => ["Displayed"]},
-                           {"IsoId" => ["P04637-2"], 
-                            "Name" => "2", 
-                            "Synonyms" => ["I9RET"], 
+                           {"IsoId" => ["P04637-2"],
+                            "Name" => "2",
+                            "Synonyms" => ["I9RET"],
                             "Sequence" => ["VSP_006535", "VSP_006536"]}],
             "Event" => ["Alternative splicing"]}
       assert_equal(ap, @obj.cc('ALTERNATIVE PRODUCTS'))
@@ -279,26 +279,26 @@ module Bio
 
 
     def test_kw
-      keywords = ["3D-structure", "Acetylation", "Activator", 
-                  "Alternative splicing", "Anti-oncogene", 
-                  "Apoptosis", "Cell cycle", "Disease mutation", "DNA-binding", 
-                  "Glycoprotein", "Li-Fraumeni syndrome", "Metal-binding", 
-                  "Nuclear protein", "Phosphorylation", "Polymorphism", 
+      keywords = ["3D-structure", "Acetylation", "Activator",
+                  "Alternative splicing", "Anti-oncogene",
+                  "Apoptosis", "Cell cycle", "Disease mutation", "DNA-binding",
+                  "Glycoprotein", "Li-Fraumeni syndrome", "Metal-binding",
+                  "Nuclear protein", "Phosphorylation", "Polymorphism",
                   "Transcription", "Transcription regulation", "Zinc"]
       assert_equal(keywords, @obj.kw)
     end
-    
+
     def test_ft
       assert(@obj.ft)
       name = 'DNA_BIND'
-      assert_equal([{"FTId"=>"", "From"=>102, "diff"=>[], "To"=>292, 
-                     "Description"=>"", 
-                     "original" => ['DNA_BIND', '102', '292', '', '']}], 
+      assert_equal([{"FTId"=>"", "From"=>102, "diff"=>[], "To"=>292,
+                     "Description"=>"",
+                     "original" => ['DNA_BIND', '102', '292', '', '']}],
                    @obj.ft[name])
     end
 
     def test_sq
-      assert_equal({"CRC64"=>"AD5C149FD8106131", "aalen"=>393, "MW"=>43653}, 
+      assert_equal({"CRC64"=>"AD5C149FD8106131", "aalen"=>393, "MW"=>43653},
                    @obj.sq)
     end
 
@@ -335,12 +335,12 @@ module Bio
       # ALLERGEN	Information relevant to allergenic proteins
       data = 'CC   -!- ALLERGEN: Causes an allergic reaction in human.'
       sp = Bio::SPTR.new(data)
-      assert_equal(['Causes an allergic reaction in human.'], 
+      assert_equal(['Causes an allergic reaction in human.'],
                    sp.cc['ALLERGEN'])
-      assert_equal(['Causes an allergic reaction in human.'], 
+      assert_equal(['Causes an allergic reaction in human.'],
                    sp.cc('ALLERGEN'))
     end
-    
+
     def test_alternative_products_access_as_hash
       data = "CC   -!- ALTERNATIVE PRODUCTS:
 CC       Event=Alternative initiation; Named isoforms=2;
@@ -373,12 +373,12 @@ CC         similarity);"
       assert_equal({"Comment"=>"",
                     "Named isoforms"=>"2",
                     "Variants"=>
-                    [{"IsoId"=>["P68250-1"], 
-                      "Name"=>"Long", 
+                    [{"IsoId"=>["P68250-1"],
+                      "Name"=>"Long",
                       "Synonyms" => [],
                       "Sequence"=>["Displayed"]},
-                     {"IsoId"=>["P68250-2"], 
-                      "Name"=>"Short", 
+                     {"IsoId"=>["P68250-2"],
+                      "Name"=>"Short",
                       "Synonyms" => [],
                       "Sequence"=>["VSP_018631"]}],
                     "Event"=>["Alternative initiation"]},
@@ -397,9 +397,9 @@ CC         lymphocytes;"
       assert_equal({"Comment"=>"",
                     "Named isoforms"=>"2",
                     "Variants"=>
-                    [{"Name"=>"1", 
+                    [{"Name"=>"1",
                       "IsoId"=>["P04637-1"],
-                      "Synonyms"=>[], 
+                      "Synonyms"=>[],
                       "Sequence"=>["Displayed"]},
                      {"IsoId"=>["P04637-2"],
                       "Name"=>"2",
@@ -458,7 +458,7 @@ CC         Note=May be produced by alternative promoter usage;"
       assert_equal({},
                    sp.cc('ALTERNATIVE PRODUCTS'))
     end
-    
+
     def test_biophysicochemical_properties
       # BIOPHYSICOCHEMICAL PROPERTIES	Description of the information relevant to biophysical and physicochemical data and information on pH dependence, temperature dependence, kinetic parameters, redox potentials, and maximal absorption; see 3.21.8
       #
@@ -473,8 +473,8 @@ CC         Optimum pH is 8.2;'
                    sp.cc['BIOPHYSICOCHEMICAL PROPERTIES'])
       assert_equal({"Redox potential" => "",
                     "Temperature dependence" => "",
-                    "Kinetic parameters" => {"KM" => "45 uM for AdoMet", 
-                                             "Vmax" => "32 uM/h/mg enzyme"}, 
+                    "Kinetic parameters" => {"KM" => "45 uM for AdoMet",
+                                             "Vmax" => "32 uM/h/mg enzyme"},
                     "Absorption" => {},
                     "pH dependence" => "Optimum pH is 8.2"},
                    sp.cc('BIOPHYSICOCHEMICAL PROPERTIES'))
@@ -547,11 +547,11 @@ CC       the sequence.'
       data = 'CC   -!- COFACTOR: Cl(-). Is unique in requiring Cl(-) for its activity.
 CC   -!- COFACTOR: Mg(2+).'
       sp = Bio::SPTR.new(data)
-      assert_equal(["Cl(-). Is unique in requiring Cl(-) for its activity.", 
+      assert_equal(["Cl(-). Is unique in requiring Cl(-) for its activity.",
                     "Mg(2+)."],
                    sp.cc['COFACTOR'])
 
-      assert_equal(["Cl(-). Is unique in requiring Cl(-) for its activity.", 
+      assert_equal(["Cl(-). Is unique in requiring Cl(-) for its activity.",
                     "Mg(2+)."],
                    sp.cc('COFACTOR'))
     end
@@ -620,7 +620,7 @@ CC       by the G protein beta and gamma subunit complex.'
       assert_equal("Insensitive to calcium/calmodulin. Stimulated by the G protein beta and gamma subunit complex.",
                    sp.cc('ENZYME REGULATION'))
     end
-    
+
     def test_function
       # FUNCTION	General description of the function(s) of a protein
       data = 'CC   -!- FUNCTION: May play a fundamental role in situations where fine
@@ -652,15 +652,15 @@ CC       P62155:calm1 (xeno); NbExp=1; IntAct=EBI-457011, EBI-397568;'
       sp = Bio::SPTR.new(data)
       assert_equal(["P62158:CALM1 (xeno); NbExp=1; IntAct=EBI-457011, EBI-397435; P62155:calm1 (xeno); NbExp=1; IntAct=EBI-457011, EBI-397568;"],
                    sp.cc['INTERACTION'])
-      assert_equal([{'SP_Ac' => 'P62158', 
-                     'identifier' => 'CALM1', 
+      assert_equal([{'SP_Ac' => 'P62158',
+                     'identifier' => 'CALM1',
                      'optional_identifier' => '(xeno)',
-                     'NbExp' => '1', 
+                     'NbExp' => '1',
                      'IntAct' => ['EBI-457011', 'EBI-397435']},
-                    {'SP_Ac' => 'P62155', 
-                     'identifier' => 'calm1', 
+                    {'SP_Ac' => 'P62155',
+                     'identifier' => 'calm1',
                      'optional_identifier' => '(xeno)',
-                     'NbExp' => '1', 
+                     'NbExp' => '1',
                      'IntAct' => ['EBI-457011', 'EBI-397568']}],
                    sp.cc('INTERACTION'))
     end
@@ -675,12 +675,12 @@ CC       NOTE=Ref.2."
       assert_equal(["MW=2894.9; MW_ERR=3; METHOD=MALDI; RANGE=1-29; NOTE=Ref.1.",
                     "MW=2892.2; METHOD=Electrospray; RANGE=1-29; NOTE=Ref.2."],
                    sp.cc['MASS SPECTROMETRY'])
-      assert_equal([{'MW' => '2894.9', 
-                     'MW_ERR' => '3', 
-                     'METHOD' => 'MALDI',  
+      assert_equal([{'MW' => '2894.9',
+                     'MW_ERR' => '3',
+                     'METHOD' => 'MALDI',
                      'RANGE' => '1-29',
                      'NOTE' => 'Ref.1'},
-                    {'MW' => '2892.2', 
+                    {'MW' => '2892.2',
                      'METHOD' => 'Electrospray',
                      'MW_ERR' => nil,
                      'RANGE' => '1-29',
@@ -704,10 +704,10 @@ CC       phosphate and glycerone phosphate from D-glucose: step 4.'
       sp = Bio::SPTR.new(data)
       assert_equal(["Carbohydrate degradation; glycolysis; D-glyceraldehyde 3-phosphate and glycerone phosphate from D-glucose: step 4."],
                    sp.cc['PATHWAY'])
-      assert_equal(["Carbohydrate degradation", 
-                    'glycolysis', 
+      assert_equal(["Carbohydrate degradation",
+                    'glycolysis',
                     'D-glyceraldehyde 3-phosphate',
-                    'glycerone phosphate from D-glucose', 
+                    'glycerone phosphate from D-glucose',
                     'step 4'],
                    sp.cc('PATHWAY'))
     end
@@ -765,7 +765,7 @@ CC       forms are highly permeable to divalent ions (By similarity).'
       sp = Bio::SPTR.new(data)
       assert_equal(["Modified_positions=607; Note=Fully edited in the brain. Heteromerically expressed edited GLUR2 (R) receptor complexes are impermeable to calcium, whereas the unedited (Q) forms are highly permeable to divalent ions (By similarity)."],
                    sp.cc['RNA EDITING'])
-      assert_equal({"Modified_positions" => ['607'], 
+      assert_equal({"Modified_positions" => ['607'],
                     "Note" => "Fully edited in the brain. Heteromerically expressed edited GLUR2 (R) receptor complexes are impermeable to calcium, whereas the unedited (Q) forms are highly permeable to divalent ions (By similarity)."},
                    sp.cc('RNA EDITING'))
     end
@@ -778,7 +778,7 @@ CC   -!- SIMILARITY: Contains 1 RGS domain.'
       assert_equal(["Contains 1 protein kinase domain.", "Contains 1 RGS domain."],
                    sp.cc['SIMILARITY'])
     end
-    
+
     def test_subcellular_location
       # SUBCELLULAR LOCATION	Description of the subcellular location of the mature protein
 
@@ -807,10 +807,10 @@ CC       stroma."
       assert_equal(["Plastid; chloroplast; chloroplast membrane; peripheral membrane protein. Plastid; chloroplast; chloroplast stroma."],
                    sp.cc['SUBCELLULAR LOCATION'])
       assert_equal([["Plastid",
-                     "chloroplast", 
-                     "chloroplast membrane", 
-                     "peripheral membrane protein"], 
-                    ["Plastid", "chloroplast", 
+                     "chloroplast",
+                     "chloroplast membrane",
+                     "peripheral membrane protein"],
+                    ["Plastid", "chloroplast",
                      "chloroplast stroma"]],
                    sp.cc('SUBCELLULAR LOCATION'))
     end
@@ -864,11 +864,11 @@ CC       URL="http://www.genetests.org/query?gene=GJB1".'
                     'NAME=Connexin-deafness homepage; URL="http://www.crg.es/deafness/".',
                     'NAME=GeneReviews; URL="http://www.genetests.org/query?gene=GJB1".'],
                    sp.cc['WEB RESOURCE'])
-      assert_equal([{'NAME' => "Inherited peripheral neuropathies mutation db", 
+      assert_equal([{'NAME' => "Inherited peripheral neuropathies mutation db",
                      'URL' => 'http://www.molgen.ua.ac.be/CMTMutations/', 'NOTE' => nil},
-                    {'NAME' => "Connexin-deafness homepage", 
+                    {'NAME' => "Connexin-deafness homepage",
                      'URL' => 'http://www.crg.es/deafness/', 'NOTE' => nil},
-                    {'NAME' => "GeneReviews", 
+                    {'NAME' => "GeneReviews",
                      'URL' => 'http://www.genetests.org/query?gene=GJB1', 'NOTE' => nil}],
                    sp.cc('WEB RESOURCE'))
 
@@ -901,16 +901,16 @@ RL   J. Biol. Chem. 276:10463-10475(2001).'
       res = {"RT" => "A novel adapter protein employs a phosphotyrosine binding domain and exceptionally basic N-terminal domains to capture and localize an atypical protein kinase C: characterization of Caenorhabditis elegans C kinase adapter 1, a protein that avidly binds protein kinase C3.",
              "RL" => "J. Biol. Chem. 276:10463-10475(2001).",
              "RA" => "Galinier A., Bleicher F., Negre D., Perriere G., Duclos B., Cozzone A.J., Cortay J.-C.",
-             "RX" => {"MEDLINE" => nil, 
-                      "DOI" => "10.1074/jbc.M008990200", 
-                      "PubMed" => "11134024"}, 
-             "RC" => [{"Text" => "Bristol N2", "Token" => "STRAIN"}], 
-             "RN" => "[1]", 
+             "RX" => {"MEDLINE" => nil,
+                      "DOI" => "10.1074/jbc.M008990200",
+                      "PubMed" => "11134024"},
+             "RC" => [{"Text" => "Bristol N2", "Token" => "STRAIN"}],
+             "RN" => "[1]",
              "RP" =>  ["NUCLEOTIDE SEQUENCE [MRNA] (ISOFORMS A AND C)",
                        "FUNCTION",
                        "INTERACTION WITH PKC-3",
                        "SUBCELLULAR LOCATION",
-                       "TISSUE SPECIFICITY", 
+                       "TISSUE SPECIFICITY",
                        "DEVELOPMENTAL STAGE",
                        "MUTAGENESIS OF PHE-175 AND PHE-221"],
              "RG" => ["The mouse genome sequencing consortium"]}
@@ -920,7 +920,7 @@ RL   J. Biol. Chem. 276:10463-10475(2001).'
     def test_RN
       assert_equal("[1]", @obj.ref.first['RN'])
     end
-      
+
     def test_RP
       assert_equal(["NUCLEOTIDE SEQUENCE [MRNA] (ISOFORMS A AND C)",
                     "FUNCTION", "INTERACTION WITH PKC-3",
@@ -938,7 +938,7 @@ RL   J. Biol. Chem. 276:10463-10475(2001).'
 
     def test_RX
       assert_equal({'MEDLINE' => nil,
-                    'PubMed' => '11134024', 
+                    'PubMed' => '11134024',
                     'DOI' => '10.1074/jbc.M008990200'},
                    @obj.ref.first['RX'])
     end
@@ -962,7 +962,7 @@ RL   J. Biol. Chem. 276:10463-10475(2001).'
       assert_equal("J. Biol. Chem. 276:10463-10475(2001).",
                    @obj.ref.first['RL'])
     end
-    
+
   end # class TestSPTRReferences
 
 
@@ -976,7 +976,7 @@ RL   J. Biol. Chem. 276:10463-10475(2001).'
 RP   SEQUENCE FROM N.A., SEQUENCE OF 23-42 AND 351-365, AND
 RP   CHARACTERIZATION."
       sp = SPTR.new(data)
-      assert_equal(['SEQUENCE FROM N.A.', 
+      assert_equal(['SEQUENCE FROM N.A.',
                     'SEQUENCE OF 23-42 AND 351-365',
                     'CHARACTERIZATION'],
                    sp.ref.first['RP'])
@@ -999,14 +999,14 @@ CC         IsoId=Isoform_identifier_1;
 CC         Sequence=Displayed;
 CC         Note=Free text;
 CC       Name=Isoform_2; Synonyms=Synonym_1, Synonym_2;
-CC         IsoId=Isoform_identifier_1, Isoform_identifer_2; 
+CC         IsoId=Isoform_identifier_1, Isoform_identifer_2;
 CC         Sequence=VSP_identifier_1, VSP_identifier_2;
 CC         Note=Free text;
 CC       Event=Alternative initiation;
 CC         Comment=Free text;"
       sp = SPTR.new(data)
       res = {"Comment" => "Free text",
-             "Named isoforms" => "2", 
+             "Named isoforms" => "2",
              "Variants" => [{"Name" => "Isoform_1",
                              "Synonyms" => ["Synonym_1"],
                              "IsoId" => ["Isoform_identifier_1"],
@@ -1029,7 +1029,7 @@ CC         IsoId=Q15746-4; Sequence=Displayed;
 CC       Name=2;
 CC         IsoId=Q15746-5; Sequence=VSP_000040;
 CC       Name=3A;
-CC         IsoId=Q15746-6; Sequence=VSP_000041, VSP_000043; 
+CC         IsoId=Q15746-6; Sequence=VSP_000041, VSP_000043;
 CC       Name=3B;
 CC         IsoId=Q15746-7; Sequence=VSP_000040, VSP_000041, VSP_000042;
 CC       Name=4;
@@ -1050,12 +1050,12 @@ FT                                /FTId=VSP_004794.
 FT   VARSPLIC   1790   1790       Missing (in isoform Del-1790).
 FT                                /FTId=VSP_004795."
       sp = SPTR.new(data)
-      
+
       assert_equal({"Comment" => "",
                     "Named isoforms" => "6",
                     "Variants" => [{"IsoId"=>["Q15746-4"],
                                     "Name"=>"1",
-                                    "Synonyms"=>[], 
+                                    "Synonyms"=>[],
                                     "Sequence"=>["Displayed"]},
                                    {"IsoId"=>["Q15746-5"],
                                     "Name"=>"2",
@@ -1064,48 +1064,48 @@ FT                                /FTId=VSP_004795."
                                    {"IsoId"=>["Q15746-6"],
                                     "Name"=>"3A",
                                     "Synonyms"=>[],
-                                    "Sequence"=>["VSP_000041", "VSP_000043"]}, 
-                                   {"IsoId"=>["Q15746-7"],  
-                                    "Name"=>"3B",  
-                                    "Synonyms"=>[], 
+                                    "Sequence"=>["VSP_000041", "VSP_000043"]},
+                                   {"IsoId"=>["Q15746-7"],
+                                    "Name"=>"3B",
+                                    "Synonyms"=>[],
                                     "Sequence"=>["VSP_000040", "VSP_000041", "VSP_000042"]},
-                                   {"IsoId"=>["Q15746-8"],  
-                                    "Name"=>"4", 
-                                    "Synonyms"=>[], 
+                                   {"IsoId"=>["Q15746-8"],
+                                    "Name"=>"4",
+                                    "Synonyms"=>[],
                                     "Sequence"=>["VSP_000041", "VSP_000042"]},
                                    {"IsoId"=>["Q15746-9"],
-                                    "Name"=>"del-1790", 
-                                    "Synonyms"=>[], 
-                                    "Sequence"=>["VSP_000044"]}], 
+                                    "Name"=>"del-1790",
+                                    "Synonyms"=>[],
+                                    "Sequence"=>["VSP_000044"]}],
                     "Event"=>["Alternative splicing"]},
                    sp.cc('ALTERNATIVE PRODUCTS'))
       assert_equal([{"FTId"=>"VSP_004791",
                      "From"=>437,
-                     "To"=>506,  
+                     "To"=>506,
                     "Description"=>"VSGIPKPEVAWFLEGTPVRRQEGSIEVYEDAGSHYLCLLKA RTRDSGTYSCTASNAQGQVSCSWTLQVER -> G (in isoform 2 and isoform 3B).",
-                     "diff"=> ["VSGIPKPEVAWFLEGTPVRRQEGSIEVYEDAGSHYLCLLKARTRDSGTYSCTASNAQGQVSCSWTLQVER",    "G"],  
+                     "diff"=> ["VSGIPKPEVAWFLEGTPVRRQEGSIEVYEDAGSHYLCLLKARTRDSGTYSCTASNAQGQVSCSWTLQVER",    "G"],
                     "original"=> ["VARSPLIC", "437", "506", "VSGIPKPEVAWFLEGTPVRRQEGSIEVYEDAGSHYLCLLKA RTRDSGTYSCTASNAQGQVSCSWTLQVER -> G (in isoform 2 and isoform 3B).", "/FTId=VSP_004791."]},
                    {"FTId"=>"VSP_004792",
                     "From"=>1433,
                     "diff"=>["DEVEVSD", "MKWRCQT"],
                     "To"=>1439,
-                    "original"=> ["VARSPLIC", "1433", "1439", "DEVEVSD -> MKWRCQT (in isoform 3A, isoform 3B and isoform 4).", "/FTId=VSP_004792."], 
+                    "original"=> ["VARSPLIC", "1433", "1439", "DEVEVSD -> MKWRCQT (in isoform 3A, isoform 3B and isoform 4).", "/FTId=VSP_004792."],
                     "Description"=>"DEVEVSD -> MKWRCQT (in isoform 3A, isoform 3B and isoform 4)."},
                    {"FTId"=>"VSP_004793",
                     "From"=>1473,
                     "diff"=>[nil, nil],
-                    "To"=>1545, 
-                    "original"=> ["VARSPLIC", "1473", "1545", "Missing (in isoform 4).", "/FTId=VSP_004793."], "Description"=>"Missing (in isoform 4)."}, 
+                    "To"=>1545,
+                    "original"=> ["VARSPLIC", "1473", "1545", "Missing (in isoform 4).", "/FTId=VSP_004793."], "Description"=>"Missing (in isoform 4)."},
                    {"FTId"=>"VSP_004794",
                     "From"=>1655,
-                    "diff"=>[nil, nil], 
-                    "To"=>1705, 
+                    "diff"=>[nil, nil],
+                    "To"=>1705,
                     "original"=> ["VARSPLIC", "1655", "1705", "Missing (in isoform 3A and isoform 3B).", "/FTId=VSP_004794."],
-                    "Description"=>"Missing (in isoform 3A and isoform 3B)."}, 
+                    "Description"=>"Missing (in isoform 3A and isoform 3B)."},
                    {"FTId"=>"VSP_004795",
                     "From"=>1790,
                     "diff"=>[nil, nil],
-                    "To"=>1790, 
+                    "To"=>1790,
                     "original"=>["VARSPLIC", "1790", "1790", "Missing (in isoform Del-1790).", "/FTId=VSP_004795."],
                     "Description"=>"Missing (in isoform Del-1790)."}],
                    sp.ft['VARSPLIC'])
@@ -1122,26 +1122,26 @@ RC   STRAIN=AZ.026, DC.005, GA.039, GA2181, IL.014, IN.018, KY.172, KY2.37,
 RC   LA.013, MN.001, MNb027, MS.040, NY.016, OH.036, TN.173, TN2.38,
 RC   UT.002, AL.012, AZ.180, MI.035, VA.015, and IL2.17;"
       sp = SPTR.new(data)
-      assert_equal([{"Text"=>"AZ.026", "Token"=>"STRAIN"}, 
+      assert_equal([{"Text"=>"AZ.026", "Token"=>"STRAIN"},
                     {"Text"=>"DC.005", "Token"=>"STRAIN"},
                     {"Text"=>"GA.039", "Token"=>"STRAIN"},
-                    {"Text"=>"GA2181", "Token"=>"STRAIN"}, 
-                    {"Text"=>"IL.014", "Token"=>"STRAIN"}, 
-                    {"Text"=>"IN.018", "Token"=>"STRAIN"}, 
-                    {"Text"=>"KY.172", "Token"=>"STRAIN"}, 
-                    {"Text"=>"KY2.37", "Token"=>"STRAIN"}, 
-                    {"Text"=>"LA.013", "Token"=>"STRAIN"}, 
-                    {"Text"=>"MN.001", "Token"=>"STRAIN"}, 
-                    {"Text"=>"MNb027", "Token"=>"STRAIN"}, 
-                    {"Text"=>"MS.040", "Token"=>"STRAIN"}, 
-                    {"Text"=>"NY.016", "Token"=>"STRAIN"}, 
-                    {"Text"=>"OH.036", "Token"=>"STRAIN"}, 
-                    {"Text"=>"TN.173", "Token"=>"STRAIN"}, 
-                    {"Text"=>"TN2.38", "Token"=>"STRAIN"}, 
+                    {"Text"=>"GA2181", "Token"=>"STRAIN"},
+                    {"Text"=>"IL.014", "Token"=>"STRAIN"},
+                    {"Text"=>"IN.018", "Token"=>"STRAIN"},
+                    {"Text"=>"KY.172", "Token"=>"STRAIN"},
+                    {"Text"=>"KY2.37", "Token"=>"STRAIN"},
+                    {"Text"=>"LA.013", "Token"=>"STRAIN"},
+                    {"Text"=>"MN.001", "Token"=>"STRAIN"},
+                    {"Text"=>"MNb027", "Token"=>"STRAIN"},
+                    {"Text"=>"MS.040", "Token"=>"STRAIN"},
+                    {"Text"=>"NY.016", "Token"=>"STRAIN"},
+                    {"Text"=>"OH.036", "Token"=>"STRAIN"},
+                    {"Text"=>"TN.173", "Token"=>"STRAIN"},
+                    {"Text"=>"TN2.38", "Token"=>"STRAIN"},
                     {"Text"=>"UT.002", "Token"=>"STRAIN"},
-                    {"Text"=>"AL.012", "Token"=>"STRAIN"}, 
-                    {"Text"=>"AZ.180", "Token"=>"STRAIN"}, 
-                    {"Text"=>"MI.035", "Token"=>"STRAIN"}, 
+                    {"Text"=>"AL.012", "Token"=>"STRAIN"},
+                    {"Text"=>"AZ.180", "Token"=>"STRAIN"},
+                    {"Text"=>"MI.035", "Token"=>"STRAIN"},
                     {"Text"=>"VA.015", "Token"=>"STRAIN"},
                     {"Text"=>"IL2.17", "Token"=>"STRAIN"}],
                    sp.ref.first['RC'])
@@ -1177,7 +1177,7 @@ CC       food-allergy symptoms in patients with the bird-egg syndrome."
     def test_CC_rna_editing
       data = "CC   -!- RNA EDITING: Modified_positions=393, 431, 452, 495."
       sp = SPTR.new(data)
-      assert_equal({"Note"=>"", 
+      assert_equal({"Note"=>"",
                     "Modified_positions"=>['393', '431', '452', '495']},
                    sp.cc("RNA EDITING"))
 
@@ -1185,7 +1185,7 @@ CC       food-allergy symptoms in patients with the bird-egg syndrome."
 CC       stop codon at position 121 is created by RNA editing. The nonsense
 CC       codon at position 59 is modified to a sense codon."
       sp = SPTR.new(data)
-      assert_equal({"Note"=>"The stop codon at position 121 is created by RNA editing. The nonsense codon at position 59 is modified to a sense codon.", 
+      assert_equal({"Note"=>"The stop codon at position 121 is created by RNA editing. The nonsense codon at position 59 is modified to a sense codon.",
                     "Modified_positions"=>['59', '78', '94', '98', '102', '121']},
                    sp.cc("RNA EDITING"))
 
@@ -1209,8 +1209,8 @@ CC       deletion. The initiator methionine is created by RNA editing."
 RN   [1]
 RX   MEDLINE=97291283; PubMed=9145897; DOI=10.1007/s00248-002-2038-4;"
       sp = SPTR.new(data)
-      assert_equal({'MEDLINE' => '97291283', 
-                    'PubMed' => '9145897', 
+      assert_equal({'MEDLINE' => '97291283',
+                    'PubMed' => '9145897',
                      'DOI' => '10.1007/s00248-002-2038-4'},
                    sp.ref.first['RX'])
     end
@@ -1222,7 +1222,7 @@ RN   [1]
 RG   The C. elegans sequencing consortium;
 RG   The Brazilian network for HIV isolation and characterization;"
       sp = SPTR.new(data)
-      assert_equal(['The C. elegans sequencing consortium', 
+      assert_equal(['The C. elegans sequencing consortium',
                     'The Brazilian network for HIV isolation and characterization'],
                    sp.ref.first['RG'])
     end
@@ -1246,9 +1246,9 @@ GN   OrderedLocusNames=b3733, c4659, z5231, ECs4675, SF3813, S3955;"
 
       data = "GN   ORFNames=SPAC1834.11c;"
       sp = SPTR.new(data)
-      assert_equal([{:orfs => ['SPAC1834.11c'], 
-                     :loci => [], 
-                     :name => '', 
+      assert_equal([{:orfs => ['SPAC1834.11c'],
+                     :loci => [],
+                     :name => '',
                      :synonyms => []}],
                    sp.gn)
 
@@ -1259,10 +1259,10 @@ GN   Name=cysA2; OrderedLocusNames=Rv0815c, MT0837; ORFNames=MTV043.07c;"
       sp = SPTR.new(data)
       assert_equal([{:orfs => ["MTCY164.27"],
                      :loci => ["Rv3117", "MT3199"],
-                     :name => "cysA1", 
+                     :name => "cysA1",
                      :synonyms => ["cysA"]},
                     {:orfs => ["MTV043.07c"],
-                     :loci => ["Rv0815c", "MT0837"], 
+                     :loci => ["Rv0815c", "MT0837"],
                      :name => "cysA2",
                      :synonyms => []}],
                    sp.gn)
@@ -1312,13 +1312,13 @@ CC       RANGE=1-284 (Isoform 3); NOTE=Ref.6."
     def test_RP_line
       data = "
 RN   [1]
-RP   NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1), PROTEIN SEQUENCE 
-RP   OF 108-131; 220-231 AND 349-393, CHARACTERIZATION, AND MUTAGENESIS OF 
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1), PROTEIN SEQUENCE
+RP   OF 108-131; 220-231 AND 349-393, CHARACTERIZATION, AND MUTAGENESIS OF
 RP   ARG-336."
       sp = SPTR.new(data)
-      assert_equal(['NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1)', 
-                    'PROTEIN SEQUENCE OF 108-131; 220-231 AND 349-393', 
-                    'CHARACTERIZATION', 
+      assert_equal(['NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA] (ISOFORM 1)',
+                    'PROTEIN SEQUENCE OF 108-131; 220-231 AND 349-393',
+                    'CHARACTERIZATION',
                     'MUTAGENESIS OF ARG-336'],
                    sp.ref.first['RP'])
 
@@ -1340,11 +1340,11 @@ CC         Note=Exhibits a smaller absorbance peak at 470 nm. The
 CC         fluorescence emission spectrum peaks at 509 nm with a shoulder
 CC         at 540 nm;"
       sp = SPTR.new(data)
-      assert_equal({"Redox potential" => "", 
-                    "Temperature dependence" => "", 
-                    "Kinetic parameters" => {}, 
-                    "Absorption" => {"Note" => "Exhibits a smaller absorbance peak at 470 nm. The fluorescence emission spectrum peaks at 509 nm with a shoulder at 540 nm", 
-                                     "Abs(max)" => "395 nm"}, 
+      assert_equal({"Redox potential" => "",
+                    "Temperature dependence" => "",
+                    "Kinetic parameters" => {},
+                    "Absorption" => {"Note" => "Exhibits a smaller absorbance peak at 470 nm. The fluorescence emission spectrum peaks at 509 nm with a shoulder at 540 nm",
+                                     "Abs(max)" => "395 nm"},
                     "pH dependence" => ""},
                    sp.cc("BIOPHYSICOCHEMICAL PROPERTIES"))
 
@@ -1358,10 +1358,10 @@ CC         Note=Acetylates glucose, maltose, mannose, galactose, and
 CC         fructose with a decreasing relative rate of 1, 0.55, 0.20, 0.07,
 CC         0.04;"
       sp = SPTR.new(data)
-      assert_equal({"Redox potential" => "", 
-                    "Temperature dependence" => "", 
-                    "Kinetic parameters" => {"KM" => "62 mM for glucose; KM=90 mM for maltose",  
-                                             "Note" => "Acetylates glucose, maltose, mannose, galactose, and fructose with a decreasing relative rate of 1, 0.55, 0.20, 0.07, 0.04",   
+      assert_equal({"Redox potential" => "",
+                    "Temperature dependence" => "",
+                    "Kinetic parameters" => {"KM" => "62 mM for glucose; KM=90 mM for maltose",
+                                             "Note" => "Acetylates glucose, maltose, mannose, galactose, and fructose with a decreasing relative rate of 1, 0.55, 0.20, 0.07, 0.04",
                                              "Vmax" => "0.20 mmol/min/mg enzyme with glucose as substrate"},
                     "Absorption" => {},
                     "pH dependence" => ""},
@@ -1376,8 +1376,8 @@ CC       Temperature dependence:
 CC         Optimum temperature is 45 degrees Celsius. Active from 30 to 60
 CC         degrees Celsius;"
       sp = SPTR.new(data)
-      assert_equal({"Redox potential" => "", 
-                    "Temperature dependence" => "Optimum temperature is 45 degrees Celsius. Active from 30 to 60 degrees Celsius", 
+      assert_equal({"Redox potential" => "",
+                    "Temperature dependence" => "Optimum temperature is 45 degrees Celsius. Active from 30 to 60 degrees Celsius",
                     "Kinetic parameters" => {},
                     "Absorption" => {},
                     "pH dependence" => "Optimum pH is 7.5. Active from pH 5.0 to 9.0"},
@@ -1454,10 +1454,10 @@ CC       Self; NbExp=1; IntAct=EBI-123485, EBI-123485;"
       data = "CC   -!- INTERACTION:
 CC       Q8C1S0:2410018m14rik (xeno); NbExp=1; IntAct=EBI-394562, EBI-398761;"
       sp = SPTR.new(data)
-      assert_equal([{"SP_Ac" => 'Q8C1S0', 
+      assert_equal([{"SP_Ac" => 'Q8C1S0',
                      "identifier" => '2410018m14rik',
-                     "optional_identifier" => '(xeno)',  
-                     "NbExp" => "1", 
+                     "optional_identifier" => '(xeno)',
+                     "NbExp" => "1",
                      "IntAct" => ["EBI-394562", "EBI-398761"]}],
                    sp.cc("INTERACTION"))
     end
@@ -1467,15 +1467,15 @@ CC       Q8C1S0:2410018m14rik (xeno); NbExp=1; IntAct=EBI-394562, EBI-398761;"
 CC       P51617:irak1; NbExp=1; IntAct=EBI-448466, EBI-358664;
 CC       P51617:irak1; NbExp=1; IntAct=EBI-448472, EBI-358664;"
       sp = SPTR.new(data)
-      assert_equal([{"SP_Ac" => "P51617", 
+      assert_equal([{"SP_Ac" => "P51617",
                      "identifier" => "irak1",
                      "optional_identifier" => nil,
                      "NbExp" => "1",
-                     "IntAct" => ["EBI-448466", "EBI-358664"]}, 
+                     "IntAct" => ["EBI-448466", "EBI-358664"]},
                     {"SP_Ac" => "P51617",
                      "identifier" => "irak1",
                      "optional_identifier" => nil,
-                     "NbExp" => "1",  
+                     "NbExp" => "1",
                      "IntAct" => ["EBI-448472", "EBI-358664"]}],
                    sp.cc("INTERACTION"))
     end
@@ -1495,17 +1495,17 @@ DR   EMBL; U56386; AAB72034.1; -; mRNA."
       assert_equal([["M68939", "AAA26107.1", "-", "Genomic_DNA"],
                     ["U56386", "AAB72034.1", "-", "mRNA"]],
                    sp.dr['EMBL'])
-      
-      assert_equal([{" "=>"-",  
-                     "Version"=>"AAA26107.1",  
-                     "Accession"=>"M68939",  
-                     "Molecular Type"=>"Genomic_DNA"}, 
-                    {" "=>"-", 
+
+      assert_equal([{" "=>"-",
+                     "Version"=>"AAA26107.1",
+                     "Accession"=>"M68939",
+                     "Molecular Type"=>"Genomic_DNA"},
+                    {" "=>"-",
                      "Version"=>"AAB72034.1",
-                     "Accession"=>"U56386", 
+                     "Accession"=>"U56386",
                      "Molecular Type"=>"mRNA"}],
                    sp.dr('EMBL'))
-                   
+
     end
     # New feature (FT) keys and redefinition of existing FT keys
   end
@@ -1518,10 +1518,10 @@ DR   EMBL; U56386; AAB72034.1; -; mRNA."
       data = "CC   -!- COFACTOR: Binds 1 2Fe-2S cluster per subunit (By similarity).
 CC   -!- COFACTOR: Binds 1 Fe(2+) ion per subunit (By similarity)."
       sp = SPTR.new(data)
-      assert_equal(["Binds 1 2Fe-2S cluster per subunit (By similarity).", 
+      assert_equal(["Binds 1 2Fe-2S cluster per subunit (By similarity).",
                     "Binds 1 Fe(2+) ion per subunit (By similarity)."],
                    sp.cc['COFACTOR'])
-      assert_equal(["Binds 1 2Fe-2S cluster per subunit (By similarity).", 
+      assert_equal(["Binds 1 2Fe-2S cluster per subunit (By similarity).",
                     "Binds 1 Fe(2+) ion per subunit (By similarity)."],
                    sp.cc('COFACTOR'))
     end
@@ -1572,17 +1572,17 @@ CC   -!- COFACTOR: Binds 1 Fe(2+) ion per subunit (By similarity)."
       new_data = "FT   METAL        61     61       Copper.
 FT   METAL        61     61       Zinc."
       sp = SPTR.new(new_data)
-      assert_equal([{"From" => 61, 
-                     "To" => 61, 
+      assert_equal([{"From" => 61,
+                     "To" => 61,
                      "Description" => "Copper.",
-                     "FTId" => "",  
-                     "diff" => [], 
+                     "FTId" => "",
+                     "diff" => [],
                      "original" => ["METAL", "61", "61", "Copper.", ""]},
-                    {"From" => 61, 
-                     "To" => 61, 
+                    {"From" => 61,
+                     "To" => 61,
                      "Description" => "Zinc.",
-                     "FTId" => "",  
-                     "diff" => [], 
+                     "FTId" => "",
+                     "diff" => [],
                      "original" => ["METAL", "61", "61", "Zinc.", ""]}],
                    sp.ft['METAL'])
     end
@@ -1600,8 +1600,8 @@ FT   METAL        61     61       Zinc."
 HI   Biological process: Transport; Ion transport; Calcium transport; Calcium channel.
 HI   Ligand: Calcium; Calcium channel."
       sp = SPTR.new(data)
-      assert_equal([{'Category' => 'Molecular function', 
-                     'Keywords' => ['Ionic channel'], 
+      assert_equal([{'Category' => 'Molecular function',
+                     'Keywords' => ['Ionic channel'],
                      'Keyword' => 'Calcium channel'},
                     {'Category' => 'Biological process',
                      'Keywords' =>  ['Transport', 'Ion transport', 'Calcium transport'],
@@ -1622,8 +1622,8 @@ HI   Ligand: Calcium; Calcium channel."
 DT   15-OCT-2001, sequence version 3.
 DT   01-APR-2004, entry version 14."
       sp = SPTR.new(up_sp_data)
-      assert_equal({"sequence" => "15-OCT-2001, sequence version 3.", 
-                    "annotation" => "01-APR-2004, entry version 14.", 
+      assert_equal({"sequence" => "15-OCT-2001, sequence version 3.",
+                    "annotation" => "01-APR-2004, entry version 14.",
                     "created" => "01-JAN-1998, integrated into UniProtKB/Swiss-Prot."},
                    sp.dt)
 
@@ -1631,7 +1631,7 @@ DT   01-APR-2004, entry version 14."
 DT   15-OCT-2000, sequence version 2.
 DT   15-DEC-2004, entry version 5."
       sp = SPTR.new(up_tr_data)
-      assert_equal({"sequence" => "15-OCT-2000, sequence version 2.", 
+      assert_equal({"sequence" => "15-OCT-2000, sequence version 2.",
                     "annotation" => "15-DEC-2004, entry version 5.",
                     "created" => "01-FEB-1999, integrated into UniProtKB/TrEMBL."},
                    sp.dt)
@@ -1672,17 +1672,17 @@ CC   -----------------------------------------------------------------------"
       data = "FT   VAR_SEQ       1     34       Missing (in isoform 3).
 FT                                /FTId=VSP_004099."
       sp = SPTR.new(data)
-      res = [{'From' => 1, 
-              'To' => 34, 
-              'Description' => 'Missing (in isoform 3).', 
-              'diff' => ['', nil], 
+      res = [{'From' => 1,
+              'To' => 34,
+              'Description' => 'Missing (in isoform 3).',
+              'diff' => ['', nil],
               'FTId' => 'VSP_004099',
-              'original' =>   ["VAR_SEQ", "1", "34", "Missing (in isoform 3).", 
+              'original' =>   ["VAR_SEQ", "1", "34", "Missing (in isoform 3).",
                                "/FTId=VSP_004099."]}]
       assert_equal(res, sp.ft('VAR_SEQ'))
     end
 
-                 
+
     # Syntax modification of the comment line (CC) topic ALTERNATIVE PRODUCTS
     def test_CC_alternative_products
 #  CC   -!- ALTERNATIVE PRODUCTS:
@@ -1710,13 +1710,13 @@ CC         IsoId=O77618-1; Sequence=External;
 FT   VAR_SEQ       1     34       Missing (in isoform 3).
 FT                                /FTId=VSP_004099."
       sp = SPTR.new(data)
-      assert_equal({"Comment" => "Isoform 1 and isoform 2 arise due to the use of two alternative first exons joined to a common exon 2 at the same acceptor site but in different reading frames, resulting in two completely different isoforms", 
+      assert_equal({"Comment" => "Isoform 1 and isoform 2 arise due to the use of two alternative first exons joined to a common exon 2 at the same acceptor site but in different reading frames, resulting in two completely different isoforms",
                      "Named isoforms" => "3",
-                     "Variants" =>  [{"IsoId" => ["O77617-1"], 
+                     "Variants" =>  [{"IsoId" => ["O77617-1"],
                                       "Name" => "1",
                                       "Synonyms" => ["p16INK4a"],
                                       "Sequence" => ["Displayed"]},
-                                     {"IsoId" => ["O77617-2"], 
+                                     {"IsoId" => ["O77617-2"],
                                       "Name" => "3",
                                       "Synonyms" => [],
                                       "Sequence" => ["VSP_004099"]},
@@ -1726,12 +1726,12 @@ FT                                /FTId=VSP_004099."
                                       "Sequence" => ["External"]}],
                      "Event" => ["Alternative splicing", "Alternative initiation"]},
                    sp.cc("ALTERNATIVE PRODUCTS"))
-      assert_equal([{"From" => 1,  
+      assert_equal([{"From" => 1,
                       "To" => 34,
                       "Description"=>"Missing (in isoform 3).",
                       "FTId" => "VSP_004099",
                       "diff" => ["", nil],
-                      "original"=> ["VAR_SEQ", "1", "34", 
+                      "original"=> ["VAR_SEQ", "1", "34",
                                     "Missing (in isoform 3).", "/FTId=VSP_004099."]}],
                    sp.ft("VAR_SEQ"))
     end
@@ -1772,7 +1772,7 @@ OH   NCBI_TaxID=3603; Vitis.'
              {'NCBI_TaxID' => '4236', 'HostName' => 'Lactuca sativa (Garden lettuce)'},
              {'NCBI_TaxID' => '4081', 'HostName' =>  'Lycopersicon esculentum (Tomato)'},
              {'NCBI_TaxID' => '39639', 'HostName' => 'Narcissus pseudonarcissus (Daffodil)'},
-             {'NCBI_TaxID' => '3885', 
+             {'NCBI_TaxID' => '3885',
                'HostName' => 'Phaseolus vulgaris (Kidney bean) (French bean)'},
              {'NCBI_TaxID' => '35938', 'HostName' => 'Robinia pseudoacacia (Black locust)'},
              {'NCBI_TaxID' => '23216', 'HostName' =>  'Rubus (bramble)'},

@@ -24,7 +24,7 @@
 #  seq = Bio::Ensembl.human.exportview(1, 1000, 100000)
 #  gff = Bio::Ensembl.human.exportview(1, 1000, 100000, ['gene', 'variation', 'genscan'])
 #
-#  
+#
 # == References
 #
 # * Ensembl
@@ -61,7 +61,7 @@ module Bio
 #   http://www.gramene.org/
 #
 class Ensembl
-  
+
   ENSEMBL_URL = 'http://www.ensembl.org'
 
   # Server URL (ex. 'http://www.ensembl.org')
@@ -87,7 +87,7 @@ class Ensembl
   # Ensembl ExportView Client.
   #
   # Retrieve genomic sequence/features from Ensembl ExportView in plain text.
-  # Ensembl ExportView exports genomic data (sequence and features) in 
+  # Ensembl ExportView exports genomic data (sequence and features) in
   # several file formats including fasta, GFF and tab.
   #
   # * ExportViwe (http://www.ensembl.org/Homo_sapiens/exportview).
@@ -99,27 +99,27 @@ class Ensembl
   #   human = Bio::Ensembl.human
   #
   #   # Genomic sequence in Fasta format
-  #   human.exportview(:seq_region_name => 1, 
+  #   human.exportview(:seq_region_name => 1,
   #                    :anchor1 => 1149206, :anchor2 => 1149229)
   #   human.exportview(1, 1149206, 1149229)
   #
   #   # Feature in GFF
-  #   human.exportview(:seq_region_name => 1, 
-  #                    :anchor1 => 1149206, :anchor2 => 1150000, 
-  #                    :options => ['similarity', 'repeat', 
+  #   human.exportview(:seq_region_name => 1,
+  #                    :anchor1 => 1149206, :anchor2 => 1150000,
+  #                    :options => ['similarity', 'repeat',
   #                                 'genscan', 'variation', 'gene'])
   #   human.exportview(1, 1149206, 1150000, ['variation', 'gene'])
-  #   
+  #
   # Feature in TAB
-  #   human.exportview(:seq_region_name => 1, 
-  #                    :anchor1 => 1149206, :anchor2 => 1150000, 
-  #                    :options => ['similarity', 'repeat', 
+  #   human.exportview(:seq_region_name => 1,
+  #                    :anchor1 => 1149206, :anchor2 => 1150000,
+  #                    :options => ['similarity', 'repeat',
   #                                 'genscan', 'variation', 'gene'],
   #                    :format => 'tab')
   #
   # == Arguments
   #
-  # Bio::Ensembl#exportview method allow both orderd arguments and 
+  # Bio::Ensembl#exportview method allow both orderd arguments and
   # named arguments. (Note: mandatory arguments are marked by '*').
   #
   # === Orderd Arguments
@@ -128,11 +128,11 @@ class Ensembl
   # 2. anchor1         - From coordination (*)
   # 3. anchor2         - To coordination (*)
   # 4. options         - Features to export (in :format => 'gff' or 'tab')
-  #                      ['similarity', 'repeat', 'genscan', 'variation', 
+  #                      ['similarity', 'repeat', 'genscan', 'variation',
   #                       'gene']
   #
   # === Named Arguments
-  # 
+  #
   # * :seq_region_name - Chromosome number (*)
   # * :anchor1         - From coordination (*)
   # * :anchor2         - To coordination (*)
@@ -142,38 +142,38 @@ class Ensembl
   # * :downstream      - Bp downstream
   # * :format          - File format ['fasta', 'gff', 'tab']
   # * :options         - Features to export (for :format => 'gff' or 'tab')
-  #                      ['similarity', 'repeat', 'genscan', 'variation', 
+  #                      ['similarity', 'repeat', 'genscan', 'variation',
   #                       'gene']
-  # 
+  #
   def exportview(*args)
     defaults = {
-      :type1 => 'bp', 
-      :type2 => 'bp', 
-      :downstream => '', 
-      :upstream => '', 
+      :type1 => 'bp',
+      :type2 => 'bp',
+      :downstream => '',
+      :upstream => '',
       :format => 'fasta',
       :options => [],
-      :action => 'export', 
-      :_format => 'Text', 
-      :output => 'txt', 
+      :action => 'export',
+      :_format => 'Text',
+      :output => 'txt',
       :submit => 'Continue >>'
     }
 
     if args.first.class == Hash
       options = args.first
-      if options[:options] and options[:format] != 'fasta' and options[:format] != 'tab' 
-        options.update({:format => 'gff'}) 
+      if options[:options] and options[:format] != 'fasta' and options[:format] != 'tab'
+        options.update({:format => 'gff'})
       end
     else
       options = {
-        :seq_region_name => args[0], 
-        :anchor1 => args[1], 
+        :seq_region_name => args[0],
+        :anchor1 => args[1],
         :anchor2 => args[2],
       }
 
       case args[3]
       when Array
-        options.update({:format => 'gff', :options => args[3]}) 
+        options.update({:format => 'gff', :options => args[3]})
       when Hash
         options.update(args[3])
       end
@@ -208,17 +208,17 @@ class Bio::Ensembl
       @uri || EBIServerURI
     end
   end
-    
+
   class Base
     def self.exportview(*args)
       Bio::Ensembl.new(Organism).exportview(*args)
     end
   end
-  
+
   class Human < Base
     Organism = Bio::Ensembl.human.organism
   end
-  
+
   class Mouse < Base
     Organism = Bio::Ensembl.mouse.organism
   end

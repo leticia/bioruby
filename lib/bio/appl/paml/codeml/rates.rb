@@ -21,7 +21,7 @@ module Bio::PAML
   class Codeml
 
     # == Description
-    # 
+    #
     # A simple class for parsing the codeml rates file.
     #
     # WARNING: The order of the parsed data should be correct, however will
@@ -54,8 +54,8 @@ module Bio::PAML
           if re =~ line
             match = Regexp.last_match
             array[match[1].to_i] = {
-              :freq => match[2].to_i, 
-              :data => match[3], 
+              :freq => match[2].to_i,
+              :data => match[3],
               :rate => match[4].to_f }
           end
         end

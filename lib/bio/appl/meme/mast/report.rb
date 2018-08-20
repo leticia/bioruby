@@ -34,13 +34,13 @@ module Bio
       #
 
       class Report
-        
+
         attr_reader :motifs
 
         def initialize(mast_hitlist)
           @motifs = parse_hit_list(mast_hitlist)
         end
-        
+
         # Iterates each motif (Bio::Meme::Motif)
         def each
           @motifs.each do |motif|
@@ -48,14 +48,14 @@ module Bio
           end
         end
         alias :each_motif :each
-        
-        
+
+
         private
-        
+
         # Each line corresponds to one motif occurrence in one sequence.
         #         The format of the hit lines is
         #                [<sequence_name> <strand><motif> <start> <end> <p-value>]+
-        #         where 
+        #         where
         #                 <sequence_name> is the name of the sequence containing the hit
         #                 <strand>        is the strand (+ or - for DNA, blank for protein),
         #                 <motif>         is the motif number,
@@ -65,14 +65,14 @@ module Bio
         def parse_hit_list(data)
           motifs = []
           data.each_line do |line|
-            
+
             line.chomp!
-            
+
             # skip comments
             next if line =~ /^#/
-            
+
             fields = line.split(/\s/)
-            
+
             if fields.size == 5
               motifs << Motif.new(fields[0], strand = nil, fields[1], fields[2], fields[3], fields[4])
             elsif fields.size == 6
@@ -80,7 +80,7 @@ module Bio
             else
               raise RuntimeError.new("Could not parse mast output")
             end
-            
+
           end
           motifs
         end

@@ -27,7 +27,7 @@ gi|115023|sp|P10425|       --------------------YEEPLGDLQTVTNLKFGN----TKVETFYP
 gi|115030|sp|P25910|       --------------------LPVPEHGFTDSLTVSLDG----MPLQCYYL
 gi|2984094                 SYNFFLARKKILKEHLEGTELTPPTITLTKNLNVYLQVGKEYKRFEVLHL
 gi|282554|pir||S25844      ----LALTGLWPRVDWGEIELRPPNVTFRDRLTLHVGE----RQVELICV
-                                                  *   :    .: .        .:    
+                                                  *   :    .: .        .:
 
 query                      GKGHTEDNIVVWLPQYQILAGGCLVKSASSKDLGNVADAYVNEWSTSIEN
 gi|115023|sp|P10425|       GKGHTEDNIVVWLPQYQILAGGCLVKSAEAKNLGNVADAYVNEWSTSIEN
@@ -41,18 +41,18 @@ gi|115023|sp|P10425|       MLKRYRNINLVVPGHGKVGDK-----GLLLHTLDLLK-------------
 gi|115030|sp|P25910|       VKAKFPSARYVVPGHGDYGGT-----ELIEHTKQIVNQYIESTSKP----
 gi|2984094                 ILKMKPRILLPGHGEALIGEKKIK--EAVSWTRKYIKDLRETIRKLYEEG
 gi|282554|pir||S25844      LAELEPEVVVGGHGPVAGPEVIDANRDYLRWVQRLAADAVDRRLTPLQAA
-                           :            *              :  .                  
+                           :            *              :  .
 
 query                      --------------------------------------------------
 gi|115023|sp|P10425|       --------------------------------------------------
 gi|115030|sp|P25910|       --------------------------------------------------
 gi|2984094                 --CDVECVRERINEELIKIDPSYAQVPVFF-NVNPVNAYYVYFEIENEIL
 gi|282554|pir||S25844      RRADLGAFAGLLDAERLVANLHRAHEELLGGHVRDAMEIFAELVAYNGGQ
-                                                                             
+
 
 query                      ------
 gi|115023|sp|P10425|       ------
 gi|115030|sp|P25910|       ------
 gi|2984094                 MGE---
 gi|282554|pir||S25844      LPTCLA
-                                 
+

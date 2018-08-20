@@ -128,7 +128,7 @@ module Bio
         Bio::Sequence::NA.new(seq)
       end
     end
-      
+
     # Returens the length of sequence.
     # If you call nalen for protein sequence, RuntimeError will be occurred.
     # Use the method if you know whether the sequence is NA or AA.

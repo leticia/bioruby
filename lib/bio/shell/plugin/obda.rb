@@ -3,7 +3,7 @@
 #
 # Copyright::   Copyright (C) 2005
 #               Toshiaki Katayama <k@bioruby.org>
-# License::     The Ruby License 
+# License::     The Ruby License
 #
 # $Id: obda.rb,v 1.10 2007/04/05 23:45:11 trevor Exp $
 #

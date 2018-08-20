@@ -65,7 +65,7 @@ class GENOME < KEGGDB
   def entry_id
     field_fetch('ENTRY')[/\S+/]
   end
-  
+
   # NAME -- Returns contents of the NAME record as a String.
   def name
     field_fetch('NAME')
@@ -134,7 +134,7 @@ class GENOME < KEGGDB
   def comment
     field_fetch('COMMENT')
   end
-  
+
   # CHROMOSOME -- Returns contents of the CHROMOSOME records as an Array
   # of Hash.
   def chromosomes
@@ -202,7 +202,7 @@ class GENOME < KEGGDB
   end
 
 end # GENOME
-    
+
 end # KEGG
 end # Bio
 

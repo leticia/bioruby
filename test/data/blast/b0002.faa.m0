@@ -1,8 +1,8 @@
 BLASTP 2.2.10 [Oct-19-2004]
 
 
-Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer, 
-Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), 
+Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer,
+Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997),
 "Gapped BLAST and PSI-BLAST: a new generation of protein database search
 programs",  Nucleic Acids Res. 25:3389-3402.
 
@@ -12,7 +12,7 @@ aspartokinase I (N-terminal); homoserine dehydrogenase I (C-terminal)
 aspartate kinase (A)
          (820 letters)
 
-Database: b0002.faa 
+Database: b0002.faa
            1 sequences; 820 total letters
 
 Searching.done
@@ -20,7 +20,7 @@ Searching.done
                                                                  Score    E
 Sequences producing significant alignments:                      (bits) Value
 
-eco:b0002 thrA, Hs, thrD, thrA2, thrA1; bifunctional: aspartokin...  1567   0.0  
+eco:b0002 thrA, Hs, thrD, thrA2, thrA1; bifunctional: aspartokin...  1567   0.0
 
 >eco:b0002 thrA, Hs, thrD, thrA2, thrA1; bifunctional: aspartokinase
            I (N-terminal); homoserine dehydrogenase I (C-terminal)
@@ -92,13 +92,13 @@ Sbjct: 781 YSHYYQPLPLVLRGYGAGNDVTAAGVFADLLRTLSWKLGV 820
     Posted date:  Aug 7, 2005  7:29 AM
   Number of letters in database: 820
   Number of sequences in database:  1
-  
+
 Lambda     K      H
-   0.319    0.134    0.383 
+   0.319    0.134    0.383
 
 Gapped
 Lambda     K      H
-   0.267   0.0410    0.140 
+   0.267   0.0410    0.140
 
 
 Matrix: BLOSUM62

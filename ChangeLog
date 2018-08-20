@@ -161,7 +161,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Thu Jun 17 11:54:15 2010 +0900
 
     Newly added unit tests for Bio::FastaDefline
-    
+
      * Newly added unit tests for Bio::FastaDefline.
      * This is part of combination of the two commits:
        bd2452caf0768e7000d19d462465b1772e3c030b
@@ -188,7 +188,7 @@ Author: John Prince <jtprince@gmail.com>
 Date:   Thu Oct 14 15:38:07 2010 -0600
 
     included TREMBL prefix to list of NSIDs (tr|)
-    
+
      * Included TREMBL prefix to list of NSIDs (tr|).
        This is a standard prefix found in UniprotKB FASTA files.
 
@@ -200,7 +200,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Oct 21 14:16:03 2010 +0900
 
     Bug fix: Bio::ClustalW::Report#get_sequence may fail
-    
+
      * Bug fix: Bio::ClustalW::Report#get_sequence may fail when the second
        argument of Bio::ClustalW::Report.new is specified.
 
@@ -221,7 +221,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Oct 21 13:22:38 2010 +0900
 
     Ruby 1.9.2 support: defined Bio::RestrictionEnzyme::DoubleStranded::AlignedStrands#initialize
-    
+
      * Bio::RestrictionEnzyme::DoubleStranded::AlignedStrands#initialize
        is explicitly defined, due to the behavior change of argument number
        check in the default initialize method in Ruby 1.9.2.
@@ -243,7 +243,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Oct 21 11:41:38 2010 +0900
 
     Ruby 1.9.2 support: using assert_in_delta for float values.
-    
+
      * Ruby 1.9.2 support: using assert_in_delta for float values.
        The patch is written by Tomoaki NISHIYAMA during BH2010.10.
 
@@ -282,7 +282,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 20 17:35:53 2010 +0900
 
     Changed the expected return values in the unit tests, following the last change to Bio::AAindex2.
-    
+
      * Changed the expected return values in the unit tests,
      following the last change to Bio::AAindex2.
      * The patch is written by Tomoaki NISHIYAMA during BH2010.10.
@@ -295,7 +295,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 20 17:32:26 2010 +0900
 
     Ruby 1.9.2 support: Incompatible change: the symmetric elements for triangular matrix should be copied
-    
+
      * Ruby 1.9.2 support: Incompatible change: the symmetric elements
        for triangular matrix should be copied. The patch is written by
        Tomoaki NISHIYAMA during BH2010.10.
@@ -308,7 +308,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 20 16:10:51 2010 +0900
 
     Test bug fix: confusion between assert and assert_equal
-    
+
      * Test bug fix: the assert should be assert_equal. The bug was
        found with Ruby 1.9.2-p0.
 
@@ -320,7 +320,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 20 14:59:40 2010 +0900
 
     Test bug fix: confusion between assert and assert_equal, and apparently wrong expected values.
-    
+
      * Test bug fix: the assert should be assert_equal. The bug was found
        with Ruby 1.9.2-p0.
      * In the test_rates_hundred_and_fiftieth_position method, the index
@@ -353,7 +353,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:46:52 2010 +0900
 
     Added methods for parsing KEGG PATHWAY fields.
-    
+
      * Added methods for parsing KEGG PATHWAY fields.
      * This is part of commit e2abe5764f3ded91c82689245f19a0412d3a7afb
        and modified to merge with the current HEAD (original commit
@@ -377,7 +377,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Oct 15 22:01:05 2010 +0900
 
     Renamed Bio::KEGG::*#pathway_modules to modules, etc.
-    
+
      * Renamed following methods in Bio::KEGG::ORTHOLOGY and
        Bio::KEGG:PATHWAY classes: pathway_modules to modules,
        pathway_modules_as_strings to modules_as_strings, and
@@ -405,7 +405,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Oct 14 23:57:18 2010 +0900
 
     Reverted Bio::KEGG::GENES#genes, gene and motif methods and modified.
-    
+
      * Reverted Bio::KEGG::GENES#genes, gene and motif methods which are
        removed in the last commit. To avoid code duplication, they are
        also modified to use other methods, and RDoc is added about the
@@ -420,7 +420,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:46:52 2010 +0900
 
     New methods Bio::KEGG::GENES#keggclass etc.
-    
+
      * New methods and aliases are added: Bio::KEGG::GENES#keggclass,
        keggclasses, names_as_array, names, motifs_as_strings,
        motifs_as_hash, motifs.
@@ -468,7 +468,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Oct 8 16:31:58 2010 +0900
 
     Fixed a variable name mistake in Bio::Command, and English grammer fix.
-    
+
      * Fixed a variable name mistake in Bio::Command#no_fork?.
      * English grammer fix for comments. Thanks to Andrew Grimm who
        reports the fix.
@@ -481,7 +481,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 6 23:47:26 2010 +0900
 
     Bug fix: fork(2) is called on platforms that do not support it.
-    
+
      * Bug fix: fork(2) is called on platforms that do not support it.
        Thanks to Andrew Grimm who reports the bug
        (fork() is called on platforms that do not support it;
@@ -500,7 +500,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 6 15:49:51 2010 +0900
 
     Bug fix: Bio::MEDLINE#reference is changed not to put empty values
-    
+
      * Bug fix: Bio::MEDLINE#reference is changed not to put empty values
        in the returned Bio::Reference object. I think the original bahavior
        is a bug. This is an incompatible change but the effect is very small.
@@ -513,7 +513,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 6 15:39:34 2010 +0900
 
     Bug fix: Bio::MEDLINE#initialize should handle continuation of lines.
-    
+
      * Bug fix: Bio::MEDLINE#initialize should handle continuation of lines.
        Thanks to Steven Bedrick who reports the bug
        (Bio::MEDLINE#initialize handles multi-line MeSH terms incorrectly;
@@ -527,7 +527,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Oct 6 15:29:10 2010 +0900
 
     Added unit tests for Bio::MEDLINE with test data.
-    
+
      * Added unit tests for Bio::MEDLINE with test data. The data is
        taken from NCBI and the abstract was removed to avoid possible
        copyright problem. The choice of the data (PMID: 20146148) is
@@ -544,7 +544,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Sep 29 20:51:12 2010 +0900
 
     Bug fix: NoMethodError in Bio::Tree#collect_edge!
-    
+
      * Bug fix: NoMethodError in Bio::Tree#collect_edge!.
        Thanks to Kazuhiro Hayashi who reports the bug.
 
@@ -565,7 +565,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Fri Jul 16 00:09:39 2010 +0900
 
     Modified unit tests for Bio::Tree
-    
+
      * Modified unit tests for Bio::Tree.
      * This is part of combination of the two commits:
        * 6675fd930718e41ad009f469b8167f81c9b2ad52
@@ -581,7 +581,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Thu Jul 15 21:06:28 2010 +0900
 
     Bug fix: Bio::Tree#remove_edge_if did not work.
-    
+
      * Bug fix: Bio::Tree#remove_edge_if did not work.
      * This is part of commit 6675fd930718e41ad009f469b8167f81c9b2ad52
        (original commit message: Modified unit tests and classes)
@@ -595,7 +595,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Sep 22 19:23:50 2010 +0900
 
     Renamed test/data/go/part_of_* to avoid possible confusion
-    
+
      * Renamed test/data/go/part_of_* to selected_* to avoid possible
        confusion: The word "part_of" is a keyword in Gene Ontology.
 
@@ -629,7 +629,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Sep 16 22:37:31 2010 +0900
 
     Adjusted test data file paths and header lines in test_go.rb.
-    
+
      * Adjusted test data file paths.
      * Adjusted copyright and description in the header.
 
@@ -641,7 +641,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Thu Jul 15 21:06:28 2010 +0900
 
     Added tests for Bio::GO classes.
-    
+
      * Added tests for Bio::GO classes.
      * This is part of combination of the three commits:
        * 555f7b49a43e7c35c82cd48b199af96ca93d4179
@@ -662,7 +662,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Fri Jun 11 21:02:29 2010 +0900
 
     Added test data for Bio::GO classes.
-    
+
      * Added test data for Bio::GO classes.
      * This is part of combination of the three commits:
        * 555f7b49a43e7c35c82cd48b199af96ca93d4179
@@ -691,7 +691,7 @@ Author: Kazuhiro Hayashi <k.hayashi.info@gmail.com>
 Date:   Thu Jul 15 21:06:28 2010 +0900
 
     Bug fix: Typo and missing field in Bio::GO::GeneAssociation#to_str.
-    
+
      * Bug fix: Typo and missing field in Bio::GO::GeneAssociation#to_str.
      * This is part of commit 6675fd930718e41ad009f469b8167f81c9b2ad52
        (original commit message: Modified unit tests and classes)
@@ -706,7 +706,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Aug 25 22:58:42 2010 +0900
 
     Database names used in tests are changed, following the change of TogoWS.
-    
+
      * Database names used in tests are changed, following the change of
        TogoWS: "gene" to "kegg-genes" and "enzyme" to "kegg-enzyme".
 
@@ -718,7 +718,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:46:52 2010 +0900
 
     Database name used in tests is changed, following the change of TogoWS.
-    
+
      * The database name "genbank" is changed to "nucleotide", following
        the change in TogoWS.
      * This is part of commit e2abe5764f3ded91c82689245f19a0412d3a7afb.
@@ -732,7 +732,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Aug 11 23:33:49 2010 +0900
 
     New method Bio::Fastq#mask for masking low score regions.
-    
+
      * New method Bio::Fastq#mask for masking low score regions is added
        with unit tests. This method is implemented as a shortcut of
        Bio::Sequence#mask_with_quality_score method.
@@ -746,7 +746,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Aug 11 23:04:57 2010 +0900
 
     New module Bio::Sequence::SequenceMasker to help masking a sequence.
-    
+
      * New module Bio::Sequence::SequenceMasker to help masking a sequence.
        The module is only expected to be included in Bio::Sequence.
        In the future, methods in this module might be moved to
@@ -765,7 +765,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Aug 11 22:59:46 2010 +0900
 
     New method Bio::Sequence#output_fasta, a replacement for to_fasta.
-    
+
      * New method Bio::Sequence#output_fasta, a replacement for
        Bio::Sequence#to_fasta. This is also implemented as a shortcut of
        Bio::Sequence#output(:fasta).
@@ -778,7 +778,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:46:52 2010 +0900
 
     File format autodetection for Bio::KEGG::PATHWAY and Bio::KEGG::MODULE.
-    
+
      * Added file format autodetection for Bio::KEGG::PATHWAY and
        Bio::KEGG::MODULE.
      * This is part of commit e2abe5764f3ded91c82689245f19a0412d3a7afb.
@@ -792,7 +792,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:46:52 2010 +0900
 
     Added autoload for Bio::KEGG::PATHWAY and Bio::KEGG::MODULE.
-    
+
      * Added autoload for Bio::KEGG::PATHWAY and Bio::KEGG::MODULE.
      * This is part of commit e2abe5764f3ded91c82689245f19a0412d3a7afb.
        (Original commit message: Changes for TogoWS)
@@ -832,7 +832,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Aug 17 22:59:18 2010 +0900
 
     Reverted Bio::KEGG::MODULE#keggclass.
-    
+
      * Reverted Bio::KEGG::MODULE#keggclass.
      * Removed keggclasses and keggclasses_as_array methods, because
        they are inconsistent with Bio::KEGG::ORTHOLOGY#keggclasses.
@@ -845,7 +845,7 @@ Author: Toshiaki Katayama <k@bioruby.org>
 Date:   Tue Jul 20 11:41:50 2010 +0900
 
     For Bio::KEGG::MODULE, methods are added and modified.
-    
+
      * For Bio::KEGG::MODULE, methods are added and modified.
        * New methods: definition, etc.
        * Removed methods: pathway, orthologies, keggclass, etc.
@@ -892,7 +892,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed May 12 01:03:18 2010 +0900
 
     Incompatible change of Bio::KEGG::ORTHOLOGY#pathways, and added new methods
-    
+
      * Incompatible change of Bio::KEGG::ORTHOLOGY#pathways due to the
        changes of KEGG ORTHOLOGY format changes: Because PATHWAY field
        is added, the method is changed to return a hash. The pathway
@@ -919,7 +919,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed May 12 00:55:10 2010 +0900
 
     New module Bio::KEGG::Common::PathwayModulesAsHash (internal use only)
-    
+
      * New module Bio::KEGG::Common::PathwayModulesAsHash is added,
        based on Bio::KEGG::PATHWAY#pathway_modules_as_hash method.
        Note that the method is Bio::KEGG::* internal use only.
@@ -932,7 +932,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Mar 19 23:25:56 2010 +0900
 
     New method Bio::KEGG::PATHWAY#references.
-    
+
      * New method Bio::KEGG::PATHWAY#references.
      * Additional unit tests for Bio::KEGG::PATHWAY with test data.
 
@@ -947,7 +947,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Mar 19 00:06:20 2010 +0900
 
     Improvement of Bio::KEGG::Common::References#references.
-    
+
      * Improvement of Bio::KEGG::Common::References#references:
        added support for parsing "journal (year)" style.
 
@@ -959,7 +959,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Mar 19 00:02:10 2010 +0900
 
     Implementation of Bio::KEGG::GENOME#references is moved.
-    
+
      * Implementation of Bio::KEGG::GENOME#references is moved to
        Bio::KEGG::Common::References#references, which will be
        shared with Bio::KEGG::Pathway and other classes.
@@ -973,7 +973,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Mar 17 00:26:56 2010 +0900
 
     Bug fix: Bio::KEGG::GENES#pathway may fail, and other parse issues due to the format changes of KEGG GENES.
-    
+
      * Bug fix: Bio::KEGG::GENES#pathway may return unexpected value
        after calling pathways, pathways_as_hash or pathways_as_string
        methods.
@@ -1010,7 +1010,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Mar 17 00:10:51 2010 +0900
 
     Bug fix: Bio::KEGG::GENOME parser issues for PLASMID, REFERENCE, and ORIGINAL_DB fields.
-    
+
      * Bug fix: Fixed parse error for PLASMID fields due to the changes
        of the KEGG GENOME file format. For the bug fix, tag_get and
        tag_cut methods are redefined.
@@ -1050,7 +1050,7 @@ Author: Naohisa Goto <ngoto@gen-info.osaka-u.ac.jp>
 Date:   Tue Mar 9 23:24:15 2010 +0900
 
     Renamed Bio::KEGG::PATHWAY#keggmodules to pathway_modules_as_strings, etc.
-    
+
      * Bio::KEGG::PATHWAY#keggmodules is renamed to
        pathway_modules_as_strings.
      * New method pathway_modules_as_hash and its alias method
@@ -1176,7 +1176,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Feb 4 16:58:10 2010 +0900
 
     New unit test for Bio::PAML::Codeml::Report.
-    
+
      * New unit test for Bio::PAML::Codeml::Report and related classes.
        The test code is copied from the examples described in
        lib/bio/appl/paml/codeml/report.rb and modified for the unit test.
@@ -1199,7 +1199,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Feb 4 16:39:10 2010 +0900
 
     Renamed codeml/test_report.rb to codeml/test_report_single.rb.
-    
+
      * Renamed test/unit/bio/appl/paml/codeml/test_report.rb to
        test_report_single.rb.
 
@@ -1214,7 +1214,7 @@ Author: Pjotr Prins <pjotr.public01@thebird.nl>
 Date:   Tue Jan 12 10:13:35 2010 +0100
 
     Modified output of Bio::PAML::Codeml::PositiveSites#graph_to_s
-    
+
      * Modified output of Bio::PAML::Codeml::PositiveSites#graph_to_s.
        (Part of commit ea350da85e5db2ba35cb8dd1e86e3d4323ee3fd1.
         Original commit message is:
@@ -1274,7 +1274,7 @@ Author: Pjotr Prins <pjotr.public01@thebird.nl>
 Date:   Mon Jan 11 14:37:52 2010 +0100
 
     Bio::PAML::Codeml::PositiveSites#graph_to_s gets fill character
-    
+
      * Bio::PAML::Codeml::PositiveSites#graph_to_s gets fill character
        as an argument.
        (Part of commit d67259c9f203dc92c68ad04b4112329a7093a259.
@@ -1298,7 +1298,7 @@ Author: Pjotr Prins <pjotr.public01@thebird.nl>
 Date:   Mon Jan 11 13:10:40 2010 +0100
 
     Improvement of Bio::PAML::Codeml::PositiveSites#initialize, etc
-    
+
      * Improved target analysis location detection in
        Bio::PAML::Codeml::PositiveSites#initialize.
      * Changed description inside Bio::PAML::Codeml::Report#nb_sites
@@ -1323,7 +1323,7 @@ Author: Pjotr Prins <pjotr.public01@thebird.nl>
 Date:   Mon Jan 11 12:51:25 2010 +0100
 
     New method Bio::PAML::Codeml::PositiveSites#to_s
-    
+
      * New method Bio::PAML::Codeml::PositiveSites#to_s
        (part of the commit 82e933fd1961a2b31873bc37cbf3205adbf0a6de,
         original commit message: HtmlPaml: add facility for color output)
@@ -1513,7 +1513,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Mon Feb 1 22:31:21 2010 +0900
 
     Bug fix and Ruby 1.9 support: Bio::Command.call_command_fork etc.
-    
+
      * Bug fix: In Bio::Command.call_command_fork, thread switching is
        disabled in the child process. Thanks to Andrew Grimm who
        reports the bug ([BioRuby] Thread-safety of alignment).
@@ -1537,7 +1537,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Feb 2 22:47:36 2010 +0900
 
     Bug fix: Bio::FastaNumericFormat#to_biosequence bug fix
-    
+
      * Bug fix: New method Bio::FastaNumericFormat#to_biosequence is
        defined to avoid NomethodError occurred in the superclass'es
        method. For the purpose, a new module
@@ -1634,7 +1634,7 @@ Author: Pjotr Prins <pjotr.public01@thebird.nl>
 Date:   Tue Jan 5 12:46:37 2010 +0100
 
     Clustal: Changed [] to get_sequence, with method description
-    
+
      * Clustal: Added copyright.
      * Changed [] to get_sequence, with method description.
 
@@ -1733,7 +1733,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Mon Dec 28 20:11:49 2009 +0900
 
     ChangeLog is autogenerated from git log.
-    
+
      * ChangeLog is autogenerated from git log with the following command:
         % git log --stat --summary \
               3d1dfcc0e13ad582b9c70c7fdde3a89d0bacdc80..HEAD > ChangeLog
@@ -1756,7 +1756,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Mon Dec 28 19:21:21 2009 +0900
 
     The PTS1 Predictor's URL had been changed.
-    
+
      * The PTS1 Predictor's URL had been changed.
      * Changed to use @uri instead of @host and @cgi_path.
 
@@ -1919,7 +1919,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Dec 24 18:58:18 2009 +0900
 
     New singleton methods Bio::NCBI.default_email=, default_tool=, etc.
-    
+
      * New singleton methods Bio::NCBI.default_email=, default_email,
        default_tools=, default_tools, etc., because email and tool
        parameters will be mandatory in Entrez eUtils.
@@ -2001,7 +2001,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Dec 15 11:38:59 2009 +0900
 
     New method Bio::KEGG::DRUG#products
-    
+
      * New method Bio::KEGG::DRUG#products.
      * Improved RDoc.
 
@@ -2054,7 +2054,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Dec 11 01:09:03 2009 +0900
 
     Changed Bio::KEGG::*#dblinks, pathways, orthologs, genes methods.
-    
+
      * In Bio::KEGG::COMPOUND, DRUG, ENZYME, GLYCAN and ORTHOLOGY, the
        method dblinks is changed to return a Hash. The old methods  are
        renamed to dblinks_as_strings.
@@ -2090,7 +2090,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Dec 10 16:02:54 2009 +0900
 
     Bio::KEGG::GENES#structure no more adds PDB: prefix.
-    
+
      * Bio::KEGG::GENES#structure no more adds PDB: prefix.
      * Added Bio::KEGG::GENES#structures as an alias of structure.
 
@@ -2103,7 +2103,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Dec 10 15:28:33 2009 +0900
 
     Refactoring of Bio::KEGG::Orthology#dblinks and genes.
-    
+
      * Refactoring of Bio::KEGG::Orthology#dblinks and genes: no need
        to treat @data because lines_fetch internally does so.
 
@@ -2126,7 +2126,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Dec 9 15:17:39 2009 +0900
 
     Refactoring of Bio::KEGG::REACTION#orthologs.
-    
+
      * Refactoring of Bio::KEGG::REACTION#orthologs: no need to treat
        @data because lines_fetch internally does so.
 
@@ -2138,7 +2138,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Dec 6 15:51:03 2009 +0900
 
     Bio::KEGG::GENES#pathways is changed to return raw lines as an Array of strings.
-    
+
      * Bio::KEGG::GENES#pathways is changed to return raw lines as an
        Array of strings.
      * RDoc is added for Bio::KEGG::GENES.
@@ -2169,7 +2169,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Dec 2 23:07:23 2009 +0900
 
     Bio::KEGG::REACTION#orthologies is renamed to orthologs_as_hash with changing its return value to a hash.
-    
+
      * Bio::KEGG::REACTION#orthologies is renamed to orthologs_as_hash
        with changing its return value to a hash.
      * The code of the orthologs_as_hash method is moved to
@@ -2188,7 +2188,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Dec 2 22:48:06 2009 +0900
 
     Added Bio::KEGG::REACTION#pathways_as_hash and reverted pathways method.
-    
+
      * New method Bio::KEGG::REACTION#pathways_as_hash, using a module
        in lib/bio/db/kegg/common.rb.
      * Bio::KEGG::REACTION#pathways is reverted to return an array of
@@ -2213,7 +2213,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Dec 2 22:25:20 2009 +0900
 
     Methods commonly used from Bio::KEGG::* classes.
-    
+
      * Modules containing methods commonly used from Bio::KEGG::* classes.
        The "dblinks_as_hash" method is copied from
        lib/bio/db/kegg/orthology.rb. The "pathways_as_hash" method is
@@ -2293,7 +2293,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Nov 29 16:37:21 2009 +0900
 
     Bio::Fastq::QualityScore is renamed to Bio::Sequence::QualityScore.
-    
+
      * Bio::Fastq::QualityScore is renamed to Bio::Sequence::QualityScore.
      * Changes of filenames due to the previous file move.
 
@@ -2309,7 +2309,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Nov 29 16:15:42 2009 +0900
 
     lib/bio/db/fastq/quality_score.rb is moved to lib/bio/sequence/. The unit test is also moved.
-    
+
      * lib/bio/db/fastq/quality_score.rb is moved to lib/bio/sequence/.
      * test/unit/bio/db/fastq/test_quality_score.rb is moved to
        test/unit/bio/sequence/.
@@ -2437,7 +2437,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Nov 26 10:13:26 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_keggapi.rb.
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_keggapi.rb.
      * Commented out demonstrations of deprecated methods:
@@ -2499,7 +2499,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Nov 26 01:04:29 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_psort_report.rb.
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_psort_report.rb, without any checks.
 
@@ -2535,7 +2535,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Nov 26 00:12:33 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_pubmed.rb.
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_pubmed.rb.
      * Codes using Entrez CGI are disabled in the demo.
@@ -2550,7 +2550,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Nov 25 23:59:10 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are removed.
-    
+
      * Demo codes in the "if __FILE__ == $0" are removed because their
        function have already been moved to sample/demo_blast_report.rb.
 
@@ -2564,7 +2564,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Nov 25 23:49:36 2009 +0900
 
     New demo code of BLAST parser based on codes in "if __FILE__ ==$0"
-    
+
      * Newly added sample/demo_blast_report.rb, demonstration of
        BLAST parsers  Bio::Blast::Report, Bio::Blast::Default::Report,
        and Bio::Blast::WU::Report. It is based on the demonstration codes
@@ -2580,7 +2580,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Nov 25 21:57:08 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_das.rb.
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_das.rb.
      * Demo codes using UCSC DAS server is added.
@@ -2739,7 +2739,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Nov 24 22:53:12 2009 +0900
 
     Sample code bug fix: fixed method names, and workaround for Zlib error.
-    
+
      * Sample code bug fix: Following method name changes.
      * Workaround for Zlib::DataError.
 
@@ -2762,7 +2762,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Nov 24 19:20:52 2009 +0900
 
     Document bug fix: Changed Bio::Bl2seq to Bio::Blast::Bl2seq in the RDoc.
-    
+
      * Document bug fix: Changed Bio::Bl2seq to Bio::Blast::Bl2seq
        in the RDoc.
      * Modified copyright line.
@@ -2795,7 +2795,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Nov 24 18:24:43 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_genbank.rb.
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_genbank.rb, and modified as below.
         * To get sequences from the NCBI web service.
@@ -2824,7 +2824,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Nov 24 12:45:43 2009 +0900
 
     Demo codes in the "if __FILE__ == $0" are moved to sample/demo_sirna.rb
-    
+
      * Demo codes in the "if __FILE__ == $0" are moved to
        sample/demo_sirna.rb, and modified for reading normal sequence
        files instead of a raw sequence.
@@ -2976,7 +2976,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Nov 18 20:29:56 2009 +0900
 
     New version of PhyloXML schema, version 1.10.
-    
+
      * Upgraded to New version of PhyloXML schema, version 1.10,
        developed by Christian M Zmasek.
 
@@ -2988,7 +2988,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Nov 18 00:26:44 2009 +0900
 
     Newly added sample script to test big PhyloXML data
-    
+
      * Newly added a sample script to test big PhyloXML data based on
        Diana Jaunzeikare's work.
        (http://github.com/latvianlinuxgirl/bioruby/blob/
@@ -3004,7 +3004,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Nov 17 23:54:37 2009 +0900
 
     Speed up of Bio::Tree#children and parent: caching node's parent.
-    
+
      * For speed up of Bio::Tree#children and parent, internal cache of
        the parent for each node is added. The cache is automatically
        cleared when the tree is modified. Note that the cache can only
@@ -3062,7 +3062,7 @@ Author: Kozo Nishida <kozo-ni@cg05.naist.jp>
 Date:   Sat Nov 14 09:03:50 2009 +0900
 
     Newly added unit tests for Bio::KEGG::COMPOUND and Bio::KEGG::REACTION
-    
+
      * Newly added unit tests for Bio::KEGG::COMPOUND and
        Bio::KEGG::REACTION with test data. (Note that this is a
        combination of several commits made by Kozo Nishida,
@@ -3083,7 +3083,7 @@ Author: Kozo Nishida <kozo-ni@cg05.naist.jp>
 Date:   Sat Nov 14 09:03:50 2009 +0900
 
     Bio::KEGG::COMPOUND#dblinks changed to return hash list
-    
+
      * Bio::KEGG::COMPOUND#dblinks is changed to return hash list (array
        containing hashes).
 
@@ -3095,7 +3095,7 @@ Author: Kozo Nishida <kozo-ni@cg05.naist.jp>
 Date:   Sat Nov 14 07:29:19 2009 +0900
 
     Bio::KEGG:REACTION#rpair and pathways changed to return hash list, and added orthologies method.
-    
+
      * New method: Bio::KEGG:REACTION#orthologies
      * Bio::KEGG:REACTION#rpair and pathways are changed to return hash
        list (array containing hashes).
@@ -3117,7 +3117,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Mon Nov 16 19:50:08 2009 +0900
 
     Newly added a document for incompatible and/or important changes of the new release version.
-    
+
      * Newly added a document for incompatible and/or important changes
        of the new release version.
      * Added description about Bio::RestrictionEnzyme validation is
@@ -3162,7 +3162,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Mon Nov 16 12:59:10 2009 +0900
 
     Ruby 1.9 support: Array#nitems (counts the number of non-nil elements) is removed in 1.9.
-    
+
      * Ruby 1.9 support: Array#nitems (counts the number of non-nil
        elements) is removed in Ruby 1.9. In scf.rb, it seems that
        nil would never be included in the array, and simply replaced
@@ -3176,7 +3176,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Nov 15 19:23:12 2009 +0900
 
     Bug fix: error when quality_scores are larger than the sequence length, and added a require line.
-    
+
      * Bug fix: error when sequence.quality_scores are larger than
        the sequence length.
      * Added a require line.
@@ -3210,7 +3210,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sat Nov 14 02:19:17 2009 +0900
 
     Split quality score methods in Bio::Fastq::FormatData into separete modules
-    
+
      * Quality score calculation methods in Bio::Fastq::FormatData in
        lib/bio/db/fastq.rb is splitted into separate modules
        Bio::Fastq::QualityScore::Converter, Phred, and Solexa
@@ -3231,7 +3231,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Nov 13 23:48:19 2009 +0900
 
     When no error_probabilities in the sequence and quality_score_type is nil, Fastq formatter implicitly assumes that the quality_score_type is :phred.
-    
+
      * When no error_probabilities in the sequence and
        quality_score_type is nil, Fastq formatter implicitly assumes
        that the quality_score_type is :phred.
@@ -3255,7 +3255,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Nov 13 20:42:12 2009 +0900
 
     Splitting lib/bio/db/fasta.rb: FastaNumericFormat is moved to a new file, etc.
-    
+
      * Splitting lib/bio/db/fasta.rb as follows:
         * Bio::FastaNumericFormat is moved to lib/bio/db/fasta/qual.rb.
         * Demo codes in the "if __FILE__ == $0" are moved to
@@ -3299,7 +3299,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Nov 13 12:50:59 2009 +0900
 
     Removed Bio::Abif#method_missing and added alternative method
-    
+
      * Removed Bio::Abif#method_missing, because method_missing can
        hide many errors related to method calls e.g. method name typo,
        and it is not suitable for only getting data.
@@ -3341,7 +3341,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Thu Nov 12 22:05:37 2009 +0900
 
     The "libpath magic" in tests are replaced by the load of helper routine.
-    
+
      * In all unit tests, the "libpath magic" are replaced by the load
        of helper routine.
      * Changed to use a constant BioRubyTestDataPath for generating test
@@ -3490,7 +3490,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Oct 30 22:49:19 2009 +0900
 
     Renamed/moved files/directories following the rename of class names.
-    
+
      * renamed: lib/bio/db/chromatogram.rb ->
                 lib/bio/db/sanger_chromatogram/chromatogram.rb
      * renamed: lib/bio/db/chromatogram/abi.rb ->
@@ -3545,7 +3545,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Oct 30 22:02:08 2009 +0900
 
     Renamed Chromatogram to SangerChromatogram and Abi to Abif, and preparation of filename changes.
-    
+
      * Renamed Chromatogram to SangerChromatogram because the word
        "chromatogram" may be used by various experimental methods
        other than the Sanger chromatogram.
@@ -3570,7 +3570,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sat Oct 24 00:44:47 2009 +0900
 
     New class method Bio::PhyloXML::Parser.open(filename) and API change of new(), etc.
-    
+
      * New class methods to create parser object from various data
        source are added: Bio::PhyloXML::Parser.open(filename),
        for_io(io), open_uri(uri).
@@ -3605,7 +3605,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Oct 23 00:08:44 2009 +0900
 
     Fixed argument order of assert_equal(expected, actual), etc.
-    
+
      * Test bug fix: Argument order of assert_equal must be
        assert_equal(expected, actual).
      * assert_instance_of() instead of assert_equal() in
@@ -3641,7 +3641,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sat Oct 17 01:32:50 2009 +0900
 
     New attributes for genome sequencer data are added to Bio::Sequence.
-    
+
      * New attributes for genome sequencer data are added to
        Bio::Sequence class: quality_scores, quality_scores_type,
        error_probabilities.
@@ -3654,7 +3654,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sat Oct 17 01:13:27 2009 +0900
 
     New methods Bio::Fastq#to_biosequence, etc. and improvement of tolerance for overflows
-    
+
      * Bio::Fastq#to_biosequence is newly added.
      * New methods: Bio::Fastq#seq, entry_id, quality_score_type.
      * Default behavior of Bio::Fastq::FormatData#scores2str is changed
@@ -3683,7 +3683,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Tue Oct 13 21:30:25 2009 +0900
 
     Bio::Fastq#qualities is renamed to quality_scores.
-    
+
      * Bio::Fastq#qualities is renamed to Bio::Fastq#quality_scores, and
        the original method name is changed to be an alias of the new name.
 
@@ -3696,7 +3696,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Oct 11 19:19:18 2009 +0900
 
     Newly added unit tests for Bio::Fastq with test data
-    
+
      * Newly added unit tests for Bio::Fastq with test data. The test data
        is created by P.J.A. Cock et al., and is also used in Biopython and
        BioPerl.
@@ -3810,7 +3810,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Oct 11 19:10:15 2009 +0900
 
     Bio::Fastq API changed.
-    
+
      * Bio::Fastq API changed. Removed methods: phred_quality, solexa_quality.
        New methods: qualities, error_probabilities, format, format=,
        validate_format.
@@ -3872,7 +3872,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sat Sep 19 17:06:21 2009 +0900
 
     Use Bio::PubMed.esearch and efetch, etc.
-    
+
      * Changed to use Bio::PubMed.esearch and efetch instead of
        deprecated methods.
      * Regular expression for extracting option is changed.
@@ -3886,7 +3886,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Fri Sep 18 17:58:17 2009 +0900
 
     Changed to use temporary directory when writing a file, etc.
-    
+
       * To avoid unexpected file corruption and possibly security risk,
         changed to use temporary directory when writing files. The
         temporary directory is normally removed when all tests end.
@@ -3908,7 +3908,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Sun Sep 20 18:34:19 2009 +0900
 
     Newly added internal-only class Bio::Command::Tmpdir to handle temporary directory
-    
+
      * Newly added internal-only class Bio::Command::Tmpdir to handle
        temporary directory. It is BioRuby library internal use only.
      * Bio::Command.mktmpdir is changed to be completely compatible
@@ -3962,7 +3962,7 @@ Author: Diana Jaunzeikare <latvianlinuxgirl@gmail.com>
 Date:   Tue May 26 00:55:47 2009 -0400
 
     Newly added PhyloXML support written by Diana Jaunzeikare.
-    
+
      * Newly added PhyloXML support written by Diana Jaunzeikare.
        It have been written during the Google Summer of Code 2009
        "Implementing phyloXML support in BioRuby", mentored by
@@ -4002,7 +4002,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Sep 9 21:08:15 2009 +0900
 
     Newly added Chromatogram classes contributed by Anthony Underwood.
-    
+
      * Newly added Chromatogram classes contributed by Anthony Underwood.
        See git://github.com/aunderwo/bioruby.git for details of development
        before this merge.
@@ -4042,7 +4042,7 @@ Author: Naohisa Goto <ng@bioruby.org>
 Date:   Wed Sep 2 15:24:00 2009 +0900
 
     BioRuby 1.3.1 is released.
-    
+
     ChangeLog is modified, and bioruby.gemspec is regenerated.
 
  ChangeLog       |   11 +++++++++++

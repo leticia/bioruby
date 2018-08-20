@@ -52,7 +52,7 @@ EOF
       def test_locus
         #Since locus method is supposed to be overloaded in a child class, it may not be neccesary to test the method here.
       end
-      
+
       def test_definition
         expected = "Saccharomyces cerevisiae TCP1-beta gene, partial cds; and Axl2p (AXL2) and Rev7p (REV7) genes, complete cds."
         assert_equal(expected, @obj.definition)
@@ -74,7 +74,7 @@ EOF
       end
 
       def test_version
-         expected = 1 
+         expected = 1
         assert_equal(expected, @obj.version)
       end
 
@@ -162,7 +162,7 @@ REFERENCE   2  (bases 1 to 2264)
 EOS
         com = BioNCBIDBCommon.new(str)
         obj = com.references
-         expected = 
+         expected =
            {:mesh=>[],
             :volume=>"239",
             :doi=>nil,
@@ -181,7 +181,7 @@ EOS
             :medline=>"",
             :url=>nil,
             :comments=>
-             ["GeneRIF: limited to the digit-interdigit junction rather than being expressed throughout the interdigital zone"]}  
+             ["GeneRIF: limited to the digit-interdigit junction rather than being expressed throughout the interdigital zone"]}
         actual            = {:abstract => obj[0].abstract,
                              :affiliations => obj[0].affiliations,
                              :authors => obj[0].authors,
@@ -205,9 +205,9 @@ EOS
         actual2 = reference.authors
         break
       end
-      assert_equal(["Zhao, X.", "Brade, T.", "Cunningham, T.J.", "Duester, G."],actual2) 
+      assert_equal(["Zhao, X.", "Brade, T.", "Cunningham, T.J.", "Duester, G."],actual2)
 
-      
+
       #the other pattern where a journal doesn't match the regexp.
       ref=<<EOS
 REFERENCE   2  (bases 1 to 2264)
@@ -260,7 +260,7 @@ EOS
         obj.features do |feature|
           actual2 = feature.feature
         end
-          
+
           assert_equal("CDS", actual2)
       end
 

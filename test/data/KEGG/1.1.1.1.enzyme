@@ -917,15 +917,15 @@ GENES       HSA: 124(ADH1A) 125(ADH1B) 126(ADH1C) 127(ADH4) 128(ADH5) 130(ADH6)
             PAS: Pars_0396 Pars_0534 Pars_0547 Pars_1545 Pars_2114
             TNE: Tneu_0419
             TPE: Tpen_1006 Tpen_1516
-STRUCTURES  PDB: 1A4U  1A71  1A72  1ADB  1ADC  1ADF  1ADG  1AGN  1AXE  1AXG  
-                 1B14  1B15  1B16  1B2L  1BTO  1CDO  1D1S  1D1T  1DEH  1E3E  
-                 1E3I  1E3L  1EE2  1H2B  1HDX  1HDY  1HDZ  1HET  1HEU  1HF3  
-                 1HLD  1HSO  1HSZ  1HT0  1HTB  1JU9  1JVB  1LDE  1LDY  1LLU  
-                 1M6H  1M6W  1MA0  1MC5  1MG0  1MG5  1MGO  1MP0  1N8K  1N92  
-                 1NTO  1NVG  1O2D  1P1R  1QLH  1QLJ  1QV6  1QV7  1R37  1RJW  
-                 1SBY  1TEH  1U3T  1U3U  1U3V  1U3W  1VJ0  1YE3  2EER  2FZE  
-                 2FZW  2HCY  2JHF  2JHG  2OHX  2OXI  3BTO  3COS  3HUD  3I4C  
-                 5ADH  6ADH  7ADH  
+STRUCTURES  PDB: 1A4U  1A71  1A72  1ADB  1ADC  1ADF  1ADG  1AGN  1AXE  1AXG
+                 1B14  1B15  1B16  1B2L  1BTO  1CDO  1D1S  1D1T  1DEH  1E3E
+                 1E3I  1E3L  1EE2  1H2B  1HDX  1HDY  1HDZ  1HET  1HEU  1HF3
+                 1HLD  1HSO  1HSZ  1HT0  1HTB  1JU9  1JVB  1LDE  1LDY  1LLU
+                 1M6H  1M6W  1MA0  1MC5  1MG0  1MG5  1MGO  1MP0  1N8K  1N92
+                 1NTO  1NVG  1O2D  1P1R  1QLH  1QLJ  1QV6  1QV7  1R37  1RJW
+                 1SBY  1TEH  1U3T  1U3U  1U3V  1U3W  1VJ0  1YE3  2EER  2FZE
+                 2FZW  2HCY  2JHF  2JHG  2OHX  2OXI  3BTO  3COS  3HUD  3I4C
+                 5ADH  6ADH  7ADH
 DBLINKS     ExplorEnz - The Enzyme Database: 1.1.1.1
             IUBMB Enzyme Nomenclature: 1.1.1.1
             ExPASy - ENZYME nomenclature database: 1.1.1.1

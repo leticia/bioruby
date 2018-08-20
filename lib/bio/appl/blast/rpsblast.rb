@@ -1,6 +1,6 @@
 #
 # = bio/appl/blast/rpsblast.rb - NCBI RPS Blast default output parser
-# 
+#
 # Copyright::  Copyright (C) 2008 Naohisa Goto <ng@bioruby.org>
 # License::    The Ruby License
 #
@@ -45,7 +45,7 @@ class Blast
 
       # Separator used to distinguish start of each report
       ReportHead =  /\A\n*(RPS\-BLAST|Query\=)/
-        
+
       # Delimiter used for IO#gets
       Delimiter = "\n\n"
 
@@ -67,7 +67,7 @@ class Blast
         @entry_head = nil
         super
       end
-        
+
       # gets an entry
       def get_entry
         p0 = stream_pos()
@@ -102,7 +102,7 @@ class Blast
         p1 = stream_pos()
 
         self.entry_start_pos = p0
-        self.entry = 
+        self.entry =
           if pieces.empty? then
             nil
           elsif !flag_head and @entry_head then
@@ -126,7 +126,7 @@ class Blast
     #
     # By using Bio::FlatFile, (for example, Bio::FlatFile.open),
     # rpsblast result generated from multiple query sequences is
-    # automatically splitted into multiple 
+    # automatically splitted into multiple
     # Bio::BLast::RPSBlast::Report objects corresponding to
     # query sequences.
     #
@@ -172,7 +172,7 @@ class Blast
       def initialize(str)
         str = str.sub(/\A\s+/, '')
         # remove trailing entries for sure
-        str.sub!(/\n(RPS\-BLAST.*)/m, "\n") 
+        str.sub!(/\n(RPS\-BLAST.*)/m, "\n")
         @entry_overrun = $1
         @entry = str
         data = str.split(/(?:^[ \t]*\n)+/)
@@ -230,12 +230,12 @@ class Blast
       end
 
       # Iteration class for RPS-Blast.
-      # Though RPS-Blast does not iterate like PSI-BLAST, 
+      # Though RPS-Blast does not iterate like PSI-BLAST,
       # it aims to store a result of single query sequence.
       #
       # Normally, the instance of the class is generated
       # by Bio::Blast::RPSBlast::Report object.
-      # 
+      #
       class Iteration < Bio::Blast::Default::Report::Iteration
         # Creates a new Iteration object.
         # It is designed to be called only internally from
@@ -256,7 +256,7 @@ class Blast
             end
           end
           data.unshift(dummystr)
-          
+
           super(data)
         end
 
@@ -265,9 +265,9 @@ class Blast
 
         # length of the query sequence
         attr_reader :query_len
-        
+
       end #class Iteration
-      
+
     end #class Report
 
   end #module RPSBlast

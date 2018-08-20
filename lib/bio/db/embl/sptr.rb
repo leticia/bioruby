@@ -1,28 +1,28 @@
 #
 # = bio/db/embl/sptr.rb - UniProt/SwissProt and TrEMBL database class
-# 
+#
 # Copyright::   Copyright (C) 2001-2006  Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
 # $Id:$
 #
 # == Description
-# 
+#
 # Shared methods for UniProtKB/SwissProt and TrEMBL classes.
 #
-# See the SWISS-PROT document file SPECLIST.TXT or UniProtKB/SwissProt 
+# See the SWISS-PROT document file SPECLIST.TXT or UniProtKB/SwissProt
 # user manual.
-# 
+#
 # == Examples
 #
 #   str = File.read("p53_human.swiss")
 #   obj = Bio::SPTR.new(str)
 #   obj.entry_id #=> "P53_HUMAN"
-# 
+#
 # == References
-# 
-# * Swiss-Prot Protein knowledgebase. TrEMBL Computer-annotated supplement 
-#   to Swiss-Prot	
+#
+# * Swiss-Prot Protein knowledgebase. TrEMBL Computer-annotated supplement
+#   to Swiss-Prot
 #   http://au.expasy.org/sprot/
 #
 # * UniProt
@@ -41,7 +41,7 @@ module Bio
 # Parser class for UniProtKB/SwissProt and TrEMBL database entry.
 class SPTR < EMBLDB
   include Bio::EMBLDB::Common
-    
+
   @@entry_regrexp = /[A-Z0-9]{1,4}_[A-Z0-9]{1,5}/
   @@data_class = ["STANDARD", "PRELIMINARY"]
 
@@ -55,7 +55,7 @@ class SPTR < EMBLDB
   #   #"ID  #{ENTRY_NAME} #{DATA_CLASS}; #{MOLECULE_TYPE}; #{SEQUENCE_LENGTH}."
   #
   # === Examples
-  #   obj.id_line  #=> {"ENTRY_NAME"=>"P53_HUMAN", "DATA_CLASS"=>"STANDARD", 
+  #   obj.id_line  #=> {"ENTRY_NAME"=>"P53_HUMAN", "DATA_CLASS"=>"STANDARD",
   #                     "SEQUENCE_LENGTH"=>393, "MOLECULE_TYPE"=>"PRT"}
   #
   #   obj.id_line('ENTRY_NAME') #=> "P53_HUMAN"
@@ -64,17 +64,17 @@ class SPTR < EMBLDB
     return id_line[key] if key
     return @data['ID'] if @data['ID']
 
-    part = @orig['ID'].split(/ +/)         
+    part = @orig['ID'].split(/ +/)
     @data['ID'] = {
       'ENTRY_NAME'      => part[1],
       'DATA_CLASS'      => part[2].sub(/;/,''),
       'MOLECULE_TYPE'   => part[3].sub(/;/,''),
-      'SEQUENCE_LENGTH' => part[4].to_i 
+      'SEQUENCE_LENGTH' => part[4].to_i
     }
   end
 
 
-  # returns a ENTRY_NAME in the ID line. 
+  # returns a ENTRY_NAME in the ID line.
   #
   def entry_id
     id_line('ENTRY_NAME')
@@ -93,7 +93,7 @@ class SPTR < EMBLDB
 
 
   # returns a SEQUENCE_LENGTH in the ID line.
-  # 
+  #
   # A short-cut for Bio::SPTR#id_line('SEQUENCE_LENGHT').
   def sequence_length
     id_line('SEQUENCE_LENGTH')
@@ -104,12 +104,12 @@ class SPTR < EMBLDB
   # Bio::EMBLDB::Common#ac  -> ary
   #                  #accessions  -> ary
   #                  #accession  -> String (accessions.first)
-  @@ac_regrexp = /[OPQ][0-9][A-Z0-9]{3}[0-9]/ 
+  @@ac_regrexp = /[OPQ][0-9][A-Z0-9]{3}[0-9]/
 
 
 
   # returns a Hash of information in the DT lines.
-  #  hash keys: 
+  #  hash keys:
   #    ['created', 'sequence', 'annotation']
   #  also Symbols acceptable (ASAP):
   #    [:created, :sequence, :annotation]
@@ -134,7 +134,7 @@ class SPTR < EMBLDB
 
 
   # returns the proposed official name of the protein.
-  # 
+  #
   # === DE Line; description (>=1)
   #  "DE #{OFFICIAL_NAME} (#{SYNONYM})"
   #  "DE #{OFFICIAL_NAME} (#{SYNONYM}) [CONTEINS: #1; #2]."
@@ -159,9 +159,9 @@ class SPTR < EMBLDB
     ary = Array.new
     if de_line = fetch('DE') then
       line = de_line.sub(/\[.*\]/,'') # ignore stuff between [ and ].  That's the "contains" part
-      line.scan(/\([^)]+/) do |synonym| 
-        unless synonym =~ /fragment/i then 
-          ary << synonym[1..-1].strip # index to remove the leading (  
+      line.scan(/\([^)]+/) do |synonym|
+        unless synonym =~ /fragment/i then
+          ary << synonym[1..-1].strip # index to remove the leading (
         end
       end
     end
@@ -174,14 +174,14 @@ class SPTR < EMBLDB
   # New UniProt/SwissProt format:
   # * Bio::SPTR#gn -> [ <gene record>* ]
   # where <gene record> is:
-  #                    { :name => '...', 
+  #                    { :name => '...',
   #                      :synonyms => [ 's1', 's2', ... ],
   #                      :loci   => [ 'l1', 'l2', ... ],
-  #                      :orfs     => [ 'o1', 'o2', ... ] 
+  #                      :orfs     => [ 'o1', 'o2', ... ]
   #                    }
   #
   # Old format:
-  # * Bio::SPTR#gn -> Array      # AND 
+  # * Bio::SPTR#gn -> Array      # AND
   # * Bio::SPTR#gn[0] -> Array   # OR
   #
   # === GN Line: Gene name(s) (>=0, optional)
@@ -206,7 +206,7 @@ class SPTR < EMBLDB
   #
   #  GN NAME1 [(AND|OR) NAME]+.
   #
-  # Bio::SPTR#gn -> Array      # AND 
+  # Bio::SPTR#gn -> Array      # AND
   #          #gn[0] -> Array   # OR
   #          #gene_names -> Array
   def gn_old_parser
@@ -215,7 +215,7 @@ class SPTR < EMBLDB
       names = fetch('GN').sub(/\.$/,'').split(/ AND /)
       names.map! { |synonyms|
         synonyms = synonyms.gsub(/\(|\)/,'').split(/ OR /).map { |e|
-          e.strip 
+          e.strip
         }
       }
     end
@@ -230,10 +230,10 @@ class SPTR < EMBLDB
   #
   # * Bio::SPTR#gn -> [ <gene record>* ]
   # where <gene record> is:
-  #                    { :name => '...', 
+  #                    { :name => '...',
   #                      :synonyms => [ 's1', 's2', ... ],
   #                      :loci   => [ 'l1', 'l2', ... ],
-  #                      :orfs     => [ 'o1', 'o2', ... ] 
+  #                      :orfs     => [ 'o1', 'o2', ... ]
   #                    }
   def gn_uniprot_parser
     @data['GN'] = Array.new
@@ -279,13 +279,13 @@ class SPTR < EMBLDB
 
   # returns a Array of Hashs or a String of the OS line when a key given.
   # * Bio::EMBLDB#os  -> Array
-  #  [{'name' => '(Human)', 'os' => 'Homo sapiens'}, 
+  #  [{'name' => '(Human)', 'os' => 'Homo sapiens'},
   #   {'name' => '(Rat)', 'os' => 'Rattus norveticus'}]
-  # * Bio::EPTR#os[0] -> Hash 
+  # * Bio::EPTR#os[0] -> Hash
   #  {'name' => "(Human)", 'os' => 'Homo sapiens'}
   # * Bio::SPTR#os[0]['name'] -> "(Human)"
   # * Bio::EPTR#os(0) -> "Homo sapiens (Human)"
-  # 
+  #
   # === OS Line; organism species (>=1)
   #  OS   Genus species (name).
   #  OS   Genus species (name0) (name1).
@@ -300,7 +300,7 @@ class SPTR < EMBLDB
       fetch('OS').split(/, and|, /).each do |tmp|
         if tmp =~ /(\w+ *[\w\d \:\'\+\-\.]+[\w\d\.])/
           org = $1
-          tmp =~ /(\(.+\))/ 
+          tmp =~ /(\(.+\))/
           os.push({'name' => $1, 'os' => org})
         else
           raise "Error: OS Line. #{$!}\n#{fetch('OS')}\n"
@@ -316,12 +316,12 @@ class SPTR < EMBLDB
       return @data['OS']
     end
   end
-  
+
 
   # Bio::EMBLDB::Common#og -> Array
   # OG Line; organella (0 or 1/entry)
   # ["MITOCHONDRION", "CHLOROPLAST", "Cyanelle", "Plasmid"]
-  #  or a plasmid name (e.g. "Plasmid pBR322").  
+  #  or a plasmid name (e.g. "Plasmid pBR322").
 
 
   # Bio::EMBLDB::Common#oc -> Array
@@ -351,7 +351,7 @@ class SPTR < EMBLDB
     return @data['OX']
   end
 
-  # === The OH Line;  
+  # === The OH Line;
   #
   # OH   NCBI_TaxID=TaxID; HostName.
   # http://br.expasy.org/sprot/userman.html#OH_line
@@ -363,9 +363,9 @@ class SPTR < EMBLDB
         else
           raise ArgumentError, ["Error: Invalid OH line format (#{self.entry_id}):",
                                 $!, "\n", get('OH'), "\n"].join
-          
+
         end
-        if x =~ /NCBI_TaxID=\d+; (.+)/ 
+        if x =~ /NCBI_TaxID=\d+; (.+)/
           host_name = $1
           host_name.sub!(/\.$/, '')
         else
@@ -378,7 +378,7 @@ class SPTR < EMBLDB
   end
 
 
-  
+
   # Bio::EMBLDB::Common#ref -> Array
   # R Lines
   # RN RC RP RX RA RT RL
@@ -386,15 +386,15 @@ class SPTR < EMBLDB
   # returns contents in the R lines.
   # * Bio::EMBLDB::Common#ref -> [ <refernece information Hash>* ]
   # where <reference information Hash> is:
-  #  {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '', 
+  #  {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '',
   #   'RA' => '', 'RT' => '', 'RL' => '', 'RG' => ''}
-  # 
+  #
   # R Lines
   # * RN RC RP RX RA RT RL RG
   def ref
     unless @data['R']
       @data['R'] = [get('R').split(/\nRN   /)].flatten.map { |str|
-        hash = {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '', 
+        hash = {'RN' => '', 'RC' => '', 'RP' => '', 'RX' => '',
                'RA' => '', 'RT' => '', 'RL' => '', 'RG' => ''}
         str = 'RN   ' + str unless /^RN   / =~ str
 
@@ -438,7 +438,7 @@ class SPTR < EMBLDB
   def set_RP(data)
     data = data.strip
     data = data.sub(/\.$/, '')
-    data.split(/, AND |, /i).map {|x| 
+    data.split(/, AND |, /i).map {|x|
       x = x.strip
       x = x.gsub('  ', ' ')
     }
@@ -543,13 +543,13 @@ class SPTR < EMBLDB
 
   @@cc_topics = ['PHARMACEUTICAL',
                  'BIOTECHNOLOGY',
-                 'TOXIC DOSE', 
-                 'ALLERGEN',   
+                 'TOXIC DOSE',
+                 'ALLERGEN',
                  'RNA EDITING',
                  'POLYMORPHISM',
                  'BIOPHYSICOCHEMICAL PROPERTIES',
                  'MASS SPECTROMETRY',
-                 'WEB RESOURCE', 
+                 'WEB RESOURCE',
                  'ENZYME REGULATION',
                  'DISEASE',
                  'INTERACTION',
@@ -576,11 +576,11 @@ class SPTR < EMBLDB
   #
   # returns contents of the "ALTERNATIVE PRODUCTS".
   # * Bio::SPTR#cc('ALTERNATIVE PRODUCTS') -> Hash
-  #    {'Event' => str, 
-  #     'Named isoforms' => int,  
+  #    {'Event' => str,
+  #     'Named isoforms' => int,
   #     'Comment' => str,
   #     'Variants'=>[{'Name' => str, 'Synonyms' => str, 'IsoId' => str, 'Sequence' => []}]}
-  # 
+  #
   #    CC   -!- ALTERNATIVE PRODUCTS:
   #    CC       Event=Alternative splicing; Named isoforms=15;
   #    ...
@@ -603,7 +603,7 @@ class SPTR < EMBLDB
   # === CC lines (>=0, optional)
   #   CC   -!- TISSUE SPECIFICITY: HIGHEST LEVELS FOUND IN TESTIS. ALSO PRESENT
   #   CC       IN LIVER, KIDNEY, LUNG AND BRAIN.
-  # 
+  #
   #   CC   -!- TOPIC: FIRST LINE OF A COMMENT BLOCK;
   #   CC       SECOND AND SUBSEQUENT LINES OF A COMMENT BLOCK.
   #
@@ -617,7 +617,7 @@ class SPTR < EMBLDB
 
       # 12KD_MYCSM has no CC lines.
       return cc if get('CC').size == 0
-      
+
       cc_raw = fetch('CC')
 
       # Removing the copyright statement.
@@ -656,7 +656,7 @@ class SPTR < EMBLDB
         end
       rescue NoMethodError
       end
-      
+
       @data['CC'] = cc
     end
 
@@ -734,7 +734,7 @@ class SPTR < EMBLDB
             db['WWW'] = $1
           when /FTP="(.+)"/
             db['FTP'] = $1
-          end 
+          end
         end
         tmp.push(db)
       end
@@ -752,7 +752,7 @@ class SPTR < EMBLDB
     return ap unless ap
 
     # Event, Named isoforms, Comment, [Name, Synonyms, IsoId, Sequnce]+
-    tmp = {'Event' => "", 'Named isoforms' => "", 'Comment' => "", 
+    tmp = {'Event' => "", 'Named isoforms' => "", 'Comment' => "",
            'Variants'  => []}
     if /Event=(.+?);/ =~ ap
       tmp['Event'] = $1
@@ -788,7 +788,7 @@ class SPTR < EMBLDB
   def cc_biophysiochemical_properties(data)
     data = data[0]
 
-    hash = {'Absorption' => {}, 
+    hash = {'Absorption' => {},
             'Kinetic parameters' => {},
             'pH dependence' => "",
             'Redox potential' => "",
@@ -872,11 +872,11 @@ class SPTR < EMBLDB
           mass['MW_ERR'] = $1
         when /METHOD=(.+)/
           mass['METHOD'] = $1
-        when /RANGE=(\d+-\d+)/ 
-          mass['RANGE'] = $1          # RANGE class ? 
+        when /RANGE=(\d+-\d+)/
+          mass['RANGE'] = $1          # RANGE class ?
         when /NOTE=(.+)/
           mass['NOTE'] = $1
-        end 
+        end
       end
       mass
     }
@@ -909,18 +909,18 @@ class SPTR < EMBLDB
 
 
   def cc_subcellular_location(data)
-    data.map {|x| 
-      x.split('. ').map {|y| 
-        y.split('; ').map {|z| 
-          z.sub(/\.$/, '') 
-        } 
-      } 
+    data.map {|x|
+      x.split('. ').map {|y|
+        y.split('; ').map {|z|
+          z.sub(/\.$/, '')
+        }
+      }
     }[0]
   end
   private :cc_subcellular_location
 
-  
-  # CC   -!- WEB RESOURCE: NAME=ResourceName[; NOTE=FreeText][; URL=WWWAddress].  
+
+  # CC   -!- WEB RESOURCE: NAME=ResourceName[; NOTE=FreeText][; URL=WWWAddress].
   def cc_web_resource(data)
     data.map {|x|
       entry = {'NAME' => nil, 'NOTE' => nil, 'URL' => nil}
@@ -937,7 +937,7 @@ class SPTR < EMBLDB
       entry
     }
   end
-  
+
 
   # returns databases cross-references in the DR lines.
   # * Bio::SPTR#dr  -> Hash w/in Array
@@ -953,7 +953,7 @@ class SPTR < EMBLDB
     'SWISS-2DPAGE','TIGR','TRANSFAC','TUBERCULIST','WORMPEP','YEPD','ZFIN']
 
   # Backup Bio::EMBLDB#dr as embl_dr
-  alias :embl_dr :dr 
+  alias :embl_dr :dr
 
   # Bio::SPTR#dr
   def dr(key = nil)
@@ -996,7 +996,7 @@ class SPTR < EMBLDB
   #  end
   #
   # * Bio::SPTR#ft -> Hash
-  #    {FEATURE_KEY => [{'From' => int, 'To' => int, 
+  #    {FEATURE_KEY => [{'From' => int, 'To' => int,
   #                      'Description' => aStr, 'FTId' => aStr,
   #                      'diff' => [original_residues, changed_residues],
   #                      'original' => aAry }],...}
@@ -1010,13 +1010,13 @@ class SPTR < EMBLDB
   #   Col     Data item
   #   -----   -----------------
   #    1- 2   FT
-  #    6-13   Feature name 
+  #    6-13   Feature name
   #   15-20   `FROM' endpoint
   #   22-27   `TO' endpoint
   #   35-75   Description (>=0 per key)
   #   -----   -----------------
   #
-  # Note: 'FROM' and 'TO' endopoints are allowed to use non-numerial charactors 
+  # Note: 'FROM' and 'TO' endopoints are allowed to use non-numerial charactors
   # including '<', '>' or '?'. (c.f. '<1', '?42')
   #
   # See also http://www.expasy.org/sprot/userman.html#FT_line
@@ -1040,12 +1040,12 @@ class SPTR < EMBLDB
       end
 
       # Joining Description lines
-      table = table.map { |feature| 
+      table = table.map { |feature|
         ftid = feature.pop if feature.last =~ /FTId=/
         if feature.size > 4
-          feature = [feature[0], 
-                     feature[1], 
-                     feature[2], 
+          feature = [feature[0],
+                     feature[1],
+                     feature[2],
                      feature[3, feature.size - 3].join(" ")]
         end
         feature << if ftid then ftid else '' end
@@ -1056,9 +1056,9 @@ class SPTR < EMBLDB
         hash[feature[0]] = [] unless hash[feature[0]]
         hash[feature[0]] << {
           # Removing '<', '>' or '?' in FROM/TO endopoint.
-          'From' => feature[1].sub(/\D/, '').to_i,  
-          'To'   => feature[2].sub(/\D/, '').to_i, 
-          'Description' => feature[3], 
+          'From' => feature[1].sub(/\D/, '').to_i,
+          'To'   => feature[2].sub(/\D/, '').to_i,
+          'Description' => feature[3],
           'FTId' => feature[4].to_s.sub(/\/FTId=/, '').sub(/\.$/, ''),
           'diff' => [],
           'original' => feature
@@ -1094,7 +1094,7 @@ class SPTR < EMBLDB
   #
   # returns a value of a key given in the SQ lines.
   # * Bio::SPTRL#sq(key)  -> int or str
-  # * Keys: ['MW', 'mw', 'molecular', 'weight', 'aalen', 'len', 'length', 
+  # * Keys: ['MW', 'mw', 'molecular', 'weight', 'aalen', 'len', 'length',
   #          'CRC64']
   #
   # === SQ Line; sequence header (1/entry)
@@ -1121,7 +1121,7 @@ class SPTR < EMBLDB
       else
         @data['SQ'][key]
       end
-    else 
+    else
       @data['SQ']
     end
   end
@@ -1154,14 +1154,14 @@ Class for a entry in the SWISS-PROT/TrEMBL database.
   * ((<URL:http://www.ebi.ac.uk/swissprot/>))
   * ((<URL:http://www.ebi.ac.uk/trembl/>))
   * ((<URL:http://www.ebi.ac.uk/sprot/userman.html>))
-  
+
 
 --- Bio::SPTR.new(a_sp_entry)
 
 === ID line (Identification)
 
 --- Bio::SPTR#id_line -> {'ENTRY_NAME' => str, 'DATA_CLASS' => str,
-                          'MOLECULE_TYPE' => str, 'SEQUENCE_LENGTH' => int }  
+                          'MOLECULE_TYPE' => str, 'SEQUENCE_LENGTH' => int }
 --- Bio::SPTR#id_line(key) -> str
 
        key = (ENTRY_NAME|MOLECULE_TYPE|DATA_CLASS|SEQUENCE_LENGTH)
@@ -1169,7 +1169,7 @@ Class for a entry in the SWISS-PROT/TrEMBL database.
 --- Bio::SPTR#entry_id -> str
 --- Bio::SPTR#molecule -> str
 --- Bio::SPTR#sequence_length -> int
-    
+
 
 === AC lines (Accession number)
 
@@ -1177,7 +1177,7 @@ Class for a entry in the SWISS-PROT/TrEMBL database.
 --- Bio::SPTR#accessions -> ary
 --- Bio::SPTR#accession -> accessions.first
 
- 
+
 === GN line (Gene name(s))
 
 --- Bio::SPTR#gn -> [ary, ...] or [{:name => str, :synonyms => [], :loci => [], :orfs => []}]
@@ -1185,7 +1185,7 @@ Class for a entry in the SWISS-PROT/TrEMBL database.
 --- Bio::SPTR#gene_names -> [str] or [str]
 
 
-=== DT lines (Date) 
+=== DT lines (Date)
 
 --- Bio::SPTR#dt -> {'created' => str, 'sequence' => str, 'annotation' => str}
 --- Bio::SPTR#dt(key) -> str
@@ -1227,7 +1227,7 @@ Class for a entry in the SWISS-PROT/TrEMBL database.
 
 --- Bio::SPTR#ox -> {'NCBI_TaxID' => [], ...}
 
-=== RN RC RP RX RA RT RL RG lines (Reference)  
+=== RN RC RP RX RA RT RL RG lines (Reference)
 
 --- Bio::SPTR#ref -> [{'RN' => int, 'RP' => str, 'RC' => str, 'RX' => str, ''RT' => str, 'RL' => str, 'RA' => str, 'RC' => str, 'RG' => str},...]
 

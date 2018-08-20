@@ -38,7 +38,7 @@ module Bio
         def self.[](*arg)
           self.new(*arg)
         end
-        
+
         # Creates a new element.
         def initialize
           @higher_priority_elements = RulesArray.new
@@ -88,7 +88,7 @@ module Bio
         end
 
         # Gets database class from given object.
-        # Current implementation is: 
+        # Current implementation is:
         # if _obj_ is kind of String, regarded as a constant.
         # Otherwise, returns _obj_ as is.
         def get_dbclass(obj)
@@ -221,7 +221,7 @@ module Bio
           @proc.call(text)
         end
       end #class RuleProc
-      
+
       # Creates a new Autodetect object
       def initialize
         # stores autodetection rules.
@@ -253,7 +253,7 @@ module Bio
       def tsort_each_child(elem)
         if elem == TopRule then
           @rules.each_value do |e|
-            yield e unless e == TopRule or 
+            yield e unless e == TopRule or
               e.lower_priority_elements.index(TopRule)
           end
         elsif elem == BottomRule then
@@ -550,7 +550,7 @@ module Bio
         a.rehash
         return a
       end
-      
+
     end #class AutoDetect
   end #class FlatFile
 end #module Bio

@@ -15,9 +15,9 @@
 module Bio
   module GCG
 
-    # 
+    #
     # = Bio::GCG::Seq
-    # 
+    #
     # This is GCG sequence file format (.seq or .pep) parser class.
     #
     # = References

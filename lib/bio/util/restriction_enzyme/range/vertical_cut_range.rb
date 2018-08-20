@@ -1,5 +1,5 @@
 #
-# bio/util/restriction_enzyme/range/vertical_cut_range.rb - 
+# bio/util/restriction_enzyme/range/vertical_cut_range.rb -
 #
 # Author::    Trevor Wennblom  <mailto:trevor@corevx.com>
 # Copyright:: Copyright (c) 2005-2007 Midwinter Laboratories, LLC (http://midwinterlabs.com)

@@ -85,7 +85,7 @@ _END_OF_EXPECTED_
     end
 
     def test_output_width_nil
-      expected = ">TEST0001 this is test\n" + 
+      expected = ">TEST0001 this is test\n" +
         (-100..100).collect { |x| x.to_s }.join(' ') + "\n"
       str = @sequence.output(:fasta_numeric, { :width => nil })
       assert_equal(expected, str)

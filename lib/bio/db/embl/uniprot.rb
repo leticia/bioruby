@@ -1,6 +1,6 @@
 #
 # = bio/db/embl/uniprot.rb - UniProt database class
-# 
+#
 # Copyright::  Copyright (C) 2005 Toshiaki Katayama <k@bioruby.org>
 # License::    The Ruby License
 #
@@ -12,12 +12,12 @@ require 'bio/db/embl/sptr'
 module Bio
 
 # == Description
-# 
+#
 # Parser class for SwissProt database entry.# See also Bio::SPTR class.
 # This class holds name space for UniProtKB/SwissProt specific methods.
 #
-# UniProtKB/SwissProt specific methods are defined in this class. 
-# Shared methods for UniProtKB/SwissProt and TrEMBL classes are 
+# UniProtKB/SwissProt specific methods are defined in this class.
+# Shared methods for UniProtKB/SwissProt and TrEMBL classes are
 # defined in Bio::SPTR class.
 #
 # == Examples

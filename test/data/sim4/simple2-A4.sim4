@@ -9,7 +9,7 @@ seq2 = sample10-2.fst (genome1), 599 bp
 43-96  (404-457)   94%
 
       0     .    :    .    :    .    :    .    :    .    :
-      1 AGTTGTTTCCGTCGCTGGTTATTGTCTAGAACGCAAAAATAG        
+      1 AGTTGTTTCCGTCGCTGGTTATTGTCTAGAACGCAAAAATAG
         ||||||||||||||||||||||||||||||||||||||||||<<<...<<
     143 AGTTGTTTCCGTCGCTGGTTATTGTCTAGAACGCAAAAATAGCTG...TA
 

@@ -26,6 +26,6 @@
 !gaf-version: 2.0
 !Date: 06/05/2010 $
 !
-SGD	S000007287	15S_RRNA		GO:0005763	SGD_REF:S000073642|PMID:6261980	ISS		C	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20040202	SGD		
-SGD	S000007287	15S_RRNA		GO:0006412	SGD_REF:S000073643|PMID:6280192	IGI		P	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20060630	SGD		
-SGD	S000007287	15S_RRNA		GO:0042255	SGD_REF:S000051605|PMID:2167435	IGI		P	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20030723	SGD		
+SGD	S000007287	15S_RRNA		GO:0005763	SGD_REF:S000073642|PMID:6261980	ISS		C	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20040202	SGD
+SGD	S000007287	15S_RRNA		GO:0006412	SGD_REF:S000073643|PMID:6280192	IGI		P	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20060630	SGD
+SGD	S000007287	15S_RRNA		GO:0042255	SGD_REF:S000051605|PMID:2167435	IGI		P	Ribosomal RNA of the small mitochondrial ribosomal subunit	15S_rRNA|15S_RRNA_2	gene	taxon:4932	20030723	SGD

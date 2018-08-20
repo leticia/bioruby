@@ -1,7 +1,7 @@
 #
 # test/unit/bio/shell/plugin/test_seq.rb - Unit test for Bio::Shell plugin for biological sequence manipulations
 #
-# Copyright::   Copyright (C) 2005 
+# Copyright::   Copyright (C) 2005
 #               Mitsuteru Nakao <n@bioruby.org>
 # License::     The Ruby License
 #

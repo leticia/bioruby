@@ -23,7 +23,7 @@ module Bio
     #
     # The object would contain some chains (Bio::PDB::Chain objects).
     class Model
-      
+
       include Utils
       include AtomFinder
       include ResidueFinder
@@ -34,10 +34,10 @@ module Bio
 
       include Enumerable
       include Comparable
-      
+
       # Creates a new Model object
       def initialize(serial = nil, structure = nil)
-        
+
         @serial = serial
         @structure = structure
         @chains = []
@@ -59,7 +59,7 @@ module Bio
 
       # (reserved for future extension)
       attr_reader :structure
-     
+
       # Adds a chain to this model
       def addChain(chain)
         raise "Expecting a Bio::PDB::Chain" unless chain.is_a? Bio::PDB::Chain
@@ -89,7 +89,7 @@ module Bio
         end
         self
       end
-      
+
       # (OBSOLETE) Adds a solvent molecule to this model
       def addSolvent(solvent)
         raise "Expecting a Bio::PDB::Residue" unless solvent.is_a? Bio::PDB::Residue
@@ -107,18 +107,18 @@ module Bio
       end
       # Alias to override ChainFinder#each_chain
       alias each_chain each
-     
+
       # Operator aimed to sort models based on serial number
       def <=>(other)
         return @serial <=> other.model_serial
       end
-      
+
       # Keyed access to chains
       def [](key)
         #chain = @chains.find{ |chain| key == chain.id }
         @chains_hash[key]
       end
-      
+
       # stringifies to chains
       def to_s
         string = ""
@@ -140,7 +140,7 @@ module Bio
       def inspect
         "#<#{self.class.to_s} serial=#{serial.inspect} chains.size=#{chains.size}>"
       end
-      
+
     end #class Model
 
   end #class PDB

@@ -14,7 +14,7 @@ load Pathname.new(File.join(File.dirname(__FILE__), ['..'] * 3,
 # libraries needed for the tests
 require 'test/unit'
 require 'bio/sequence'
-require 'bio/sequence/sequence_masker'  
+require 'bio/sequence/sequence_masker'
 
 module Bio
 
@@ -26,7 +26,7 @@ class TestSequenceMasker < Test::Unit::TestCase
     @seq = Bio::Sequence.new(s)
     @seq.quality_scores =
       (0...30).collect { |i| i * 3 }
-    @seq.error_probabilities = 
+    @seq.error_probabilities =
       (0...30).collect { |i| 10 ** -(i * 3 / 10.0) }
   end
 

@@ -104,7 +104,7 @@ module Bio
     def test_total_sequences
       assert_equal(1121, @obj.total_sequences)
     end
-    
+
     def test_positive
       assert_equal([1057, 1057], @obj.positive)
     end
@@ -116,7 +116,7 @@ module Bio
     def test_positive_sequences
       assert_equal(1057, @obj.positive_sequences)
     end
-    
+
     def test_unknown
       assert_equal([0, 0], @obj.unknown)
     end
@@ -156,7 +156,7 @@ module Bio
     def test_max_repeat
       assert_equal(1, @obj.max_repeat)
     end
-    
+
     def test_site
       assert_equal([0, nil], @obj.site)
     end
@@ -1304,7 +1304,7 @@ module Bio
  "Q00126"]
       assert_equal(data.sort, @obj.list_falsenegative.sort)
     end
-    
+
     def test_list_falsepositive
       data =["P41985",
  "P41986",

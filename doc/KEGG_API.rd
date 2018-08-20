@@ -40,7 +40,7 @@ has been used on several web sites, including
 ((<TIGR|URL:http://www.tigr.org/>)).
 
 With the background and the trends noted above, we have started developing
-a new web service called KEGG API using 
+a new web service called KEGG API using
 ((<SOAP|URL:http://www.w3.org/TR/SOAP/>)) and
 ((<WSDL|URL:http://www.w3.org/TR/wsdl20/>)).
 The service has been tested with
@@ -173,7 +173,7 @@ page at GenomeNet:
 
 == Introduction
 
-This guide explains how to use the KEGG API in your programs for 
+This guide explains how to use the KEGG API in your programs for
 searching and retrieving data from the KEGG database.
 
 == KEGG API Quick Start
@@ -198,18 +198,18 @@ In the case of Perl, you need to install the following packages:
 Here's a first example in Perl language.
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite;
-  
+
   $wsdl = 'http://soap.genome.jp/KEGG.wsdl';
-  
+
   $serv = SOAP::Lite->service($wsdl);
-  
+
   $offset = 1;
   $limit = 5;
-  
+
   $top5 = $serv->get_best_neighbors_by_gene('eco:b0002', $offset, $limit);
-  
+
   foreach $hit (@{$top5}) {
     print "$hit->{genes_id1}\t$hit->{genes_id2}\t$hit->{sw_score}\n";
   }
@@ -257,11 +257,11 @@ This example colors the boxes corresponding to the E. coli genes b1002
 and b2388 on a Glycolysis pathway of E. coli (path:eco00010).
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite;
-  
+
   $wsdl = 'http://soap.genome.jp/KEGG.wsdl';
-  
+
   $serv = SOAP::Lite -> service($wsdl);
 
   $genes = SOAP::Data->type(array => ["eco:b1002", "eco:b2388"]);
@@ -316,7 +316,7 @@ You can test with the following script for the SOAP::Lite v0.69.
 If it works, a URL of the generated image will be returned.
 
   #!/usr/bin/env perl
-  
+
   use SOAP::Lite +trace => [qw(debug)];
 
   print "SOAP::Lite = ", $SOAP::Lite::VERSION, "\n";
@@ -369,7 +369,7 @@ first example shown above.
   serv.generate_explicit_type = true
   # if uncommented, you can see transactions for debug
   #serv.wiredump_dev = STDERR
-  
+
   offset = 1
   limit = 5
 
@@ -382,16 +382,16 @@ You may need to iterate to obtain all the results by increasing offset
 and/or limit.
 
   #!/usr/bin/env ruby
-  
+
   require 'soap/wsdlDriver'
-  
+
   wsdl = "http://soap.genome.jp/KEGG.wsdl"
   serv = SOAP::WSDLDriverFactory.new(wsdl).create_rpc_driver
   serv.generate_explicit_type = true
 
   offset = 1
   limit = 100
-  
+
   loop do
     results = serv.get_best_neighbors_by_gene('eco:b0002', offset, limit)
     break unless results
@@ -407,11 +407,11 @@ provides filtering functionality for selecting needed fields from the
 complex data type.
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
-  
+
   serv = Bio::KEGG::API.new
-  
+
   results = serv.get_all_best_neighbors_by_gene('eco:b0002')
 
   results.each do |hit|
@@ -449,11 +449,11 @@ The equivalent for the Perl's second example described above will be
 and equivalent for the last example is as follows.
 
   #!/usr/bin/env ruby
-  
+
   require 'bio'
 
   serv = Bio::KEGG::API.new
-  
+
   genes = ["eco:b1002", "eco:b2388"]
 
   result = serv.mark_pathway_by_objects("path:eco00010", genes)
@@ -475,7 +475,7 @@ Here's a sample code using KEGG API with Python.
   #!/usr/bin/env python
 
   from SOAPpy import WSDL
- 
+
   wsdl = 'http://soap.genome.jp/KEGG.wsdl'
   serv = WSDL.Proxy(wsdl)
 
@@ -514,35 +514,35 @@ This program will do the same job as the Python's example (extended to
 accept a pathway_id as the argument).
 
   import keggapi.*;
-  
+
   class GetGenesByPathway {
           public static void main(String[] args) throws Exception {
                   KEGGLocator  locator = new KEGGLocator();
                   KEGGPortType serv    = locator.getKEGGPort();
-  
+
                   String   query   = args[0];
                   String[] results = serv.get_genes_by_pathway(query);
-  
+
                   for (int i = 0; i < results.length; i++) {
                           System.out.println(results[i]);
                   }
           }
   }
 
-This is another example which uses ArrayOfSSDBRelation data type. 
+This is another example which uses ArrayOfSSDBRelation data type.
 
   import keggapi.*;
-  
+
   class GetBestNeighborsByGene {
           public static void main(String[] args) throws Exception {
                   KEGGLocator    locator  = new KEGGLocator();
                   KEGGPortType   serv     = locator.getKEGGPort();
-  
+
                   String         query    = args[0];
                   SSDBRelation[] results  = null;
-  
+
                   results = serv.get_best_neighbors_by_gene(query, 1, 50);
-  
+
                   for (int i = 0; i < results.length; i++) {
                           String gene1  = results[i].getGenes_id1();
                           String gene2  = results[i].getGenes_id2();
@@ -644,8 +644,8 @@ the KEGG API can be found at:
     and 'pf' for pfam) and a motif entry name. (e.g. 'pf:DnaJ' means a Pfam
     database entry 'DnaJ').
 
-  * 'ko_id' is a KO identifier consisting of 'ko' and a ko number used in 
-    KEGG/KO. KO (KEGG Orthology) is an classification of orthologous genes 
+  * 'ko_id' is a KO identifier consisting of 'ko' and a ko number used in
+    KEGG/KO. KO (KEGG Orthology) is an classification of orthologous genes
     defined by KEGG (e.g. 'ko:K02598' means a KO group for nitrite transporter
     NirC genes).
 
@@ -655,7 +655,7 @@ the KEGG API can be found at:
 
     * ((<URL:http://www.genome.jp/dbget-bin/get_htext?KO>))
 
-  * 'offset' and 'limit' are both an integer and used to control the 
+  * 'offset' and 'limit' are both an integer and used to control the
     number of the results returned at once.  Methods having these arguments
     will return first 'limit' results starting from 'offset'th.
 
@@ -810,7 +810,7 @@ data type.
 
 ==== Meta information
 
-This section describes the APIs for retrieving the general information 
+This section describes the APIs for retrieving the general information
 concerning latest version of the KEGG database.
 
 --- list_databases
@@ -840,7 +840,7 @@ Related site:
 --- list_pathways(string:org)
 
 List up the pathway maps of the given organism in the KEGG/PATHWAY database.
-Passing the string "map" as its argument, this method returns a list of the 
+Passing the string "map" as its argument, this method returns a list of the
 reference pathways.
 
 Return value:
@@ -861,7 +861,7 @@ Related site:
 --- binfo(string:db)
 
 Show the version information of the specified database.
-Passing the string "all" as its argument, this method returns the version 
+Passing the string "all" as its argument, this method returns the version
 information of all databases available on the GenomeNet.
 
 Return value:
@@ -873,8 +873,8 @@ Example:
 
 --- bfind(string:str)
 
-Wrapper method for bfind command. bfind is used for searching entries by 
-keywords. User need to specify a database from those which are supported 
+Wrapper method for bfind command. bfind is used for searching entries by
+keywords. User need to specify a database from those which are supported
 by DBGET system before keywords.  Number of keywords given at a time is
 restricted up to 100.
 
@@ -998,7 +998,7 @@ Return value:
   ArrayOfstring (genes_id)
 
 Example:
-  # Returns all the GENES entry IDs in E.coli genome which are assigned 
+  # Returns all the GENES entry IDs in E.coli genome which are assigned
   # EC number ec:1.2.1.1
   get_genes_by_enzyme('ec:1.2.1.1', 'eco')
 
@@ -1048,7 +1048,7 @@ Return value:
   ArrayOfstring (enzyme_id)
 
 Example:
-  # Returns the ENZYME entry IDs which have a link to the REACTION entry, 
+  # Returns the ENZYME entry IDs which have a link to the REACTION entry,
   # 'rn:R00100'.
   get_enzymes_by_reaction('rn:R00100')
 
@@ -1060,10 +1060,10 @@ Return value:
   ArrayOfstring (compound_id)
 
 Example:
-  # Returns the COMPOUND entry IDs which have a link to the ENZYME entry, 
+  # Returns the COMPOUND entry IDs which have a link to the ENZYME entry,
   # 'ec:2.7.1.12'.
   get_compounds_by_enzyme('ec:2.7.1.12')
- 
+
 --- get_compounds_by_reaction(reaction_id)
 
 Retrieve all compounds which have a link to the given reaction_id.
@@ -1072,7 +1072,7 @@ Return value:
   ArrayOfstring (compound_id)
 
 Example:
-  # Returns the COMPOUND entry IDs which have a link to the REACTION entry, 
+  # Returns the COMPOUND entry IDs which have a link to the REACTION entry,
   # 'rn:R00100'
   get_compounds_by_reaction('rn:R00100')
 
@@ -1197,7 +1197,7 @@ Example:
 
 --- get_motifs_by_gene(string:genes_id, string:db)
 
-Search motifs in the specified gene. As for 'db', 
+Search motifs in the specified gene. As for 'db',
 user can specify one of the four database; Pfam, TIGRFAM, PROSITE pattern,
 PROSITE profile as 'pfam', 'tfam', 'pspt', 'pspf', respectively.
 You can also use 'all' to specify all of the four databases above.
@@ -1304,7 +1304,7 @@ Example:
 
 --- color_pathway_by_objects(string:pathway_id, [string]:object_id_list, [string]:fg_color_list, [string]:bg_color_list)
 
-Color the given objects on the pathway map with the specified colors 
+Color the given objects on the pathway map with the specified colors
 and return the URL of the colored image.  In the KEGG pathway maps,
 a gene or enzyme is represented by a rectangle and a compound is
 shown as a small circle.  'fg_color_list' is used for specifying the
@@ -1340,7 +1340,7 @@ one rectangle or a gene is assigned to more than one rectangle on the
 pathway map. The 'element_id' is an unique numerical identifier on the
 pathway defined by the KGML (XML represeentation of the KEGG PATHWAY)
 in the <entry> tag.  List of the 'element_id's can be obtained by the
-'get_elements_by_pathway' method. 
+'get_elements_by_pathway' method.
 
 For more details on KGML, see:
 
@@ -1380,7 +1380,7 @@ Example:
 --- get_html_of_colored_pathway_by_objects(string:pathway_id, [string]:object_id_list, [string]:fg_color_list, [string]:bg_color_list)
 
 HTML version of the 'color_pathway_by_object' method.
-Color the given objects on the pathway map with the specified colors 
+Color the given objects on the pathway map with the specified colors
 and return the URL of the HTML containing the colored image as a
 clickable map.
 
@@ -1441,7 +1441,7 @@ Example:
       puts sub.element_id
       puts sub.relation
       puts sub.type
-    end  
+    end
   end
 
 + Objects on the pathway
@@ -1580,7 +1580,7 @@ Example:
 --- get_pathways_by_glycans([string]:glycan_id_list)
 
 Search all pathways which include all the given glycans.
- 
+
 Return value:
   ArrayOfstring (pathway_id)
 
@@ -1655,7 +1655,7 @@ on GENOME database, see:
 
 --- get_number_of_genes_by_organism(string:org)
 
-Get the number of genes coded in the specified organism's genome. 
+Get the number of genes coded in the specified organism's genome.
 
 Return value:
   int

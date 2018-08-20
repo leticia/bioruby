@@ -54,7 +54,7 @@ module Bio
 #  # Iterate only over CDS features and extract translated amino acid sequences
 #  features.each("CDS") do |feature|
 #    hash = feature.to_hash
-#    name = hash["gene"] || hash["product"] || hash["note"] 
+#    name = hash["gene"] || hash["product"] || hash["note"]
 #    aaseq  = hash["translation"]
 #    pos  = feature.position
 #    if name and seq
@@ -116,7 +116,7 @@ class Features
   attr_accessor :features
 
   # Appends a Feature object to Features.
-  # 
+  #
   # *Arguments*:
   # * (required) _feature_: Bio::Feature object
   # *Returns*:: Bio::Features object

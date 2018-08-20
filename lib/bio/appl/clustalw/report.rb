@@ -2,7 +2,7 @@
 # = bio/appl/clustalw/report.rb - CLUSTAL W format data (*.aln) class
 #
 # Copyright:: Copyright (C) 2003 GOTO Naohisa <ngoto@gen-info.osaka-u.ac.jp>
-#             Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl> 
+#             Copyright (C) 2010 Pjotr Prins <pjotr.prins@thebird.nl>
 #
 # License::   The Ruby License
 #

@@ -60,7 +60,7 @@ module Bio
     class TestSampleGraph < Test::Unit::TestCase
 
       TheInfinity = 1/0.0
-	    
+
 	# Sample Graph :
 	#                  +----------------+
 	#                  |                |
@@ -100,7 +100,7 @@ module Bio
           # expected values
           source_matrix =
             [
-             #v  w  x  y  z  q  r  s  t  u 
+             #v  w  x  y  z  q  r  s  t  u
              [0, 1, 0, 0, 0, 0, 0, 0, 0, 0], #v
              [0, 0, 0, 0, 0, 0, 0, 1, 0, 0], #w
              [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], #x
@@ -207,7 +207,7 @@ module Bio
 		subgraph.index[x] = i
 	    end
 	    # end workaround removing depencency to order of Hash#each
-	    dumped = 
+	    dumped =
 		"v => w (1)\n" +
 		"w => s (1)\n" +
 		"q => w (1), s (1)\n" +
@@ -222,7 +222,7 @@ module Bio
 		subgraph.index[x] = i
 	    end
 	    # end workaround removing depencency to order of Hash#each
-	    dumped =  
+	    dumped =
 		"x => z (1)\n" +
 		"y => q (1)\n" +
 		"z => x (1)\n" +
@@ -471,7 +471,7 @@ module Bio
 	end
 
 	def test_bellman_ford_on_negative_weighted_graph
-	     
+
 	    #  ,-- 'a' --> 'b'
 	    #  |    |   1   | 3
 	    #  |    |5      v
@@ -479,7 +479,7 @@ module Bio
 	    #  |            ^
 	    #  |2           | -5
 	    #  `--> 'd' ----'
-	     
+
 	    r4 = Relation.new('a', 'd', 2)
 	    r5 = Relation.new('d', 'c', -5)
 	    @w_graph.append(r4)

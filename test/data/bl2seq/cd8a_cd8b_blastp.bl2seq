@@ -10,7 +10,7 @@ precursor (T-lymphocyte differentiation antigen T8/Leu-2).
  Identities = 21/90 (23%), Positives = 37/90 (41%), Gaps = 3/90 (3%)
 
 Query: 39  VELKCQVLLSNPTSGCSWLFQ---PRGAAASPTFLLYLSQNKPKAAEGLDTQRFSGKRLG 95
-           V L C+  +S       WL Q   P   +      L+ S       E ++ ++ +  R  
+           V L C+  +S       WL Q   P   +      L+ S       E ++ ++ +  R
 Sbjct: 37  VMLSCEAKISLSNMRIYWLRQRQAPSSDSHHEFLALWDSAKGTIHGEEVEQEKIAVFRDA 96
 
 Query: 96  DTFVLTLSDFRRENEGYYFCSALSNSIMYF 125
@@ -19,11 +19,11 @@ Sbjct: 97  SRFILNLTSVKPEDSGIYFCMIVGSPELTF 126
 
 
 Lambda     K      H
-   0.323    0.137    0.436 
+   0.323    0.137    0.436
 
 Gapped
 Lambda     K      H
-   0.267   0.0410    0.140 
+   0.267   0.0410    0.140
 
 
 Matrix: BLOSUM62

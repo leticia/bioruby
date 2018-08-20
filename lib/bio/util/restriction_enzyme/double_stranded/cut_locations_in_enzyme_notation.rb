@@ -19,7 +19,7 @@ class DoubleStranded
 #
 class CutLocationsInEnzymeNotation < CutLocations
 
-  # Returns +Array+ of locations of cuts on the primary 
+  # Returns +Array+ of locations of cuts on the primary
   # strand in 0-based array index notation.
   #
   # ---
@@ -30,7 +30,7 @@ class CutLocationsInEnzymeNotation < CutLocations
     helper_for_to_array_index(self.primary)
   end
 
-  # Returns +Array+ of locations of cuts on the complementary 
+  # Returns +Array+ of locations of cuts on the complementary
   # strand in 0-based array index notation.
   #
   # ---
@@ -42,7 +42,7 @@ class CutLocationsInEnzymeNotation < CutLocations
   end
 
   # Returns the contents of the present CutLocationsInEnzymeNotation object as
-  # a CutLocations object with the contents converted from enzyme notation 
+  # a CutLocations object with the contents converted from enzyme notation
   # to 0-based array index notation.
   #
   # ---
@@ -82,7 +82,7 @@ class CutLocationsInEnzymeNotation < CutLocations
         n
       end
     else
-      calc = lambda do |n| 
+      calc = lambda do |n|
         n -= 1 unless n == nil
         n
       end

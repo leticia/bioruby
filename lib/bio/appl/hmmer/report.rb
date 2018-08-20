@@ -1,9 +1,9 @@
 #
 # = bio/appl/hmmer/report.rb - hmmsearch, hmmpfam parserer
 #
-# Copyright::   Copyright (C) 2002 
+# Copyright::   Copyright (C) 2002
 #               Hiroshi Suga <suga@biophys.kyoto-u.ac.jp>,
-# Copyright::   Copyright (C) 2005 
+# Copyright::   Copyright (C) 2005
 #               Masashi Fujita <fujita@kuicr.kyoto-u.ac.jp>
 # License::     The Ruby License
 #
@@ -46,11 +46,11 @@ module Bio
 
 class HMMER
 
-  # A reader interface for multiple reports text into a report 
+  # A reader interface for multiple reports text into a report
   # (Bio::HMMER::Report).
   #
   # === Examples
-  # 
+  #
   #   # Iterator
   #   Bio::HMMER.reports(reports_text) do |report|
   #     report
@@ -72,11 +72,11 @@ class HMMER
   end
 
 
-  # A parser class for a search report by hmmsearch or hmmpfam program in the 
-  # HMMER package. 
+  # A parser class for a search report by hmmsearch or hmmpfam program in the
+  # HMMER package.
   #
   # === Examples
-  # 
+  #
   #   Examples
   #    #for multiple reports in a single output file (example.hmmpfam)
   #    Bio::HMMER.reports(File.read("example.hmmpfam")) do |report|
@@ -98,30 +98,30 @@ class HMMER
   #
   # === References
   #
-  # * HMMER 
+  # * HMMER
   #   http://hmmer.wustl.edu/
   #
   class Report
-    
+
     # Delimiter of each entry for Bio::FlatFile support.
     DELIMITER = RS = "\n//\n"
 
-    
-    # A Hash contains program information used. 
+
+    # A Hash contains program information used.
     # Valid keys are 'name', 'version', 'copyright' and 'license'.
     attr_reader :program
 
     # A hash contains parameters used.
     # Valid keys are 'HMM file' and 'Sequence file'.
     attr_reader :parameter
-    
+
     # A hash contains the query information.
     # Valid keys are 'query sequence', 'Accession' and 'Description'.
     attr_reader :query_info
 
-    # 
+    #
     attr_reader :hits
-    
+
     # Returns an Array of Bio::HMMER::Report::Hsp objects.
     # Under special circumstances, some HSPs do not have
     # parent Hit objects. If you want to access such HSPs,
@@ -130,27 +130,27 @@ class HMMER
 
     # statistics by hmmsearch.
     attr_reader :histogram
-    
+
     # statistics by hmmsearch. Keys are 'mu', 'lambda', 'chi-sq statistic' and 'P(chi-square)'.
     attr_reader :statistical_detail
-    
+
     # statistics by hmmsearch.
     attr_reader :total_seq_searched
-    
-    # statistics by hmmsearch. Keys are 'Total memory', 'Satisfying E cutoff' and 'Total hits'. 
+
+    # statistics by hmmsearch. Keys are 'Total memory', 'Satisfying E cutoff' and 'Total hits'.
     attr_reader :whole_seq_top_hits
-    
-    # statistics by hmmsearch. Keys are 'Total memory', 'Satisfying E cutoff' and 'Total hits'. 
+
+    # statistics by hmmsearch. Keys are 'Total memory', 'Satisfying E cutoff' and 'Total hits'.
     attr_reader :domain_top_hits
 
 
-    # Parses a HMMER search report (by hmmpfam or hmmsearch program) and 
+    # Parses a HMMER search report (by hmmpfam or hmmsearch program) and
     # reutrns a Bio::HMMER::Report object.
-    # 
+    #
     # === Examples
     #
     #   hmmpfam_report = Bio::HMMER::Report.new(File.read("hmmpfam.out"))
-    #   
+    #
     #   hmmsearch_report = Bio::HMMER::Report.new(File.read("hmmsearch.out"))
     #
     def initialize(data)
@@ -243,29 +243,29 @@ class HMMER
         subdata["alignment"] = $1
         raise "multiple reports found" if $'.length > 0
       end
-      
+
       # handle -A option of HMMER
       cutoff_line = '\t\[output cut off at A = \d+ top alignments\]\n\z'
       subdata["alignment"].sub!(/#{cutoff_line}/, '')
-      
+
       # get statistics data
       subdata["statistics"] = data[/(#{stat_prefix}.+)\z/m]
 
       [subdata, is_hmmsearch]
     end
     private :get_subdata
-    
-  
+
+
     # Bio::HMMER::Report#parse_header_data
     def parse_header_data(data)
       data =~ /\A(.+? - - -$\n)(.+? - - -$\n)\n\z/m
       program_data   = $1
       parameter_data = $2
-      
+
       program = {}
       program['name'], program['version'], program['copyright'], \
       program['license'] = program_data.split(/\n/)
-      
+
       parameter = {}
       parameter_data.each_line do |x|
         if /^(.+?):\s+(.*?)\s*$/ =~ x
@@ -292,7 +292,7 @@ class HMMER
     end
     private :parse_query_info
 
-    
+
     # Bio::HMMER::Report#parse_hit_data
     def parse_hit_data(data)
       data.sub!(/.+?---\n/m, '').chop!
@@ -305,7 +305,7 @@ class HMMER
     end
     private :parse_hit_data
 
-    
+
     # Bio::HMMER::Report#parse_hsp_data
     def parse_hsp_data(data, is_hmmsearch)
       data.sub!(/.+?---\n/m, '').chop!
@@ -318,7 +318,7 @@ class HMMER
     end
     private :parse_hsp_data
 
-    
+
     # Bio::HMMER::Report#parse_stat_data
     def parse_stat_data(data)
       data.sub!(/\nHistogram of all scores:\n(.+?)\n\n\n%/m, '')
@@ -329,13 +329,13 @@ class HMMER
       $1.each_line do |l|
         statistical_detail[$1] = $2.to_f if /^\s*(.+?)\s*=\s*(\S+)/ =~ l
       end
-        
+
       total_seq_searched = nil
       data.sub!(/(.+?)\n\n/m, '')
       $1.each_line do |l|
         total_seq_searched = $2.to_i if /^\s*(.+)\s*:\s*(\S+)/ =~ l
       end
-        
+
       whole_seq_top_hits = {}
       data.sub!(/(.+?)\n\n/m, '')
       $1.each_line do |l|
@@ -345,7 +345,7 @@ class HMMER
           whole_seq_top_hits[$1] = $2
         end
       end
-        
+
       domain_top_hits = {}
       data.each_line do |l|
         if /^\s*(.+?):\s*(\d+)\s*$/ =~ l
@@ -364,29 +364,29 @@ class HMMER
     # Container class for HMMER search hits.
     class Hit
 
-      # An Array of Bio::HMMER::Report::Hsp objects. 
+      # An Array of Bio::HMMER::Report::Hsp objects.
       attr_reader :hsps
 
-      # 
+      #
       attr_reader :accession
       alias target_id  accession
       alias hit_id     accession
       alias entry_id   accession
-      
-      # 
+
+      #
       attr_reader :description
       alias definition description
 
       # Matching scores (total of all HSPs).
       attr_reader :score
-      alias bit_score score 
+      alias bit_score score
 
       # E-value
       attr_reader :evalue
 
       # Number of domains
       attr_reader :num
-        
+
       # Sets hit data.
       def initialize(hit_data)
         @hsps = Array.new
@@ -419,20 +419,20 @@ class HMMER
       def append_hsp(hsp)
         @hsps << hsp
       end
-      
+
     end # class Hit
 
 
     # Container class for HMMER search hsps.
     class Hsp
-      
-      # 
+
+      #
       attr_reader :accession
       alias target_id accession
 
       #
       attr_reader :domain
-      
+
       #
       attr_reader :seq_f
 
@@ -457,10 +457,10 @@ class HMMER
 
       # E-value
       attr_reader :evalue
-      
+
       # Alignment midline
       attr_reader :midline
-      
+
       #
       attr_reader :hmmseq
 
@@ -475,7 +475,7 @@ class HMMER
 
       # CS Line
       attr_reader :csline
-        
+
       # RF Line
       attr_reader :rfline
 
@@ -505,10 +505,10 @@ class HMMER
       def set_alignment(alignment)
         # First, split the input alignment into an array of
         # "alignment blocks." One block usually has three lines,
-        # i.e. hmmseq, midline and flatseq. 
+        # i.e. hmmseq, midline and flatseq.
         # However, although infrequent, it can contain CS or RF lines.
         alignment.split(/ (?:\d+|-)\s*\n\n/).each do |blk|
-          lines = blk.split(/\n/)   
+          lines = blk.split(/\n/)
           cstmp = (lines[0] =~ /^ {16}CS/) ? lines.shift : nil
           rftmp = (lines[0] =~ /^ {16}RF/) ? lines.shift : nil
           aln_width = lines[0][/\S+/].length
@@ -535,7 +535,7 @@ class HMMER
       def target_seq
         @is_hmmsearch ? @flatseq : @hmmseq
       end
-      
+
       #
       def target_from
         @is_hmmsearch ? @seq_f   : @hmm_f
@@ -555,7 +555,7 @@ class HMMER
       def query_to
         @is_hmmsearch ? @hmm_t   : @seq_t
       end
-      
+
 
     end # class Hsp
 

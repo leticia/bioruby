@@ -531,7 +531,7 @@ module Bio
       assert_equal(true, @tree.include?(@primates))
       assert_equal(true, @tree.include?(@mammals))
     end
-      
+
     def test_include_nonexistent
       assert_equal(false, @tree.include?(Bio::Tree::Node.new))
     end
@@ -795,7 +795,7 @@ module Bio
       assert_equal([ "0.6266", "0.6423", "0.0889", "0" ],
                    mat.row(3).map { |x| sprintf("%.15g", x) }.to_a)
     end
-     
+
     def test_adjacency_matrix
       a =
         [ [ 0,  nil, @edge_rodents_mouse, nil, nil, nil, nil ],

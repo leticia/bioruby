@@ -21,7 +21,7 @@ your module meets the field of bioinformatics.
 
 == Git
 
-Bioruby is now under git source control at http://github.com/bioruby/bioruby. 
+Bioruby is now under git source control at http://github.com/bioruby/bioruby.
 There are two basic ways to contribute: with patches or pull requests. Both are
 explained on the bioruby wiki at http://bioruby.open-bio.org/wiki.
 
@@ -115,32 +115,32 @@ following example (from lib/bio/sequence.rb):
   # == Description
   #
   # Bio::Sequence objects represent annotated sequences in bioruby.
-  # A Bio::Sequence object is a wrapper around the actual sequence, 
+  # A Bio::Sequence object is a wrapper around the actual sequence,
   # represented as either a Bio::Sequence::NA or a Bio::Sequence::AA object.
   # For most users, this encapsulation will be completely transparent.
   # Bio::Sequence responds to all methods defined for Bio::Sequence::NA/AA
-  # objects using the same arguments and returning the same values (even though 
+  # objects using the same arguments and returning the same values (even though
   # these methods are not documented specifically for Bio::Sequence).
   #
   # == Usage
-  # 
+  #
   #   require 'bio'
-  #   
+  #
   #   # Create a nucleic or amino acid sequence
   #   dna = Bio::Sequence.auto('atgcatgcATGCATGCAAAA')
   #   rna = Bio::Sequence.auto('augcaugcaugcaugcaaaa')
   #   aa = Bio::Sequence.auto('ACDEFGHIKLMNPQRSTVWYU')
-  # 
+  #
   #   # Print in FASTA format
   #   puts dna.output(:fasta)
-  # 
+  #
   #   # Print all codons
   #   dna.window_search(3,3) do |codon|
   #     puts codon
   #   end
-  # 
+  #
   class Sequence
-  
+
     # Create a new Bio::Sequence object
     #
     #   s = Bio::Sequence.new('atgc')
@@ -151,8 +151,8 @@ following example (from lib/bio/sequence.rb):
     #
     #   puts s.seq.class                        # => String
     #
-    # See Bio::Sequence#na, Bio::Sequence#aa, and Bio::Sequence#auto 
-    # for methods to transform the basic String of a just created 
+    # See Bio::Sequence#na, Bio::Sequence#aa, and Bio::Sequence#auto
+    # for methods to transform the basic String of a just created
     # Bio::Sequence object to a proper bioruby object
     # ---
     # *Arguments*:
@@ -161,16 +161,16 @@ following example (from lib/bio/sequence.rb):
     def initialize(str)
       @seq = str
     end
-  
+
     # The sequence identifier.  For example, for a sequence
     # of Genbank origin, this is the accession number.
     attr_accessor :entry_id
-  
+
     # An Array of Bio::Feature objects
     attr_accessor :features
   end # Sequence
 
-Preceding the class definition (<tt>class Sequence</tt>), there is at least a 
+Preceding the class definition (<tt>class Sequence</tt>), there is at least a
 description and a usage example. Please use the +Description+ and +Usage+
 headings. If appropriate, refer to other classes that interact with or are
 related to the class.
@@ -188,7 +188,7 @@ Otherwise, describe the input shortly, for example:
   # input should be string consisting of nucleotides
   dna = Bio::Sequence.auto(ARGF.read)
 
-Methods should be preceded by a comment that describes what the method does, 
+Methods should be preceded by a comment that describes what the method does,
 including any relevant usage examples. (In contrast to the documentation for
 the class itself, headings are not required.) In addition, any arguments should
 be listed, as well as the type of thing that is returned by the method. The
@@ -223,7 +223,7 @@ is deprecated.
 
 == Using autoload
 
-To quicken the initial load time we have replaced most of 'require' to 
+To quicken the initial load time we have replaced most of 'require' to
 'autoload' since BioRuby version 0.7.  During this change, we have found
 some tips:
 
@@ -239,7 +239,7 @@ You should not separate the same namespace into several files.
   'bio/foo.rb' file:
 
     autoload :Bar, 'bio/foo/bar'
-    
+
 You should not put several top level namespaces in one file.
 
 * For example, if you have Bio::A, Bio::B and Bio::C in the file
@@ -280,6 +280,6 @@ a new module or making changes on existing modules.
 
 = MAINTENANCE
 
-Finally, please maintain the code you've contributed. Please let us know (on 
+Finally, please maintain the code you've contributed. Please let us know (on
 the bioruby list) before you commit, so that users can discuss on the change.
 

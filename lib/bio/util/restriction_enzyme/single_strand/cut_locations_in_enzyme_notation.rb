@@ -15,10 +15,10 @@ class RestrictionEnzyme
 class SingleStrand
 
 # Stores the cut location in thier enzyme index notation
-# 
+#
 # May be initialized with a series of cuts or an enzyme pattern marked
 # with cut symbols.
-# 
+#
 # Enzyme index notation:: 1.._n_, value before 1 is -1
 #
 # example:: [-3][-2][-1][1][2][3][4][5]
@@ -26,22 +26,22 @@ class SingleStrand
 # Negative values are used to indicate when a cut may occur at a specified
 # distance before the sequence begins.  This would be padded with 'n'
 # nucleotides to represent wildcards.
-# 
+#
 # Notes:
-# * <code>0</code> is invalid as it does not refer to any index 
+# * <code>0</code> is invalid as it does not refer to any index
 # * +nil+ is not allowed here as it has no meaning
 # * +nil+ values are kept track of in DoubleStranded::CutLocations as they
-#   need a reference point on the correlating strand.  In 
-#   DoubleStranded::CutLocations +nil+ represents no cut or a partial 
+#   need a reference point on the correlating strand.  In
+#   DoubleStranded::CutLocations +nil+ represents no cut or a partial
 #   digestion.
-# 
+#
 class CutLocationsInEnzymeNotation < Array
   include CutSymbol
   extend CutSymbol
 
   # First cut, in enzyme-index notation
   attr_reader :min
-  
+
   # Last cut, in enzyme-index notation
   attr_reader :max
 
@@ -94,7 +94,7 @@ class CutLocationsInEnzymeNotation < Array
   def to_array_index
     return [] if @min == nil
     if @min < 0
-      calc = lambda do |n| 
+      calc = lambda do |n|
         n -= 1 unless n < 0
         n + @min.abs
       end

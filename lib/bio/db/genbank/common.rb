@@ -13,12 +13,12 @@ module Bio
 class NCBIDB
 
 # == Description
-# 
+#
 # This module defines a common framework among GenBank, GenPept, RefSeq, and
 # DDBJ.  For more details, see the documentations in each genbank/*.rb files.
-# 
+#
 # == References
-# 
+#
 # * ftp://ftp.ncbi.nih.gov/genbank/gbrel.txt
 # * http://www.ncbi.nlm.nih.gov/collab/FT/index.html
 #
@@ -226,7 +226,7 @@ module Common
         # feature qualifier start (/q="data..., /q="data...", /q=data, /q)
         elsif body =~ /^ \// and not in_quote		# gb:IRO125195
           ary.last.push(body)
-          
+
           # flag for open quote (/q="data...)
           if body =~ /="/ and body !~ /"$/
             in_quote = true
@@ -301,7 +301,7 @@ module Common
     return feature
   end
 
-end # Common 
+end # Common
 
 end # GenBank
 end # Bio

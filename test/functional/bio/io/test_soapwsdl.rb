@@ -5,7 +5,7 @@
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
-#  $Id:$ 
+#  $Id:$
 #
 
 # loading helper routine for testing bioruby
@@ -29,7 +29,7 @@ class FuncTestSOAPWSDL < Test::Unit::TestCase
   def test_wsdl
     assert_equal(@wsdl, @obj.wsdl)
   end
-  
+
   def test_set_wsdl
     @obj.wsdl = 'http://soap.genome.jp/KEGG.wsdl'
     assert_equal('http://soap.genome.jp/KEGG.wsdl', @obj.wsdl)

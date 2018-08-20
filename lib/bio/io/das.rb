@@ -74,7 +74,7 @@ class DAS
   def get_entry_points(dsn)
     entry_point = ENTRY_POINT.new
     if dsn.instance_of?(Bio::DAS::DSN)
-      src = dsn.source 
+      src = dsn.source
     else
       src = dsn
     end

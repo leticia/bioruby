@@ -1,7 +1,7 @@
 #
 # = sample/demo_psort_report.rb - demonstration of Bio::PSORT::PSORT2::Report
 #
-# Copyright::   Copyright (C) 2003 
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -64,7 +64,7 @@ require 'bio'
       puts a.features[key]
     end
 
-    
+
   end
 
 #end

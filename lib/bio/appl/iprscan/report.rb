@@ -8,7 +8,7 @@
 #  $Id: report.rb,v 1.9 2007/07/18 11:11:57 nakao Exp $
 #
 # == Report classes for the iprscan program.
-# 
+#
 
 
 module Bio
@@ -16,14 +16,14 @@ module Bio
   class Iprscan
 
     # = DESCRIPTION
-    # Class for InterProScan report. It is used to parse results and reformat 
+    # Class for InterProScan report. It is used to parse results and reformat
     # results from (raw|xml|txt) into (html, xml, ebihtml, txt, gff3) format.
     #
     # See ftp://ftp.ebi.ac.uk/pub/software/unix/iprscan/README.html
-    # 
+    #
     # == USAGE
     #  # Read a marged.txt and split each entry.
-    #  Bio::Iprscan::Report.parse_txt(File.read("marged.txt")) do |report| 
+    #  Bio::Iprscan::Report.parse_txt(File.read("marged.txt")) do |report|
     #    report.query_id
     #    report.matches.size
     #    report.matches.each do |match|
@@ -34,13 +34,13 @@ module Bio
     #      match.description
     #      match.match_start
     #      match.match_end
-    #      match.evalue    
+    #      match.evalue
     #    end
-    #    # report.to_gff3 
+    #    # report.to_gff3
     #    # report.to_html
     #  end
     #
-    #  Bio::Iprscan::Report.parse_raw(File.read("marged.raw")) do |report| 
+    #  Bio::Iprscan::Report.parse_raw(File.read("marged.raw")) do |report|
     #    report.class #=> Bio::Iprscan::Report
     #  end
     #
@@ -58,12 +58,12 @@ module Bio
       # CRC64 checksum of query sequence.
       attr_accessor :crc64
 
-      # Matched InterPro motifs in Hash. Each InterPro motif have :name, 
+      # Matched InterPro motifs in Hash. Each InterPro motif have :name,
       # :definition, :accession and :motifs keys. And :motifs key contains
-      # motifs in Array. Each motif have :method, :accession, :definition, 
+      # motifs in Array. Each motif have :method, :accession, :definition,
       # :score, :location_from and :location_to keys.
       attr_accessor :matches
-      
+
       # == USAGE
       #  Bio::Iprscan::Report.parse_raw(File.open("merged.raw")) do |report|
       #    report
@@ -83,8 +83,8 @@ module Bio
         end
         yield Bio::Iprscan::Report.parse_raw_entry(entry) if entry != ''
       end
-    
-      # Parser method for a raw formated entry. Retruns a Bio::Iprscan::Report 
+
+      # Parser method for a raw formated entry. Retruns a Bio::Iprscan::Report
       # object.
       def self.parse_raw_entry(str)
         report = self.new
@@ -93,9 +93,9 @@ module Bio
           report.matches << Match.new(:query_id => line[0],
                                       :crc64    => line[1],
                                       :query_length => line[2].to_i,
-                                      :method       => line[3], 
+                                      :method       => line[3],
                                       :accession    => line[4],
-                                      :description => line[5], 
+                                      :description => line[5],
                                       :match_start => line[6].to_i,
                                       :match_end   => line[7].to_i,
                                       :evalue => line[8],
@@ -105,7 +105,7 @@ module Bio
             report.matches.last.ipr_id = line[11]
             report.matches.last.ipr_description = line[12]
           end
-          report.matches.last.go_terms = line[13].scan(/(\w+ \w+\:.+? \(GO:\d+\))/).flatten if line[13]          
+          report.matches.last.go_terms = line[13].scan(/(\w+ \w+\:.+? \(GO:\d+\))/).flatten if line[13]
         end
         report.query_id = report.matches.first.query_id
         report.query_length = report.matches.first.query_length
@@ -114,13 +114,13 @@ module Bio
 
 
 
-      # Parser method for a xml formated entry. Retruns a Bio::Iprscan::Report 
+      # Parser method for a xml formated entry. Retruns a Bio::Iprscan::Report
       # object.
 #      def self.parse_xml(str)
 #      end
 
       # Splits the entry stream.
-      # 
+      #
       # == Usage
       #
       #  Bio::Iprscan::Report.reports_txt(File.open("merged.txt")) do |report|
@@ -169,9 +169,9 @@ module Bio
               pos_scores.each do |pos_score|
                 report.matches << Match.new(:ipr_id          => ipr_line[1],
                                             :ipr_description => ipr_line[2],
-                                            :method      => match[0], 
+                                            :method      => match[0],
                                             :accession   => match[1],
-                                            :description => match[2], 
+                                            :description => match[2],
                                             :evalue      => pos_score[3],
                                             :status      => pos_score[0],
                                             :match_start => pos_score[1].to_i,
@@ -182,11 +182,11 @@ module Bio
           end
         end
         return report
-      end 
+      end
 
 
       # Splits entry stream.
-      # 
+      #
       # == Usage
       #  Bio::Iprscan::Report.parse_ptxt(File.open("merged.txt")) do |report|
       #    report
@@ -197,12 +197,12 @@ module Bio
         end
       end
 
-      # Parser method for a pseudo-txt formated entry. Retruns a Bio::Iprscan::Report 
+      # Parser method for a pseudo-txt formated entry. Retruns a Bio::Iprscan::Report
       # object.
-      # 
+      #
       # == Usage
       #
-      #  File.read("marged.txt").each(Bio::Iprscan::Report::RS) do |e| 
+      #  File.read("marged.txt").each(Bio::Iprscan::Report::RS) do |e|
       #    report = Bio::Iprscan::Report.parse_ptxt_entry(e)
       #  end
       #
@@ -219,11 +219,11 @@ module Bio
             ipr_line = line
           else
             startp, endp = line[4].split("-")
-            report.matches << Match.new(:ipr_id => ipr_line[1], 
+            report.matches << Match.new(:ipr_id => ipr_line[1],
                                         :ipr_description => ipr_line[2],
-                                        :method => line[0], 
+                                        :method => line[0],
                                         :accession => line[1],
-                                        :description => line[2], 
+                                        :description => line[2],
                                         :evalue => line[3],
                                         :match_start => startp.to_i,
                                         :match_end => endp.to_i)
@@ -232,7 +232,7 @@ module Bio
         report
       end
 
-      # 
+      #
       def initialize
         @query_id = nil
         @query_length = nil
@@ -253,16 +253,16 @@ module Bio
 
 #      def format_html
 #      end
-      
+
 #      def format_xml
 #      end
-      
+
 #      def format_ebixml
 #      end
-      
+
 #      def format_txt
 #      end
-      
+
       def format_raw
         @matches.map { |match|
           [self.query_id,
@@ -282,7 +282,7 @@ module Bio
           ].join("\t")
         }.join("\n")
       end
-      
+
 #      def format_gff3
 #      end
 
@@ -297,7 +297,7 @@ module Bio
       #
       def to_hash
         unless @ipr_ids
-          @ipr_ids = {} 
+          @ipr_ids = {}
           @matches.each_with_index do |match, i|
             @ipr_ids[match.ipr_id] ||= []
             @ipr_ids[match.ipr_id] << match
@@ -358,8 +358,8 @@ module Bio
 
         def method_missing(name, arg = nil)
           if arg
-            name = name.to_s.sub(/=$/, '') 
-            @data[name.to_sym] = arg 
+            name = name.to_s.sub(/=$/, '')
+            @data[name.to_sym] = arg
           else
             @data[name.to_sym]
           end

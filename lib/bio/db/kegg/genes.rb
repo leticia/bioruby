@@ -14,31 +14,31 @@
 #
 #
 # === Examples
-# 
+#
 #  require 'bio/io/fetch'
 #  entry_string = Bio::Fetch.query('genes', 'b0002')
-# 
+#
 #  entry = Bio::KEGG::GENES.new(entry_string)
-# 
+#
 #  # ENTRY
 #  p entry.entry       # => Hash
 #
 #  p entry.entry_id    # => String
 #  p entry.division    # => String
 #  p entry.organism    # => String
-# 
+#
 #  # NAME
 #  p entry.name        # => String
 #  p entry.names       # => Array
-# 
+#
 #  # DEFINITION
 #  p entry.definition  # => String
 #  p entry.eclinks     # => Array
-# 
+#
 #  # PATHWAY
 #  p entry.pathway     # => String
 #  p entry.pathways    # => Hash
-# 
+#
 #  # POSITION
 #  p entry.position    # => String
 #  p entry.chromosome  # => String
@@ -50,24 +50,24 @@
 #
 #  # DBLINKS
 #  p entry.dblinks     # => Hash of Array
-# 
+#
 #  # STRUCTURE
 #  p entry.structure   # => Array
 #
 #  # CODON_USAGE
 #  p entry.codon_usage # => Hash
 #  p entry.cu_list     # => Array
-# 
+#
 #  # AASEQ
 #  p entry.aaseq       # => Bio::Sequence::AA
 #  p entry.aalen       # => Fixnum
-# 
+#
 #  # NTSEQ
 #  p entry.ntseq       # => Bio::Sequence::NA
 #  p entry.naseq       # => Bio::Sequence::NA
 #  p entry.ntlen       # => Fixnum
 #  p entry.nalen       # => Fixnum
-# 
+#
 
 module Bio
 
@@ -117,7 +117,7 @@ class GENES < KEGGDB
   end
 
   # Returns the "ENTRY" line content as a Hash.
-  # For example, 
+  # For example,
   #   {"organism"=>"E.coli", "division"=>"CDS", "id"=>"b0356"}
   #
   # ---
@@ -205,7 +205,7 @@ class GENES < KEGGDB
   # *Returns*:: Array containing String
   def eclinks
     unless defined? @eclinks
-      ec_list = 
+      ec_list =
         definition.slice(/\[EC\:([^\]]+)\]/, 1) ||
         definition.slice(/\(EC\:([^\)]+)\)/, 1)
       ary = ec_list ? ec_list.strip.split(/\s+/) : []

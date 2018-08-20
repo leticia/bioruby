@@ -61,7 +61,7 @@ module FuncTestBlastRemote
   end #module NetTestBlastRemoteCommon
 
   # This test class only contains tests for meta information.
-  # BLAST execution tests are written in ../test_blast.rb 
+  # BLAST execution tests are written in ../test_blast.rb
   class NetTestBlastRemoteGenomeNet < Test::Unit::TestCase
 
     include NetTestBlastRemoteCommon
@@ -75,7 +75,7 @@ module FuncTestBlastRemote
   end #class NetTestBlastRemoteGenomeNet
 
   # This test class only contains tests for meta information.
-  # BLAST execution tests are written in ../test_blast.rb 
+  # BLAST execution tests are written in ../test_blast.rb
   class NetTestBlastRemoteDDBJ < Test::Unit::TestCase
 
     include NetTestBlastRemoteCommon

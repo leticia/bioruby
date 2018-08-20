@@ -88,7 +88,7 @@ module Bio
       def file(f)
         File.join(self.tmpdir.path, f)
       end
-    
+
       def example_xml_test
         self.file('phyloxml_examples_written.xml')
       end
@@ -115,9 +115,9 @@ module Bio
     def test_init
       filename = @writeto.file("test2.xml")
       writer = Bio::PhyloXML::Writer.new(filename)
-      
+
       tree = Bio::PhyloXML::Parser.open(TestPhyloXMLWriterData.mollusca_short_xml).next_tree
-      
+
       writer.write(tree)
 
       assert_nothing_thrown do
@@ -144,7 +144,7 @@ module Bio
       tree.add_node(node2)
       tree.add_edge(root_node, node2)
       writer.write(tree)
-      
+
       lines = File.open(filename).readlines()
       assert_equal("<phyloxml xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.phyloxml.org http://www.phyloxml.org/1.10/phyloxml.xsd\" xmlns=\"http://www.phyloxml.org\">",
                     lines[1].chomp)
@@ -185,7 +185,7 @@ module Bio
       2.times do
         @tree = phyloxml.next_tree
       end
-      
+
       filename = @writeto.file('example_tree2.xml')
       writer = Bio::PhyloXML::Writer.new(filename)
       writer.write(@tree)
@@ -193,7 +193,7 @@ module Bio
       assert_nothing_thrown do
         tree2  = Bio::PhyloXML::Parser.open(filename)
       end
-      
+
       #File.delete(filename)
     end
 
@@ -318,7 +318,7 @@ module Bio
       # hard code it in.
       phyloxml.each do |tree|
         writer.write(tree)
-      end      
+      end
     end
 
   end

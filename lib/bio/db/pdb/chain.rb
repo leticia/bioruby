@@ -5,11 +5,11 @@
 #             Alex Gutteridge <alexg@ebi.ac.uk>
 #             Naohisa Goto <ng@bioruby.org>
 # License::   The Ruby License
-# 
+#
 # $Id: chain.rb,v 1.10 2008/04/01 10:36:44 ngoto Exp $
 #
 # = Bio::PDB::Chain
-# 
+#
 # Please refer Bio::PDB::Chain.
 #
 
@@ -23,9 +23,9 @@ module Bio
     #
     # The object would contain some residues (Bio::PDB::Residue objects)
     # and some heterogens (Bio::PDB::Heterogen objects).
-    # 
+    #
     class Chain
-      
+
       include Utils
       include AtomFinder
       include ResidueFinder
@@ -38,11 +38,11 @@ module Bio
 
       # Creates a new chain object.
       def initialize(id = nil, model = nil)
-        
+
         @chain_id  = id
-        
+
         @model    = model
-        
+
         @residues   = []
         @residues_hash = {}
         @heterogens = []
@@ -62,7 +62,7 @@ module Bio
 
       # heterogens in this chain
       attr_reader :heterogens
-      
+
       # get the residue by id
       def get_residue_by_id(key)
         #@residues.find { |r| r.residue_id == key }
@@ -83,7 +83,7 @@ module Bio
         #@heterogens.find { |r| r.residue_id == key }
         @heterogens_hash[key]
       end
-      
+
       #Add a residue to this chain
       def addResidue(residue)
         raise "Expecting a Bio::PDB::Residue" unless residue.is_a? Bio::PDB::Residue
@@ -95,7 +95,7 @@ module Bio
         end
         self
       end
-      
+
       #Add a heterogen (ligand) to this chain
       def addLigand(ligand)
         raise "Expecting a Bio::PDB::Residue" unless ligand.is_a? Bio::PDB::Residue
@@ -161,12 +161,12 @@ module Bio
       def each_heterogen(&x) #:yields: heterogen
         @heterogens.each(&x)
       end
-      
+
       # Operator aimed to sort based on chain id
       def <=>(other)
         return @chain_id <=> other.chain_id
       end
-      
+
       # Stringifies each residue
       def to_s
         @residues.join('') + "TER\n" + @heterogens.join('')
@@ -184,7 +184,7 @@ module Bio
           string = ""
           last_residue_num = nil
           @residues.each do |residue|
-            if last_residue_num and 
+            if last_residue_num and
                 (x = (residue.resSeq.to_i - last_residue_num).abs) > 1 then
               x.times { string << 'X' }
             end
@@ -202,7 +202,7 @@ module Bio
       end
       # for backward compatibility
       alias atom_seq aaseq
-      
+
     end #class Chain
 
   end #class PDB

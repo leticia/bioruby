@@ -13,7 +13,7 @@ require 'bio/util/restriction_enzyme'
 module Bio
 class RestrictionEnzyme
 class DoubleStranded
-  
+
 # Stores a single cut location pair in 0-based index notation for use with
 # DoubleStranded enzyme sequences.
 #
@@ -22,7 +22,7 @@ class CutLocationPair < Array
   # Corresponds - or 'pairs' - to the complement cut.
   # A value of +nil+ is an explicit representation of 'no cut'.
   attr_reader :primary
-  
+
   # Location of the cut on the complementary strand.
   # Corresponds - or 'pairs' - to the primary cut.
   # A value of +nil+ is an explicit representation of 'no cut'.
@@ -32,7 +32,7 @@ class CutLocationPair < Array
   #
   # Stores a single cut location pair in 0-based index notation for use with
   # DoubleStranded enzyme sequences.
-  # 
+  #
   # Example:
   #   clp = CutLocationPair.new(3,2)
   #   clp.primary                    # 3

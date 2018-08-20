@@ -71,11 +71,11 @@ module Bio
       assert_equal('blastx', @obj.set('-p', 'blastp'))
       assert_equal('blastp', @obj.set('p', 'tblastx'))
       assert_equal('tblastx',@obj.get('p'))
-      
+
       assert_equal('7', @obj.set('m', '8'))
       assert_equal('8', @obj.set('-m', '0'))
       assert_equal('0', @obj.get('m'))
-      
+
       assert_equal('T', @obj.set('-F', 'F'))
       assert_equal('F', @obj.get('F'))
 

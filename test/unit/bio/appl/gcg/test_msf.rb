@@ -90,7 +90,7 @@ __END_OF_MFST__
     def test_alignment
       seqs = TestGCGMsfData::PileupAA_seqs.dup
       names = TestGCGMsfData::PileupAA_names
- 
+
       aln = nil
       assert_nothing_raised { aln = @paa.alignment }
       assert_equal(names, aln.keys)

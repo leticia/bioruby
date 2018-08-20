@@ -41,7 +41,7 @@ FEATURES             Location/Qualifiers
                      /db_xref="InterPro:IPR002384"
                      /db_xref="PDB:1Q3M"
                      /db_xref="UniProtKB/Swiss-Prot:P02820"
-ORIGIN      
+ORIGIN
         1 mrtpmllall alatlclagr adakpgdaes gkgaafvskq egsevvkrlr ryldhwlgap
        61 apypdplepk revcelnpdc deladhigfq eayrrfygpv
 //

@@ -29,7 +29,7 @@ module Bio::Sequence::Adapter::EMBL
   end
 
   def_biosequence_adapter :entry_id
-  
+
   def_biosequence_adapter :primary_accession do |orig|
     orig.accessions[0]
   end

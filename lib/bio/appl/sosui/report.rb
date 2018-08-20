@@ -1,7 +1,7 @@
 #
 # = bio/appl/sosui/report.rb - SOSUI report class
-# 
-# Copyright::   Copyright (C) 2003 
+#
+# Copyright::   Copyright (C) 2003
 #               Mitsuteru C. Nakao <n@bioruby.org>
 # License::     The Ruby License
 #
@@ -34,7 +34,7 @@ module Bio
       # Query entry_id
       attr_reader :entry_id
 
-      # Returns the prediction result whether "MEMBRANE PROTEIN" or 
+      # Returns the prediction result whether "MEMBRANE PROTEIN" or
       # "SOLUBLE PROTEIN".
       attr_reader :prediction
 
@@ -72,17 +72,17 @@ module Bio
 
       # = Bio::SOSUI::Report::TMH
       # Container class for transmembrane helix information.
-      #  
+      #
       #  TM 1   31-  53 SECONDARY   HIRMTFLRKVYSILSLQVLLTTV
       class TMH
 
         # Returns aRng of transmembrane helix
         attr_reader :range
-        
+
         # Retruns ``PRIMARY'' or ``SECONDARY'' of helix.
         attr_reader :grade
 
-        # Returns the sequence. of transmembrane helix. 
+        # Returns the sequence. of transmembrane helix.
         attr_reader :sequence
 
         # Sets values.

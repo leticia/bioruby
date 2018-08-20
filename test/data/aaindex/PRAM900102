@@ -2,10 +2,10 @@ H PRAM900102
 D Relative frequency in alpha-helix (Prabhakaran, 1990)
 R LIT:1614053b PMID:2390062
 A Prabhakaran, M.
-T The distribution of physical, chemical and conformational properties in 
+T The distribution of physical, chemical and conformational properties in
   signal and nascent peptides
-J Biochem. J. 269, 691-696 (1990) Original reference of these three data: 
-  Creighton, T.E. In "Protein Structure and Melecular Properties", (Freeman, 
+J Biochem. J. 269, 691-696 (1990) Original reference of these three data:
+  Creighton, T.E. In "Protein Structure and Melecular Properties", (Freeman,
   W.H., ed.), San Francisco P.235 (1983)
 C LEVM780101    1.000  LEVM780104    0.964  PALJ810101    0.943
   KANM800101    0.942  ISOY800101    0.929  MAXF760101    0.924

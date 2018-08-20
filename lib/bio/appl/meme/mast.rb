@@ -22,7 +22,7 @@ module Meme
   #
   # Bio::Meme::Mast is a wrapper for searching a database using sequence motifs.  The code
   # will read options from a Hash and run the program.  Parsing of the output is provided by
-  # Bio::Meme::Mast::Report.  Before running, options[:mfile] and options[:d] must be set 
+  # Bio::Meme::Mast::Report.  Before running, options[:mfile] and options[:d] must be set
   # in the constructor or Mast.config(options = {})
   #
   # == Usage
@@ -38,52 +38,52 @@ module Meme
   #
   #
   class Mast
-    
+
     include Bio::Command
-    
+
     autoload :Report, 'bio/appl/meme/mast/report'
-    
+
     # A Hash of options for Mast
     attr_accessor :options
 
     DEFAULT_OPTIONS = {
       # required
-      :mfile => nil, 
+      :mfile => nil,
       :d => nil,
-      # optional 
+      # optional
       :stdin => nil, # may not work as expected
-      :count => nil, 
-      :alphabet => nil, 
-      :stdout => true, 
-      :text => false, 
-      :sep => false, 
-      :norc => false, 
-      :dna => false, 
-      :comp => false, 
-      :rank => nil, 
-      :smax => nil, 
-      :ev => nil, 
+      :count => nil,
+      :alphabet => nil,
+      :stdout => true,
+      :text => false,
+      :sep => false,
+      :norc => false,
+      :dna => false,
+      :comp => false,
+      :rank => nil,
+      :smax => nil,
+      :ev => nil,
       :mt => nil,
-      :w => false, 
-      :bfile => nil, 
-      :seqp => false, 
-      :mf => nil, 
-      :df => nil, 
-      :minseqs => nil, 
-      :mev => nil, 
-      :m => nil, 
-      :diag => nil, 
-      :best => false, 
-      :remcorr => false, 
-      :brief => false, 
-      :b => false, 
-      :nostatus => true, 
-      :hit_list => true, 
+      :w => false,
+      :bfile => nil,
+      :seqp => false,
+      :mf => nil,
+      :df => nil,
+      :minseqs => nil,
+      :mev => nil,
+      :m => nil,
+      :diag => nil,
+      :best => false,
+      :remcorr => false,
+      :brief => false,
+      :b => false,
+      :nostatus => true,
+      :hit_list => true,
     }
 
     # The command line String to be executed
     attr_reader :cmd
-    
+
     # Create a mast instance
     #
     #   m = Mast.new('/usr/local/bin/mast')
@@ -92,7 +92,7 @@ module Meme
     # * (required) _mast_location_: String
     # *Raises*:: ArgumentError if mast program is not found
     # *Returns*:: a Bio::Meme::Mast object
-    
+
     def initialize(mast_location, options = {})
       unless File.exists?(mast_location)
         raise ArgumentError.new("mast: command not found : #{mast_location}")
@@ -132,7 +132,7 @@ module Meme
     # *Raises*:: ArgumentError if the motifs file does not exist
     # *Raises*:: ArgumentError if the database file does not exist
     # *Raises*:: ArgumentError if there is an invalid option
-    
+
     def check_options
       @options.each_key do |k|
         raise ArgumentError.new("Invalid option: #{k}") unless DEFAULT_OPTIONS.has_key?(k)
@@ -144,13 +144,13 @@ module Meme
     # Run the mast program
     # ---
     # *Returns*:: Bio::Meme::Mast::Report object
-    
+
     def run
       check_options
       call_command(@cmd) {|io| @output = io.read }
       Report.new(@output)
     end
-    
+
   end # End class Mast
 end # End module Meme
 end # End module Bio

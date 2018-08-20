@@ -141,7 +141,7 @@ module Bio
                     'FSRRS4401EG0ZW'
                   ].collect { |x| x.freeze }.freeze
 
-      QUALITY_STRINGS = 
+      QUALITY_STRINGS =
         [ <<'_0_', <<'_1_', <<'_2_', <<'_3_', <<'_4_', <<'_5_', <<'_6_', <<'_7_', <<'_8_', <<'_9_' ].collect { |x| x.delete("\r\n").freeze }.freeze
 FFFDDDDDDDA666?688FFHGGIIIIIIIIIIIIIIIII
 IHHHIIIIIIIIIGHGFFFFF====DFFFFFFFFFFFFFF
@@ -852,7 +852,7 @@ _9_
         expected = "GAATTCAGGCCACCTTTGATAGAATAATGGAGAATTAAAGCTGTACATATACCAATGAACAATAATCAATACATAAAGGAGAAGTGGAACCGAAGGTTGATTCAACCTTCG"
         assert_equal(expected, @entry.mask(20, '').seq)
       end
-        
+
       def test_mask_20_with_longer_string
         expected = "GAA-*-TT-*-CAGG-*-CCACCTTT-*--*--*--*--*-GATAGAATAATGGAGAA-*--*-TTAAA-*-GCTGTACATATACCAATGAACAATAA-*-TCAATACATAAA-*--*--*-GGAGAAGT-*-GGAACCGAA-*-GG-*-TT-*-GA-*-TTCAA-*-CC-*-TT-*-CG-*-"
         assert_equal(expected, @entry.mask(20, '-*-').seq)
